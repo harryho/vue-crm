@@ -49,9 +49,6 @@ export default {
     }
   },
   computed: {
-    newCustomer: function () {
-      return 'New Customer'
-    }
   },
   methods: {
     save: function () {
@@ -71,7 +68,6 @@ export default {
       }
     },
     getById: function () {
-      console.log(this.$route.params.id)
       this.api.getData('customers/' + this.$route.params.id).then((res) => {
         this.customer = res.data
       }, (err) => {

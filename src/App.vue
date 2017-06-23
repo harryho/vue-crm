@@ -68,12 +68,11 @@
 </template>
 <script>
   import auth from './utils/auth'
-  import api from './utils/backend-api'
   export default {
     data () {
       return {
         loggedIn: auth.loggedIn(),
-        clipped: false,
+        // clipped: false,
         drawer: true,
         fixed: false,
         items: [
@@ -88,11 +87,12 @@
         miniVariant: false,
         right: true,
         rightDrawer: false,
-        title: 'Vuetify.js'
+        title: 'Vue 2 CRM'
       }
     },
     created () {
       auth.onChange = loggedIn => {
+        console.log(loggedIn)
         this.loggedIn = loggedIn
       }
     },
@@ -108,9 +108,6 @@
       },
       auth: function () {
         return auth
-      },
-      api: function () {
-        return api
       }
     },
     methods: {

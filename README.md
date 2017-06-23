@@ -5,7 +5,7 @@
 * This starter project is built-in with Vue 2 PWA from scratch.
 * The whole UI is built on the Vuetify
 * It includes Vuex, Axios as well.
-* Backend uses Json-Server as fake Restful API.
+* It uses Json-Server as fake Restful API. (You can simple replace it with your own API)
 
 #### Screenshots
 

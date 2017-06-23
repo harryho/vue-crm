@@ -96,7 +96,6 @@ export default {
   },
   methods: {
     edit (item) {
-      console.log(JSON.stringify(item))
       this.$router.push({name: 'Order', params: { id: item.id }})
     },
     add () {
@@ -121,7 +120,6 @@ export default {
       this.api.getData('orders?_expand=customer').then((res) => {
         this.items = res.data
         this.items.forEach(item => {
-          console.log(item)
           item.amount = item.quantity * item.price
           item.customer = item.customer ? item.customer.firstName + ' ' + item.customer.lastName : ''
         })

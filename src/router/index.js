@@ -31,7 +31,7 @@ export default new Router({
   mode: 'history',
   scrollBehavior: () => ({ y: 0 }),
   routes: [
-    { path: '/404', component: ErrorPage, name: '404' },
+    { path: '/404', component: ErrorPage, name: 'ErrorPage' },
     { path: '/about', component: About, name: 'About', beforeEnter: requireAuth },
     { path: '/orders', component: Orders, name: 'Orders', beforeEnter: requireAuth },
     { path: '/neworder', component: Order, name: 'NewOrder', beforeEnter: requireAuth },

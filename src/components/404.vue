@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: '404',
+  name: 'ErrorPage',
   data () {
     return {
       msg: 'Sorry, the page you\'re looking for doesn\'t exist.'
