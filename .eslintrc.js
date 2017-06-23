@@ -23,5 +23,12 @@ module.exports = {
     'generator-star-spacing': 0,
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    // customerized eslint
+    "no-multiple-empty-lines": "off",
+    "padded-blocks": "off",
+    "block-spacing": "off",
+    "object-property-newline": "off",
+    "operator-linebreak":"off",
+    "space-before-function-paren": "off"
   }
 }

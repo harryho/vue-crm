@@ -29,7 +29,7 @@
               </v-flex>
               <v-flex md4 xs12>
                 <!--<v-text-field name="customer" label="Email" value="Input text" v-model="order.quantity" class="input-group--focused" required></v-text-field>-->
-                 <v-btn-dropdown required v-bind:options="customerList" label="Customer" v-model="order.customer.name"></v-btn-dropdown>
+                 <v-select required v-bind:items="customerList" label="Customer" v-model="order.customerId"></v-select>
               </v-flex>
                <!--<v-flex md4 xs12>
                   <v-switch label="Order Status" v-model="order.isActive" dark></v-switch>
@@ -63,7 +63,7 @@ export default {
   methods: {
     save: function () {
       let order = this.order
-      this.order.customerId = this.order.customer.name.value
+      // this.order.customerId = this.order.customer.name.value
       delete this.order.customer
 
       if (!order.id) {
@@ -82,12 +82,10 @@ export default {
     },
     selectCustomer (item) {
       this.order.customerId = item.value
-      console.log(this.order)
     },
     getById: function () {
       this.api.getData('orders/' + this.$route.params.id + '?_expand=customer').then((res) => {
         this.order = res.data
-        console.log(this.order)
         this.order.customer.name = this.order.customer.firstName + ' ' + this.order.customer.lastName
       }, (err) => {
         console.log(err)

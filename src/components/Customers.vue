@@ -14,7 +14,7 @@
               </v-btn>
               &nbsp;
            
-                <v-btn floating small class="grey">
+                <v-btn floating small class="grey" @click.native="print">
                 <v-icon light>print</v-icon>
               </v-btn>
         </v-card-title>
@@ -22,9 +22,9 @@
           class="elevation-1">
 
           <template slot="items" scope="props" class="body-2">
-            <td class="body-2">{{ props.item.firstName }}</td>
+            <td class="text-xs-left">{{ props.item.firstName }}</td>
             <td class="text-xs-right">{{ props.item.lastName }}</td>
-               <td class="text-xs-right">{{ props.item.email }}</td>
+            <td class="text-xs-right">{{ props.item.email }}</td>
             <td class="text-xs-right">{{ props.item.age }}</td>
             <td class="text-xs-right">{{ props.item.orderRecord }}</td>
             <td class="text-xs-right"><v-icon v-if="!props.item.isActive" class="light">block</v-icon><v-icon v-if="props.item.isActive" class="light">done</v-icon></td>
@@ -56,7 +56,7 @@
               <v-list-tile>
                 <v-list-tile-title>Search Panel</v-list-tile-title>
                 <v-list-tile-action>
-                  <v-btn @click.native="rightDrawer = !rightDrawer">
+                  <v-btn @click.native="searchCustomers">
                     <v-icon dark>search</v-icon>
                   </v-btn>
                 </v-list-tile-action>
@@ -68,23 +68,52 @@
             <v-list-item>
               <v-layout row>
                 <v-flex xs11 offset-xs1>
-                  <v-text-field name="input-1-3" label="Frist Name" light></v-text-field>
+                  <v-text-field name="input-1-3" label="Frist Name" light v-model="searchVm.contains.firstName"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-list-item>
             <v-list-item>
               <v-layout row>
                 <v-flex xs11 offset-xs1>
-                  <v-text-field name="input-1-3" label="Last Name" light></v-text-field>
+                  <v-text-field name="input-1-3" label="Last Name" light v-model="searchVm.contains.lastName"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-list-item>
             <v-list-item>
               <v-layout row>
-                <v-flex xs11 offset-xs1>
+                <!--<v-flex xs11 offset-xs1>
                   <v-text-field name="input-1-3" label="Age" light></v-text-field>
+                </v-flex>-->
+              <v-flex xs10 offset-xs2>
+                  <v-subheader light class="text-sm-central">Age range between Age 1 and 2 </v-subheader>
+              </v-flex>
+              </v-layout>
+                <v-layout row>
+                <v-flex xs8 offset-xs1>
+                  <v-slider label="Age 1" light v-bind:max="100" v-model="searchVm.between.age.former"></v-slider>
+                </v-flex>
+                <v-flex xs3>
+                  <v-text-field light v-model="searchVm.between.age.former" type="number"></v-text-field>
                 </v-flex>
               </v-layout>
+               <v-layout row>
+                <v-flex xs8 offset-xs1>
+                  <v-slider label="Age 2" light v-bind:max="100" v-model="searchVm.between.age.latter"></v-slider>
+                </v-flex>
+                <v-flex xs3>
+                  <v-text-field light v-model="searchVm.between.age.latter" type="number"></v-text-field>
+                </v-flex>
+              </v-layout>
+            </v-list-item>
+            <v-list-item>
+              <v-list-tile>
+                <v-list-tile-title></v-list-tile-title>
+                <v-list-tile-action>
+                  <v-btn @click.native="clearSearchFilters">
+                    <v-icon dark>clear</v-icon>
+                  </v-btn>
+                </v-list-tile-action>
+              </v-list-tile>
             </v-list-item>
           </v-list>
         </v-navigation-drawer>
@@ -113,12 +142,23 @@ export default {
         { text: 'Active', value: 'isActive' },
         { text: '', value: '' }
       ],
-      items: []
+      items: [],
+      searchVm: {
+        contains: {
+          firstName: '',
+          lastName: ''
+        },
+        between: {
+          age: {former: 0, latter: 0}
+        }
+      }
     }
   },
   methods: {
+    print () {
+      window.print()
+    },
     edit (item) {
-      console.log(JSON.stringify(item))
       this.$router.push({name: 'Customer', params: { id: item.id }})
     },
     add () {
@@ -135,6 +175,43 @@ export default {
       item.isActive = !item.isActive
       this.api.putData('customers/' + item.id.toString(), item).then((res) => {
         this.$router.push('Customers')
+      }, (err) => {
+        console.log(err)
+      })
+    },
+    searchCustomers () {
+      this.rightDrawer = !this.rightDrawer
+      this.appUtil.buildSearchFilters(this.searchVm)
+      let query = this.appUtil.buildJsonServerQuery(this.searchVm)
+
+      this.api.getData('customers?' + query).then((res) => {
+
+        this.items = res.data
+        this.items.forEach((item) => {
+          if (item.orders && item.orders.length) {
+            item.orderRecord = item.orders.length
+          } else {
+            item.orderRecord = 0
+          }
+        })
+      }, (err) => {
+        console.log(err)
+      })
+    },
+    clearSearchFilters () {
+
+      this.rightDrawer = !this.rightDrawer
+      this.appUtil.clearSearchFilters(this.searchVm)
+
+      this.api.getData('customers').then((res) => {
+        this.items = res.data
+        this.items.forEach((item) => {
+          if (item.orders && item.orders.length) {
+            item.orderRecord = item.orders.length
+          } else {
+            item.orderRecord = 0
+          }
+        })
       }, (err) => {
         console.log(err)
       })
