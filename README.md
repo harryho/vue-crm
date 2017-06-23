@@ -15,6 +15,7 @@
 
 ![Screenshot3](screenshots/screenshot-3.JPG)
 
+![Screenshot4](screenshots/screenshot-5.JPG)
 
 ## Build Setup
 
@@ -64,8 +65,8 @@ npm run dev
 
 For detailed explanation on how things work, checkout following links
 
-[vuex](https://vuex.vuejs.org/en/)
-[vuetify](https://vuetifyjs.com/)
-[axios](https://github.com/mzabriskie/axios/)
-[webpack guide](http://vuejs-templates.github.io/webpack/) 
-[vue-loader](http://vuejs.github.io/vue-loader).
+* [vuex](https://vuex.vuejs.org/en/)
+* [vuetify](https://vuetifyjs.com/)
+* [axios](https://github.com/mzabriskie/axios/)
+* [webpack guide](http://vuejs-templates.github.io/webpack/) 
+* [vue-loader](http://vuejs.github.io/vue-loader).
