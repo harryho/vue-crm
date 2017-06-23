@@ -9,11 +9,11 @@
 
 #### Screenshots
 
-![Screenshot1](screenshots/screenshot-1.PNG)
+![Screenshot1](screenshots/screenshot-1.JPG)
 
-![Screenshot2](screenshots/screenshot-2.PNG)
+![Screenshot2](screenshots/screenshot-2.JPG)
 
-![Screenshot3](screenshots/screenshot-3.PNG)
+![Screenshot3](screenshots/screenshot-3.JPG)
 
 
 ## Build Setup
