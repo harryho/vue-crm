@@ -29,6 +29,7 @@ instance.interceptors.request.use(function (config) {
 
 instance.interceptors.response.use((response) => response, (error) => {
   console.log(error.config)
+  return Promise.reject(error)
 })
 
 export default {

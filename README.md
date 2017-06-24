@@ -1,6 +1,6 @@
 # Vue 2 CRM
 
-> A simple Vue.js CRM starter project based on Vue 2 PWA template. 
+> A simple Vue.js CRM project based on Vue 2 PWA template with Vuetify. 
 
 * This starter project is built-in with Vue 2 PWA from scratch.
 * The whole UI is built on the Vuetify

@@ -65,6 +65,29 @@
           </v-layout>
         </v-list-item>
         <v-list-item>
+              <v-layout row>
+              <v-flex xs12 >
+                  <v-subheader light class="text-sm-central">Price range between Price 1 and Price 2 </v-subheader>
+              </v-flex>
+              </v-layout>
+                <v-layout row>
+                <v-flex xs8 offset-xs1>
+                  <v-slider class="text-xs-central" label="Price 1" light v-bind:max="100" v-model="searchVm.between.price.former"></v-slider>
+                </v-flex>
+                <v-flex xs3>
+                  <v-text-field light v-model="searchVm.between.price.former" type="number"></v-text-field>
+                </v-flex>
+              </v-layout>
+               <v-layout row>
+                <v-flex xs8 offset-xs1>
+                  <v-slider class="text-xs-central" label="Price 2" light v-bind:max="1000" v-model="searchVm.between.price.latter"></v-slider>
+                </v-flex>
+                <v-flex xs3>
+                  <v-text-field light v-model="searchVm.between.price.latter" type="number"></v-text-field>
+                </v-flex>
+              </v-layout>
+            </v-list-item>
+             <v-list-item>
               <v-list-tile>
                 <v-list-tile-title></v-list-tile-title>
                 <v-list-tile-action>
@@ -122,7 +145,8 @@ export default {
     },
     remove (item) {
       this.api.deleteData('orders/' + item.id.toString()).then((res) => {
-        this.$router.push('Orders')
+        // this.$router.push('Orders')
+        this.getOrders()
       }, (err) => {
         console.log(err)
       })
@@ -130,7 +154,7 @@ export default {
     changeStatus (item) {
       item.isActive = !item.isActive
       this.api.putData('orders/' + item.id.toString(), item).then((res) => {
-        this.$router.push('Orders')
+        // this.$router.push('Orders')
       }, (err) => {
         console.log(err)
       })

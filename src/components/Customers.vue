@@ -81,16 +81,13 @@
             </v-list-item>
             <v-list-item>
               <v-layout row>
-                <!--<v-flex xs11 offset-xs1>
-                  <v-text-field name="input-1-3" label="Age" light></v-text-field>
-                </v-flex>-->
-              <v-flex xs10 offset-xs2>
-                  <v-subheader light class="text-sm-central">Age range between Age 1 and 2 </v-subheader>
+              <v-flex xs11 offset-xs1>
+                  <v-subheader light class="text-sm-central">Age range between Age 1 and Age 2 </v-subheader>
               </v-flex>
               </v-layout>
                 <v-layout row>
                 <v-flex xs8 offset-xs1>
-                  <v-slider label="Age 1" light v-bind:max="100" v-model="searchVm.between.age.former"></v-slider>
+                  <v-slider label="Age 1" light v-bind:max="50" v-model="searchVm.between.age.former"></v-slider>
                 </v-flex>
                 <v-flex xs3>
                   <v-text-field light v-model="searchVm.between.age.former" type="number"></v-text-field>
@@ -117,6 +114,10 @@
             </v-list-item>
           </v-list>
         </v-navigation-drawer>
+        <v-snackbar :timeout="2500" :top="true" :error="true" :multi-line="mode === 'multi-line'" :vertical="mode === 'vertical'" v-model="snackbar">
+                  {{ errText }}
+            <v-btn flat light @click.native="snackbar = false">Close</v-btn>
+        </v-snackbar>  
   </v-container>
 </template>
 <script>
@@ -126,8 +127,9 @@ export default {
       rightDrawer: false,
       right: true,
       search: '',
+      errText: '',
       pagination: {},
-    //   selected: [],
+      snackbar: false,
       headers: [
         {
           text: 'First Name',
@@ -165,18 +167,23 @@ export default {
       this.$router.push('NewCustomer')
     },
     remove (item) {
-      this.api.deleteData('customers/' + item.id.toString()).then((res) => {
-        this.$router.push('Customers')
+      this.api.deleteData('customerss/' + item.id.toString()).then((res) => {
+        this.getCustomers()
       }, (err) => {
         console.log(err)
+        this.snackbar = true
+        this.errText = 'Status has not be deleted successfully. Please try again.'
       })
     },
     changeStatus (item) {
       item.isActive = !item.isActive
-      this.api.putData('customers/' + item.id.toString(), item).then((res) => {
-        this.$router.push('Customers')
+      this.api.putData('customerss/' + item.id.toString(), item).then((res) => {
+        // this.$router.push('Customers')
       }, (err) => {
         console.log(err)
+        this.snackbar = true
+        this.errText = 'Status has not be updated successfully. Please try again.'
+        item.isActive = !item.isActive
       })
     },
     searchCustomers () {
@@ -216,7 +223,7 @@ export default {
         console.log(err)
       })
     },
-    getCutomers () {
+    getCustomers () {
       this.api.getData('customers?_embed=orders').then((res) => {
         this.items = res.data
         this.items.forEach((item) => {
@@ -234,7 +241,7 @@ export default {
   computed: {
   },
   mounted: function () {
-    this.getCutomers()
+    this.getCustomers()
   }
 }
 </script>
