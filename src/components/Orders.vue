@@ -144,11 +144,13 @@ export default {
       this.$router.push('NewOrder')
     },
     remove (item) {
-      this.api.deleteData('orders/' + item.id.toString()).then((res) => {
+      this.$parent.openDialog('Do you want to delete this item?', '', () => {
+        this.api.deleteData('orders/' + item.id.toString()).then((res) => {
         // this.$router.push('Orders')
-        this.getOrders()
-      }, (err) => {
-        console.log(err)
+          this.getOrders()
+        }, (err) => {
+          console.log(err)
+        })
       })
     },
     changeStatus (item) {

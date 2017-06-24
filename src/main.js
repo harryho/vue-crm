@@ -8,6 +8,24 @@ import store from './utils/store'
 import api from './utils/backend-api'
 import appUtil from './utils/app-util'
 
+import VueProgressBar from 'vue-progressbar'
+
+const options = {
+  color: '#bffaf3',
+  failedColor: '#874b4b',
+  thickness: '5px',
+  transition: {
+    speed: '0.1s',
+    opacity: '0.5s',
+    termination: 400
+  },
+  autoRevert: true,
+  location: 'top',
+  inverse: false
+}
+
+Vue.use(VueProgressBar, options)
+
 Vue.use(Vuetify)
 Vue.config.productionTip = false
 
@@ -23,4 +41,3 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
-

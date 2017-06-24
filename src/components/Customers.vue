@@ -114,10 +114,28 @@
             </v-list-item>
           </v-list>
         </v-navigation-drawer>
-        <v-snackbar :timeout="2500" :top="true" :error="true" :multi-line="mode === 'multi-line'" :vertical="mode === 'vertical'" v-model="snackbar">
+        <v-snackbar :timeout="2500" :top="true" :error="true" :multi-line="true" v-model="snackbar">
                   {{ errText }}
             <v-btn flat light @click.native="snackbar = false">Close</v-btn>
-        </v-snackbar>  
+        </v-snackbar>
+        <!--<v-layout row justify-center>
+          <v-dialog v-model="dialog" persistent>
+            <v-btn primary light slot="activator">Open Dialog</v-btn>
+            <v-card>
+              <v-card-row>
+                <v-card-title>Use Google's location service?</v-card-title>
+              </v-card-row>
+              <v-card-row>
+                <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
+              </v-card-row>
+              <v-card-row actions>
+                <v-btn class="green--text darken-1" flat="flat" @click.native="dialog = false">Disagree</v-btn>
+                <v-btn class="green--text darken-1" flat="flat" @click.native="dialog = false">Agree</v-btn>
+              </v-card-row>
+            </v-card>
+          </v-dialog>
+        </v-layout>-->
+
   </v-container>
 </template>
 <script>
@@ -167,17 +185,20 @@ export default {
       this.$router.push('NewCustomer')
     },
     remove (item) {
-      this.api.deleteData('customerss/' + item.id.toString()).then((res) => {
-        this.getCustomers()
-      }, (err) => {
-        console.log(err)
-        this.snackbar = true
-        this.errText = 'Status has not be deleted successfully. Please try again.'
+
+      this.$parent.openDialog('Do you want to delete this item?', '', () => {
+        this.api.deleteData('customers/' + item.id.toString()).then((res) => {
+          this.getCustomers()
+        }, (err) => {
+          console.log(err)
+          this.snackbar = true
+          this.errText = 'Status has not be deleted successfully. Please try again.'
+        })
       })
     },
     changeStatus (item) {
       item.isActive = !item.isActive
-      this.api.putData('customerss/' + item.id.toString(), item).then((res) => {
+      this.api.putData('customers/' + item.id.toString(), item).then((res) => {
         // this.$router.push('Customers')
       }, (err) => {
         console.log(err)
