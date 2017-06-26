@@ -18,16 +18,17 @@
             <v-layout row wrap>
               <v-flex md4 xs12>
                 <v-text-field name="firstName" label="First Name" hint="Last name is required" value="Input text" v-model="customer.firstName" class="input-group--focused" required></v-text-field>
-              </v-flex>
-  
+              </v-flex>  
               <v-flex md4 xs12>
-                <v-text-field name="lastName" label="Last Name" hint="Last name is required" value="Input text" v-model="customer.lastName" class="input-group--focused" required></v-text-field>
-              </v-flex>
-              <v-flex md4 xs12>
-                <v-text-field name="age" label="Age" hint="Number between 0 to 150" v-model="customer.age" class="input-group--focused" required></v-text-field>
+                <v-text-field name="lastName" label="Last Name" maxlength="10" hint="Last name is required" value="Input text" v-model="customer.lastName" class="input-group--focused" required></v-text-field>
               </v-flex>
               <v-flex md4 xs12>
-                <v-text-field name="email" label="Email" value="Input text" v-model="customer.email" class="input-group--focused" required></v-text-field>
+                <v-text-field name="age" type="number" label="Age" hint="Number between 18 to 150" v-bind:rules="rules.age" 
+                 v-model="customer.age" class="input-group--focused" required></v-text-field>
+              </v-flex>
+              <v-flex md4 xs12>
+                <v-text-field name="email" type="email" label="Email" value="Input text" v-model="customer.email" 
+                 v-bind:rules="rules.email" class="input-group--focused" required></v-text-field>
               </v-flex>
                <v-flex md4 xs12>
                   <v-switch label="Customer Status" v-model="customer.isActive" dark></v-switch>
@@ -45,7 +46,19 @@ export default {
     return {
       errors: [],
       title: '',
-      customer: {}
+      customer: {},
+      rules: {
+        age: [() => {
+          if (this.customer.age < 18 || this.customer.age > 100) return 'Age is required. It must be bewteen 18 and 100'
+        }],
+        email: [() => {
+          if (this.customer.email) {
+            /* eslint-disable no-useless-escape */
+            let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            if (!re.test(this.customer.email)) return 'Email is invalid.'
+          }
+        }]
+      }
     }
   },
   computed: {

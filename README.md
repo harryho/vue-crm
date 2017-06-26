@@ -39,7 +39,7 @@ copy /Y ..\db\*.json
 ## start json-server
 json-server db.json
 
-## You will following output. You can test the URLs via browser.
+## You will see the following output. You can test the URLs via browser.
 ##
 ## \{^_^}/ hi!                        
 ##                                    

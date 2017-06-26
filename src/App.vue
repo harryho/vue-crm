@@ -196,5 +196,6 @@
   }
 </script>
 <style lang="stylus">
+  // $color-pack = false
   @import './stylus/main'
 </style>
