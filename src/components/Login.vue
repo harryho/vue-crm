@@ -16,7 +16,7 @@
                     <v-subheader>User ID</v-subheader>
                   </v-flex>
                   <v-flex xs8>
-                    <v-text-field name="input-2" v-model="email" label="email" value="Input text" class="input-group--focused"></v-text-field>
+                    <v-text-field name="email" v-model="email" label="email" value="Input text" class="input-group--focused"></v-text-field>
                   </v-flex>
                 </v-layout>
                 <v-layout row>
@@ -24,14 +24,14 @@
                     <v-subheader>Password</v-subheader>
                   </v-flex>
                   <v-flex xs8>
-                    <v-text-field name="input-2" v-model="pass" label="password" value="Input text" type="password" class="input-group--focused"></v-text-field>
+                    <v-text-field name="password" v-model="pass" label="password" value="Input text" type="password" class="input-group--focused"></v-text-field>
                   </v-flex>
                 </v-layout>
                 <v-btn type="submit">login</v-btn>
                 <v-snackbar v-if="error" :timeout="timeout" :top="true" :multi-line="mode === 'multi-line'" :vertical="mode === 'vertical'" v-model="error">
                   {{ text }}
                   <v-btn flat class="pink--text" @click.native="error = false">Close</v-btn>
-                </v-snackbar>  
+                </v-snackbar>
               </form>
           </v-card-row>
         </v-card-text>

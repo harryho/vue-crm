@@ -1,6 +1,5 @@
 <template>
-  <div>
-           
+  <div>           
     <template v-if="!loggedIn">
       <router-view></router-view>
     </template>
