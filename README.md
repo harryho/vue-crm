@@ -38,7 +38,7 @@ npm install json-server
 copy /Y ..\db\*.json
 
 ## start json-server
-json-server db.json
+json-server -p 5354 db.json
 
 ## You will see the following output. You can test the URLs via browser.
 ##
