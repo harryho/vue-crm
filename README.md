@@ -48,12 +48,12 @@ json-server -p 5354 db.json
 ## Done                               
 ##                                    
 ## Resources                          
-## http://localhost:3000/token        
-## http://localhost:3000/customers    
-## http://localhost:3000/orders       
+## http://localhost:5354/token        
+## http://localhost:5354/customers    
+## http://localhost:5354/orders       
 ##                                    
 ## Home                               
-## http://localhost:3000              
+## http://localhost:5354              
 
 # install dependences for Vue 2 CRM
 cd ..
