@@ -14,9 +14,9 @@
 
 ![Screenshot3](screenshots/screenshot-3.JPG)
 
-![Screenshot2](screenshots/screenshot-2.JPG)
+![Screenshot5](screenshots/screenshot-5.JPG)
 
-![Screenshot5](screenshots/screenshot-7.JPG)
+![Screenshot7](screenshots/screenshot-7.JPG)
 
 ## Build Setup
 
