@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import ErrorPage from '@/components/404'
 
+import Dashboard from '@/components/Dashboard'
 import Orders from '@/components/Orders'
 import Order from '@/components/Order'
 import About from '@/components/About'
@@ -32,6 +33,7 @@ export default new Router({
   scrollBehavior: () => ({ y: 0 }),
   routes: [
     { path: '/404', component: ErrorPage, name: 'ErrorPage' },
+    { path: '/dashboard', component: Dashboard, name: 'Dashboard', beforeEnter: requireAuth },
     { path: '/about', component: About, name: 'About', beforeEnter: requireAuth },
     { path: '/orders', component: Orders, name: 'Orders', beforeEnter: requireAuth },
     { path: '/neworder', component: Order, name: 'NewOrder', beforeEnter: requireAuth },
@@ -47,7 +49,8 @@ export default new Router({
         next('/login')
       }
     },
-    { path: '*', redirect: '/orders' }
+    { path: '/', redirect: '/dashboard' },
+    { path: '*', redirect: '/404' }
   ],
   meta: {
     progress: {

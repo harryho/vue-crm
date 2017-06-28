@@ -3,17 +3,18 @@
 > A simple Vue.js CRM project based on Vue 2 PWA template with Vuetify. 
 
 * This starter project is built-in with Vue 2 PWA from scratch.
-* The whole UI is built on the Vuetify
-* It includes Vuex, Axios as well.
+* The UI is built on the top of Vuetify
+* It uses Vuex, Axios as well to manage authentication. (Dummy token)
+* It uses vue-chartjs to create charts on dashboard
 * It uses Json-Server as fake Restful API. (You can simple replace it with your own API)
 
 #### Screenshots
 
 ![Screenshot1](screenshots/screenshot-1.JPG)
 
-![Screenshot2](screenshots/screenshot-2.JPG)
-
 ![Screenshot3](screenshots/screenshot-3.JPG)
+
+![Screenshot2](screenshots/screenshot-2.JPG)
 
 ![Screenshot5](screenshots/screenshot-7.JPG)
 
@@ -68,5 +69,6 @@ For detailed explanation on how things work, checkout following links
 * [vuex](https://vuex.vuejs.org/en/)
 * [vuetify](https://vuetifyjs.com/)
 * [axios](https://github.com/mzabriskie/axios/)
+* [vue-chartjs](https://github.com/apertureless/vue-chartjs)
 * [webpack guide](http://vuejs-templates.github.io/webpack/) 
 * [vue-loader](http://vuejs.github.io/vue-loader).

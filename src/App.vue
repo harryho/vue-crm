@@ -87,6 +87,7 @@
 </template>
 <script>
   import auth from './utils/auth'
+  // import VueCharts from 'vue-chartjs'
   export default {
     data () {
       return {
@@ -98,6 +99,7 @@
         drawer: true,
         fixed: false,
         items: [
+          { icon: 'bubble_chart', title: 'Dashboard', link: 'dashboard' },
           { icon: 'bubble_chart', title: 'Orders', link: 'orders' },
           { icon: 'bubble_chart', title: 'Customers', link: 'customers' },
           { icon: 'bubble_chart', title: 'About', link: 'about' }
@@ -137,6 +139,9 @@
         //  finish the progress bar
         this.$Progress.finish()
         // console.log('to ...', to)
+        if (to.name !== 'ErrorPage') {
+          if (!this.activeMenuItem) this.activeMenuItem = to.name
+        }
       })
     },
     computed: {
