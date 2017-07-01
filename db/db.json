@@ -10,39 +10,13 @@
   },
   "customers": [
     {
-      "isActive": true,
-      "age": 40,
-      "id": 1,
-      "firstName": "Dickerson",
-      "lastName": "Macdonald",
-      "email": "test@test.com"
-    },
-    {
       "isActive": false,
       "age": 21,
       "id": 2,
       "firstName": "Larsen",
       "lastName": "Shaw",
-      "email": "test@test.com"
-    },
-    {
-      "isActive": false,
-      "age": 9,
-      "id": 3,
-      "state": "success",
-      "firstName": "Mitzi",
-      "lastName": "Navarro",
-      "email": "test@test.com",
-      "orders": [
-        {
-          "id": 3,
-          "customerId": 3,
-          "product": "Needes",
-          "price": 5.99,
-          "quantity": 1
-        }
-      ],
-      "orderRecord": 1
+      "email": "abc@test.com",
+      "avatar": "/assets/img/avatar3.png"
     },
     {
       "isActive": false,
@@ -50,7 +24,8 @@
       "id": 4,
       "firstName": "Rosseta",
       "lastName": "Wilson",
-      "email": "test@test.com"
+      "email": "test@test.com",
+      "avatar": "/assets/img/avatar4.png"
     },
     {
       "isActive": false,
@@ -58,7 +33,8 @@
       "id": 5,
       "firstName": "William",
       "lastName": "Carney",
-      "email": "test@test.com"
+      "email": "test@test.com",
+      "avatar": "/assets/img/avatar2.png"
     },
     {
       "isActive": false,
@@ -67,6 +43,7 @@
       "firstName": "Sarah",
       "lastName": "Dunne",
       "email": "test@test.com",
+      "avatar": "/assets/img/avatar1.png",
       "orders": [
         {
           "id": 6,
@@ -80,19 +57,12 @@
     },
     {
       "isActive": true,
-      "age": 40,
-      "id": 7,
-      "firstName": "Pete",
-      "lastName": "Trump",
-      "email": "test@test.com"
-    },
-    {
-      "isActive": true,
       "age": 21,
       "id": 8,
       "firstName": "Merriana",
       "lastName": "Sean",
       "email": "test@test.com",
+      "avatar": "/assets/img/avatar5.png",
       "orders": [
         {
           "id": 8,
@@ -105,12 +75,23 @@
       "orderRecord": 1
     },
     {
-      "isActive": false,
+      "isActive": true,
       "age": 26,
       "id": 9,
       "firstName": "Jubino",
       "lastName": "Gerret",
-      "email": "test@test.com"
+      "email": "test@test.com",
+      "avatar": "/assets/img/avatar1.png",
+      "orders": [
+        {
+          "id": 9,
+          "customerId": 9,
+          "product": "Call of Duty",
+          "price": 59.99,
+          "quantity": 1
+        }
+      ],
+      "orderRecord": 1
     },
     {
       "isActive": false,
@@ -118,7 +99,8 @@
       "id": 10,
       "firstName": "Geneva",
       "lastName": "Wilson",
-      "email": "test@test.com"
+      "email": "test@test.com",
+      "avatar": "/assets/img/avatar2.png"
     },
     {
       "isActive": true,
@@ -126,7 +108,8 @@
       "id": 11,
       "firstName": "Mark",
       "lastName": "Carney",
-      "email": "test@test.com"
+      "email": "test@test.com",
+      "avatar": "/assets/img/avatar5.png"
     },
     {
       "isActive": false,
@@ -134,7 +117,8 @@
       "id": 12,
       "firstName": "Yann",
       "lastName": "Larrel",
-      "email": "test@test.com"
+      "email": "test@test.com",
+      "avatar": "/assets/img/avatar1.png"
     },
     {
       "isActive": true,
@@ -143,16 +127,27 @@
       "age": 88,
       "email": "john.doe@test.com",
       "id": 13
+    },
+    {
+      "avatar": null,
+      "firstName": "sdfsdf",
+      "lastName": "sdfsdf",
+      "age": 22,
+      "email": "sdfsdfsdfs",
+      "isActive": false,
+      "id": 14
+    },
+    {
+      "avatar": null,
+      "firstName": "sdf",
+      "lastName": "sdf",
+      "age": 33,
+      "email": "sdfsdf",
+      "isActive": false,
+      "id": 15
     }
   ],
   "orders": [
-    {
-      "id": 1,
-      "customerId": 1,
-      "product": "Basket",
-      "price": 29.99,
-      "quantity": 1
-    },
     {
       "id": 2,
       "customerId": 2,
@@ -189,13 +184,6 @@
       "quantity": 1
     },
     {
-      "id": 7,
-      "customerId": 7,
-      "product": "Chair",
-      "price": 129.99,
-      "quantity": 4
-    },
-    {
       "id": 8,
       "customerId": 8,
       "product": "Lamp",
@@ -224,20 +212,6 @@
       "quantity": 1
     },
     {
-      "id": 1,
-      "customerId": 1,
-      "product": "Lego City",
-      "price": 49.99,
-      "quantity": 1
-    },
-    {
-      "id": 1,
-      "customerId": 1,
-      "product": "Baseball",
-      "price": 9.99,
-      "quantity": 5
-    },
-    {
       "id": 4,
       "customerId": 4,
       "product": "Bat",
@@ -250,6 +224,69 @@
       "quantity": 1,
       "price": 222,
       "id": 11
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "productName": "Leaf Rake",
+      "productCode": "GDN-0011",
+      "releaseDate": "March 19, 2016",
+      "description": "Leaf rake with 48-inch wooden handle.",
+      "price": 19.95,
+      "starRating": 3.2,
+      "imageUrl": "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png",
+      "tags": [
+        "rake",
+        "leaf",
+        "yard",
+        "home"
+      ]
+    },
+    {
+      "id": 2,
+      "productName": "Garden Cart",
+      "productCode": "GDN-0023",
+      "releaseDate": "March 18, 2016",
+      "description": "15 gallon capacity rolling garden cart",
+      "price": 32.99,
+      "starRating": 4.2,
+      "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
+    },
+    {
+      "id": 5,
+      "productName": "Hammer",
+      "productCode": "TBX-0048",
+      "releaseDate": "May 21, 2016",
+      "description": "Curved claw steel hammer",
+      "price": 8.9,
+      "starRating": 4.8,
+      "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png",
+      "tags": [
+        "tools",
+        "hammer",
+        "construction"
+      ]
+    },
+    {
+      "id": 8,
+      "productName": "Saw",
+      "productCode": "TBX-0022",
+      "releaseDate": "May 15, 2016",
+      "description": "15-inch steel blade hand saw",
+      "price": 11.55,
+      "starRating": 3.7,
+      "imageUrl": "http://openclipart.org/image/300px/svg_to_png/27070/egore911_saw.png"
+    },
+    {
+      "id": 10,
+      "productName": "Video Game Controller",
+      "productCode": "GMG-0042",
+      "releaseDate": "October 15, 2015",
+      "description": "Standard two-button video game controller",
+      "price": 35.95,
+      "starRating": 4.6,
+      "imageUrl": "http://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png"
     }
   ]
 }

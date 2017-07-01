@@ -1,8 +1,14 @@
 # Vue 2 CRM
 
-> A simple Vue.js CRM project based on Vue 2 PWA template with Vuetify. 
+> A simple reusable Vue.js CRM project for real-world business based on Vue 2 PWA template with Vuetify. 
 
-* This starter project is built-in with Vue 2 PWA from scratch.
+The goal of this project is to create a reusable project for real-world business. To achieve this target, we need a solution which includes authentication process, restful API feature and simple but elegant UI design. 
+
+There is another similar project built on the top of Angular 4. If you have insterest in it, please check it out from [here](https://github.com/harryho/ng4crm.git)
+
+#### Features
+
+* This project is built on the top of Vue 2 PWA template.
 * The UI is built on the top of Vuetify
 * It uses Vuex, Axios as well to manage authentication. (Dummy token)
 * It uses vue-chartjs to create charts on dashboard
@@ -12,11 +18,11 @@
 
 ![Screenshot1](screenshots/screenshot-1.JPG)
 
+![Screenshot2](screenshots/screenshot-2.JPG)
+
 ![Screenshot3](screenshots/screenshot-3.JPG)
 
-![Screenshot5](screenshots/screenshot-5.JPG)
-
-![Screenshot7](screenshots/screenshot-7.JPG)
+![Screenshot4](screenshots/screenshot-4.JPG)
 
 ## Build Setup
 

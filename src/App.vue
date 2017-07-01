@@ -1,19 +1,17 @@
 <template>
-  <div>           
+  <div>
     <template v-if="!loggedIn">
       <router-view></router-view>
     </template>
-    <template v-if="loggedIn">    
-      <vue-progress-bar></vue-progress-bar>  
-      <v-app>
-  
+    <template v-if="loggedIn">
+      <vue-progress-bar></vue-progress-bar>
+      <v-app>  
         <v-navigation-drawer persistent v-model="drawer" mini-variant.sync="true">
           <v-list class="pa-0">
-            
-            <v-list-item>
+              <v-list-item>
               <v-list-tile avatar tag="div">
                 <v-list-tile-avatar>
-                  <img src="/static/img/avatar0.png"></img>
+                  <img src="/assets/img/avatar0.png"></img>
                 </v-list-tile-avatar>
                 <v-list-tile-content>
                   <v-list-tile-title>{{user.firstName}} {{user.lastName}}</v-list-tile-title>
@@ -37,8 +35,8 @@
             <v-list-item v-for="(item, i) in items" :key="i">
               <v-list-tile @click.native="clickMenu(item)" router>
                 <v-list-tile-action>
-                  <v-icon v-if="activeMenuItem===item.title" light v-html="item.icon" class="blue--text"></v-icon>
-                  <v-icon v-if="activeMenuItem!==item.title" dark v-html="item.icon"></v-icon>
+                  <v-icon v-if="activeMenuItem.indexOf(item.vertical) > -1" light v-html="item.icon" class="blue--text"></v-icon>
+                  <v-icon v-if="activeMenuItem.indexOf(item.vertical) < 0" dark v-html="item.icon"></v-icon>
                 </v-list-tile-action>
                 <v-list-tile-content>
                   <v-list-tile-title v-text="item.title"></v-list-tile-title>
@@ -66,22 +64,22 @@
           <span>&copy; Reetek 2017 Vue-2-Crm </span>
         </v-footer>
       </v-app>
-        <v-layout row justify-center>
-    <v-dialog v-model="dialog" persistent>
-      <v-card>
-        <v-card-row>
-          <v-card-title>{{dialogTitle}}</v-card-title>
-        </v-card-row>
-        <v-card-row>
-          <v-card-text>{{dialogText}}</v-card-text>
-        </v-card-row>
-        <v-card-row actions>
-          <v-btn class="green--text darken-1" flat="flat" @click.native="onConfirm">Confirm</v-btn>
-          <v-btn class="green--text darken-1" flat="flat" @click.native="onCancel">Cancel</v-btn>
-        </v-card-row>
-      </v-card>
-    </v-dialog>
-  </v-layout> 
+      <v-layout row justify-center>
+        <v-dialog v-model="dialog" persistent>
+          <v-card>
+            <v-card-row>
+              <v-card-title>{{dialogTitle}}</v-card-title>
+            </v-card-row>
+            <v-card-row>
+              <v-card-text>{{dialogText}}</v-card-text>
+            </v-card-row>
+            <v-card-row actions>
+              <v-btn class="green--text darken-1" flat="flat" @click.native="onConfirm">Confirm</v-btn>
+              <v-btn class="green--text darken-1" flat="flat" @click.native="onCancel">Cancel</v-btn>
+            </v-card-row>
+          </v-card>
+        </v-dialog>
+      </v-layout>
     </template>
   </div>
 </template>
@@ -99,10 +97,10 @@
         drawer: true,
         fixed: false,
         items: [
-          { icon: 'bubble_chart', title: 'Dashboard', link: 'dashboard' },
-          { icon: 'bubble_chart', title: 'Orders', link: 'orders' },
-          { icon: 'bubble_chart', title: 'Customers', link: 'customers' },
-          { icon: 'bubble_chart', title: 'About', link: 'about' }
+          { icon: 'bubble_chart', title: 'Dashboard', vertical: 'Dashboard', link: 'dashboard' },
+          { icon: 'bubble_chart', title: 'Orders', vertical: 'Order', link: 'orders' },
+          { icon: 'bubble_chart', title: 'Customers', vertical: 'Customer', link: 'customers' },
+          { icon: 'bubble_chart', title: 'About', vertical: 'About', link: 'about' }
         ],
         userMenus: [
           { icon: 'bubble_chart', title: 'Logout', link: '/logout' },
@@ -136,12 +134,15 @@
       })
       //  hook the progress bar to finish after we've finished moving router-view
       this.$router.afterEach((to, from) => {
+        console.log('to ...', to)
+        if (to.name !== 'ErrorPage') {
+          // if (!this.activeMenuItem)
+          this.menuItem = to.name
+          console.log(' this.activeMenuItem ' + this.activeMenuItem)
+        }
+
         //  finish the progress bar
         this.$Progress.finish()
-        // console.log('to ...', to)
-        if (to.name !== 'ErrorPage') {
-          if (!this.activeMenuItem) this.activeMenuItem = to.name
-        }
       })
     },
     computed: {

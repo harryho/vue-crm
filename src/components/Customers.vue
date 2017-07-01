@@ -22,6 +22,7 @@
           class="elevation-1">
 
           <template slot="items" scope="props" class="body-2">
+            <td class="text-xs-left"><img v-if="props.item.avatar" width="50"  class="responsive" v-bind:src="props.item.avatar"></img></td>
             <td class="text-xs-left">{{ props.item.firstName }}</td>
             <td class="text-xs-right">{{ props.item.lastName }}</td>
             <td class="text-xs-right">{{ props.item.email }}</td>
@@ -118,24 +119,6 @@
                   {{ errText }}
             <v-btn flat light @click.native="snackbar = false">Close</v-btn>
         </v-snackbar>
-        <!--<v-layout row justify-center>
-          <v-dialog v-model="dialog" persistent>
-            <v-btn primary light slot="activator">Open Dialog</v-btn>
-            <v-card>
-              <v-card-row>
-                <v-card-title>Use Google's location service?</v-card-title>
-              </v-card-row>
-              <v-card-row>
-                <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
-              </v-card-row>
-              <v-card-row actions>
-                <v-btn class="green--text darken-1" flat="flat" @click.native="dialog = false">Disagree</v-btn>
-                <v-btn class="green--text darken-1" flat="flat" @click.native="dialog = false">Agree</v-btn>
-              </v-card-row>
-            </v-card>
-          </v-dialog>
-        </v-layout>-->
-
   </v-container>
 </template>
 <script>
@@ -218,10 +201,12 @@ export default {
         this.items.forEach((item) => {
           if (item.orders && item.orders.length) {
             item.orderRecord = item.orders.length
+            // item.avatar = '/assets/' + item.avatar
           } else {
             item.orderRecord = 0
           }
         })
+        console.log(this.items)
       }, (err) => {
         console.log(err)
       })
@@ -236,10 +221,12 @@ export default {
         this.items.forEach((item) => {
           if (item.orders && item.orders.length) {
             item.orderRecord = item.orders.length
+            // item.avatar = '/assets/' + item.avatar
           } else {
             item.orderRecord = 0
           }
         })
+        console.log(this.items)
       }, (err) => {
         console.log(err)
       })
@@ -248,6 +235,7 @@ export default {
       this.api.getData('customers?_embed=orders').then((res) => {
         this.items = res.data
         this.items.forEach((item) => {
+          // item.avatar = '/assets/' + item.avatar
           if (item.orders && item.orders.length) {
             item.orderRecord = item.orders.length
           } else {
