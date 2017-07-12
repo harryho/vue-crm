@@ -17,7 +17,6 @@
   "dependencies": {
     "axios": "^0.16.2",
     "chart.js": "^2.6.0",
-    "chartjs": "^0.3.24",
     "vue": "^2.3.3",
     "vue-chartjs": "^2.6.5",
     "vue-progressbar": "^0.7.2",

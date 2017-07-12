@@ -1,6 +1,6 @@
 # Vue 2 CRM
 
-> A simple reusable Vue.js CRM project for real-world business based on Vue 2 PWA template with Vuetify. 
+> A reusable Vue.js CRM starter project for real-world business based on Vue 2 PWA template with Vuetify. 
 
 The goal of this project is to create a reusable project for real-world business. To achieve this target, we need a solution which includes authentication process, restful API feature and simple but elegant UI design. 
 
@@ -13,6 +13,15 @@ There is another similar project built on the top of Angular 4. If you have inst
 * It uses Vuex, Axios as well to manage authentication. (Dummy token)
 * It uses vue-chartjs to create charts on dashboard
 * It uses Json-Server as fake Restful API. (You can simple replace it with your own API)
+
+
+#### Alternatives
+
+There are two similar projects respectively built on the Angular and React. If you have interests in those technical stacks. You can find and clone those repositories below.
+
+* [Ng4Crm](https://github.com/harryho/ng4crm.git).
+* [React-Crm](https://github.com/harryho/react-crm.git).
+
 
 #### Screenshots
 
@@ -54,8 +63,8 @@ json-server -p 5354 db.json
 ## Done                               
 ##                                    
 ## Resources                          
-## http://localhost:5354/token        
-## http://localhost:5354/customers    
+## http://localhost:5354/token
+## http://localhost:5354/customers
 ## http://localhost:5354/orders       
 ##                                    
 ## Home                               
