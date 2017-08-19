@@ -21,15 +21,15 @@ The goal of this project is to create a reusable starter project for real-world 
 
 #### Screenshots
 
-![Screenshot1](screenshots/screenshot-1.JPG)
+![Screenshot1](screenshots/screenshot-1.jpg)
 
-![Screenshot2](screenshots/screenshot-2.JPG)
+![Screenshot2](screenshots/screenshot-2.jpg)
 
-![Screenshot3](screenshots/screenshot-3.JPG)
+![Screenshot3](screenshots/screenshot-3.jpg)
 
-![Screenshot4](screenshots/screenshot-4.JPG)
+![Screenshot4](screenshots/screenshot-4.jpg)
 
-![Screenshot5](screenshots/screenshot-5.JPG)
+![Screenshot5](screenshots/screenshot-5.jpg)
 
 ## Build Setup
 
