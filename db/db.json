@@ -38,41 +38,21 @@
     },
     {
       "isActive": false,
-      "age": 27,
+      "age": 23,
       "id": 6,
       "firstName": "Sarah",
       "lastName": "Dunne",
       "email": "test@test.com",
-      "avatar": "/assets/img/avatar1.png",
-      "orders": [
-        {
-          "id": 6,
-          "customerId": 6,
-          "product": "Table",
-          "price": 329.99,
-          "quantity": 1
-        }
-      ],
-      "orderRecord": 1
+      "avatar": "/assets/img/avatar1.png"
     },
     {
       "isActive": true,
-      "age": 21,
+      "age": 23,
       "id": 8,
       "firstName": "Merriana",
       "lastName": "Sean",
       "email": "test@test.com",
-      "avatar": "/assets/img/avatar5.png",
-      "orders": [
-        {
-          "id": 8,
-          "customerId": 8,
-          "product": "Lamp",
-          "price": 89.99,
-          "quantity": 5
-        }
-      ],
-      "orderRecord": 1
+      "avatar": "/assets/img/avatar5.png"
     },
     {
       "isActive": true,
@@ -81,17 +61,7 @@
       "firstName": "Jubino",
       "lastName": "Gerret",
       "email": "test@test.com",
-      "avatar": "/assets/img/avatar1.png",
-      "orders": [
-        {
-          "id": 9,
-          "customerId": 9,
-          "product": "Call of Duty",
-          "price": 59.99,
-          "quantity": 1
-        }
-      ],
-      "orderRecord": 1
+      "avatar": "/assets/img/avatar1.png"
     },
     {
       "isActive": false,
@@ -136,157 +106,579 @@
       "email": "sdfsdfsdfs",
       "isActive": false,
       "id": 14
-    },
-    {
-      "avatar": null,
-      "firstName": "sdf",
-      "lastName": "sdf",
-      "age": 33,
-      "email": "sdfsdf",
-      "isActive": false,
-      "id": 15
     }
   ],
   "orders": [
     {
       "id": 2,
+      "reference": "order-2-2-1-2",
       "customerId": 2,
-      "product": "Yarn",
-      "price": 9.99,
-      "quantity": 1
+      "products": [
+        {
+          "id": 1,
+          "productName": "Product HHYDP",
+          "categoryId": 1,
+          "unitInStock": null,
+          "unitPrice": 18
+        },
+        {
+          "id": 2,
+          "productName": "Product RECZE",
+          "categoryId": 1,
+          "unitInStock": null,
+          "unitPrice": 19
+        }
+      ],
+      "amount": 9.99,
+      "orderDate": "2017-01-01",
+      "shippedDate": "2017-01-01",
+      "shipAddress": {
+        "address": "Gran Vía, 0123",
+        "city": "Madrid",
+        "zipcode": "10298",
+        "country": "Spain"
+      }
     },
     {
       "id": 3,
+      "reference": "order-4-3-1-2",
       "customerId": 4,
-      "product": "Needes",
-      "price": 5.99,
-      "quantity": 1
+      "products": [
+        {
+          "id": 1,
+          "productName": "Product HHYDP",
+          "categoryId": 1,
+          "unitInStock": null,
+          "unitPrice": 18
+        },
+        {
+          "id": 2,
+          "productName": "Product RECZE",
+          "categoryId": 1,
+          "unitInStock": null,
+          "unitPrice": 19
+        }
+      ],
+      "amount": 5.99,
+      "orderDate": "2017-01-01",
+      "shippedDate": "2017-01-01",
+      "shipAddress": {
+        "address": "Gran Vía, 0123",
+        "city": "Madrid",
+        "zipcode": "10298",
+        "country": "Spain"
+      }
     },
     {
       "id": 4,
+      "reference": "order-4-4-1-2",
       "customerId": 4,
-      "product": "Speakers",
-      "price": 499.99,
-      "quantity": 1
+      "products": [
+        {
+          "id": 3,
+          "productName": "Product IMEHJ",
+          "categoryId": 2,
+          "unitInStock": null,
+          "unitPrice": 10
+        },
+        {
+          "id": 4,
+          "productName": "Product KSBRM",
+          "categoryId": 2,
+          "unitInStock": null,
+          "unitPrice": 22
+        }
+      ],
+      "amount": 499.99,
+      "orderDate": "2017-01-01",
+      "shippedDate": "2017-01-01",
+      "shipAddress": {
+        "address": "Gran Vía, 0123",
+        "city": "Madrid",
+        "zipcode": "10298",
+        "country": "Spain"
+      }
     },
     {
       "id": 5,
+      "reference": "order-5-5-1-2",
       "customerId": 5,
-      "product": "iPod",
-      "price": 399.99,
-      "quantity": 1
+      "products": [
+        {
+          "id": 5,
+          "productName": "Product EPEIM",
+          "categoryId": 2,
+          "unitInStock": null,
+          "unitPrice": 21.5
+        }
+      ],
+      "amount": 399.99,
+      "orderDate": "2017-01-01",
+      "shippedDate": "2017-01-01",
+      "shipAddress": {
+        "address": "Gran Vía, 0123",
+        "city": "Madrid",
+        "zipcode": "10298",
+        "country": "Spain"
+      }
     },
     {
       "id": 6,
+      "reference": "order-6-6-1-2",
       "customerId": 6,
-      "product": "Table",
-      "price": 329.99,
-      "quantity": 1
+      "products": [
+        {
+          "id": 5,
+          "productName": "Product EPEIM",
+          "categoryId": 2,
+          "unitInStock": null,
+          "unitPrice": 21.5
+        }
+      ],
+      "amount": 329.99,
+      "orderDate": "2017-01-01",
+      "shippedDate": "2017-01-01",
+      "shipAddress": {
+        "address": "Gran Vía, 0123",
+        "city": "Madrid",
+        "zipcode": "10298",
+        "country": "Spain"
+      }
     },
     {
       "id": 8,
+      "reference": "order-8-8-1-2",
       "customerId": 8,
-      "product": "Lamp",
-      "price": 89.99,
-      "quantity": 5
+      "products": [
+        {
+          "id": 5,
+          "productName": "Product EPEIM",
+          "categoryId": 2,
+          "unitInStock": null,
+          "unitPrice": 21.5
+        }
+      ],
+      "amount": 89.99,
+      "orderDate": "2017-01-01",
+      "shippedDate": "2017-01-01",
+      "shipAddress": {
+        "address": "Gran Vía, 0123",
+        "city": "Madrid",
+        "zipcode": "10298",
+        "country": "Spain"
+      }
     },
     {
       "id": 9,
+      "reference": "order-9-9-1-2",
       "customerId": 9,
-      "product": "Call of Duty",
-      "price": 59.99,
-      "quantity": 1
+      "products": [
+        {
+          "id": 5,
+          "productName": "Product EPEIM",
+          "categoryId": 2,
+          "unitInStock": null,
+          "unitPrice": 21.5
+        }
+      ],
+      "amount": 59.99,
+      "orderDate": "2017-01-01",
+      "shippedDate": "2017-01-01",
+      "shipAddress": {
+        "address": "Gran Vía, 0123",
+        "city": "Madrid",
+        "zipcode": "10298",
+        "country": "Spain"
+      }
     },
     {
       "id": 10,
+      "reference": "order-10-10-1-2",
       "customerId": 10,
-      "product": "Controller",
-      "price": 49.99,
-      "quantity": 1
+      "products": [
+        {
+          "id": 5,
+          "productName": "Product EPEIM",
+          "categoryId": 2,
+          "unitInStock": null,
+          "unitPrice": 21.5
+        }
+      ],
+      "amount": 49.99,
+      "orderDate": "2017-01-01",
+      "shippedDate": "2017-01-01",
+      "shipAddress": {
+        "address": "Gran Vía, 0123",
+        "city": "Madrid",
+        "zipcode": "10298",
+        "country": "Spain"
+      }
     },
     {
-      "id": 2,
+      "id": 12,
+      "reference": "order-2-12-1-2",
       "customerId": 2,
-      "product": "Gears of War",
-      "price": 49.99,
-      "quantity": 1
+      "products": [
+        {
+          "id": 5,
+          "productName": "Product EPEIM",
+          "categoryId": 2,
+          "unitInStock": null,
+          "unitPrice": 21.5
+        }
+      ],
+      "amount": 49.99,
+      "orderDate": "2017-01-01",
+      "shippedDate": "2017-01-01",
+      "shipAddress": {
+        "address": "Gran Vía, 0123",
+        "city": "Madrid",
+        "zipcode": "10298",
+        "country": "Spain"
+      }
     },
     {
-      "id": 4,
+      "id": 14,
+      "reference": "order-2-14-1-2",
       "customerId": 4,
-      "product": "Bat",
-      "price": 19.99,
-      "quantity": 1
+      "products": [
+        {
+          "id": 5,
+          "productName": "Product EPEIM",
+          "categoryId": 2,
+          "unitInStock": null,
+          "unitPrice": 21.5
+        }
+      ],
+      "amount": 19.99,
+      "orderDate": "2017-01-09",
+      "shippedDate": "2017-01-01",
+      "shipAddress": {
+        "address": "Gran Vía, 0123",
+        "city": "Madrid",
+        "zipcode": "10298",
+        "country": "Spain"
+      }
     },
     {
-      "customerId": 13,
-      "product": "Pixel",
-      "quantity": 1,
-      "price": 222,
-      "id": 11
+      "id": 15,
+      "reference": "order-11-15-1-2",
+      "customerId": 11,
+      "products": [
+        {
+          "id": 5,
+          "productName": "Product EPEIM",
+          "categoryId": 2,
+          "unitInStock": null,
+          "unitPrice": 21.5
+        },
+        {
+          "id": 19,
+          "productName": "Product XKXDO",
+          "categoryId": 3,
+          "unitInStock": null,
+          "unitPrice": 9.2,
+          "category": {
+            "id": 3,
+            "categoryName": "Confections",
+            "description": "Desserts, candies, and sweet breads",
+            "picture": null
+          },
+          "text": "Product XKXDO",
+          "value": 19
+        }
+      ],
+      "amount": 222,
+      "orderDate": "2017-01-19",
+      "shippedDate": "2017-01-16",
+      "shipAddress": {
+        "address": "Gran Vía, 0123",
+        "city": "Madrid",
+        "zipcode": "10298",
+        "country": "Spain"
+      },
+      "quantity": 12,
+      "price": 33
+    },
+    {
+      "products": [
+        {
+          "id": 4,
+          "productName": "Product KSBRM",
+          "categoryId": 2,
+          "unitInStock": 2,
+          "unitPrice": 22,
+          "category": {
+            "id": 2,
+            "categoryName": "Condiments",
+            "description": "Sweet and savory sauces, relishes, spreads, and seasonings",
+            "picture": null
+          },
+          "text": "Product KSBRM",
+          "value": 4
+        },
+        {
+          "id": 6,
+          "productName": "Product VAIIV",
+          "categoryId": 2,
+          "unitInStock": null,
+          "unitPrice": 25,
+          "category": {
+            "id": 2,
+            "categoryName": "Condiments",
+            "description": "Sweet and savory sauces, relishes, spreads, and seasonings",
+            "picture": null
+          },
+          "text": "Product VAIIV",
+          "value": 6
+        }
+      ],
+      "customerId": 4,
+      "orderDate": "2017-08-08",
+      "shippedDate": null,
+      "shipAddress": {
+        "address": "sss",
+        "city": "sss",
+        "zipcode": "sss",
+        "country": "sss"
+      },
+      "reference": "ss-2-22-22",
+      "amount": 2323,
+      "id": 16
     }
   ],
   "products": [
     {
       "id": 1,
-      "productName": "Leaf Rake",
-      "productCode": "GDN-0011",
-      "releaseDate": "March 19, 2016",
-      "description": "Leaf rake with 48-inch wooden handle.",
-      "price": 19.95,
-      "starRating": 3.2,
-      "imageUrl": "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png",
-      "tags": [
-        "rake",
-        "leaf",
-        "yard",
-        "home"
-      ]
+      "productName": "Product HHYDP",
+      "categoryId": 1,
+      "unitInStock": 23,
+      "unitPrice": 18
     },
     {
       "id": 2,
-      "productName": "Garden Cart",
-      "productCode": "GDN-0023",
-      "releaseDate": "March 18, 2016",
-      "description": "15 gallon capacity rolling garden cart",
-      "price": 32.99,
-      "starRating": 4.2,
-      "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
+      "productName": "Product RECZE",
+      "categoryId": 1,
+      "unitInStock": 10,
+      "unitPrice": 19
+    },
+    {
+      "id": 3,
+      "productName": "Product IMEHJ",
+      "categoryId": 2,
+      "unitInStock": null,
+      "unitPrice": 10
+    },
+    {
+      "id": 4,
+      "productName": "Product KSBRM",
+      "categoryId": 2,
+      "unitInStock": 2,
+      "unitPrice": 22
     },
     {
       "id": 5,
-      "productName": "Hammer",
-      "productCode": "TBX-0048",
-      "releaseDate": "May 21, 2016",
-      "description": "Curved claw steel hammer",
-      "price": 8.9,
-      "starRating": 4.8,
-      "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png",
-      "tags": [
-        "tools",
-        "hammer",
-        "construction"
-      ]
+      "productName": "Product EPEIM",
+      "categoryId": 2,
+      "unitInStock": 333,
+      "unitPrice": 21.5
+    },
+    {
+      "id": 6,
+      "productName": "Product VAIIV",
+      "categoryId": 2,
+      "unitInStock": null,
+      "unitPrice": 25
+    },
+    {
+      "id": 7,
+      "productName": "Product HMLNI",
+      "categoryId": 7,
+      "unitInStock": null,
+      "unitPrice": 30
     },
     {
       "id": 8,
-      "productName": "Saw",
-      "productCode": "TBX-0022",
-      "releaseDate": "May 15, 2016",
-      "description": "15-inch steel blade hand saw",
-      "price": 11.55,
-      "starRating": 3.7,
-      "imageUrl": "http://openclipart.org/image/300px/svg_to_png/27070/egore911_saw.png"
+      "productName": "Product WVJFP",
+      "categoryId": 2,
+      "unitInStock": null,
+      "unitPrice": 40
+    },
+    {
+      "id": 9,
+      "productName": "Product AOZBW",
+      "categoryId": 6,
+      "unitInStock": null,
+      "unitPrice": 97
     },
     {
       "id": 10,
-      "productName": "Video Game Controller",
-      "productCode": "GMG-0042",
-      "releaseDate": "October 15, 2015",
-      "description": "Standard two-button video game controller",
-      "price": 35.95,
-      "starRating": 4.6,
-      "imageUrl": "http://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png"
+      "productName": "Product YHXGE",
+      "categoryId": 8,
+      "unitInStock": null,
+      "unitPrice": 31
+    },
+    {
+      "id": 11,
+      "productName": "Product QMVUN",
+      "categoryId": 4,
+      "unitInStock": null,
+      "unitPrice": 21
+    },
+    {
+      "id": 12,
+      "productName": "Product OSFNS",
+      "categoryId": 4,
+      "unitInStock": null,
+      "unitPrice": 38
+    },
+    {
+      "id": 13,
+      "productName": "Product POXFU",
+      "categoryId": 8,
+      "unitInStock": null,
+      "unitPrice": 6
+    },
+    {
+      "id": 14,
+      "productName": "Product PWCJB",
+      "categoryId": 7,
+      "unitInStock": null,
+      "unitPrice": 23.5
+    },
+    {
+      "id": 15,
+      "productName": "Product KSZOI",
+      "categoryId": 2,
+      "unitInStock": 33,
+      "unitPrice": 15.5
+    },
+    {
+      "id": 16,
+      "productName": "Product PAFRH",
+      "categoryId": 3,
+      "unitInStock": null,
+      "unitPrice": 17.5
+    },
+    {
+      "id": 17,
+      "productName": "Product BLCAX",
+      "categoryId": 6,
+      "unitInStock": null,
+      "unitPrice": 39
+    },
+    {
+      "id": 18,
+      "productName": "Product CKEDC",
+      "categoryId": 8,
+      "unitInStock": null,
+      "unitPrice": 62.5
+    },
+    {
+      "id": 19,
+      "productName": "Product XKXDO",
+      "categoryId": 3,
+      "unitInStock": null,
+      "unitPrice": 9.2
+    },
+    {
+      "id": 20,
+      "productName": "Product QHFFP",
+      "categoryId": 3,
+      "unitInStock": 23,
+      "unitPrice": 81
+    },
+    {
+      "id": 21,
+      "productName": "Product VJZZH",
+      "categoryId": 3,
+      "unitInStock": null,
+      "unitPrice": 18
+    },
+    {
+      "id": 22,
+      "productName": "Product CPHFY",
+      "categoryId": 5,
+      "unitInStock": null,
+      "unitPrice": 21
+    },
+    {
+      "id": 23,
+      "productName": "Product JLUDZ",
+      "categoryId": 5,
+      "unitInStock": null,
+      "unitPrice": 9.5
+    },
+    {
+      "id": 24,
+      "productName": "Product QOGNU",
+      "categoryId": 2,
+      "unitInStock": null,
+      "unitPrice": 4.5
+    },
+    {
+      "categoryId": 3,
+      "productName": "aaa",
+      "unitPrice": 22,
+      "unitInStock": 2323,
+      "id": 25
+    },
+    {
+      "categoryId": 3,
+      "productName": "Product ABCD",
+      "unitPrice": 222,
+      "unitInStock": 23,
+      "id": 26
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "categoryName": "Beverages",
+      "description": "Soft drinks, coffees, teas, beers, and ales",
+      "picture": null
+    },
+    {
+      "id": 2,
+      "categoryName": "Condiments",
+      "description": "Sweet and savory sauces, relishes, spreads, and seasonings",
+      "picture": null
+    },
+    {
+      "id": 3,
+      "categoryName": "Confections",
+      "description": "Desserts, candies, and sweet breads",
+      "picture": null
+    },
+    {
+      "id": 4,
+      "categoryName": "Dairy Products",
+      "description": "Cheeses",
+      "picture": null
+    },
+    {
+      "id": 5,
+      "categoryName": "Grains/Cereals",
+      "description": "Breads, crackers, pasta, and cereal",
+      "picture": null
+    },
+    {
+      "id": 6,
+      "categoryName": "Meat/Poultry",
+      "description": "Prepared meats",
+      "picture": null
+    },
+    {
+      "id": 7,
+      "categoryName": "Produce",
+      "description": "Dried fruit and bean curd",
+      "picture": null
+    },
+    {
+      "id": 8,
+      "categoryName": "Seafood",
+      "description": "Seaweed and fish",
+      "picture": null
     }
   ]
 }

@@ -100,6 +100,7 @@
           { icon: 'bubble_chart', title: 'Dashboard', vertical: 'Dashboard', link: 'dashboard' },
           { icon: 'bubble_chart', title: 'Orders', vertical: 'Order', link: 'orders' },
           { icon: 'bubble_chart', title: 'Customers', vertical: 'Customer', link: 'customers' },
+          { icon: 'bubble_chart', title: 'Products', vertical: 'Product', link: 'products' },
           { icon: 'bubble_chart', title: 'About', vertical: 'About', link: 'about' }
         ],
         userMenus: [
@@ -134,11 +135,11 @@
       })
       //  hook the progress bar to finish after we've finished moving router-view
       this.$router.afterEach((to, from) => {
-        console.log('to ...', to)
+        // console.log('to ...', to)
         if (to.name !== 'ErrorPage') {
           // if (!this.activeMenuItem)
           this.menuItem = to.name
-          console.log(' this.activeMenuItem ' + this.activeMenuItem)
+          // console.log(' this.activeMenuItem ' + this.activeMenuItem)
         }
 
         //  finish the progress bar

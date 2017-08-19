@@ -1,7 +1,7 @@
 {
   "name": "vue2crm",
-  "version": "1.0.0",
-  "description": "Simle CRM built on Vue 2 PWA template and Vuetify UI",
+  "version": "1.2.0",
+  "description": "Simle reusalbe CRM starter built on Vue 2 PWA template and Vuetify UI",
   "author": "harryho",
   "private": true,
   "scripts": {

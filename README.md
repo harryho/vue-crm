@@ -14,6 +14,7 @@ The goal of this project is to create a reusable starter project for real-world 
 * The dashboard uses vue-chartjs to create charts on dashboard.
 * The starter project has integrated progress bar.  
 * To simulate real-world business, this starter project chooses Json-Server as fake Restful API. (You can simple replace it with your own API).
+* CRUD functions for Customer, Order and Product
 
 
 
@@ -27,6 +28,8 @@ The goal of this project is to create a reusable starter project for real-world 
 ![Screenshot3](screenshots/screenshot-3.JPG)
 
 ![Screenshot4](screenshots/screenshot-4.JPG)
+
+![Screenshot5](screenshots/screenshot-5.JPG)
 
 ## Build Setup
 

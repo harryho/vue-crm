@@ -23,9 +23,9 @@
               <v-flex md4 xs12>
                 <v-text-field name="lastName" label="Last Name" maxlength="10" hint="Last name is required" value="Input text" v-model="customer.lastName" class="input-group--focused" required></v-text-field>
               </v-flex>
-                <v-flex md4 xs12 v-if="customer.avatar">
-              <img v-if="customer.avatar" class="responsive" v-bind:src="customer.avatar"></img>
-  </v-flex>
+              <v-flex md4 xs12 v-if="customer.avatar">
+                <img v-if="customer.avatar" class="responsive" v-bind:src="customer.avatar"></img>
+              </v-flex>
               <v-flex md4 xs12>
                 <v-text-field name="age" type="number" label="Age" hint="Number between 18 to 150" v-bind:rules="rules.age" 
                  v-model="customer.age" class="input-group--focused" required></v-text-field>
