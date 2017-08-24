@@ -115,7 +115,7 @@
     },
     created () {
       auth.onChange = loggedIn => {
-        console.log(loggedIn)
+        console.log('loggedIn')
         this.loggedIn = loggedIn
       }
       //  [App.vue specific] When App.vue is first loaded start the progress bar
@@ -135,11 +135,8 @@
       })
       //  hook the progress bar to finish after we've finished moving router-view
       this.$router.afterEach((to, from) => {
-        // console.log('to ...', to)
         if (to.name !== 'ErrorPage') {
-          // if (!this.activeMenuItem)
           this.menuItem = to.name
-          // console.log(' this.activeMenuItem ' + this.activeMenuItem)
         }
 
         //  finish the progress bar
@@ -183,7 +180,6 @@
         this.dialog = false
         this.dialogText = ''
         this.dialogTitle = ''
-        console.log('confirm button click')
         this.confirmCallback()
         this.confirmCallback = () => {}
       },
@@ -191,9 +187,9 @@
         this.dialog = false
         this.dialogText = ''
         this.dialogTitle = ''
-        console.log('cancel button click')
         this.cancelCallback()
         this.cancelCallback = () => {}
+        console.log('Cancelled')
       }
     },
     mounted () {

@@ -201,12 +201,10 @@ export default {
         this.items.forEach((item) => {
           if (item.orders && item.orders.length) {
             item.orderRecord = item.orders.length
-            // item.avatar = '/assets/' + item.avatar
           } else {
             item.orderRecord = 0
           }
         })
-        console.log(this.items)
       }, (err) => {
         console.log(err)
       })
@@ -221,7 +219,6 @@ export default {
         this.items.forEach((item) => {
           if (item.orders && item.orders.length) {
             item.orderRecord = item.orders.length
-            // item.avatar = '/assets/' + item.avatar
           } else {
             item.orderRecord = 0
           }

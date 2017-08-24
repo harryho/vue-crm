@@ -8,14 +8,13 @@ The goal of this project is to create a reusable starter project for real-world 
 #### Features
 
 * This project is built with Vue 2 PWA template by default.
-* The UI part is built on the top of Vuetify.
+* The UI part is built on the top of Vuetify (v0.12.7).
 * It inlcudes Vuex and Axios to manage authentication. (Dummy token)
 * The token and user profile is managed by Vue-Persisteddstate.
 * The dashboard uses vue-chartjs to create charts on dashboard.
 * The starter project has integrated progress bar.  
 * To simulate real-world business, this starter project chooses Json-Server as fake Restful API. (You can simple replace it with your own API).
 * CRUD functions for Customer, Order and Product
-
 
 
 
@@ -63,7 +62,9 @@ json-server -p 5354 db.json
 ## Resources                          
 ## http://localhost:5354/token
 ## http://localhost:5354/customers
-## http://localhost:5354/orders       
+## http://localhost:5354/orders 
+## http://localhost:5354/products
+## http://localhost:5354/categories        
 ##                                    
 ## Home                               
 ## http://localhost:5354              

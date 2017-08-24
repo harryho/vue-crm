@@ -160,7 +160,6 @@ export default {
   },
   watch: {
     categoryId: function () {
-      console.log(this.categoryId)
       if (this.categoryId > 0) {
         this.products = []
         this.api.getData('products?categoryId=' + this.categoryId).then((res) => {
@@ -225,7 +224,6 @@ export default {
       this.$router.push({ name: 'Orders' })
     },
     remove: function (index) {
-      console.log(index)
       this.order.products.splice(index, 1)
     },
     addProduct: function () {
@@ -233,7 +231,6 @@ export default {
     },
     saveProduct: function () {
       let product = this.products.find((e) => { if (e.id === this.productId) return e })
-      // console.log(product)
       this.order.products.push(Object.assign({}, product))
       this.product = null
       this.addProductDialog = false

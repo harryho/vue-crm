@@ -65,7 +65,6 @@ export default {
         } else {
           console.log(this.$route)
           this.$router.push(this.$route.query.redirect || '/')
-          console.log(this.$route)
         }
       })
     }
