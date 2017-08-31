@@ -44,11 +44,11 @@ git clone https://github.com/harryho/vue2crm.git
 cd vue2crm
 git clone https://github.com/typicode/json-server.git server
 cd server
-npm install json-server
-
 ## replace db.json and routes.json files
 copy /Y ..\db\*.json
 
+## Start a new terminal and navigate to folder server
+npm install -g json-server
 ## start json-server
 json-server -p 5354 db.json
 
