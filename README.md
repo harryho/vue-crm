@@ -39,10 +39,7 @@ git clone https://github.com/harryho/vue2crm.git
 
 
 # prepare Json-Server as fake Restful API
-
-## clone json-server to folder server
 cd vue2crm
-git clone https://github.com/typicode/json-server.git server
 cd server
 ## replace db.json and routes.json files
 copy /Y ..\db\*.json
