@@ -38,40 +38,45 @@ The goal of this project is to create a reusable starter project for real-world 
 git clone https://github.com/harryho/vue2crm.git
 
 
-# prepare Json-Server as fake Restful API
-cd vue2crm
-cd server
-## replace db.json and routes.json files
-copy /Y ..\db\*.json
-
-## Start a new terminal and navigate to folder server
-npm install -g json-server
-## start json-server
-json-server -p 5354 db.json
-
-## You will see the following output. You can test the URLs via browser.
-##
-## \{^_^}/ hi!                        
-##                                    
-## Loading db.json                    
-## Done                               
-##                                    
-## Resources                          
-## http://localhost:5354/token
-## http://localhost:5354/customers
-## http://localhost:5354/orders 
-## http://localhost:5354/products
-## http://localhost:5354/categories        
-##                                    
-## Home                               
-## http://localhost:5354              
-
 # install dependences for Vue 2 CRM
-cd ..
+cd vue2crm
 npm install
 
 # serve with hot reload at localhost:8080
 npm run dev
+
+
+## You will see the following output. You can test API with the URLs via browser.
+##
+##[0] > json-server -p 5354 db/db.json
+##[0]
+##[1]
+##[1] > vue2crm@1.2.0 start <your_path>\vue2crm
+##[1] > node build/dev-server.js
+##[1]
+##[0]
+##[0]   \{^_^}/ hi!
+##[0]
+##[0]   Loading db/db.json
+##[0]   Done
+##[0]
+##[0]   Resources
+##[0]   http://localhost:5354/token
+##[0]   http://localhost:5354/customers
+##[0]   http://localhost:5354/orders
+##[0]   http://localhost:5354/products
+##[0]   http://localhost:5354/categories
+##[0]
+##[0]   Home
+##[0]   http://localhost:5354
+##[0]
+##[0]   Type s + enter at any time to create a snapshot of the database
+##[1] > Starting dev server...
+##[1]  DONE  Compiled successfully in xx:xx:xx
+##[1]
+##[1] > Listening at http://localhost:8080      
+
+# Visit the app at [http://localhost:8080](http://localhost:8080)
 
 ```
 
