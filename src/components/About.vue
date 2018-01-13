@@ -1,11 +1,11 @@
 <template>
-  <div>
+
   <v-flex xs12>
-    <h2 class="text-xs-center">About</h2>
+    <p class="text-lg-center display-2">About</p>
   
-    <h4 class="text-xs-center">Vue 2 CRM </h4>
+    <p class="text-xs-center display-3">Vue 2 CRM </p>
   
-    <h6 class="text-xs-center">Version 1.0</h6>
+    <p class="text-xs-center title">Version 1.0</p>
   </v-flex>
-  </div>
+
 </template>

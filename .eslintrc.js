@@ -17,6 +17,7 @@ module.exports = {
   ],
   // add your custom rules here
   'rules': {
+    "indent": 0,
     // allow paren-less arrow functions
     'arrow-parens': 0,
     // allow async-await
@@ -29,6 +30,7 @@ module.exports = {
     "block-spacing": "off",
     "object-property-newline": "off",
     "operator-linebreak":"off",
-    "space-before-function-paren": "off"
+    "space-before-function-paren": "off",
+    "eol-last":"off"
   }
 }

@@ -1,15 +1,13 @@
 <template>
+<v-container fluid >
   <v-layout row wrap>
     <v-flex xs4 offset-xs4 justify-space-between>
       <h1> &nbsp;</h1>  
       <v-card>
-        <v-card-row class="blue darken-1">
-          <v-card-title>
+          <v-card-title  class="blue darken-1">
             <h4 style="color:white">Reetek Vue 2 CRM</h4>
           </v-card-title>
-        </v-card-row>
-        <v-card-text>
-          <v-card-row>
+          <v-card-text>
               <form @submit.prevent="login">
                 <v-layout row>
                   <v-flex xs4>
@@ -33,11 +31,11 @@
                   <v-btn flat class="pink--text" @click.native="error = false">Close</v-btn>
                 </v-snackbar>
               </form>
-          </v-card-row>
         </v-card-text>
       </v-card>
     </v-flex>
   </v-layout>
+  </v-container>
 </template>
 <script>
 import auth from '../utils/auth'
@@ -71,3 +69,6 @@ export default {
   }
 }
 </script>
+<style lang="stylus">
+  @import '../stylus/main'
+</style>

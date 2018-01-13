@@ -7,9 +7,9 @@
       </v-card>-->
   
         <v-card hover raised>
-          <v-card-row height="300px" class="pa-5 red lighten-1">
+          <v-card-media height="300px" class="pa-5 red lighten-1">
             <div class="display-1 white--text text-xs-center">{{msg}}</div>
-          </v-card-row>
+          </v-card-media>
         </v-card>
       </v-flex>
     </v-layout>

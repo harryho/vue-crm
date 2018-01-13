@@ -8,7 +8,7 @@ The goal of this project is to create a reusable starter project for real-world 
 #### Features
 
 * This project is built with Vue 2 PWA template by default.
-* The UI part is built on the top of Vuetify (v0.12.7).
+* The UI part is built on the top of Vuetify.
 * It inlcudes Vuex and Axios to manage authentication. (Dummy token)
 * The token and user profile is managed by Vue-Persisteddstate.
 * The dashboard uses vue-chartjs to create charts on dashboard.
@@ -17,8 +17,7 @@ The goal of this project is to create a reusable starter project for real-world 
 * CRUD functions for Customer, Order and Product
 
 
-
-#### Screenshots
+#### Screenshots ( The actual UI will be slightly different because I am lazy to keep up to date :p )
 
 ![Screenshot1](screenshots/screenshot-1.jpg)
 
@@ -40,7 +39,11 @@ git clone https://github.com/harryho/vue2crm.git
 
 # install dependences for Vue 2 CRM
 cd vue2crm
-npm install
+npm install --from-lock-file
+
+# or use yarn
+npm install -g yarn
+yarn
 
 # serve with hot reload at localhost:8080
 npm run dev
@@ -79,6 +82,8 @@ npm run dev
 # Visit the app at [http://localhost:8080](http://localhost:8080)
 
 ```
+
+
 
 
 For detailed explanation on how things work, checkout following links

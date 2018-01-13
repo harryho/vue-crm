@@ -11,7 +11,7 @@ import appUtil from './utils/app-util'
 import VueProgressBar from 'vue-progressbar'
 
 const options = {
-  color: '#bffaf3',
+  color: '#2196f3',
   failedColor: '#874b4b',
   thickness: '5px',
   transition: {

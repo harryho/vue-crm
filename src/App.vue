@@ -1,119 +1,139 @@
 <template>
-  <div>
+  <v-app>
+    <vue-progress-bar>
+    </vue-progress-bar>
     <template v-if="!loggedIn">
       <router-view></router-view>
     </template>
     <template v-if="loggedIn">
-      <vue-progress-bar></vue-progress-bar>
-      <v-app>  
-        <v-navigation-drawer persistent v-model="drawer" mini-variant.sync="true">
-          <v-list class="pa-0">
-              <v-list-item>
-              <v-list-tile avatar tag="div">
-                <v-list-tile-avatar>
-                  <img src="/assets/img/avatar0.png"></img>
-                </v-list-tile-avatar>
-                <v-list-tile-content>
-                  <v-list-tile-title>{{user.firstName}} {{user.lastName}}</v-list-tile-title>
-                </v-list-tile-content>
-                <v-menu bottom left offset-y origin="bottom right" transition="v-slide-y-transition">
-                  <v-btn icon light slot="activator">
-                    <v-icon>more_vert</v-icon>
-                  </v-btn>
-                  <v-list>
-                    <v-list-item v-for="item in userMenus" :key="item">
-                      <v-list-tile value="true" :to="item.link" router>
-                        <v-list-tile-title v-text="item.title"></v-list-tile-title>
-                      </v-list-tile>
-                    </v-list-item>
-                  </v-list>
-                </v-menu>
-              </v-list-tile>
-            </v-list-item>
-          </v-list>
-          <v-list>
-            <v-list-item v-for="(item, i) in items" :key="i">
-              <v-list-tile @click.native="clickMenu(item)" router>
-                <v-list-tile-action>
-                  <v-icon v-if="activeMenuItem.indexOf(item.vertical) > -1" light v-html="item.icon" class="blue--text"></v-icon>
-                  <v-icon v-if="activeMenuItem.indexOf(item.vertical) < 0" dark v-html="item.icon"></v-icon>
-                </v-list-tile-action>
-                <v-list-tile-content>
+      <v-navigation-drawer dark fixed v-model="drawer" app>
+        <!-- mini-variant.sync="true" -->
+        <v-list class="pa-0">
+          <v-list-tile avatar tag="div">
+            <v-list-tile-avatar>
+              <img src="/assets/img/avatar0.png"></img>
+            </v-list-tile-avatar>
+            <v-list-tile-content>
+              <v-list-tile-title>{{user.firstName}} {{user.lastName}}</v-list-tile-title>
+            </v-list-tile-content>
+            <v-menu bottom left offset-y origin="bottom right" transition="v-slide-y-transition">
+              <v-btn icon light slot="activator">
+                <v-icon>more_vert</v-icon>
+              </v-btn>
+              <v-list>
+                <v-list-tile v-for="item in userMenus" :key="item.title" value="true" :to="item.link" router>
                   <v-list-tile-title v-text="item.title"></v-list-tile-title>
-                </v-list-tile-content>
-              </v-list-tile>
-            </v-list-item>
-          </v-list>
-        </v-navigation-drawer>
-        <v-toolbar>
-          <v-toolbar-side-icon @click.native.stop="drawer = !drawer" light></v-toolbar-side-icon>
-          <v-spacer></v-spacer>
-  
-        </v-toolbar>
-        <main>
-          <v-container fluid>
-            <v-slide-y-transition mode="out-in">
-              <v-layout column align-center>
-                <router-view></router-view>
-  
-              </v-layout>
-            </v-slide-y-transition>
-          </v-container>
-        </main>
-        <v-footer :fixed="fixed">
-          <span>&copy; Reetek 2017 Vue-2-Crm </span>
-        </v-footer>
-      </v-app>
-      <v-layout row justify-center>
-        <v-dialog v-model="dialog" persistent>
-          <v-card>
-            <v-card-row>
-              <v-card-title>{{dialogTitle}}</v-card-title>
-            </v-card-row>
-            <v-card-row>
-              <v-card-text>{{dialogText}}</v-card-text>
-            </v-card-row>
-            <v-card-row actions>
-              <v-btn class="green--text darken-1" flat="flat" @click.native="onConfirm">Confirm</v-btn>
-              <v-btn class="green--text darken-1" flat="flat" @click.native="onCancel">Cancel</v-btn>
-            </v-card-row>
-          </v-card>
-        </v-dialog>
-      </v-layout>
+                </v-list-tile>
+              </v-list>
+            </v-menu>
+          </v-list-tile>
+        </v-list>
+        <v-list>
+          <v-list-tile v-for="item in items" :key="item.title" @click.native="clickMenu(item)" router>
+            <v-list-tile-action>
+              <v-icon v-if="activeMenuItem.indexOf(item.vertical) > -1" light v-html="item.icon" class="blue--text"></v-icon>
+              <v-icon v-if="activeMenuItem.indexOf(item.vertical) < 0" dark v-html="item.icon"></v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title v-text="item.title"></v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </v-navigation-drawer>
+      <v-toolbar app>
+        <v-toolbar-side-icon @click.native.stop="drawer = !drawer" light></v-toolbar-side-icon>
+        <v-spacer></v-spacer>
+      </v-toolbar>
+      <v-content>
+        <v-container fluid fill-height>
+          <v-layout>
+            <v-flex row>
+              <router-view></router-view>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-content>
+
+      <v-footer :fixed="fixed" app>
+        <span>&copy; Reetek 2018 Vue-Crm </span>
+      </v-footer>
+
+
     </template>
-  </div>
+    <v-dialog v-model="dialog" persistent max-width="290">
+      <v-card>
+        <v-card-title>{{dialogTitle}}</v-card-title>
+        <v-card-text>{{dialogText}}</v-card-text>
+        <v-card-actions>
+          <v-btn class="green--text darken-1" flat="flat" @click.native="onConfirm">Confirm</v-btn>
+          <v-btn class="green--text darken-1" flat="flat" @click.native="onCancel">Cancel</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </v-app>
+
 </template>
 <script>
   import auth from './utils/auth'
-  // import VueCharts from 'vue-chartjs'
+
   export default {
-    data () {
+    data() {
       return {
         dialog: false,
         dialogText: '',
         dialogTitle: '',
         loggedIn: auth.loggedIn(),
+        isRootComponent: true,
         // clipped: false,
         drawer: true,
         fixed: false,
-        items: [
-          { icon: 'bubble_chart', title: 'Dashboard', vertical: 'Dashboard', link: 'dashboard' },
-          { icon: 'bubble_chart', title: 'Orders', vertical: 'Order', link: 'orders' },
-          { icon: 'bubble_chart', title: 'Customers', vertical: 'Customer', link: 'customers' },
-          { icon: 'bubble_chart', title: 'Products', vertical: 'Product', link: 'products' },
-          { icon: 'bubble_chart', title: 'About', vertical: 'About', link: 'about' }
-        ],
-        userMenus: [
-          { icon: 'bubble_chart', title: 'Logout', link: '/logout' },
-          { icon: 'bubble_chart', title: 'Change Password', link: '/changepassword' }
-        ],
+        items: [{
+          icon: 'bubble_chart',
+          title: 'Dashboard',
+          vertical: 'Dashboard',
+          link: 'dashboard'
+        },
+        {
+          icon: 'bubble_chart',
+          title: 'Orders',
+          vertical: 'Order',
+          link: 'orders'
+        },
+        {
+          icon: 'bubble_chart',
+          title: 'Customers',
+          vertical: 'Customer',
+          link: 'customers'
+        },
+        {
+          icon: 'bubble_chart',
+          title: 'Products',
+          vertical: 'Product',
+          link: 'products'
+        },
+        {
+          icon: 'bubble_chart',
+          title: 'About',
+          vertical: 'About',
+          link: 'about'
+        }],
+        userMenus: [{
+          icon: 'bubble_chart',
+          title: 'Logout',
+          link: '/logout'
+        },
+        {
+          icon: 'bubble_chart',
+          title: 'Change Password',
+          link: '/changepassword'
+        }],
         miniVariant: false,
         right: true,
         rightDrawer: false,
         menuItem: 'Orders'
       }
     },
-    created () {
+    created() {
       auth.onChange = loggedIn => {
         console.log('loggedIn')
         this.loggedIn = loggedIn
@@ -138,7 +158,6 @@
         if (to.name !== 'ErrorPage') {
           this.menuItem = to.name
         }
-
         //  finish the progress bar
         this.$Progress.finish()
       })
@@ -163,7 +182,9 @@
     methods: {
       clickMenu: function (item) {
         this.menuItem = item.title
-        this.$router.push({name: item.title})
+        this.$router.push({
+          name: item.title
+        })
       },
       openDialog: function (dialogText, dialogTitle, confirmCallback, canelCallbak) {
         this.dialog = true
@@ -172,32 +193,29 @@
         if (confirmCallback) this.confirmCallback = confirmCallback
         if (canelCallbak) this.cancelCallback = canelCallbak
       },
-      confirmCallback: function () {
-      },
-      cancelCallback: function () {
-      },
+      confirmCallback: function () { },
+      cancelCallback: function () { },
       onConfirm: function () {
         this.dialog = false
         this.dialogText = ''
         this.dialogTitle = ''
         this.confirmCallback()
-        this.confirmCallback = () => {}
+        this.confirmCallback = () => { }
       },
       onCancel: function () {
         this.dialog = false
         this.dialogText = ''
         this.dialogTitle = ''
         this.cancelCallback()
-        this.cancelCallback = () => {}
+        this.cancelCallback = () => { }
         console.log('Cancelled')
       }
     },
-    mounted () {
+    mounted() {
       this.$Progress.finish()
     }
   }
 </script>
 <style lang="stylus">
-  // $color-pack = false
   @import './stylus/main'
 </style>

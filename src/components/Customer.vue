@@ -5,16 +5,16 @@
         <v-card-title>
           {{title}}
           <v-spacer></v-spacer>
-          <v-btn floating small class="grey" @click.native="cancel()">
+          <v-btn fab small class="grey" @click.native="cancel()">
             <v-icon light>cancel</v-icon>
           </v-btn>
           &nbsp;
-          <v-btn floating small class="purple" @click.native="save()">
+          <v-btn fab small class="purple" @click.native="save()">
             <v-icon light>save</v-icon>
           </v-btn>
         </v-card-title>
         <v-card-text>
-          <v-container fluid>
+          <v-container fluid grid-list-md>
             <v-layout row wrap>
 
               <v-flex md4 xs12>
@@ -35,7 +35,7 @@
                  v-bind:rules="rules.email" class="input-group--focused" required></v-text-field>
               </v-flex>
                <v-flex md4 xs12>
-                  <v-switch label="Customer Status" v-model="customer.isActive" dark></v-switch>
+                  <v-switch label="Customer Status"  v-model="customer.isActive" light></v-switch>
               </v-flex>
             </v-layout>
           </v-container>
