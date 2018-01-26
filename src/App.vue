@@ -55,7 +55,7 @@
       </v-content>
 
       <v-footer :fixed="fixed" app>
-        <span>&copy; Reetek 2018 Vue-Crm </span>
+        <span style="justify-content:center">&copy; Reetek 2018 Vue-Crm </span>
       </v-footer>
 
 

@@ -104,5 +104,6 @@ For detailed explanation on how things work, checkout following links
 
 There are two similar projects respectively built on the Angular and React. If you have interests in those technical stacks. You can find and clone those repositories below.
 
-* [Ng4Crm](https://github.com/harryho/ng4crm.git).
+* [Ng-MD-App](https://github.com/harryho/ng-md-app.git).
 * [React-Crm](https://github.com/harryho/react-crm.git).
+* [Ng4Crm](https://github.com/harryho/ng4crm.git). (This is no longer maintained with latest Angular)

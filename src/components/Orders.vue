@@ -5,34 +5,33 @@
         <v-card-title>
           Orders
           <v-spacer></v-spacer>
-          <v-btn fab small light class="blue-grey" @click.native.stop="rightDrawer = !rightDrawer">
-            <v-icon light>search</v-icon>
+          <v-btn fab small dark class="blue-grey" @click.native.stop="rightDrawer = !rightDrawer">
+            <v-icon>search</v-icon>
           </v-btn>
           &nbsp;
           <v-btn fab small class="grey" @click.native="print()">
-            <v-icon light>print</v-icon>
+            <v-icon>print</v-icon>
           </v-btn>
           &nbsp;
-          <v-btn fab small class="purple" @click.native="add">
-            <v-icon light>add</v-icon>
+          <v-btn fab small dark class="purple" @click.native="add">
+            <v-icon>add</v-icon>
           </v-btn>
         </v-card-title>
         <v-data-table v-bind:headers="headers" v-bind:items="items" v-bind:search="search" v-bind:pagination.sync="pagination" hide-actions
           class="elevation-1">
           <template slot="items" slot-scope="props" class="body-2">
             <td class="body-2">{{ props.item.reference }}</td>
-            <!--<td class="text-xs-right">{{ props.item.price }}</td>-->
             <td class="text-xs-right">{{ props.item.quantity }}</td>
             <td class="text-xs-right">{{ props.item.amount}}</td>
             <td class="text-xs-right">{{ props.item.customer}}</td>
             <td class="text-xs-right">{{ props.item.orderDate}}</td>
             <td class="text-xs-right">{{ props.item.shippedDate}}</td>
             <td class="text-xs-right">
-              <v-btn fab small class="teal" @click.native="edit(props.item)">
-                <v-icon light>edit</v-icon>
+              <v-btn fab small dark class="teal" @click.native="edit(props.item)">
+                <v-icon>edit</v-icon>
               </v-btn>
               <v-btn fab small class="cyan" @click.native="remove(props.item)">
-                <v-icon light>delete</v-icon>
+                <v-icon>delete</v-icon>
               </v-btn>
             </td>
           </template>
