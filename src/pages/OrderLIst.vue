@@ -3,7 +3,7 @@
     <v-flex xs12>
       <v-card>
         <v-card-title>
-          Products
+          Orders
           <v-spacer></v-spacer>
           <v-btn fab small dark class="blue-grey" @click.native.stop="rightDrawer = !rightDrawer">
             <v-icon>search</v-icon>
@@ -13,18 +13,20 @@
             <v-icon>print</v-icon>
           </v-btn>
           &nbsp;
-          <v-btn fab small dark class="orange" @click.native="add">
+          <v-btn fab small dark class="purple" @click.native="add">
             <v-icon>add</v-icon>
           </v-btn>
         </v-card-title>
-        <v-data-table v-bind:headers="headers" v-bind:items="items" v-bind:search="search" v-bind:pagination.sync="pagination" hide-actions
+        <v-data-table v-bind:headers="headers" v-bind:items="items" v-bind:search="search"
+        v-bind:pagination.sync="pagination" hide-actions
           class="elevation-1">
           <template slot="items" slot-scope="props" class="body-2">
-            <td class="body-2">{{ props.item.productName }}</td>
-            <td class="text-xs-right">{{ props.item.category.categoryName}}</td>
-            <td class="text-xs-right">AUD ${{ props.item.unitPrice }}</td>
-            <td class="text-xs-right">{{ props.item.unitInStock }}</td>
-            <!--<td class="text-xs-right">{{ props.item.amount}}</td>            -->
+            <td class="body-2">{{ props.item.reference }}</td>
+            <td class="text-xs-right">{{ props.item.quantity }}</td>
+            <td class="text-xs-right">{{ props.item.amount}}</td>
+            <td class="text-xs-right">{{ props.item.customer}}</td>
+            <td class="text-xs-right">{{ props.item.orderDate}}</td>
+            <td class="text-xs-right">{{ props.item.shippedDate}}</td>
             <td class="text-xs-right">
               <v-btn fab small dark class="teal" @click.native="edit(props.item)">
                 <v-icon>edit</v-icon>
@@ -36,7 +38,7 @@
           </template>
         </v-data-table>
         <div class="text-xs-center pt-2">
-          <v-pagination v-model="pagination.page" :value="pages" :length="pages" :total-visible="7" circle></v-pagination>
+          <v-pagination v-model="pagination.page" :length="pages" circle></v-pagination>
         </div>
       </v-card>
     </v-flex>
@@ -46,7 +48,7 @@
         <v-list-tile>
           <v-list-tile-title>Search Panel</v-list-tile-title>
           <v-list-tile-action>
-            <v-btn @click.native="searchProducts">
+            <v-btn @click.native="searchOrders">
               <v-icon dark>search</v-icon>
             </v-btn>
           </v-list-tile-action>
@@ -54,7 +56,7 @@
         <v-list-tile-title>&nbsp;</v-list-tile-title>
         <v-layout row>
           <v-flex xs11 offset-xs1>
-            <v-text-field name="productName" label="Product" light v-model="searchVm.contains.productName"></v-text-field>
+            <v-text-field name="product" label="Product" light v-model="searchVm.contains.product"></v-text-field>
           </v-flex>
         </v-layout>
         <v-layout row>
@@ -63,22 +65,18 @@
           </v-flex>
         </v-layout>
         <v-layout row>
-          <v-flex xs12 offset-xs1>
+          <v-flex xs8 offset-xs1>
             <v-slider class="text-xs-central" label="Price 1" light v-bind:max="100" v-model="searchVm.between.price.former"></v-slider>
           </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex xs12 offset-xs2>
+          <v-flex xs3>
             <v-text-field light v-model="searchVm.between.price.former" type="number"></v-text-field>
           </v-flex>
         </v-layout>
         <v-layout row>
-          <v-flex xs12 offset-xs1>
+          <v-flex xs8 offset-xs1>
             <v-slider class="text-xs-central" label="Price 2" light v-bind:max="1000" v-model="searchVm.between.price.latter"></v-slider>
           </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex xs12 offset-xs2>
+          <v-flex xs3>
             <v-text-field light v-model="searchVm.between.price.latter" type="number"></v-text-field>
           </v-flex>
         </v-layout>
@@ -93,7 +91,6 @@
       </v-list>
     </v-navigation-drawer>
   </v-container>
-
 </template>
 <script>
   export default {
@@ -102,43 +99,28 @@
         rightDrawer: false,
         right: true,
         search: '',
-        pagination: {
-          page: 1,
-          totalItems: 0,
-          rowsPerPage: 10
-        },
-        headers: [{
-          text: 'Product',
-          left: true,
-          sortable: false,
-          value: 'productName'
-        },
-        {
-          text: 'Category',
-          value: 'category.categoryName'
-        },
-        {
-          text: 'Price',
-          value: 'unitPrice'
-        },
-        {
-          text: 'In Stock',
-          value: 'unitInStock'
-        },
-        {
-          text: '',
-          value: ''
-        }],
+        pagination: {},
+        headers: [
+          {
+            text: 'Reference',
+            left: true,
+            sortable: false,
+            value: 'reference'
+          },
+          { text: 'Order Items', value: 'quantity' },
+          { text: 'Amount', value: 'amount' },
+          { text: 'Customer', value: 'customer' },
+          { text: 'Order Date', value: 'orderDate' },
+          { text: 'Shipping Date', value: 'shippedDate' },
+          { text: '', value: '' }
+        ],
         items: [],
         searchVm: {
           contains: {
-            productName: ''
+            product: ''
           },
           between: {
-            price: {
-              former: 0,
-              latter: 0
-            }
+            price: { former: 0, latter: 0 }
           }
         }
       }
@@ -148,22 +130,17 @@
         window.print()
       },
       edit(item) {
-        this.$router.push({
-          name: 'Product',
-          params: {
-            id: item.id
-          }
-        })
+        this.$router.push({ name: 'Order', params: { id: item.id } })
       },
       add() {
-        this.$router.push('NewProduct')
+        this.$router.push('NewOrder')
       },
       remove(item) {
         const rootComponent = this.appUtil.getRootComponent(this)
         if (rootComponent) {
           rootComponent.openDialog('Do you want to delete this item?', '', () => {
-            this.api.deleteData('products/' + item.id.toString()).then((res) => {
-              this.getProducts()
+            this.api.deleteData('orders/' + item.id.toString()).then((res) => {
+              this.getOrders()
             }, (err) => {
               console.log(err)
             })
@@ -172,30 +149,35 @@
       },
       changeStatus(item) {
         item.isActive = !item.isActive
-        this.api.putData('products/' + item.id.toString(), item).then((res) => { }, (err) => {
+        this.api.putData('orders/' + item.id.toString(), item).then((res) => {
+        }, (err) => {
           console.log(err)
         })
       },
-      getProducts() {
-        this.api.getData('products?_expand=category').then((res) => {
+      getOrders() {
+        this.api.getData('orders?_expand=customer').then((res) => {
           this.items = res.data
           this.items.forEach(item => {
-            item.amount = item.quantity * item.price
+            let amount = 0
+            item.products.forEach((e) => { amount += e.unitPrice })
+            item.amount = amount
+            item.quantity = item.products.length
+            item.customer = item.customer ? item.customer.firstName + ' ' + item.customer.lastName : ''
           })
           this.pagination.totalItems = this.items.length
         }, (err) => {
           console.log(err)
         })
       },
-      searchProducts() {
+      searchOrders() {
         this.rightDrawer = !this.rightDrawer
         this.appUtil.buildSearchFilters(this.searchVm)
         let query = this.appUtil.buildJsonServerQuery(this.searchVm)
-        this.api.getData('products?_expand=category&' + query).then((res) => {
+        this.api.getData('orders?_expand=customer&' + query).then((res) => {
           this.items = res.data
           this.items.forEach(item => {
             item.amount = item.quantity * item.price
-            item.category = item.category ? item.category.firstName + ' ' + item.category.lastName : ''
+            item.customer = item.customer ? item.customer.firstName + ' ' + item.customer.lastName : ''
           })
           this.pagination.totalItems = this.items.length
         }, (err) => {
@@ -205,11 +187,11 @@
       clearSearchFilters() {
         this.rightDrawer = !this.rightDrawer
         this.appUtil.clearSearchFilters(this.searchVm)
-        this.api.getData('products?_expand=category').then((res) => {
+        this.api.getData('orders?_expand=customer').then((res) => {
           this.items = res.data
           this.items.forEach(item => {
             item.amount = item.quantity * item.price
-            item.category = item.category ? item.category.firstName + ' ' + item.category.lastName : ''
+            item.customer = item.customer ? item.customer.firstName + ' ' + item.customer.lastName : ''
           })
           this.pagination.totalItems = this.items.length
         }, (err) => {
@@ -222,14 +204,9 @@
         return this.pagination && this.pagination.rowsPerPage ? Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage) : 0
       }
     },
-    // watch: {
-    //   items () {
-    //     this.pages()
-    //   }
-    // },
     mounted: function () {
       // this.$nextTick(() => {
-      this.getProducts()
+      this.getOrders()
       // })
     }
   }

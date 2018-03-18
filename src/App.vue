@@ -6,7 +6,7 @@
       <router-view></router-view>
     </template>
     <template v-if="loggedIn">
-      <v-navigation-drawer dark fixed v-model="drawer" app>
+      <v-navigation-drawer dark fixed :mini-variant.sync="mini" v-model="drawer" app>
         <!-- mini-variant.sync="true" -->
         <v-list class="pa-0">
           <v-list-tile avatar tag="div">
@@ -26,11 +26,17 @@
                 </v-list-tile>
               </v-list>
             </v-menu>
+            <v-list-tile-action>
+              <v-btn icon @click.native.stop="mini = !mini">
+                <v-icon>chevron_left</v-icon>
+              </v-btn>
+            </v-list-tile-action>
           </v-list-tile>
+
         </v-list>
         <v-list>
           <v-list-tile v-for="item in items" :key="item.title" @click.native="clickMenu(item)" router>
-            <v-list-tile-action>
+            <v-list-tile-action class="pr-3 mr-3">
               <v-icon v-if="activeMenuItem.indexOf(item.vertical) > -1" light v-html="item.icon" class="blue--text"></v-icon>
               <v-icon v-if="activeMenuItem.indexOf(item.vertical) < 0" dark v-html="item.icon"></v-icon>
             </v-list-tile-action>
@@ -53,13 +59,11 @@
           </v-layout>
         </v-container>
       </v-content>
-
-      <v-footer :fixed="fixed" app>
+      <canvas id='canvas'></canvas>
+      <v-footer :inset="true" app>
         <span style="justify-content:center">&copy; Reetek 2018 Vue-Crm </span>
       </v-footer>
-
-
-    </template>
+        </template>
     <v-dialog v-model="dialog" persistent max-width="290">
       <v-card>
         <v-card-title>{{dialogTitle}}</v-card-title>
@@ -75,11 +79,12 @@
 </template>
 <script>
   import auth from './utils/auth'
-
+  // import Products from './pages/Products.vue'
   export default {
     data() {
       return {
         dialog: false,
+        mini: false,
         dialogText: '',
         dialogTitle: '',
         loggedIn: auth.loggedIn(),
@@ -88,19 +93,19 @@
         drawer: true,
         fixed: false,
         items: [{
-          icon: 'bubble_chart',
+          icon: 'dashboard',
           title: 'Dashboard',
           vertical: 'Dashboard',
           link: 'dashboard'
         },
         {
-          icon: 'bubble_chart',
+          icon: 'shopping_cart',
           title: 'Orders',
           vertical: 'Order',
           link: 'orders'
         },
         {
-          icon: 'bubble_chart',
+          icon: 'perm_identity',
           title: 'Customers',
           vertical: 'Customer',
           link: 'customers'
@@ -112,7 +117,7 @@
           link: 'products'
         },
         {
-          icon: 'bubble_chart',
+          icon: 'thumbs_up_down',
           title: 'About',
           vertical: 'About',
           link: 'about'
@@ -135,7 +140,7 @@
     },
     created() {
       auth.onChange = loggedIn => {
-        console.log('loggedIn')
+        console.log('loggedIn', loggedIn)
         this.loggedIn = loggedIn
       }
       //  [App.vue specific] When App.vue is first loaded start the progress bar
@@ -170,7 +175,7 @@
         return this.store.state
       },
       user: function () {
-        return this.state.user
+        return this.state.user.user
       },
       auth: function () {
         return auth

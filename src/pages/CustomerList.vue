@@ -1,28 +1,27 @@
 <template>
-  <v-container fluid>
-    <v-flex xs12>
+  <v-container fluid="">
+    <v-flex xs12="">
       <v-card>
         <v-card-title>
           Customers
           <v-spacer></v-spacer>
-          <v-btn fab small dark class="blue-grey" @click.native.stop="rightDrawer = !rightDrawer">
+          <v-btn class="blue-grey" fab small dark @click.native.stop="rightDrawer = !rightDrawer">
             <v-icon>search</v-icon>
           </v-btn>
           &nbsp;
-          <v-btn fab small class="purple" @click.native="add">
+          <v-btn class="purple" fab small @click.native="add">
             <v-icon>add</v-icon>
           </v-btn>
           &nbsp;
-          <v-btn fab small dark class="grey" @click.native="print">
+          <v-btn class="grey" fab small dark @click.native="print">
             <v-icon>print</v-icon>
           </v-btn>
         </v-card-title>
-        <v-data-table v-bind:headers="headers" v-bind:items="items" v-bind:search="search" v-bind:pagination.sync="pagination" hide-actions
-          class="elevation-1">
+        <v-data-table class="elevation-1" v-bind:headers="headers" v-bind:items="items" v-bind:search="search" v-bind:pagination.sync="pagination" hide-actions>
 
-          <template slot="items" slot-scope="props" class="body-2">
+          <template class="body-2" slot="items" slot-scope="props">
             <td class="text-xs-left">
-              <img v-if="props.item.avatar" width="50" class="responsive" v-bind:src="props.item.avatar"></img>
+              <img class="responsive" v-if="props.item.avatar" width="50" v-bind:src="props.item.avatar">
             </td>
             <td class="text-xs-left">{{ props.item.firstName }}</td>
             <td class="text-xs-right">{{ props.item.lastName }}</td>
@@ -30,17 +29,17 @@
             <td class="text-xs-right">{{ props.item.age }}</td>
             <td class="text-xs-right">{{ props.item.orderRecord }}</td>
             <td class="text-xs-right">
-              <v-icon v-if="!props.item.isActive" class="light">block</v-icon>
-              <v-icon v-if="props.item.isActive" class="light">done</v-icon>
+              <v-icon class="light" v-if="!props.item.isActive">block</v-icon>
+              <v-icon class="light" v-if="props.item.isActive">done</v-icon>
             </td>
             <td class="text-xs-right">
-              <v-btn fab small class="indigo" @click.native="changeStatus(props.item)">
+              <v-btn class="indigo" fab small @click.native="changeStatus(props.item)">
                 <v-icon>autorenew</v-icon>
               </v-btn>
-              <v-btn fab small dark class="teal" @click.native="edit(props.item)">
+              <v-btn class="teal" fab small dark @click.native="edit(props.item)">
                 <v-icon>edit</v-icon>
               </v-btn>
-              <v-btn fab small class="cyan" @click.native="remove(props.item)">
+              <v-btn class="cyan" fab small @click.native="remove(props.item)">
                 <v-icon>delete</v-icon>
               </v-btn>
             </td>
@@ -57,61 +56,51 @@
       <v-list>
 
         <v-list-tile-title>&nbsp;</v-list-tile-title>
-
-
         <v-list-tile>
           <v-list-tile-title>Search Panel</v-list-tile-title>
           <v-list-tile-action>
             <v-btn @click.native="searchCustomers">
-              <v-icon dark>search</v-icon>
+              <v-icon dark="">search</v-icon>
             </v-btn>
           </v-list-tile-action>
         </v-list-tile>
-
-
         <v-list-tile-title>&nbsp;</v-list-tile-title>
-
-
-        <v-layout row>
+        <v-layout row="">
           <v-flex xs11 offset-xs1>
             <v-text-field name="input-1-3" label="Frist Name" light v-model="searchVm.contains.firstName"></v-text-field>
           </v-flex>
         </v-layout>
-
-
-        <v-layout row>
+        <v-layout row="">
           <v-flex xs11 offset-xs1>
             <v-text-field name="input-1-3" label="Last Name" light v-model="searchVm.contains.lastName"></v-text-field>
           </v-flex>
         </v-layout>
-
-
-        <v-layout row>
+        <v-layout row="">
           <v-flex xs11 offset-xs1>
-            <v-subheader light class="text-sm-central">Age range between Age 1 and Age 2 </v-subheader>
+            <v-subheader class="text-sm-central" light>Age range between Age 1 and Age 2 </v-subheader>
           </v-flex>
         </v-layout>
-        <v-layout row>
+        <v-layout row="">
           <v-flex xs8 offset-xs1>
             <v-slider label="Age 1" light v-bind:max="50" v-model="searchVm.between.age.former"></v-slider>
           </v-flex>
-          <v-flex xs3>
-            <v-text-field light v-model="searchVm.between.age.former" type="number"></v-text-field>
+          <v-flex xs3="">
+            <v-text-field type="number" light v-model="searchVm.between.age.former"></v-text-field>
           </v-flex>
         </v-layout>
-        <v-layout row>
+        <v-layout row="">
           <v-flex xs8 offset-xs1>
             <v-slider label="Age 2" light v-bind:max="100" v-model="searchVm.between.age.latter"></v-slider>
           </v-flex>
-          <v-flex xs3>
-            <v-text-field light v-model="searchVm.between.age.latter" type="number"></v-text-field>
+          <v-flex xs3="">
+            <v-text-field type="number" light v-model="searchVm.between.age.latter"></v-text-field>
           </v-flex>
         </v-layout>
         <v-list-tile>
           <v-list-tile-title></v-list-tile-title>
           <v-list-tile-action>
             <v-btn @click.native="clearSearchFilters">
-              <v-icon dark>clear</v-icon>
+              <v-icon dark="">clear</v-icon>
             </v-btn>
           </v-list-tile-action>
         </v-list-tile>

@@ -18,8 +18,14 @@ module.exports = {
   // add your custom rules here
   'rules': {
     "indent": 0,
+    "quotes":0,
+    "key-spacing":0,
+    "no-unused-vars": 1,
+    "comma-dangle": 0,
+    "semi": 0,
     // allow paren-less arrow functions
     'arrow-parens': 0,
+    'comma-spacing': 1,
     // allow async-await
     'generator-star-spacing': 0,
     // allow debugger during development

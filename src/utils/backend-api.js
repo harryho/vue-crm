@@ -11,8 +11,8 @@ const instance = axios.create({
 // Add a request interceptor
 instance.interceptors.request.use(function (config) {
   /* global window Store */
-  let token = Store.state.token
-
+  const {token} = Store.state.user
+  console.log("token", token)
   if (token) {
     config.headers.common['Authorization'] = 'Bearer ' + token
     config.headers.common['Access-Control-Allow-Origin'] = '*'
