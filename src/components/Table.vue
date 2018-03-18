@@ -5,7 +5,7 @@
       <template slot="headers" slot-scope="props">
           <tr>
             <th v-for="header in props.headers" :key="header.text"
-            :class="['column ']">
+            :class="['column', 'subheading' , 'text-xs-left']">
               {{ header.text }}
             </th>
             <th>
@@ -15,9 +15,9 @@
     </template>
 
     <template class="body-2" slot="items" slot-scope="props">
-        <td class="text-xs-left" v-for="header in headers" v-if="header.value!==''">
-        <!-- {{renderData(props.item, header)}} -->
-        {{props.item[header.value]}}
+      <td class="text-xs-left body-2" v-for="header in headers" v-if="header.value!==''">
+        {{renderData(props.item, header)}}
+        <!-- {{props.item[header.value]}} -->
       </td>
 
         <td class="text-xs-right">
@@ -30,11 +30,9 @@
       </td>
     </template>
     <template slot="no-data">
-      <!-- <v-alert outline color="info" icon="info" :value="true" style="border:0px;"> -->
      <span >
         <p class="pt-2 blue--text subheading">   <v-icon medium class="blue--text" >info</v-icon>Sorry, nothing to display here :(</p>
       </span>
-      <!-- </v-alert> -->
     </template>
   </v-data-table>
   <div class="text-xs-center pt-2">

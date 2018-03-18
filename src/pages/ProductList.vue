@@ -21,28 +21,8 @@
             <v-icon>add</v-icon>
           </v-btn>
         </v-card-title>
-        <!-- <v-data-table class="elevation-1" v-bind:headers="headers" v-bind:items="items" v-bind:search="search" v-bind:pagination.sync="pagination" hide-actions>
-          <template class="body-2" slot="items" slot-scope="props">
-            <td class="body-2">{{ props.item.productName }}</td>
-            <td class="text-xs-right">{{ props.item.category.categoryName}}</td>
-            <td class="text-xs-right">AUD ${{ props.item.unitPrice }}</td>
-            <td class="text-xs-right">{{ props.item.unitInStock }}</td>
-            <td class="text-xs-right">
-              <v-btn class="teal" fab small dark @click.native="edit(props.item)">
-                <v-icon>edit</v-icon>
-              </v-btn>
-              <v-btn class="cyan" fab small @click.native="remove(props.item)">
-                <v-icon>delete</v-icon>
-              </v-btn>
-            </td>
-          </template>
-        </v-data-table>
-        <div class="text-xs-center pt-2">
-          <v-pagination v-model="pagination.page" :value="pages" :length="pages" :total-visible="7" circle></v-pagination>
-        </div> -->
 
         <Table v-if="loading===false" :headers="headers" :items="items"  :pagination="pagination" @edit="edit" @remove="remove"></Table>
-
       </v-card>
     </v-flex>
     <v-navigation-drawer right v-model="rightDrawer" fixed>
@@ -116,7 +96,7 @@
         search: '',
         headers: [
         { text: 'Product', left: true, value: 'productName' },
-        { text: 'Category', value: 'categoryName' },
+        { text: 'Category', value: 'category.categoryName' },
         { text: 'Price', value: 'unitPrice' },
         { text: 'In Stock', value: 'unitInStock'
         },
