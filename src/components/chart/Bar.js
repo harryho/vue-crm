@@ -1,4 +1,4 @@
-import 'chart.js'
+// import 'chart.js'
 import {Bar} from 'vue-chartjs'
 
 export default Bar.extend({

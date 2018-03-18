@@ -11,7 +11,7 @@ export default {
       console.log(Store)
       // Store.commit('setToken', token)
       // Store.commit('setUserProfile', {user, token})
-      Store.dispatch('updateUser', {user, token})
+      Store.dispatch('user/updateUser', {user, token})
       if (cb) cb(true, null)
       this.onChange(true)
     }, (err) => {
@@ -26,7 +26,7 @@ export default {
   logout (cb) {
     // delete localStorage.token
     // Store.commit('setToken', null)
-    Store.dispatch('logout')
+    Store.dispatch('user/logout')
     if (cb) cb(false)
     this.onChange(false)
   },

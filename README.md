@@ -1,18 +1,18 @@
 # Vue 2 CRM
 
-> A reusable Vue.js CRM starter project for real-world business based on Vue 2 PWA template with Vuetify. 
+> A reusable Vue.js CRM starter project for real-world business based on Vue 2 PWA template with Vuetify.
 
-The goal of this project is to create a reusable starter project for real-world business. To achieve this target, we need a solution which includes simple authentication process, restful API with token support and simple but elegant UI design. 
+The goal of this project is to create a reusable starter project for real-world business. To achieve this target, we need a solution which includes simple authentication process, restful API with token support and simple but elegant UI design.
 
 
 #### Features
 
-* This project is built with Vue 2 PWA template by default.
+* This project is built from Vue 2 PWA template by default.
 * The UI part is built on the top of Vuetify.
 * It inlcudes Vuex and Axios to manage authentication. (Dummy token)
 * The token and user profile is managed by Vue-Persisteddstate.
 * The dashboard uses vue-chartjs to create charts on dashboard.
-* The starter project has integrated progress bar.  
+* The starter project has integrated progress bar.
 * To simulate real-world business, this starter project chooses Json-Server as fake Restful API. (You can simple replace it with your own API).
 * CRUD functions for Customer, Order and Product
 
@@ -77,7 +77,7 @@ npm run dev
 ##[1] > Starting dev server...
 ##[1]  DONE  Compiled successfully in xx:xx:xx
 ##[1]
-##[1] > Listening at http://localhost:8080      
+##[1] > Listening at http://localhost:8080
 
 # Visit the app at [http://localhost:8080](http://localhost:8080)
 
@@ -94,7 +94,7 @@ For detailed explanation on how things work, checkout following links
 * [vue-chartjs](https://github.com/apertureless/vue-chartjs)
 * [vue-progressbar](https://github.com/hilongjw/vue-progressbar)
 * [vuex-persistedstate](https://github.com/robinvdvleuten/vuex-persistedstate)
-* [webpack guide](http://vuejs-templates.github.io/webpack/) 
+* [webpack guide](http://vuejs-templates.github.io/webpack/)
 * [vue-loader](http://vuejs.github.io/vue-loader).
 
 

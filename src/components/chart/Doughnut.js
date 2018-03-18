@@ -1,4 +1,4 @@
-import 'chart.js'
+// import 'chart.js'
 import {Doughnut} from 'vue-chartjs'
 
 export default Doughnut.extend({

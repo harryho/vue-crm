@@ -6,7 +6,7 @@
       <router-view></router-view>
     </template>
     <template v-if="loggedIn">
-      <v-navigation-drawer dark fixed :mini-variant.sync="mini" v-model="drawer" app>
+      <v-navigation-drawer light fixed :mini-variant.sync="mini" v-model="drawer" class="blue lighten-5" app>
         <!-- mini-variant.sync="true" -->
         <v-list class="pa-0">
           <v-list-tile avatar tag="div">
@@ -38,7 +38,7 @@
           <v-list-tile v-for="item in items" :key="item.title" @click.native="clickMenu(item)" router>
             <v-list-tile-action class="pr-3 mr-3">
               <v-icon v-if="activeMenuItem.indexOf(item.vertical) > -1" light v-html="item.icon" class="blue--text"></v-icon>
-              <v-icon v-if="activeMenuItem.indexOf(item.vertical) < 0" dark v-html="item.icon"></v-icon>
+              <v-icon v-if="activeMenuItem.indexOf(item.vertical) < 0" light v-html="item.icon"></v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title v-text="item.title"></v-list-tile-title>
@@ -49,6 +49,17 @@
       <v-toolbar app>
         <v-toolbar-side-icon @click.native.stop="drawer = !drawer" light></v-toolbar-side-icon>
         <v-spacer></v-spacer>
+        <div class="text-xs-center pr-3">
+        <v-badge left>
+            <span slot="badge">6</span>
+            <v-icon large color="grey lighten-1">shopping_cart</v-icon>
+          </v-badge>
+
+          <v-badge color="red">
+            <span slot="badge">!</span>
+            <v-icon large color="grey">mail</v-icon>
+          </v-badge>
+        </div>
       </v-toolbar>
       <v-content>
         <v-container fluid fill-height>
@@ -61,7 +72,7 @@
       </v-content>
       <canvas id='canvas'></canvas>
       <v-footer :inset="true" app>
-        <span style="justify-content:center">&copy; Reetek 2018 Vue-Crm </span>
+        <span style="justify-content:center">&copy; NUCRM Lite 2018</span>
       </v-footer>
         </template>
     <v-dialog v-model="dialog" persistent max-width="290">
@@ -70,7 +81,7 @@
         <v-card-text>{{dialogText}}</v-card-text>
         <v-card-actions>
           <v-btn class="green--text darken-1" flat="flat" @click.native="onConfirm">Confirm</v-btn>
-          <v-btn class="green--text darken-1" flat="flat" @click.native="onCancel">Cancel</v-btn>
+          <v-btn class="orange--text darken-1" flat="flat" @click.native="onCancel">Cancel</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -79,6 +90,7 @@
 </template>
 <script>
   import auth from './utils/auth'
+  import { mapState } from 'vuex'
   // import Products from './pages/Products.vue'
   export default {
     data() {
@@ -171,12 +183,16 @@
       store: function () {
         return this.$parent.$store
       },
-      state: function () {
-        return this.store.state
-      },
-      user: function () {
-        return this.state.user.user
-      },
+      // state: function () {
+      //   return this.store.state
+      // },
+      // user: function () {
+      //   return this.state.user.user
+      // },
+      ...mapState('user',
+      {
+        user: 'user'
+      }),
       auth: function () {
         return auth
       },

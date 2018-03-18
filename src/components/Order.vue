@@ -72,10 +72,10 @@
               </v-flex>
               <v-flex xs12 v-if="order.products && order.products.length>0">
 
-                <v-list class="lighten-1 elevation-0" two-line >
-                  <v-list-tile avatar ripple v-for="(item, index) in order.products" class="light-blue lighten-5 py-0 mt-0 mb-1" v-bind:key="item.id">
-                    <v-list-tile-content light >
-                      <v-list-tile-title>{{ item.productName }}
+                <v-list class="transparent elevation-0" two-line >
+                  <v-list-tile avatar ripple v-for="(item, index) in order.products"  class="grey lighten-2 mt-2 mb-2 " v-bind:key="item.id">
+                    <v-list-tile-content dark >
+                      <v-list-tile-title class="heading blue--text">{{ item.productName }}
 
                       </v-list-tile-title>
                       <v-list-tile-sub-title class="grey--text text--darken-4">AUD ${{ item.unitPrice }}</v-list-tile-sub-title>

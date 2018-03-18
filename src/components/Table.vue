@@ -30,9 +30,11 @@
       </td>
     </template>
     <template slot="no-data">
-      <v-alert :value="true" color="accent" icon="warning">
-        Sorry, nothing to display here :(
-      </v-alert>
+      <!-- <v-alert outline color="info" icon="info" :value="true" style="border:0px;"> -->
+     <span >
+        <p class="pt-2 blue--text subheading">   <v-icon medium class="blue--text" >info</v-icon>Sorry, nothing to display here :(</p>
+      </span>
+      <!-- </v-alert> -->
     </template>
   </v-data-table>
   <div class="text-xs-center pt-2">

@@ -1,6 +1,6 @@
 <template>
-  <v-container fluid="">
-    <v-flex xs12="">
+  <v-container fluid>
+    <v-flex xs12>
       <v-card>
         <v-card-title>
           Customers
@@ -60,39 +60,39 @@
           <v-list-tile-title>Search Panel</v-list-tile-title>
           <v-list-tile-action>
             <v-btn @click.native="searchCustomers">
-              <v-icon dark="">search</v-icon>
+              <v-icon dark>search</v-icon>
             </v-btn>
           </v-list-tile-action>
         </v-list-tile>
         <v-list-tile-title>&nbsp;</v-list-tile-title>
-        <v-layout row="">
+        <v-layout row>
           <v-flex xs11 offset-xs1>
             <v-text-field name="input-1-3" label="Frist Name" light v-model="searchVm.contains.firstName"></v-text-field>
           </v-flex>
         </v-layout>
-        <v-layout row="">
+        <v-layout row>
           <v-flex xs11 offset-xs1>
             <v-text-field name="input-1-3" label="Last Name" light v-model="searchVm.contains.lastName"></v-text-field>
           </v-flex>
         </v-layout>
-        <v-layout row="">
+        <v-layout row>
           <v-flex xs11 offset-xs1>
             <v-subheader class="text-sm-central" light>Age range between Age 1 and Age 2 </v-subheader>
           </v-flex>
         </v-layout>
-        <v-layout row="">
+        <v-layout row>
           <v-flex xs8 offset-xs1>
             <v-slider label="Age 1" light v-bind:max="50" v-model="searchVm.between.age.former"></v-slider>
           </v-flex>
-          <v-flex xs3="">
+          <v-flex xs3>
             <v-text-field type="number" light v-model="searchVm.between.age.former"></v-text-field>
           </v-flex>
         </v-layout>
-        <v-layout row="">
+        <v-layout row>
           <v-flex xs8 offset-xs1>
             <v-slider label="Age 2" light v-bind:max="100" v-model="searchVm.between.age.latter"></v-slider>
           </v-flex>
-          <v-flex xs3="">
+          <v-flex xs3>
             <v-text-field type="number" light v-model="searchVm.between.age.latter"></v-text-field>
           </v-flex>
         </v-layout>
@@ -100,7 +100,7 @@
           <v-list-tile-title></v-list-tile-title>
           <v-list-tile-action>
             <v-btn @click.native="clearSearchFilters">
-              <v-icon dark="">clear</v-icon>
+              <v-icon dark>clear</v-icon>
             </v-btn>
           </v-list-tile-action>
         </v-list-tile>
