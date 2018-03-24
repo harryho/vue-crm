@@ -60,7 +60,6 @@
   <script>
     import Table from "@/components/Table.vue"
     import SearchPanel from "@/components/SearchPanel.vue"
-    import FormControl from "@/components/FormControl.vue"
     import { mapState } from 'vuex'
     import Vue from 'vue'
   /* globals Store */
@@ -68,7 +67,6 @@
     export default {
       components:{
         Table,
-        FormControl,
         SearchPanel
       },
       data: function () {
