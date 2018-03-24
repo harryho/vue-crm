@@ -1,89 +1,27 @@
 <template>
     <v-container id="dashboard" fluid   grid-list-lg class="mx-0 pa-0">
         <v-layout  row wrap>
-            <v-flex md3 sm6 xs12>
-                <v-card class="cyan darken-3" light>
-                    <v-container fluid grid-list-sm class="cyan darken-3" light>
+            <v-flex md3 sm6 xs12 v-for="stat in stats.monthlyStats">
+                <v-card :class="stat.bgColor" light>
+                    <v-container fluid grid-list-sm light>
                         <v-layout class="mt-2 mb-0" row wrap>
                             <v-flex xs2>
-                                <v-icon class="mx-1" x-large light>card_membership</v-icon>
+                                <v-icon class="mx-1" x-large light>{{stat.icon}}</v-icon>
                             </v-flex>
                             <v-flex md5 sm10 >
                                 <div class="mx-1">
-                                    <div class="subheading">New Orders</div>
-                                    <strong>120</strong>
+                                    <div class="subheading">{{stat.title}}</div>
+                                    <strong>{{stat.data}}</strong>
                                 </div>
                             </v-flex>
                             <v-flex class="text-sm-right text-md-left" sm12 md5>
-                              <v-btn outline class="grey--text darken-1" flat>More info</v-btn>
+                              <v-btn outline class="grey--text darken-1" flat>{{stat.action.label}}</v-btn>
                           </v-flex>
                         </v-layout>
                     </v-container>
                 </v-card>
             </v-flex>
-            <v-flex md3 sm6 xs12>
-                <v-card class="deep-orange  lighten-3" light>
-                        <v-container fluid grid-list-sm>
-                                <v-layout class="mt-2 mb-0" row wrap>
-                                <v-flex xs2>
-                                        <v-icon class="mx-1" x-large light>card_membership</v-icon>
-                                </v-flex>
-                                <v-flex  md5 sm10>
-                                    <div class="ml-1">
-                                        <div class="subheadingfont">User Registrations</div>
-                                        <strong>780</strong>
-                                    </div>
-                                </v-flex>
-                                <v-flex class="text-sm-right text-md-left" sm12 md5>
-                                  <v-btn outline class="grey--text darken-1 ml-0 pl-0" flat>More info</v-btn>
-                              </v-flex>
-                            </v-layout>
-                        </v-container>
-                </v-card>
-            </v-flex>
-            <v-flex md3 sm6 xs12>
-                <v-card class="blue-grey darken-1" light>
-                    <v-container fluid grid-list-sm>
-                            <v-layout class="mt-2 mb-0" row wrap>
-                                <v-flex xs2>
-                                    <v-icon class="mx-1" x-large light>card_membership</v-icon>
-                                </v-flex>
-                                <v-flex md5 sm10>
-                                    <div class="mx-1">
-                                        <div class="subheadingfont">Unique Visitors</div>
-                                        <strong>78</strong>
-                                    </div>
-                                </v-flex>
-                                <v-flex class="text-sm-right text-md-left" sm12 md5>
-                                  <v-btn outline class="grey--text darken-1" flat>More info</v-btn>
-                              </v-flex>
-                            </v-layout>
-
-                        </v-container>
-                </v-card>
-            </v-flex>
-            <v-flex md3 sm6 xs12>
-                <v-card class="pink  lighten-4" light>
-                        <v-container fluid grid-list-sm>
-                                <v-layout class="mt-2 mb-0" row wrap>
-                                <v-flex xs2>
-                                    <v-icon class="mx-1" x-large light>card_membership</v-icon>
-                                </v-flex>
-                                <v-flex md5 sm10>
-                                    <div class="mx-1">
-                                        <div class="subheadingfont">Bounce Rate</div>
-                                        <strong>53%</strong>
-                                    </div>
-                                </v-flex>
-                                <v-flex class="text-sm-right text-md-left" sm12 md5>
-                                  <v-btn outline class="grey--text darken-1" flat>More info</v-btn>
-                              </v-flex>
-                            </v-layout>
-                       </v-container>
-                </v-card>
-            </v-flex>
             </v-layout>
-
             <v-layout class="pt-1" row wrap>
                 <v-flex md4 xs12>
                     <v-card light>
@@ -112,8 +50,49 @@
         name: 'Dashboard',
         data () {
           return {
-            monthlyStat: {
+            stats:{
+              monthlyStats:[
+                {
+                  bgColor: "cyan darken-3",
+                  icon: "card_membership",
+                  title: "New Order",
+                  data: "120",
+                  action: {
+                    label: "More Info",
+                    link :""
+                  }
+                },
+                {
+                  bgColor: "deep-orange  lighten-3",
+                  icon: "card_membership",
+                  title: "User Registrationsr",
+                  data: "780",
+                  action: {
+                    label: "More Info",
+                    link :""
+                  }
+                },
+                {
+                  bgColor: "blue-grey darken-1",
+                  icon: "card_membership",
+                  title: "Unique Visitors",
+                  data: "78",
+                  action: {
+                    label: "More Info",
+                    link :""
+                  }
+                },
+                {  bgColor: "pink  lighten-4",
+                  icon: "card_membership",
+                  title: "Bounce Rate",
+                  data: "53%",
+                  action: {
+                    label: "More Info",
+                    link :""
+                  }
+                }
 
+              ]
             }
           }
         },
@@ -129,7 +108,4 @@
     #dashboard .flex {
         margin-bottom: 16px
     }
-
-
-
 </style>
