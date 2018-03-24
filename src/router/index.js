@@ -10,7 +10,6 @@ import Customers from '@/pages/CustomerList'
 import Customer from '@/components/Customer'
 import Products from '@/pages/ProductList'
 import Product from '@/components/Product'
-import PlayGround from '@/pages/PlayGround'
 
 import Login from '@/components/Login'
 import ChangePassword from '@/components/ChangePassword'
@@ -51,7 +50,6 @@ export default new Router({
     { path: '/newproduct', component: Product, name: 'NewProduct', beforeEnter: requireAuth },
     { path: '/login', component: Login, name: 'Login' },
     { path: '/changePassword', component: ChangePassword, name: 'ChangePassword' },
-    { path: '/playground', component: PlayGround, name: 'PlayGround' },
     { path: '/logout',
       beforeEnter (to, from, next) {
         auth.logout()

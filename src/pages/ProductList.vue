@@ -21,7 +21,6 @@
               <v-icon>add</v-icon>
             </v-btn>
           </v-card-title>
-
           <Table v-if="loading===false" :headers="headers" :items="items"  :pagination="pagination" @edit="edit" @remove="remove"></Table>
         </v-card>
 
@@ -55,7 +54,6 @@
             </v-layout>
         </search-panel>
     </v-container>
-
   </template>
   <script>
     import Table from "@/components/Table.vue"
@@ -71,11 +69,6 @@
       },
       data: function () {
         return {
-          children: () => {
-            // Vue.component('v-text-field', Vue.extend(VTextField))
-            const c =  Vue.component('v-text-field')
-            return c },
-          // searchPanel: false,
           rightDrawer: false,
           right: true,
           search: '',
@@ -90,7 +83,6 @@
             contains: {
               productName: '',
               category: '',
-              // brand: 'bbb'
             },
             between: {
               price: {
@@ -133,8 +125,7 @@
           this.rightDrawer = !this.rightDrawer
           this.appUtil.buildSearchFilters(this.searchVm)
           const query = this.appUtil.buildJsonServerQuery(this.searchVm)
-
-          console.log(query)
+          // console.log(query)
           Store.dispatch('products/searchProducts', query)
         },
         reloadData() {
