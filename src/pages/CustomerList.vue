@@ -54,7 +54,6 @@
 
     <v-navigation-drawer temporary :right="right" v-model="rightDrawer" fixed>
       <v-list>
-
         <v-list-tile-title>&nbsp;</v-list-tile-title>
         <v-list-tile>
           <v-list-tile-title>Search Panel</v-list-tile-title>

@@ -43,7 +43,6 @@
 <script>
 export default {
   props: {
-    query: '',
     headers:'',
     items: '',
     pagination:'',

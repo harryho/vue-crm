@@ -5,7 +5,7 @@
       <!-- <h1> &nbsp;</h1> -->
       <v-card class="mt-0 pt-0">
           <v-card-title class="blue darken-1">
-            <h4 style="color:white">NUCRM Lite</h4>
+            <h4 style="color:white">Vue-CRM</h4>
           </v-card-title>
           <v-card-text>
               <form @submit.prevent="login">

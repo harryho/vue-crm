@@ -8,13 +8,13 @@
                             <v-flex xs2>
                                 <v-icon class="mx-1" x-large light>card_membership</v-icon>
                             </v-flex>
-                            <v-flex md6 sm10 >
+                            <v-flex md5 sm10 >
                                 <div class="mx-1">
                                     <div class="subheading">New Orders</div>
                                     <strong>120</strong>
                                 </div>
                             </v-flex>
-                            <v-flex class="text-xs-right" sm12 md4>
+                            <v-flex class="text-sm-right text-md-left" sm12 md5>
                               <v-btn outline class="grey--text darken-1" flat>More info</v-btn>
                           </v-flex>
                         </v-layout>
@@ -26,19 +26,18 @@
                         <v-container fluid grid-list-sm>
                                 <v-layout class="mt-2 mb-0" row wrap>
                                 <v-flex xs2>
-                                        <v-icon class="mx-4" x-large light>card_membership</v-icon>
+                                        <v-icon class="mx-1" x-large light>card_membership</v-icon>
                                 </v-flex>
-                                <v-flex  md6 sm10>
-                                    <div class="mx-4">
+                                <v-flex  md5 sm10>
+                                    <div class="ml-1">
                                         <div class="subheadingfont">User Registrations</div>
                                         <strong>780</strong>
                                     </div>
                                 </v-flex>
-                                <v-flex class="text-xs-right" sm12 md4>
-                                  <v-btn outline class="grey--text darken-1" flat>More info</v-btn>
+                                <v-flex class="text-sm-right text-md-left" sm12 md5>
+                                  <v-btn outline class="grey--text darken-1 ml-0 pl-0" flat>More info</v-btn>
                               </v-flex>
                             </v-layout>
-
                         </v-container>
                 </v-card>
             </v-flex>
@@ -47,15 +46,15 @@
                     <v-container fluid grid-list-sm>
                             <v-layout class="mt-2 mb-0" row wrap>
                                 <v-flex xs2>
-                                    <v-icon class="mx-4" x-large light>card_membership</v-icon>
+                                    <v-icon class="mx-1" x-large light>card_membership</v-icon>
                                 </v-flex>
-                                <v-flex md6 sm10>
-                                    <div class="mx-4">
+                                <v-flex md5 sm10>
+                                    <div class="mx-1">
                                         <div class="subheadingfont">Unique Visitors</div>
                                         <strong>78</strong>
                                     </div>
                                 </v-flex>
-                                <v-flex class="text-xs-right" sm12 md4>
+                                <v-flex class="text-sm-right text-md-left" sm12 md5>
                                   <v-btn outline class="grey--text darken-1" flat>More info</v-btn>
                               </v-flex>
                             </v-layout>
@@ -68,15 +67,15 @@
                         <v-container fluid grid-list-sm>
                                 <v-layout class="mt-2 mb-0" row wrap>
                                 <v-flex xs2>
-                                    <v-icon class="mx-4" x-large light>card_membership</v-icon>
+                                    <v-icon class="mx-1" x-large light>card_membership</v-icon>
                                 </v-flex>
-                                <v-flex md6 sm10>
-                                    <div class="mx-4">
+                                <v-flex md5 sm10>
+                                    <div class="mx-1">
                                         <div class="subheadingfont">Bounce Rate</div>
                                         <strong>53%</strong>
                                     </div>
                                 </v-flex>
-                                <v-flex class="text-xs-right" sm12 md4>
+                                <v-flex class="text-sm-right text-md-left" sm12 md5>
                                   <v-btn outline class="grey--text darken-1" flat>More info</v-btn>
                               </v-flex>
                             </v-layout>

@@ -19,13 +19,19 @@ module.exports = {
   'rules': {
     "indent": 0,
     "quotes":0,
+    "space-in-parens": 0,
     "key-spacing":0,
-    "no-unused-vars": 1,
+    "no-unused-vars": 0,
     "comma-dangle": 0,
     "semi": 0,
+    "no-multi-spaces": 0,
+    "brace-style": 0,
+    "comma-style": 0,
     // allow paren-less arrow functions
     'arrow-parens': 0,
     'comma-spacing': 1,
+    "object-curly-even-spacing": 0,
+    "object-curly-even-spacing": 0,
     // allow async-await
     'generator-star-spacing': 0,
     // allow debugger during development
