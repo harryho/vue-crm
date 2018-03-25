@@ -3,7 +3,7 @@
       <v-flex xs12>
         <v-card>
           <v-card-title>
-            Products
+            Products {{pagination? "("+pagination.totalItems+")":""}}
             <v-spacer></v-spacer>
             <v-btn class="blue-grey" fab small dark @click.native.stop="rightDrawer = !rightDrawer">
               <v-icon>search</v-icon>
@@ -23,52 +23,61 @@
           </v-card-title>
           <Table v-if="loading===false" :headers="headers" :items="items"  :pagination="pagination" @edit="edit" @remove="remove"></Table>
         </v-card>
-
       </v-flex>
-          <search-panel :rightDrawer="rightDrawer" @cancelSearch="cancelSearch" @searchData="searchProducts">
-            <v-layout row>
-              <v-flex xs11 offset-xs1>
-                <v-text-field name="productName" label="Product" light v-model="searchVm.contains.productName"></v-text-field>
-              </v-flex>
-            </v-layout>
-            <v-layout row>
-              <v-flex xs11 offset-xs1>
-                <v-subheading class="heading text-sm-central" light>Price Range</v-subheading>
-              </v-flex>
-            </v-layout>
-            <v-layout row>
-              <v-flex xs8 offset-xs1>
-                <v-slider class="text-xs-central" label="Price 1" light v-bind:max="10000" v-model="searchVm.between.price.former"></v-slider>
-              </v-flex>
-              <v-flex xs3>
-                  <v-text-field type="number" light v-model="searchVm.between.price.former"></v-text-field>
-                </v-flex>
-            </v-layout>
-            <v-layout row>
-              <v-flex xs8 offset-xs1>
-                <v-slider class="text-xs-central" label="Price 2" light v-bind:max="999999" v-model="searchVm.between.price.latter"></v-slider>
-              </v-flex>
-              <v-flex xs3>
-                  <v-text-field type="number" light v-model="searchVm.between.price.latter"></v-text-field>
-                </v-flex>
-            </v-layout>
-        </search-panel>
+      <search-panel :rightDrawer="rightDrawer" @cancelSearch="cancelSearch" @searchData="searchProducts">
+        <v-layout row>
+          <v-flex xs11 offset-xs1>
+            <v-text-field name="productName" label="Product" light v-model="searchVm.contains.productName"></v-text-field>
+          </v-flex>
+        </v-layout>
+        <v-layout row>
+          <v-flex xs11 offset-xs1>
+            <label class="heading text-sm-central" light>Price Range</label>
+          </v-flex>
+        </v-layout>
+        <v-layout row>
+          <v-flex xs8 offset-xs1>
+            <v-slider class="text-xs-central" label="Price 1" light v-bind:max="10000" v-model="searchVm.between.price.former"></v-slider>
+          </v-flex>
+          <v-flex xs3>
+              <v-text-field type="number" light v-model="searchVm.between.price.former"></v-text-field>
+            </v-flex>
+        </v-layout>
+        <v-layout row>
+          <v-flex xs8 offset-xs1>
+            <v-slider class="text-xs-central" label="Price 2" light v-bind:max="999999" v-model="searchVm.between.price.latter"></v-slider>
+          </v-flex>
+          <v-flex xs3>
+              <v-text-field type="number" light v-model="searchVm.between.price.latter"></v-text-field>
+            </v-flex>
+        </v-layout>
+      </search-panel>
+      <confirm-dialog :dialog="dialog" :dialogTitle="dialogTitle" :dialogText="dialogText" @onConfirm="onConfirm" @onCancel="onCancel" ></confirm-dialog>
+      <v-snackbar v-if="loading===false" :right="true" :timeout="timeout" :color="mode" v-model="snackbar" >
+      {{ notice }}
+      <v-btn dark flat @click.native="closeSnackbar">Close</v-btn>
+    </v-snackbar>
     </v-container>
   </template>
   <script>
     import Table from "@/components/Table.vue"
     import SearchPanel from "@/components/SearchPanel.vue"
-    import { mapState } from 'vuex'
+    import ConfirmDialog from "@/components/ConfirmDialog.vue"
+    import { mapState, dispatch } from 'vuex'
     import Vue from 'vue'
   /* globals Store */
 
     export default {
       components:{
         Table,
-        SearchPanel
+        SearchPanel,
+        ConfirmDialog
       },
       data: function () {
         return {
+          dialog: false,
+          dialogTitle: "Product Delete Dialog",
+          dialogText: "Do you want to delete this product?",
           rightDrawer: false,
           right: true,
           search: '',
@@ -90,7 +99,12 @@
                 latter: 0
               }
             }
-          }
+          },
+          productId: "",
+          query: "",
+          snackbarStatus: false,
+          timeout: 30000,
+          color: ''
         }
       },
       methods: {
@@ -109,47 +123,56 @@
           this.$router.push('NewProduct')
         },
         remove(item) {
-          const rootComponent = this.appUtil.getRootComponent(this)
-        if (rootComponent) {
-            rootComponent.openDialog('Do you want to delete this item?', '', () => {
-              this.api.deleteData('products/' + item.id.toString()).then((res) => {
-              }, (err) => {
-                console.log(err)
-              })
-            })
-          }
+          this.productId = item.id
+          this.dialog = true
+        },
+        onConfirm() {
+          Store.dispatch('products/deleteProduct', this.productId, this.query, this.pagination)
+          .then(() => {
+            Store.dispatch("products/searchProducts", this.query, this.pagination);
+            Store.dispatch("products/closeSnackBar", 2000)
+          })
+          this.dialog = false
+        },
+        onCancel() {
+          this.productId = ""
+          this.dialog = false
         },
         searchProducts() {
-          console.log(this.searchVm)
-
           this.rightDrawer = !this.rightDrawer
           this.appUtil.buildSearchFilters(this.searchVm)
-          const query = this.appUtil.buildJsonServerQuery(this.searchVm)
-          // console.log(query)
-          Store.dispatch('products/searchProducts', query)
+          this.query = this.appUtil.buildJsonServerQuery(this.searchVm)
+          Store.dispatch('products/searchProducts', this.query, this.pagination)
         },
         reloadData() {
+          this.query = ""
           Store.dispatch('products/getAllProducts')
         },
         cancelSearch() {
           this.rightDrawer = false
+        },
+        closeSnackbar() {
+          Store.commit('products/setSnackbar', {snackbar: false});
+          Store.commit('products/setNotice', {notice: ''});
         }
       },
       computed: {
-        ...mapState('products',
+         ...mapState('products',
           {
             items: 'items',
             pagination: 'pagination',
-            loading: 'loading'
-          }
-        )
+            loading: 'loading',
+            mode:'mode',
+            snackbar: 'snackbar',
+            notice: 'notice'
+          }),
       },
       created () {
         Store.dispatch('products/getAllProducts')
       },
-      mounted: function () {
+      mounted () {
         console.log(this.headers)
-          this.$nextTick(() => {
+        this.$nextTick(() => {
         })
       }
     }

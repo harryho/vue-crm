@@ -36,8 +36,9 @@
         </v-list>
         <v-list>
           <v-list-tile v-for="item in items" :key="item.title" @click="clickMenu(item)" router>
-            <v-list-tile-action class="pr-3 mr-3">
-              <v-icon :class="activeMenuItem.includes(item.title)?'blue--text':''" :title="item.title"  light v-html="item.icon"></v-icon>            </v-list-tile-action>
+            <v-list-tile-action class="pr-1 pl-2 mr-1">
+              <v-icon :class="activeMenuItem.includes(item.title)?'blue--text':''" :title="item.title"  light v-html="item.icon"></v-icon>
+            </v-list-tile-action>
             <v-list-tile-content :class="activeMenuItem.includes(item.title)?'blue--text':''">
               <v-list-tile-title v-text="item.title"></v-list-tile-title>
             </v-list-tile-content>
@@ -178,15 +179,6 @@
       })
     },
     computed: {
-      // store: function () {
-      //   return this.$parent.$store
-      // },
-      // state: function () {
-      //   return this.store.state
-      // },
-      // user: function () {
-      //   return this.state.user.user
-      // },
       ...mapState('user',
       {
         user: 'user'

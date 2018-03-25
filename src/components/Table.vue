@@ -17,7 +17,6 @@
     <template class="body-2" slot="items" slot-scope="props">
       <td class="text-xs-left body-2" v-for="header in headers" v-if="header.value!==''">
         {{renderData(props.item, header)}}
-        <!-- {{props.item[header.value]}} -->
       </td>
 
         <td class="text-xs-right">

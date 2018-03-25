@@ -1,6 +1,6 @@
 <template>
 
-<v-navigation-drawer right v-model="rightDrawer" fixed>
+<v-navigation-drawer right v-model="rightDrawer" :disable-resize-watcher="true" fixed>
   <v-list>
     <v-list-tile-title>&nbsp;</v-list-tile-title>
     <v-list-tile>

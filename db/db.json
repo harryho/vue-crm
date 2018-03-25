@@ -629,6 +629,13 @@
       "unitPrice": 222,
       "unitInStock": 23,
       "id": 26
+    },
+    {
+      "id": 27,
+      "productName": "sasasasd",
+      "categoryId": 3,
+      "unitInStock": "23",
+      "unitPrice": "222"
     }
   ],
   "categories": [

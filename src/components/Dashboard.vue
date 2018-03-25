@@ -1,8 +1,8 @@
 <template>
     <v-container id="dashboard" fluid   grid-list-lg class="mx-0 pa-0">
         <v-layout  row wrap>
-            <v-flex md3 sm6 xs12 v-for="stat in stats.monthlyStats">
-                <v-card :class="stat.bgColor" light>
+            <v-flex md3 sm6 xs12 v-for="(stat, key) in stats.monthlyStats" :key="key">
+                <v-card :class="stat.bgColor"   light>
                     <v-container fluid grid-list-sm light>
                         <v-layout class="mt-2 mb-0" row wrap>
                             <v-flex xs2>
@@ -10,12 +10,12 @@
                             </v-flex>
                             <v-flex md5 sm10 >
                                 <div class="mx-1">
-                                    <div class="subheading">{{stat.title}}</div>
+                                    <div class="silver--text subheading">{{stat.title}}</div>
                                     <strong>{{stat.data}}</strong>
                                 </div>
                             </v-flex>
-                            <v-flex class="text-sm-right text-md-left" sm12 md5>
-                              <v-btn outline class="grey--text darken-1" flat>{{stat.action.label}}</v-btn>
+                            <v-flex class="caption text-sm-right text-md-left" sm12 md5>
+                              <v-btn outline class="darkgrey--text darken-1" flat small>{{stat.action.label}}</v-btn>
                           </v-flex>
                         </v-layout>
                     </v-container>
@@ -82,7 +82,8 @@
                     link :""
                   }
                 },
-                {  bgColor: "pink  lighten-4",
+                {
+                  bgColor: "pink  lighten-4",
                   icon: "card_membership",
                   title: "Bounce Rate",
                   data: "53%",
@@ -91,7 +92,6 @@
                     link :""
                   }
                 }
-
               ]
             }
           }

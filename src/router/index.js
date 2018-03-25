@@ -9,7 +9,7 @@ import About from '@/components/About'
 import Customers from '@/pages/CustomerList'
 import Customer from '@/components/Customer'
 import Products from '@/pages/ProductList'
-import Product from '@/components/Product'
+import ProductForm from '@/pages/ProductForm'
 
 import Login from '@/components/Login'
 import ChangePassword from '@/components/ChangePassword'
@@ -45,9 +45,9 @@ export default new Router({
     { path: '/customers', component: Customers, name: 'Customers', beforeEnter: requireAuth },
     { path: '/newcustomer', component: Customer, name: 'NewCustomer', beforeEnter: requireAuth },
     { path: '/customer/:id', component: Customer, name: 'Customer', beforeEnter: requireAuth },
-    { path: '/product/:id', component: Product, name: 'Product', beforeEnter: requireAuth },
+    { path: '/product/:id', component: ProductForm, name: 'Product', beforeEnter: requireAuth },
     { path: '/products', component: Products, name: 'Products', beforeEnter: requireAuth },
-    { path: '/newproduct', component: Product, name: 'NewProduct', beforeEnter: requireAuth },
+    { path: '/newproduct', component: ProductForm, name: 'NewProduct', beforeEnter: requireAuth },
     { path: '/login', component: Login, name: 'Login' },
     { path: '/changePassword', component: ChangePassword, name: 'ChangePassword' },
     { path: '/logout',

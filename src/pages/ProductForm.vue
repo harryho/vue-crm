@@ -40,15 +40,14 @@
   </v-container>
 </template>
 <script>
+  import {Product} from '../models'
+
   export default {
     data: function () {
       return {
         errors: [],
         title: '',
-        product: {
-          categoryId: 0,
-          category: { categoryName: '' }
-        },
+        product: null, // () => new Product(),
         categorys: [],
         categoryList: []
       }
@@ -106,7 +105,12 @@
         this.$router.push({ name: 'Products' })
       }
     },
-    mounted: function () {
+    created () {
+      debugger;
+      this.product = new Product()
+    },
+    mounted () {
+
       this.getCategorys()
       if (this.$route.params.id) {
         this.getById()
