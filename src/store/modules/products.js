@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 import api from "@/utils/backend-api";
+import {Product} from "@/models";
 Vue.use(Vuex);
 
 const state = {
@@ -12,17 +13,52 @@ const state = {
   loading: false,
   mode: "",
   snackbar: false,
-  notice: ""
+  notice: "",
+  product: "",
+  categories: []
 };
 
+function sendSuccessNotice ( commit, notice ) {
+  commit("setNotice", { notice });
+  commit("setSnackbar", { snackbar: true });
+  commit("setMode", {mode: "success"});
+}
+
+function sendErrorNotice ( commit, notice ) {
+  commit("setNotice", { notice });
+  commit("setSnackbar", { snackbar: true });
+  commit("setMode", {mode: "error"});
+}
+
 const getters = {
-  // getSnackbar(state) {
-  //   console.log(" getter  snackber ", state.snackbar);
-  //   return state.snackbar;
-  // }
 };
 
 const actions = {
+  getCategories: function ({commit}) {
+    api.getData('categories').then(res => {
+      const categories  = []
+      res.data.forEach((c) => {
+        const category = {...c}
+        category.text = c.categoryName
+        category.value = c.id
+        categories.push(category)
+      })
+      commit("setCategories", categories);
+   })
+  },
+  getProductById({commit}, id) {
+    if (id){
+     api.getData('products/' + id + '?_expand=category').then((res) => {
+          const product = res.data
+          commit("setProduct", {product});
+          // this.product.category.categoryName = this.product.category.firstName + ' ' + this.product.category.lastName
+        }, (err) => {
+          console.log(err)
+        })
+    } else {
+      commit("setProduct", {product: new Product()});
+    }
+  },
   getAllProducts({ commit }) {
     commit("setLoading", { loading: true });
     api.getData("products?_expand=category").then(res => {
@@ -31,7 +67,7 @@ const actions = {
       products.forEach(p => {
         p.categoryName = p.category.categoryName;
       });
-      commit("setProducts", products);
+      commit("setItems", products);
       const pages = Math.ceil(products.length / 10);
       commit("setLoading", { loading: false });
       commit("setPagination", {
@@ -49,10 +85,8 @@ const actions = {
       products.forEach(p => {
         p.categoryName = p.category.categoryName;
       });
-      commit("setProducts", products);
+      commit("setItems", products);
       const pages = Math.ceil(products.length / 10);
-      // commit("setLoading", { loading: false });
-
       if (!pagination) {
         commit("setPagination", {
           page: 1,
@@ -71,35 +105,45 @@ const actions = {
     });
   },
   deleteProduct({ commit, dispatch }, id, query, pagination) {
-    // commit("setLoading", { loading: true });
     api
       .deleteData("products/" + id.toString())
       .then(res => {
         return new Promise((resolve, reject) => {
-
-          const notice = "Operation succeeded.";
-          const mode = "success";
-          commit("setNotice", { notice });
-          commit("setSnackbar", { snackbar: true });
-          commit("setMode", { mode });
-          console.log(" delete promise solve .... ");
-
+          sendSuccessNotice(commit, "Operation succeeded.");
           resolve();
         });
       })
       .catch(err => {
         console.log(err);
         return new Promise((resolve, reject) => {
-          const notice = "Operation failed! Please try again later. ";
-          const mode = "error";
-          commit("setSnackbar", { snackbar: true });
-          commit("setNotice", { notice });
-          commit("setMode", { mode });
+           sendErrorNotice(commit, "Operation failed! Please try again later. ");
 
           resolve();
           console.log(" delete catch promise solve .... ");
         });
       });
+  },
+  saveProduct({ commit, dispatch }, product) {
+    // let product = this.product;
+    delete product.category;
+
+    if (!product.id) {
+      api.postData("products", product).then(
+        res => {
+          const product = res.data
+          commit("setProduct", {product});
+          sendSuccessNotice( commit, "New product has been added.")
+        }
+      );
+    } else {
+      api.putData("products/" + product.id.toString(), product).then(
+        res => {
+          const product = res.data
+          commit("setProduct", {product});
+          sendSuccessNotice( commit, "Product has been updated.")
+        },
+      );
+    }
   },
   closeSnackBar({ commit }, timeout) {
     console.log(" closeSnackBar ", timeout);
@@ -112,14 +156,16 @@ const actions = {
         resolve();
       }, timeout);
     });
-    // });
   }
 };
 
 const mutations = {
-  setProducts(state, products) {
+  setCategories(state, categories) {
+    state.categories = categories;
+
+  },
+  setItems(state, products) {
     state.items = products;
-    console.log(state.products);
   },
   setPagination(state, pagination) {
     state.pagination = pagination;
@@ -136,6 +182,9 @@ const mutations = {
   },
   setMode(state, { mode }) {
     state.mode = mode;
+  },
+  setProduct(state, {product}) {
+    state.product = product
   }
 };
 

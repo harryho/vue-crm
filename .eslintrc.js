@@ -27,6 +27,15 @@ module.exports = {
     "no-multi-spaces": 0,
     "brace-style": 0,
     "comma-style": 0,
+    "space-before-blocks": 0,
+    // customerized eslint
+    "no-multiple-empty-lines": "off",
+    "padded-blocks": "off",
+    "block-spacing": "off",
+    "object-property-newline": "off",
+    "operator-linebreak":"off",
+    "space-before-function-paren": "off",
+    "eol-last":"off",
     // allow paren-less arrow functions
     'arrow-parens': 0,
     'comma-spacing': 1,
@@ -35,14 +44,7 @@ module.exports = {
     // allow async-await
     'generator-star-spacing': 0,
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-    // customerized eslint
-    "no-multiple-empty-lines": "off",
-    "padded-blocks": "off",
-    "block-spacing": "off",
-    "object-property-newline": "off",
-    "operator-linebreak":"off",
-    "space-before-function-paren": "off",
-    "eol-last":"off"
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+
   }
 }
