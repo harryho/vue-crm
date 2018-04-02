@@ -6,11 +6,8 @@ export default {
     cb = arguments[arguments.length - 1]
     let data = 'username=' + email + '&password=' + pass
     api.login('token', data).then((res) => {
-      let token = res.access_token || res.data.access_token
-      let user = res.user || res.data.user
-      console.log(Store)
-      // Store.commit('setToken', token)
-      // Store.commit('setUserProfile', {user, token})
+      const token = res.access_token || res.data.access_token
+      const user = res.user || res.data.user
       Store.dispatch('user/updateUser', {user, token})
       if (cb) cb(true, null)
       this.onChange(true)

@@ -103,7 +103,7 @@
           productId: "",
           query: "",
           snackbarStatus: false,
-          timeout: 30000,
+          timeout: 3000,
           color: ''
         }
       },
