@@ -9,15 +9,15 @@
               <v-icon>search</v-icon>
             </v-btn>
             &nbsp;
-            <v-btn class="light-blue" fab small @click.native="reloadData()">
+            <v-btn class="brown lighten-1" fab small @click.native="reloadData()">
               <v-icon>refresh</v-icon>
             </v-btn>
             &nbsp;
-            <v-btn class="grey" fab small @click.native="print()">
+            <v-btn class="light-green darken-2" fab small @click.native="print()">
               <v-icon>print</v-icon>
             </v-btn>
             &nbsp;
-            <v-btn class="orange" fab small dark @click.native="add">
+            <v-btn class="deep-orange darken-3" fab small dark @click.native="add">
               <v-icon>add</v-icon>
             </v-btn>
           </v-card-title>
@@ -60,120 +60,124 @@
     </v-container>
   </template>
   <script>
-    import Table from "@/components/Table.vue"
-    import SearchPanel from "@/components/SearchPanel.vue"
-    import ConfirmDialog from "@/components/ConfirmDialog.vue"
-    import { mapState, dispatch } from 'vuex'
-    import Vue from 'vue'
-  /* globals Store */
+import Table from "@/components/Table.vue";
+import SearchPanel from "@/components/SearchPanel.vue";
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
+import { mapState, dispatch } from "vuex";
+import Vue from "vue";
+/* globals Store */
 
-    export default {
-      components: {
-        Table,
-        SearchPanel,
-        ConfirmDialog
-      },
-      data: function () {
-        return {
-          dialog: false,
-          dialogTitle: "Product Delete Dialog",
-          dialogText: "Do you want to delete this product?",
-          rightDrawer: false,
-          right: true,
-          search: '',
-          headers: [
-            { text: 'Product', left: true, value: 'productName' },
-            { text: 'Category', value: 'category.categoryName' },
-            { text: 'Price', value: 'unitPrice' },
-            { text: 'In Stock', value: 'unitInStock'
-            },
-          ],
-          searchVm: {
-            contains: {
-              productName: '',
-              category: '',
-            },
-            between: {
-              price: {
-                former: 0,
-                latter: 0
-              }
-            }
-          },
-          productId: "",
-          query: "",
-          snackbarStatus: false,
-          timeout: 3000,
-          color: ''
+export default {
+  components: {
+    Table,
+    SearchPanel,
+    ConfirmDialog
+  },
+  data: function() {
+    return {
+      dialog: false,
+      dialogTitle: "Product Delete Dialog",
+      dialogText: "Do you want to delete this product?",
+      rightDrawer: false,
+      right: true,
+      search: "",
+      headers: [
+        { text: "Product", left: true, value: "productName" },
+        { text: "Category", value: "category.categoryName" },
+        { text: "Price", value: "unitPrice" },
+        {
+          text: "In Stock",
+          value: "unitInStock"
+        }
+      ],
+      searchVm: {
+        contains: {
+          productName: "",
+          category: ""
+        },
+        between: {
+          price: {
+            former: 0,
+            latter: 0
+          }
         }
       },
-      methods: {
-        print () {
-          window.print()
-        },
-        edit (item) {
-          this.$router.push({
-            name: 'Product',
-            params: {
-              id: item.id
-            }
-          })
-        },
-        add () {
-          this.$router.push('NewProduct')
-        },
-        remove (item) {
-          this.productId = item.id
-          this.dialog = true
-        },
-        onConfirm () {
-          Store.dispatch('products/deleteProduct', this.productId, this.query, this.pagination)
-          .then(() => {
-            Store.dispatch("products/searchProducts", this.query, this.pagination);
-            Store.dispatch("products/closeSnackBar", 2000)
-          })
-          this.dialog = false
-        },
-        onCancel () {
-          this.productId = ""
-          this.dialog = false
-        },
-        searchProducts () {
-          this.rightDrawer = !this.rightDrawer
-          this.appUtil.buildSearchFilters(this.searchVm)
-          this.query = this.appUtil.buildJsonServerQuery(this.searchVm)
-          Store.dispatch('products/searchProducts', this.query, this.pagination)
-        },
-        reloadData () {
-          this.query = ""
-          Store.dispatch('products/getAllProducts')
-        },
-        cancelSearch () {
-          this.rightDrawer = false
-        },
-        closeSnackbar () {
-          Store.commit('products/setSnackbar', {snackbar: false});
-          Store.commit('products/setNotice', {notice: ''});
+      productId: "",
+      query: "",
+      snackbarStatus: false,
+      timeout: 3000,
+      color: ""
+    };
+  },
+  methods: {
+    print() {
+      window.print();
+    },
+    edit(item) {
+      this.$router.push({
+        name: "Product",
+        params: {
+          id: item.id
         }
-      },
-      computed: {
-         ...mapState('products',
-          {
-            items: 'items',
-            pagination: 'pagination',
-            loading: 'loading',
-            mode: 'mode',
-            snackbar: 'snackbar',
-            notice: 'notice'
-          }),
-      },
-      created () {
-        Store.dispatch('products/getAllProducts')
-      },
-      mounted () {
-        console.log(this.headers)
-        this.$nextTick(() => {
-        })
-      }
+      });
+    },
+    add() {
+      this.$router.push("NewProduct");
+    },
+    remove(item) {
+      this.productId = item.id;
+      this.dialog = true;
+    },
+    onConfirm() {
+      Store.dispatch(
+        "products/deleteProduct",
+        this.productId,
+        this.query,
+        this.pagination
+      ).then(() => {
+        Store.dispatch("products/searchProducts", this.query, this.pagination);
+        Store.dispatch("products/closeSnackBar", 2000);
+      });
+      this.dialog = false;
+    },
+    onCancel() {
+      this.productId = "";
+      this.dialog = false;
+    },
+    searchProducts() {
+      this.rightDrawer = !this.rightDrawer;
+      this.appUtil.buildSearchFilters(this.searchVm);
+      this.query = this.appUtil.buildJsonServerQuery(this.searchVm);
+      Store.dispatch("products/searchProducts", this.query, this.pagination);
+    },
+    reloadData() {
+      this.query = "";
+      Store.dispatch("products/getAllProducts");
+    },
+    cancelSearch() {
+      this.rightDrawer = false;
+    },
+    closeSnackbar() {
+      Store.commit("products/setSnackbar", { snackbar: false });
+      Store.commit("products/setNotice", { notice: "" });
     }
-  </script>
+  },
+  computed: {
+    ...mapState("products", {
+      items: "items",
+      pagination: "pagination",
+      loading: "loading",
+      mode: "mode",
+      snackbar: "snackbar",
+      notice: "notice"
+    })
+  },
+  created() {
+    Store.dispatch("products/getAllProducts");
+  },
+  mounted() {
+    console.log(this.headers);
+    this.$nextTick(() => {});
+  }
+};
+</script>
