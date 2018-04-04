@@ -3,7 +3,7 @@
       <v-flex xs12>
         <v-card>
           <v-card-title>
-            Products {{pagination? "("+pagination.totalItems+")":""}}
+            Products {{pagination? "("+pagination.totalItems+")": ""}}
             <v-spacer></v-spacer>
             <v-btn class="blue-grey" fab small dark @click.native.stop="rightDrawer = !rightDrawer">
               <v-icon>search</v-icon>
@@ -68,7 +68,7 @@
   /* globals Store */
 
     export default {
-      components:{
+      components: {
         Table,
         SearchPanel,
         ConfirmDialog
@@ -108,10 +108,10 @@
         }
       },
       methods: {
-        print() {
+        print () {
           window.print()
         },
-        edit(item) {
+        edit (item) {
           this.$router.push({
             name: 'Product',
             params: {
@@ -119,14 +119,14 @@
             }
           })
         },
-        add() {
+        add () {
           this.$router.push('NewProduct')
         },
-        remove(item) {
+        remove (item) {
           this.productId = item.id
           this.dialog = true
         },
-        onConfirm() {
+        onConfirm () {
           Store.dispatch('products/deleteProduct', this.productId, this.query, this.pagination)
           .then(() => {
             Store.dispatch("products/searchProducts", this.query, this.pagination);
@@ -134,24 +134,24 @@
           })
           this.dialog = false
         },
-        onCancel() {
+        onCancel () {
           this.productId = ""
           this.dialog = false
         },
-        searchProducts() {
+        searchProducts () {
           this.rightDrawer = !this.rightDrawer
           this.appUtil.buildSearchFilters(this.searchVm)
           this.query = this.appUtil.buildJsonServerQuery(this.searchVm)
           Store.dispatch('products/searchProducts', this.query, this.pagination)
         },
-        reloadData() {
+        reloadData () {
           this.query = ""
           Store.dispatch('products/getAllProducts')
         },
-        cancelSearch() {
+        cancelSearch () {
           this.rightDrawer = false
         },
-        closeSnackbar() {
+        closeSnackbar () {
           Store.commit('products/setSnackbar', {snackbar: false});
           Store.commit('products/setNotice', {notice: ''});
         }
@@ -162,7 +162,7 @@
             items: 'items',
             pagination: 'pagination',
             loading: 'loading',
-            mode:'mode',
+            mode: 'mode',
             snackbar: 'snackbar',
             notice: 'notice'
           }),

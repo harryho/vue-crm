@@ -39,8 +39,7 @@ module.exports = {
     // allow paren-less arrow functions
     'arrow-parens': 0,
     'comma-spacing': 1,
-    "object-curly-even-spacing": 0,
-    "object-curly-even-spacing": 0,
+    // "object-curly-even-spacing": 0,
     // allow async-await
     'generator-star-spacing': 0,
     // allow debugger during development

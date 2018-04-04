@@ -55,7 +55,7 @@
         snackbarStatus: false,
         timeout: 30000,
         color: '',
-        rules:{
+        rules: {
           name: [val => (val || '').length > 0 || 'This field is required'],
           category: [val => typeof val === "number" || 'This field is required']
         }
@@ -73,7 +73,7 @@
             Store.dispatch("products/closeSnackBar", 2000)
           })
       },
-      selectCategory(item) {
+      selectCategory (item) {
         this.product.categoryId = item.value
       },
       getProduct: function () {
@@ -92,7 +92,7 @@
             product: 'product',
             categories: 'categories',
             loading: 'loading',
-            mode:'mode',
+            mode: 'mode',
             snackbar: 'snackbar',
             notice: 'notice'
           }),

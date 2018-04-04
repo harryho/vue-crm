@@ -29,9 +29,9 @@
 
 
   export default {
-    name:'search-panel',
+    name: 'search-panel',
     props: {
-      rightDrawer:''
+      rightDrawer: ''
     },
     data: function () {
       return {
@@ -51,8 +51,8 @@
       }
     },
     methods: {
-      cancelSearch() {},
-      searchData() {},
+      cancelSearch () {},
+      searchData () {},
     },
 
     created () {

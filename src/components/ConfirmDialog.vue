@@ -12,12 +12,12 @@
 </template>
 <script>
 export default {
-    props:{
+    props: {
       dialogText: '',
       dialogTitle: '',
       dialog: '',
     },
-    data() {
+    data () {
       return {
         mini: false,
         isRootComponent: true,
@@ -30,7 +30,7 @@ export default {
       onConfirm: function () {},
       onCancel: function () {}
     },
-    mounted() {
+    mounted () {
     }
   }
 </script>

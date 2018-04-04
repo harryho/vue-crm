@@ -126,16 +126,16 @@
       }
     },
     methods: {
-      print() {
+      print () {
         window.print()
       },
-      edit(item) {
+      edit (item) {
         this.$router.push({ name: 'Order', params: { id: item.id } })
       },
-      add() {
+      add () {
         this.$router.push('NewOrder')
       },
-      remove(item) {
+      remove (item) {
         const rootComponent = this.appUtil.getRootComponent(this)
         if (rootComponent) {
           rootComponent.openDialog('Do you want to delete this item?', '', () => {
@@ -147,14 +147,14 @@
           })
         }
       },
-      changeStatus(item) {
+      changeStatus (item) {
         item.isActive = !item.isActive
         this.api.putData('orders/' + item.id.toString(), item).then((res) => {
         }, (err) => {
           console.log(err)
         })
       },
-      getOrders() {
+      getOrders () {
         this.api.getData('orders?_expand=customer').then((res) => {
           this.items = res.data
           this.items.forEach(item => {
@@ -169,7 +169,7 @@
           console.log(err)
         })
       },
-      searchOrders() {
+      searchOrders () {
         this.rightDrawer = !this.rightDrawer
         this.appUtil.buildSearchFilters(this.searchVm)
         let query = this.appUtil.buildJsonServerQuery(this.searchVm)
@@ -184,7 +184,7 @@
           console.log(err)
         })
       },
-      clearSearchFilters() {
+      clearSearchFilters () {
         this.rightDrawer = !this.rightDrawer
         this.appUtil.clearSearchFilters(this.searchVm)
         this.api.getData('orders?_expand=customer').then((res) => {
@@ -200,11 +200,11 @@
       }
     },
     computed: {
-      pages() {
+      pages () {
         return this.pagination && this.pagination.rowsPerPage ? Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage) : 0
       }
     },
-    mounted: function () {
+    mounted () {
       // this.$nextTick(() => {
       this.getOrders()
       // })

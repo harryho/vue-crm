@@ -1,5 +1,5 @@
 export class Category {
-  constructor() {
+  constructor () {
     this.id = "";
     this.categoryName = "";
     this.parentId = "";

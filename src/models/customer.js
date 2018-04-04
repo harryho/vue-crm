@@ -1,7 +1,7 @@
 // import User from './user'
 
 export class User {
-  constructor() {
+  constructor () {
     this.id = "";
     this.firstName = "";
     this.lastName = "";
@@ -16,7 +16,7 @@ export class User {
 
 export class Customer extends User {
 
-  constructor() {
+  constructor () {
     super();
     this.isActive = true;
     this.age = 0;

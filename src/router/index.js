@@ -2,12 +2,12 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import ErrorPage from '@/components/404'
 
-import Dashboard from '@/components/Dashboard'
-import Orders from '@/pages/OrderList'
-import Order from '@/components/Order'
-import About from '@/components/About'
-import Customers from '@/pages/CustomerList'
-import Customer from '@/components/Customer'
+import Dashboard from '@/pages/Dashboard'
+import OrderList from '@/pages/OrderList'
+import OrderForm from '@/pages/OrderForm'
+import About from '@/pages/About'
+import CustomerList from '@/pages/CustomerList'
+import CustomerForm from '@/pages/CustomerForm'
 import Products from '@/pages/ProductList'
 import ProductForm from '@/pages/ProductForm'
 
@@ -39,12 +39,12 @@ export default new Router({
     { path: '/404', component: ErrorPage, name: 'ErrorPage' },
     { path: '/dashboard', component: Dashboard, name: 'Dashboard', beforeEnter: requireAuth },
     { path: '/about', component: About, name: 'About', beforeEnter: requireAuth },
-    { path: '/orders', component: Orders, name: 'Orders', beforeEnter: requireAuth },
-    { path: '/neworder', component: Order, name: 'NewOrder', beforeEnter: requireAuth },
-    { path: '/order/:id', component: Order, name: 'Order', beforeEnter: requireAuth },
-    { path: '/customers', component: Customers, name: 'Customers', beforeEnter: requireAuth },
-    { path: '/newcustomer', component: Customer, name: 'NewCustomer', beforeEnter: requireAuth },
-    { path: '/customer/:id', component: Customer, name: 'Customer', beforeEnter: requireAuth },
+    { path: '/orders', component: OrderList, name: 'OrderList', beforeEnter: requireAuth },
+    { path: '/neworder', component: OrderForm, name: 'NewOrder', beforeEnter: requireAuth },
+    { path: '/order/:id', component: OrderForm, name: 'OrderForm', beforeEnter: requireAuth },
+    { path: '/customers', component: CustomerList, name: 'CustomerList', beforeEnter: requireAuth },
+    { path: '/newcustomer', component: CustomerForm, name: 'NewCustomer', beforeEnter: requireAuth },
+    { path: '/customer/:id', component: CustomerForm, name: 'CustomerForm', beforeEnter: requireAuth },
     { path: '/product/:id', component: ProductForm, name: 'Product', beforeEnter: requireAuth },
     { path: '/products', component: Products, name: 'Products', beforeEnter: requireAuth },
     { path: '/newproduct', component: ProductForm, name: 'NewProduct', beforeEnter: requireAuth },

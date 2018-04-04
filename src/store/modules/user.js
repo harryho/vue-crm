@@ -17,30 +17,30 @@ const state = {
 }
 
 const actions = {
-  updateUser({ commit }, { user, token }) {
+  updateUser ({ commit }, { user, token }) {
     commit("setToken", token)
     commit("setUser", user)
   },
-  logout({ commit }) {
+  logout ({ commit }) {
     commit("setToken", null)
     commit("setUser", {})
   }
 }
 
 const mutations = {
-  loginLoading(state) {
+  loginLoading (state) {
     state.callingAPI = !state.callingAPI
   },
-  globalSearching(state) {
+  globalSearching (state) {
     state.searching = state.searching === "" ? "loading" : ""
   },
-  setUser(state, user) {
+  setUser (state, user) {
     state.user = user
   },
-  setToken(state, token) {
+  setToken (state, token) {
     state.token = token
   },
-  setUserInfo(state, userInfo) {
+  setUserInfo (state, userInfo) {
     state.userInfo = userInfo
   }
 }

@@ -1,5 +1,5 @@
 // export class User {
-//   constructor() {
+//   constructor () {
 //     this.id = "";
 //     this.firstName = "";
 //     this.lastName = "";

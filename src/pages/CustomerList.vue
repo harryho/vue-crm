@@ -153,16 +153,16 @@
       }
     },
     methods: {
-      print() {
+      print () {
         window.print()
       },
-      edit(item) {
+      edit (item) {
         this.$router.push({ name: 'Customer', params: { id: item.id } })
       },
-      add() {
+      add () {
         this.$router.push('NewCustomer')
       },
-      remove(item) {
+      remove (item) {
         const rootComponent = this.appUtil.getRootComponent(this)
         if (rootComponent) {
           rootComponent.openDialog('Do you want to delete this customer?', '', () => {
@@ -187,7 +187,7 @@
           item.isActive = !item.isActive
         })
       },
-      searchCustomers() {
+      searchCustomers () {
         this.rightDrawer = !this.rightDrawer
         this.appUtil.buildSearchFilters(this.searchVm)
         let query = this.appUtil.buildJsonServerQuery(this.searchVm)
@@ -207,7 +207,7 @@
           console.log(err)
         })
       },
-      clearSearchFilters() {
+      clearSearchFilters () {
         this.rightDrawer = !this.rightDrawer
         this.appUtil.clearSearchFilters(this.searchVm)
 
@@ -226,7 +226,7 @@
           console.log(err)
         })
       },
-      getCustomers() {
+      getCustomers () {
         this.api.getData('customers?_embed=orders').then((res) => {
           this.items = res.data
           this.items.forEach((item) => {
@@ -244,11 +244,11 @@
       }
     },
     computed: {
-      pages() {
+      pages () {
         return this.pagination && this.pagination.rowsPerPage ? Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage) : 0
       }
     },
-    mounted: function () {
+    mounted () {
       this.getCustomers()
     }
   }

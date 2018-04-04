@@ -46,20 +46,20 @@ const actions = {
       commit("setCategories", categories);
    })
   },
-  getProductById({commit}, id) {
+  getProductById ({commit}, id) {
     if (id){
      api.getData('products/' + id + '?_expand=category').then((res) => {
           const product = res.data
           commit("setProduct", {product});
           // this.product.category.categoryName = this.product.category.firstName + ' ' + this.product.category.lastName
         }, (err) => {
-          console.log(err)
+          console.log(err )
         })
     } else {
       commit("setProduct", {product: new Product()});
     }
   },
-  getAllProducts({ commit }) {
+  getAllProducts ({ commit }) {
     commit("setLoading", { loading: true });
     api.getData("products?_expand=category").then(res => {
       const products = res.data;
@@ -78,7 +78,7 @@ const actions = {
       });
     });
   },
-  searchProducts({ commit }, searchQuery, pagination) {
+  searchProducts ({ commit }, searchQuery, pagination) {
     // commit("setLoading", { loading: true });
     api.getData("products?_expand=category&" + searchQuery).then(res => {
       const products = res.data;
@@ -104,7 +104,7 @@ const actions = {
       }
     });
   },
-  deleteProduct({ commit, dispatch }, id, query, pagination) {
+  deleteProduct ({ commit, dispatch }, id, query, pagination) {
     api
       .deleteData("products/" + id.toString())
       .then(res => {
@@ -123,7 +123,7 @@ const actions = {
         });
       });
   },
-  saveProduct({ commit, dispatch }, product) {
+  saveProduct ({ commit, dispatch }, product) {
     // let product = this.product;
     delete product.category;
 
@@ -145,7 +145,7 @@ const actions = {
       );
     }
   },
-  closeSnackBar({ commit }, timeout) {
+  closeSnackBar ({ commit }, timeout) {
     console.log(" closeSnackBar ", timeout);
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -160,30 +160,30 @@ const actions = {
 };
 
 const mutations = {
-  setCategories(state, categories) {
+  setCategories (state, categories) {
     state.categories = categories;
 
   },
-  setItems(state, products) {
+  setItems (state, products) {
     state.items = products;
   },
-  setPagination(state, pagination) {
+  setPagination (state, pagination) {
     state.pagination = pagination;
   },
-  setLoading(state, { loading }) {
+  setLoading (state, { loading }) {
     state.loading = loading;
   },
-  setNotice(state, { notice }) {
+  setNotice (state, { notice }) {
     console.log(" notice .... ", notice);
     state.notice = notice;
   },
-  setSnackbar(state, { snackbar }) {
+  setSnackbar (state, { snackbar }) {
     state.snackbar = snackbar;
   },
-  setMode(state, { mode }) {
+  setMode (state, { mode }) {
     state.mode = mode;
   },
-  setProduct(state, {product}) {
+  setProduct (state, {product}) {
     state.product = product
   }
 };

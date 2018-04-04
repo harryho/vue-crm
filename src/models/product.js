@@ -1,5 +1,5 @@
 export class Product {
-  constructor() {
+  constructor () {
     this.id = "";
     this.productName = "";
     this.categoryId = "";
