@@ -20,7 +20,7 @@ module.exports = {
     "indent": 0,
     "quotes":0,
     "space-in-parens": 0,
-    "key-spacing":0,
+    // "key-spacing":0,
     "no-unused-vars": 0,
     "comma-dangle": 0,
     "semi": 0,
@@ -34,7 +34,7 @@ module.exports = {
     "block-spacing": "off",
     "object-property-newline": "off",
     "operator-linebreak":"off",
-    "space-before-function-paren": "off",
+    // "space-before-function-paren": "off",
     "eol-last":"off",
     // allow paren-less arrow functions
     'arrow-parens': 0,

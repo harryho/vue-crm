@@ -12,17 +12,17 @@
                                 <v-layout class="mt-2 mb-0 pa-0" row wrap>
                                     <x-flex d-flex xs12>
 
-                                        <div class="silver--text subheading">{{stat.title}}</div>                                   
+                                        <div class="silver--text subheading">{{stat.title}}</div>
 
                                     </x-flex>
-           
+
                                    <v-flex d-flex xs12>
                                          <div class="silver--text display-1">{{stat.data}}</div>
                                        <v-btn outline class="darkgrey--text darken-1" right flat small>{{stat.action.label}}</v-btn>
                                   </v-flex>
                                 </v-layout>
                             </v-flex>
-                           
+
                         </v-layout>
                     </v-container>
                 </v-card>
@@ -54,7 +54,7 @@ import Doughnut from "../components/chart/Doughnut";
 import LineChart from "../components/chart/LineChart";
 export default {
   name: "Dashboard",
-  data() {
+  data () {
     return {
       stats: {
         monthlyStats: [
@@ -107,7 +107,7 @@ export default {
     Doughnut,
     LineChart
   },
-  mounted() {}
+  mounted () {}
 };
 </script>
 <style  scoped>

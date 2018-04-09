@@ -128,7 +128,7 @@
 </template>
 <script>
   export default {
-    data: function () {
+    data () {
       return {
         categoryId: null,
         dialogTitle: 'Add Product',
@@ -159,12 +159,12 @@
       }
     },
     computed: {
-      newOrder: function () {
+      newOrder () {
         return 'New Order'
       }
     },
     watch: {
-      categoryId: function () {
+      categoryId () {
         if (this.categoryId > 0) {
           this.products = []
           this.api.getData('products?categoryId=' + this.categoryId).then((res) => {
@@ -182,7 +182,7 @@
       }
     },
     methods: {
-      save: function () {
+      save () {
         let order = this.order
         delete this.order.customer
 
@@ -203,7 +203,7 @@
       selectCustomer (item) {
         this.order.customerId = item.value
       },
-      getById: function () {
+      getById () {
         this.api.getData('orders/' + this.$route.params.id + '?_expand=customer').then((res) => {
           this.order = res.data
           this.order.customer.name = this.order.customer.firstName + ' ' + this.order.customer.lastName
@@ -211,7 +211,7 @@
           console.log(err)
         })
       },
-      getCustomers: function () {
+      getCustomers () {
         this.api.getData('customers').then((res) => {
           this.customers = res.data
           this.customerList = []
@@ -225,10 +225,10 @@
           console.log(err)
         })
       },
-      cancel: function () {
+      cancel () {
         this.$router.push({ name: 'Orders' })
       },
-      remove: function (index) {
+      remove (index) {
         const rootComponent = this.appUtil.getRootComponent(this)
         if (rootComponent) {
           rootComponent.openDialog('Do you want to delete this item?', '', () => {
@@ -236,19 +236,19 @@
           })
         }
       },
-      addProduct: function () {
+      addProduct () {
         this.addProductDialog = true
       },
-      saveProduct: function () {
+      saveProduct () {
         let product = this.products.find((e) => { if (e.id === this.productId) return e })
         this.order.products.push(Object.assign({}, product))
         this.product = null
         this.addProductDialog = false
       },
-      cancelAddProduct: function () {
+      cancelAddProduct () {
         this.addProductDialog = false
       },
-      getCategorys: function () {
+      getCategorys () {
         this.api.getData('categories').then((res) => {
           this.categorys = res.data
           this.categoryList = []
@@ -262,7 +262,7 @@
           console.log(err)
         })
       },
-      getProducts(categoryId) {
+      getProducts (categoryId) {
         this.api.getData('products?_expand=category&categoryId=' + categoryId).then((res) => {
           this.products = res.data
         }, (err) => {
@@ -270,7 +270,7 @@
         })
       }
     },
-    mounted: function () {
+    mounted () {
       this.getCustomers()
       this.getCategorys()
       if (this.$route.params.id) {

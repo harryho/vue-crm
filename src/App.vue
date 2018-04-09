@@ -17,7 +17,7 @@
               <v-list-tile-title>{{user.firstName}}{{user.lastName}}</v-list-tile-title>
             </v-list-tile-content>
            <v-spacer></v-spacer>
-            <v-list-tile-action style="min-width:30px;">            
+            <v-list-tile-action style="min-width:30px;">
             <v-menu bottom right offset-y origin="bottom right" transition="v-slide-y-transition">
               <v-btn icon light slot="activator">
                 <v-icon>more_vert</v-icon>
@@ -30,7 +30,7 @@
             </v-menu>
 
             </v-list-tile-action >
-            <v-list-tile-action style="min-width:30px;">           
+            <v-list-tile-action style="min-width:30px;">
               <v-btn icon @click.native.stop="mini = !mini">
                 <v-icon>chevron_left</v-icon>
               </v-btn>
@@ -96,7 +96,7 @@ import auth from "./utils/auth";
 import { mapState } from "vuex";
 // import Products from './pages/Products.vue'
 export default {
-  data() {
+  data () {
     return {
       dialog: false,
       mini: false,
@@ -157,7 +157,7 @@ export default {
       menuItem: "Orders"
     };
   },
-  created() {
+  created () {
     auth.onChange = loggedIn => {
       console.log("loggedIn", loggedIn);
       this.loggedIn = loggedIn;
@@ -190,21 +190,21 @@ export default {
     ...mapState("user", {
       user: "user"
     }),
-    auth: function() {
+    auth () {
       return auth;
     },
-    activeMenuItem: function() {
+    activeMenuItem () {
       return this.menuItem;
     }
   },
   methods: {
-    clickMenu: function(item) {
+    clickMenu (item) {
       this.menuItem = item.title;
       this.$router.push({
         name: item.title
       });
     },
-    openDialog: function(
+    openDialog (
       dialogText,
       dialogTitle,
       confirmCallback,
@@ -216,16 +216,16 @@ export default {
       if (confirmCallback) this.confirmCallback = confirmCallback;
       if (canelCallbak) this.cancelCallback = canelCallbak;
     },
-    confirmCallback: function() {},
-    cancelCallback: function() {},
-    onConfirm: function() {
+    confirmCallback () {},
+    cancelCallback () {},
+    onConfirm () {
       this.dialog = false;
       this.dialogText = "";
       this.dialogTitle = "";
       this.confirmCallback();
       this.confirmCallback = () => {};
     },
-    onCancel: function() {
+    onCancel () {
       this.dialog = false;
       this.dialogText = "";
       this.dialogTitle = "";
@@ -234,7 +234,7 @@ export default {
       console.log("Cancelled");
     }
   },
-  mounted() {
+  mounted () {
     this.$Progress.finish();
   }
 };

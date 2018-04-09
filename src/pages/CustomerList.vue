@@ -114,7 +114,7 @@
 </template>
 <script>
   export default {
-    data: function () {
+    data () {
       return {
         rightDrawer: false,
         right: true,
@@ -176,7 +176,7 @@
           })
         }
       },
-      changeStatus(item) {
+      changeStatus (item) {
         item.isActive = !item.isActive
         this.api.putData('customers/' + item.id.toString(), item).then((res) => {
           // this.$router.push('Customers')

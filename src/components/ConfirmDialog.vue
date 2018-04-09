@@ -27,8 +27,8 @@ export default {
       }
     },
     methods: {
-      onConfirm: function () {},
-      onCancel: function () {}
+      onConfirm () {},
+      onCancel () {}
     },
     mounted () {
     }

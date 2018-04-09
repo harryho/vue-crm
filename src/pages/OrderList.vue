@@ -94,7 +94,7 @@
 </template>
 <script>
   export default {
-    data: function () {
+    data () {
       return {
         rightDrawer: false,
         right: true,

@@ -73,7 +73,7 @@ export default {
     SearchPanel,
     ConfirmDialog
   },
-  data: function() {
+  data () {
     return {
       dialog: false,
       dialogTitle: "Product Delete Dialog",
@@ -110,10 +110,10 @@ export default {
     };
   },
   methods: {
-    print() {
+    print () {
       window.print();
     },
-    edit(item) {
+    edit (item) {
       this.$router.push({
         name: "Product",
         params: {
@@ -121,14 +121,14 @@ export default {
         }
       });
     },
-    add() {
+    add () {
       this.$router.push("NewProduct");
     },
-    remove(item) {
+    remove (item) {
       this.productId = item.id;
       this.dialog = true;
     },
-    onConfirm() {
+    onConfirm () {
       Store.dispatch(
         "products/deleteProduct",
         this.productId,
@@ -140,24 +140,24 @@ export default {
       });
       this.dialog = false;
     },
-    onCancel() {
+    onCancel () {
       this.productId = "";
       this.dialog = false;
     },
-    searchProducts() {
+    searchProducts () {
       this.rightDrawer = !this.rightDrawer;
       this.appUtil.buildSearchFilters(this.searchVm);
       this.query = this.appUtil.buildJsonServerQuery(this.searchVm);
       Store.dispatch("products/searchProducts", this.query, this.pagination);
     },
-    reloadData() {
+    reloadData () {
       this.query = "";
       Store.dispatch("products/getAllProducts");
     },
-    cancelSearch() {
+    cancelSearch () {
       this.rightDrawer = false;
     },
-    closeSnackbar() {
+    closeSnackbar () {
       Store.commit("products/setSnackbar", { snackbar: false });
       Store.commit("products/setNotice", { notice: "" });
     }
@@ -172,10 +172,10 @@ export default {
       notice: "notice"
     })
   },
-  created() {
+  created () {
     Store.dispatch("products/getAllProducts");
   },
-  mounted() {
+  mounted () {
     console.log(this.headers);
     this.$nextTick(() => {});
   }

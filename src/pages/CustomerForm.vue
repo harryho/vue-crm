@@ -45,7 +45,7 @@
 </template>
 <script>
 export default {
-  data: function () {
+  data () {
     return {
       errors: [],
       title: '',
@@ -67,7 +67,7 @@ export default {
   computed: {
   },
   methods: {
-    save: function () {
+    save () {
       let customer = this.customer
       if (!customer.id) {
         this.api.postData('customers', customer).then((res) => {
@@ -83,7 +83,7 @@ export default {
         })
       }
     },
-    getById: function () {
+    getById () {
       this.api.getData('customers/' + this.$route.params.id).then((res) => {
         this.customer = res.data
         // this.customer.avatar = '/assets/' + this.customer.avatar
@@ -91,11 +91,11 @@ export default {
         console.log(err)
       })
     },
-    cancel: function () {
+    cancel () {
       this.$router.push({name: 'Customers'})
     }
   },
-  mounted: function () {
+  mounted () {
     if (this.$route.params.id) {
       this.getById()
       this.title = 'Edit Customer'

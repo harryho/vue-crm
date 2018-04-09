@@ -1,3 +1,4 @@
+/* globals Store */
 import Vue from "vue";
 import Vuex from "vuex";
 
@@ -18,6 +19,8 @@ const state = {
   categories: []
 };
 
+const DEFAULT_ROW_PER_PAGE = 10
+
 function sendSuccessNotice ( commit, notice ) {
   commit("setNotice", { notice });
   commit("setSnackbar", { snackbar: true });
@@ -30,11 +33,28 @@ function sendErrorNotice ( commit, notice ) {
   commit("setMode", {mode: "error"});
 }
 
+/**
+ * Set pagination to the products store
+ * @param {*} commit -- commit funciton pass from caller
+ * @param {*} page -- current page number
+ * @param {*} totalItems  -- total amount of items
+ * @param {*} rowsPerPage -- rows to display per pages
+ * @param {*} pages -- total pages
+ */
+function setPagination ( commit, page, totalItems, pages, rowsPerPage ) {
+  commit("setPagination", {
+    page,
+    totalItems,
+    pages,
+    rowsPerPage: rowsPerPage || DEFAULT_ROW_PER_PAGE,
+  });
+}
+
 const getters = {
 };
 
 const actions = {
-  getCategories: function ({commit}) {
+  getCategories ({commit}) {
     api.getData('categories').then(res => {
       const categories  = []
       res.data.forEach((c) => {
@@ -124,9 +144,7 @@ const actions = {
       });
   },
   saveProduct ({ commit, dispatch }, product) {
-    // let product = this.product;
     delete product.category;
-
     if (!product.id) {
       api.postData("products", product).then(
         res => {

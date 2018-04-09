@@ -33,7 +33,7 @@
     props: {
       rightDrawer: ''
     },
-    data: function () {
+    data () {
       return {
         right: true,
         searchVm: {
@@ -59,7 +59,7 @@
 
 
     },
-    mounted: function () {
+    mounted () {
       this.$nextTick(() => {
       })
     }

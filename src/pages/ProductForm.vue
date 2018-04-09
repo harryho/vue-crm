@@ -48,7 +48,7 @@
   import { mapState, dispatch } from 'vuex'
  /* global Store */
   export default {
-    data: function () {
+    data () {
       return {
         errors: [],
         title: '',
@@ -64,7 +64,7 @@
     },
 
     methods: {
-      save: function () {
+      save () {
         const product = this.product
         delete product.category
 
@@ -76,13 +76,13 @@
       selectCategory (item) {
         this.product.categoryId = item.value
       },
-      getProduct: function () {
+      getProduct () {
         Store.dispatch('products/getProductById', this.$route.params.id)
       },
-      getCategories: function () {
+      getCategories () {
         Store.dispatch('products/getCategories')
       },
-      cancel: function () {
+      cancel () {
         this.$router.push({ name: 'Products' })
       }
     },
