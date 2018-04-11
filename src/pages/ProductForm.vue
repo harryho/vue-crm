@@ -44,70 +44,69 @@
   </v-container>
 </template>
 <script>
-  import {Product} from '../models'
-  import { mapState, dispatch } from 'vuex'
- /* global Store */
-  export default {
-    data () {
-      return {
-        errors: [],
-        title: '',
-        snackbarStatus: false,
-        timeout: 30000,
-        color: '',
-        rules: {
-          name: [val => (val || '').length > 0 || 'This field is required'],
-          category: [val => typeof val === "number" || 'This field is required']
-        }
-
+import {Product} from '../models'
+import { mapState, dispatch } from 'vuex'
+/* global Store */
+export default {
+  data () {
+    return {
+      errors: [],
+      title: '',
+      snackbarStatus: false,
+      timeout: 3000,
+      color: '',
+      rules: {
+        name: [val => (val || '').length > 0 || 'This field is required'],
+        category: [val => typeof val === "number" || 'This field is required']
       }
-    },
-
-    methods: {
-      save () {
-        const product = this.product
-        delete product.category
-
-        Store.dispatch('products/saveProduct', this.product)
-          .then(() => {
-            Store.dispatch("products/closeSnackBar", 2000)
-          })
-      },
-      selectCategory (item) {
-        this.product.categoryId = item.value
-      },
-      getProduct () {
-        Store.dispatch('products/getProductById', this.$route.params.id)
-      },
-      getCategories () {
-        Store.dispatch('products/getCategories')
-      },
-      cancel () {
-        this.$router.push({ name: 'Products' })
-      }
-    },
-    computed: {
-         ...mapState('products',
-          {
-            product: 'product',
-            categories: 'categories',
-            loading: 'loading',
-            mode: 'mode',
-            snackbar: 'snackbar',
-            notice: 'notice'
-          }),
-          isValid () {
-            return (
-              this.product.categoryId  && this.product.productName
-            )
-          }
-      },
-    created () {
-      this.getCategories()
-      this.getProduct()
-    },
-    mounted () {
 
     }
+  },
+  methods: {
+    save () {
+      const product = this.product
+      delete product.category
+
+      Store.dispatch('products/saveProduct', this.product)
+        .then(() => {
+          Store.dispatch("products/closeSnackBar", 2000)
+        })
+    },
+    selectCategory (item) {
+      this.product.categoryId = item.value
+    },
+    getProduct () {
+      Store.dispatch('products/getProductById', this.$route.params.id)
+    },
+    getCategories () {
+      Store.dispatch('products/getCategories')
+    },
+    cancel () {
+      this.$router.push({ name: 'Products' })
+    }
+  },
+  computed: {
+        ...mapState('products',
+        {
+          product: 'product',
+          categories: 'categories',
+          loading: 'loading',
+          mode: 'mode',
+          snackbar: 'snackbar',
+          notice: 'notice'
+        }),
+        isValid () {
+          return (
+            this.product.categoryId  && this.product.productName
+          )
+        }
+    },
+  created () {
+    this.getCategories()
+    this.getProduct()
+  },
+  mounted () {
+
   }
+}
 </script>

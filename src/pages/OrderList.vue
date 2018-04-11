@@ -2,23 +2,6 @@
   <v-container fluid>
     <v-flex xs12>
       <v-card>
-        <!-- <v-card-title>
-          <span class="title">Orders
-          <v-text-field append-icon="search" label="Quick Search" single-line hide-details v-model="quickSearch"></v-text-field>
-          </span>
-          <v-spacer></v-spacer>
-          <v-btn fab small dark class="blue-grey" @click.native.stop="rightDrawer = !rightDrawer">
-            <v-icon>search</v-icon>
-          </v-btn>
-          &nbsp;
-          <v-btn fab small class="grey" @click.native="print()">
-            <v-icon>print</v-icon>
-          </v-btn>
-          &nbsp;
-          <v-btn fab small dark class="purple" @click.native="add">
-            <v-icon>add</v-icon>
-          </v-btn>
-        </v-card-title> -->
       <v-card-title>
             <span class="title">Orders {{pagination? "("+pagination.totalItems+")": ""}}
               <v-text-field append-icon="search" label="Quick Search" single-line hide-details v-model="quickSearch"></v-text-field>
@@ -145,15 +128,15 @@ export default {
       this.$router.push('NewOrder')
     },
     remove (item) {
-      this.productId = item.id;
+      this.orderId = item.id;
       this.dialog = true;
     },
     onConfirm () {
       Store.dispatch(
         "orders/deleteOrder",
         this.orderId,
-        this.query,
-        this.pagination
+        // this.query,
+        // this.pagination
       ).then(() => {
         Store.dispatch("orders/searchOrders", this.query, this.pagination);
         Store.dispatch("orders/closeSnackBar", 2000);
@@ -183,6 +166,7 @@ export default {
       this.rightDrawer = !this.rightDrawer;
       this.appUtil.buildSearchFilters(this.searchVm);
       this.query = this.appUtil.buildJsonServerQuery(this.searchVm);
+      this.quickSearch = "";
       Store.dispatch("orders/searchOrders", this.query, this.pagination);
     },
     reloadData () {

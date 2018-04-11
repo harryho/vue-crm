@@ -23,8 +23,9 @@ const state = {
   mode: "",
   snackbar: false,
   notice: "",
-  order: "",
+  order: new Order(),
   customer: "",
+  products: [],
   customerList: [],
 };
 
@@ -60,18 +61,23 @@ const actions = {
       commit("setOrder", { order: new Order() });
     }
   },
+  getProductsByCategory ({ commit }, categoryId) {
+    if (categoryId) {
+      api.getData("products?_expand=category&categoryId=" + categoryId).then(res => {
+          const products = res.data;
+          commit("setProducts", { products });
+        }, err => {
+          console.log(err);
+        });
+    }
+  },
   getAllOrders ({ commit }) {
     commit("setLoading", { loading: true });
     api.getData("orders?_expand=customer").then(res => {
       const orders = res.data;
 
       orders.forEach(item => {
-        // p.categoryName = p.category.categoryName;
-        let amount = 0;
-        item.products.forEach(e => {
-          amount += e.unitPrice;
-        });
-        item.amount = amount;
+        item.amount = item.products.reduce(( p, c ) => p + c.unitPrice, 0);
         item.quantity = item.products.length;
         item.customer = item.customer ? item.customer.firstName + " " + item.customer.lastName : "";
       });
@@ -82,8 +88,10 @@ const actions = {
   searchOrders ({ commit }, searchQuery, pagination) {
     api.getData("orders?_expand=customer&" + searchQuery).then(res => {
       const orders = res.data;
-      orders.forEach(p => {
-        p.categoryName = p.category.categoryName;
+      orders.forEach(item => {
+        item.amount = item.products.reduce((p, c) => p + c.unitPrice, 0);
+        item.quantity = item.products.length;
+        item.customer = item.customer ? item.customer.firstName + " " + item.customer.lastName : "";
       });
       commitPagination(commit, orders);
     });
@@ -110,12 +118,13 @@ const actions = {
       commitPagination(commit, orders);
     });
   },
-  deleteOrder ({ commit, dispatch }, id, query, pagination) {
+  deleteOrder ({ commit, dispatch }, id) {
     api
       .deleteData("orders/" + id.toString())
       .then(res => {
         return new Promise((resolve, reject) => {
           sendSuccessNotice(commit, "Operation is done.");
+
           resolve();
         });
       })
@@ -155,11 +164,17 @@ const actions = {
         });
     }
   },
+  closeSnackBar ({ commit }, timeout ) {
+     closeNotice(commit, timeout);
+  }
 };
 
 const mutations = {
   setCustomerList (state, categories) {
     state.categories = categories;
+  },
+  setProducts (state, products) {
+    state.products = products
   },
   setItems (state, orders) {
     state.items = orders;
