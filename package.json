@@ -1,6 +1,6 @@
 {
   "name": "vue2crm",
-  "version": "1.5.4",
+  "version": "1.6.1",
   "description": "Simle reusalbe CRM starter built on Vue 2 PWA template and Vuetify UI",
   "author": "harryho",
   "private": true,
@@ -18,6 +18,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "chart.js": "^2.7.2",
+    "lodash": "^4.17.5",
     "vue": "^2.5.15",
     "vue-chartjs": "^2.6.5",
     "vue-progressbar": "^0.7.4",

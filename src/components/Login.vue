@@ -1,27 +1,26 @@
 <template>
 <v-container fill-height justify-center align-center >
   <!-- <v-layout row > -->
-    <v-flex xs12 sm3>
-      <!-- <h1> &nbsp;</h1> -->
+    <v-flex xs12 sm5 md4 lg3>
       <v-card class="mt-0 pt-0">
           <v-card-title class="blue darken-1">
             <h4 style="color:white">Vue-CRM</h4>
           </v-card-title>
           <v-card-text>
               <form @submit.prevent="login">
-                <v-layout row>
-                  <v-flex xs4>
+                <v-layout row wrap>
+                  <v-flex xs12 md4 >
                     <v-subheader>User ID</v-subheader>
                   </v-flex>
-                  <v-flex xs8>
+                  <v-flex  xs12 md8>
                     <v-text-field class="input-group--focused" name="email" v-model="email" label="email" value="Input text"></v-text-field>
                   </v-flex>
                 </v-layout>
-                <v-layout row>
-                  <v-flex xs4>
+                <v-layout row wrap>
+                  <v-flex  xs12 md4>
                     <v-subheader>Password</v-subheader>
                   </v-flex>
-                  <v-flex xs8>
+                  <v-flex  xs12 md8>
                     <v-text-field class="input-group--focused" name="password" type="password" v-model="pass" label="password" value="Input text"></v-text-field>
                   </v-flex>
                 </v-layout>

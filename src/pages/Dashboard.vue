@@ -2,11 +2,11 @@
     <v-container id="dashboard" fluid   grid-list-lg class="mx-0 pa-0">
         <v-layout  row wrap>
             <v-flex md3 sm6 xs12 v-for="(stat, key) in stats.monthlyStats" :key="key">
-                <v-card :class="stat.bgColor"   light>
-                    <v-container fluid grid-list-sm light>
+                <v-card :class="stat.bgColor"   dark>
+                    <v-container fluid grid-list-sm dark>
                         <v-layout class="mt-0 mb-0" row wrap>
                             <v-flex d-flex xs3>
-                                <v-icon class="mx-0" x-large light>{{stat.icon}}</v-icon>
+                                <v-icon class="mx-0" x-large dark>{{stat.icon}}</v-icon>
                             </v-flex>
                             <v-flex d-flex xs9 >
                                 <v-layout class="mt-2 mb-0 pa-0" row wrap>

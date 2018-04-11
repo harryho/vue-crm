@@ -259,8 +259,8 @@
         }
       ],
       "amount": 89.99,
-      "orderDate": "2017-01-01",
-      "shippedDate": "2017-01-01",
+      "orderDate": "2017-01-12",
+      "shippedDate": "2017-01-10",
       "shipAddress": {
         "address": "Gran Vía, 0123",
         "city": "Madrid",
@@ -618,13 +618,6 @@
     },
     {
       "categoryId": 3,
-      "productName": "aaa",
-      "unitPrice": 22,
-      "unitInStock": 2323,
-      "id": 25
-    },
-    {
-      "categoryId": 3,
       "productName": "Product ABCD",
       "unitPrice": 222,
       "unitInStock": 23,
@@ -632,10 +625,10 @@
     },
     {
       "id": 27,
-      "productName": "sasasasd",
+      "productName": "asdasd",
       "categoryId": 3,
-      "unitInStock": "23",
-      "unitPrice": "222"
+      "unitInStock": "22",
+      "unitPrice": "234"
     }
   ],
   "categories": [

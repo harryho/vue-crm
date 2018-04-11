@@ -4,21 +4,19 @@
 
       <template slot="headers" slot-scope="props">
           <tr>
-            <th v-for="header in props.headers" :key="header.text"
-            :class="['column', 'subheading' , 'text-xs-left']">
+            <th v-for="(header, index) in props.headers" :key="header.text"
+            :class="['column', 'subheading' , index === 0? 'text-xs-left': 'text-xs-center']">
               {{ header.text }}
             </th>
-            <th>
-                <v-text-field append-icon="search" label="Quick Search" single-line hide-details v-model="search"></v-text-field>
-              </th>
+            <th>                
+            </th>
           </tr>
     </template>
 
     <template class="body-2" slot="items" slot-scope="props">
-      <td class="text-xs-left body-2" v-for="(header, index) in headers" :key="index" v-if="header.value!==''">
+      <td  v-for="(header, index) in headers" :key="index" :class="[ index === 0? 'text-xs-left': 'text-xs-center', 'body-2']" v-if="header.value!==''">
         {{renderData(props.item, header)}}
       </td>
-
         <td class="text-xs-right">
         <v-btn class="teal" fab small dark @click.native="$emit('edit', props.item)">
           <v-icon>edit</v-icon>
@@ -34,7 +32,7 @@
       </span>
     </template>
   </v-data-table>
-  <div class="text-xs-center pt-2">
+  <div class="text-xs-center pt-2" v-if="isNotEmpty">
     <v-pagination v-model="pagination.page" :length="pagination.pages" :total-visible="5" circle></v-pagination>
   </div>
 </div>
@@ -48,7 +46,7 @@ export default {
   },
   data () {
     return {
-      search: "",
+      search: ""
     }
   },
   methods: {
@@ -62,10 +60,9 @@ export default {
     }
   },
   computed: {
-  },
-  mounted () {
-    // this.$nextTick(() => {
-    // })
+    isNotEmpty () {
+      return this.items && this.items.length > 0;
+    }
   }
 }
 </script>

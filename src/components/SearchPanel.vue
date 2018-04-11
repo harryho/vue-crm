@@ -2,11 +2,11 @@
 
 <v-navigation-drawer right v-model="rightDrawer" :disable-resize-watcher="true" fixed>
   <v-list>
-    <v-list-tile-title>&nbsp;</v-list-tile-title>
-    <v-list-tile>
-      <v-list-tile-title class="title">Search Panel</v-list-tile-title>
+    <!-- <v-list-tile-title>&nbsp;</v-list-tile-title> -->
+    <v-list-tile class="my-2">
+      <v-list-tile-title class="title">Advanced Search</v-list-tile-title>
     </v-list-tile>
-    <v-list-tile-title>&nbsp;</v-list-tile-title>
+    <!-- <v-list-tile-title>&nbsp;</v-list-tile-title> -->
     <slot></slot>
 
     <v-layout class="pl-1 pt-3 ml-1" row>

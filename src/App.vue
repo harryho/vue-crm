@@ -73,12 +73,12 @@
           </v-layout>
         </v-container>
       </v-content>
-      <canvas id="canvas"></canvas>
+      <!-- <canvas id="canvas"></canvas> -->
       <v-footer :inset="true" style="justify-content:center; text-align: center" app>
         <span >&copy; Vue-CRM 2018</span>
       </v-footer>
-        </template>
-    <v-dialog v-model="dialog" persistent max-width="290">
+    </template>
+    <!-- <v-dialog v-model="dialog" persistent max-width="290">
       <v-card>
         <v-card-title>{{dialogTitle}}</v-card-title>
         <v-card-text>{{dialogText}}</v-card-text>
@@ -87,7 +87,7 @@
           <v-btn class="orange--text darken-1" flat="flat" @click.native="onCancel">Cancel</v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </v-dialog> -->
   </v-app>
 
 </template>
@@ -204,35 +204,35 @@ export default {
         name: item.title
       });
     },
-    openDialog (
-      dialogText,
-      dialogTitle,
-      confirmCallback,
-      canelCallbak
-    ) {
-      this.dialog = true;
-      this.dialogText = dialogText;
-      this.dialogTitle = dialogTitle;
-      if (confirmCallback) this.confirmCallback = confirmCallback;
-      if (canelCallbak) this.cancelCallback = canelCallbak;
-    },
-    confirmCallback () {},
-    cancelCallback () {},
-    onConfirm () {
-      this.dialog = false;
-      this.dialogText = "";
-      this.dialogTitle = "";
-      this.confirmCallback();
-      this.confirmCallback = () => {};
-    },
-    onCancel () {
-      this.dialog = false;
-      this.dialogText = "";
-      this.dialogTitle = "";
-      this.cancelCallback();
-      this.cancelCallback = () => {};
-      console.log("Cancelled");
-    }
+    // openDialog (
+    //   dialogText,
+    //   dialogTitle,
+    //   confirmCallback,
+    //   canelCallbak
+    // ) {
+    //   this.dialog = true;
+    //   this.dialogText = dialogText;
+    //   this.dialogTitle = dialogTitle;
+    //   if (confirmCallback) this.confirmCallback = confirmCallback;
+    //   if (canelCallbak) this.cancelCallback = canelCallbak;
+    // },
+    // confirmCallback () {},
+    // cancelCallback () {},
+    // onConfirm () {
+    //   this.dialog = false;
+    //   this.dialogText = "";
+    //   this.dialogTitle = "";
+    //   this.confirmCallback();
+    //   this.confirmCallback = () => {};
+    // },
+    // onCancel () {
+    //   this.dialog = false;
+    //   this.dialogText = "";
+    //   this.dialogTitle = "";
+    //   this.cancelCallback();
+    //   this.cancelCallback = () => {};
+    //   console.log("Cancelled");
+    // }
   },
   mounted () {
     this.$Progress.finish();
