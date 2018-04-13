@@ -26,7 +26,8 @@ const state = {
   order: new Order(),
   customer: "",
   products: [],
-  customerList: [],
+  customers: [],
+  categories: [],
 };
 
 
@@ -37,12 +38,26 @@ const actions = {
   getCustomers ({ commit }) {
     api.getData("customers").then(res => {
        if (res.data && res.data.length > 0){
-        const customerList = res.data.map(c => {
+        const customers = res.data.map(c => {
           c.text = c.firstName + " " + c.lastName;
           c.value = c.id;
           return c;
         });
-        commit("setCustomerList", customerList);
+        commit("setCustomers", customers);
+       }
+    });
+  },
+  getCategories ({ commit }) {
+    api.getData("categories").then(res => {
+       if (res.data && res.data.length > 0){
+        const categories = res.data.map(c => {
+          // c.text = c.firstName + " " + c.lastName;
+          // c.value = c.id;
+          c.text = c.categoryName;
+          c.value = c.id;
+          return c;
+        });
+        commit("setCategories", categories);
        }
     });
   },
@@ -51,6 +66,8 @@ const actions = {
       api.getData("orders/" + id + "?_expand=customer").then(
         res => {
           const order = res.data;
+          order.products.filter(p => p !== null && p !== undefined)
+          order.customerId = order.customer.id;
           commit("setOrder", { order })
         },
         err => {
@@ -77,7 +94,7 @@ const actions = {
       const orders = res.data;
 
       orders.forEach(item => {
-        item.amount = item.products.reduce(( p, c ) => p + c.unitPrice, 0);
+        item.amount = item.products.reduce(( p, c ) => p + ((c && c.unitPrice) || 0), 0);
         item.quantity = item.products.length;
         item.customer = item.customer ? item.customer.firstName + " " + item.customer.lastName : "";
       });
@@ -170,7 +187,10 @@ const actions = {
 };
 
 const mutations = {
-  setCustomerList (state, categories) {
+  setCustomers (state, customers) {
+    state.customers = customers;
+  },
+  setCategories (state, categories) {
     state.categories = categories;
   },
   setProducts (state, products) {

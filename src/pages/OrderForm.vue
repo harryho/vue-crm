@@ -35,7 +35,7 @@
                   required></v-text-field>
               </v-flex>
               <v-flex md4 xs12>
-                <v-select required v-bind:items="customerList" label="Customer" v-model="order.customerId"></v-select>
+                <v-select required v-bind:items="customers" label="Customer" v-model="order.customerId"></v-select>
               </v-flex>
 
               <v-flex md4 xs12>
@@ -73,22 +73,24 @@
               <v-flex xs12 v-if="order.products && order.products.length>0">
 
                 <v-list class="transparent elevation-0" two-line >
-                  <v-list-tile avatar ripple v-for="(item, index) in order.products"  class="grey lighten-2 mt-2 mb-2 " v-bind:key="item.id">
-                    <v-list-tile-content dark >
-                      <v-list-tile-title class="heading blue--text">{{ item.productName }}
+                  <v-list-tile avatar ripple v-for="(item, index) in order.products"  
+                  v-if="item !== null && item !== undefined" v-bind:key="index" class="grey lighten-2 mt-2 mb-2 " >                    
+                      <v-list-tile-content dark >
+                        <v-list-tile-title class="heading blue--text">{{ item.productName }}
 
-                      </v-list-tile-title>
-                      <v-list-tile-sub-title class="grey--text text--darken-4">AUD ${{ item.unitPrice }}</v-list-tile-sub-title>
-                      <!--<v-list-tile-sub-title>{{ item.unitInStock }}
-                        </v-list-tile-sub-title>-->
+                        </v-list-tile-title>
+                        <v-list-tile-sub-title class="grey--text text--darken-4">AUD ${{ item.unitPrice }}</v-list-tile-sub-title>
+                        <!--<v-list-tile-sub-title>{{ item.unitInStock }}
+                          </v-list-tile-sub-title>-->
 
-                    </v-list-tile-content>
-                    <v-list-tile-action>
-                      <v-btn fab small class="navy" @click.native="remove(index)">
-                        <v-icon v-bind:class="[item.active ? 'teal--text': 'grey--text']">delete</v-icon>
-                      </v-btn>
-                    </v-list-tile-action>
+                      </v-list-tile-content>
+                      <v-list-tile-action>
+                        <v-btn fab small class="navy" @click.native="remove(index)">
+                          <v-icon v-bind:class="[item.active ? 'teal--text': 'grey--text']">delete</v-icon>
+                        </v-btn>
+                      </v-list-tile-action>
                   </v-list-tile>
+              
                 </v-list>
 
               </v-flex>
@@ -108,7 +110,7 @@
             <v-container fluid grid-list-md>
               <v-layout row wrap>
                 <v-flex md6 xs12>
-                  <v-select required v-bind:items="categoryList" label="Category" v-model="categoryId"></v-select>
+                  <v-select required v-bind:items="categories" label="Category" v-model="categoryId"></v-select>
                 </v-flex>
                 <v-flex md6 xs12>
                   <v-select required v-bind:items="products" label="Product" v-model="productId"></v-select>
@@ -127,6 +129,9 @@
   </v-container>
 </template>
 <script>
+/* global Store */
+import {Product} from '../models'
+import { mapState, dispatch } from 'vuex'
   export default {
     data () {
       return {
@@ -138,30 +143,27 @@
         shippedDateMenu: false,
         errors: [],
         title: '',
-        order: {
-          products: [],
-          customerId: 0,
-          customer: { name: '' },
-          orderDate: null,
-          shippedDate: null,
-          shipAddress: {
-            address: null,
-            city: null,
-            zipcode: null,
-            country: null
-          }
-        },
         productId: null,
-        customers: [],
-        customerList: [],
-        categoryList: [],
+        // customers: [],
+        // customerList: [],
+        // categoryList: [],
         products: []
       }
     },
     computed: {
       newOrder () {
         return 'New Order'
-      }
+      },
+      ...mapState('orders',
+        {
+          order: 'order',
+          customers: 'customsers',
+          categories: 'categories',
+          loading: 'loading',
+          mode: 'mode',
+          snackbar: 'snackbar',
+          notice: 'notice'
+        }),
     },
     watch: {
       categoryId () {
@@ -203,27 +205,29 @@
       selectCustomer (item) {
         this.order.customerId = item.value
       },
-      getById () {
-        this.api.getData('orders/' + this.$route.params.id + '?_expand=customer').then((res) => {
-          this.order = res.data
-          this.order.customer.name = this.order.customer.firstName + ' ' + this.order.customer.lastName
-        }, (err) => {
-          console.log(err)
-        })
+      getOrderById () {
+        // this.api.getData('orders/' + this.$route.params.id + '?_expand=customer').then((res) => {
+        //   this.order = res.data
+        //   this.order.customer.name = this.order.customer.firstName + ' ' + this.order.customer.lastName
+        // }, (err) => {
+        //   console.log(err)
+        // })
+        Store.dispatch('orders/getOrderById', this.$route.params.id)
       },
       getCustomers () {
-        this.api.getData('customers').then((res) => {
-          this.customers = res.data
-          this.customerList = []
-          this.customers.forEach((c) => {
-            let customer = c
-            customer.text = c.firstName + ' ' + c.lastName
-            customer.value = c.id
-            this.customerList.push(customer)
-          })
-        }, (err) => {
-          console.log(err)
-        })
+        // this.api.getData('customers').then((res) => {
+        //   this.customers = [];
+        //   // this.customerList = []
+        //   res.data.forEach((c) => {
+        //     let customer = c
+        //     customer.text = c.firstName + ' ' + c.lastName
+        //     customer.value = c.id
+        //     this.customers.push(customer)
+        //   })
+        // }, (err) => {
+        //   console.log(err)
+        // })
+        Store.dispatch('orders/getCustomers')
       },
       cancel () {
         this.$router.push({ name: 'Orders' })
@@ -248,19 +252,20 @@
       cancelAddProduct () {
         this.addProductDialog = false
       },
-      getCategorys () {
-        this.api.getData('categories').then((res) => {
-          this.categorys = res.data
-          this.categoryList = []
-          this.categorys.forEach((c) => {
-            let category = c
-            category.text = c.categoryName
-            category.value = c.id
-            this.categoryList.push(category)
-          })
-        }, (err) => {
-          console.log(err)
-        })
+      getCategories () {
+        // this.api.getData('categories').then((res) => {
+        //   this.categorys = res.data
+        //   this.categoryList = []
+        //   this.categorys.forEach((c) => {
+        //     let category = c
+        //     category.text = c.categoryName
+        //     category.value = c.id
+        //     this.categoryList.push(category)
+        //   })
+        // }, (err) => {
+        //   console.log(err)
+        // })
+        Store.dispatch('orders/getCategories')
       },
       getProducts (categoryId) {
         this.api.getData('products?_expand=category&categoryId=' + categoryId).then((res) => {
@@ -270,11 +275,13 @@
         })
       }
     },
-    mounted () {
+    created () {
+      this.getCategories()
+      this.getOrderById()
       this.getCustomers()
-      this.getCategorys()
+    },
+    mounted () {
       if (this.$route.params.id) {
-        this.getById()
         this.title = 'Edit Order'
       } else this.title = 'New Order'
     }
