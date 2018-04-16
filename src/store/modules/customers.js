@@ -25,30 +25,31 @@ const state = {
   notice: "",
   order: "",
   customer: "",
-  customerList: [],
+  orders: [],
+  orderList: [],
 };
 
 const getters = {};
 
 const actions = {
-  getCustomers ({ commit }) {
-    api.getData("customers").then(res => {
+  getOrders ({ commit }) {
+    api.getData("orders").then(res => {
       if (res.data && res.data.length > 0) {
-        const customerList = res.data.map(c => {
+        const orderList = res.data.map(c => {
           c.text = c.firstName + " " + c.lastName;
           c.value = c.id;
           return c;
         });
-        commit("setCustomerList", customerList);
+        commit("setOrderList", orderList);
       }
     });
   },
   getCustomerById ({ commit }, id) {
     if (id) {
-      api.getData("orders/" + id + "?_expand=customer").then(
+      api.getData("customers/" + id).then(
         res => {
-          const order = res.data;
-          commit("setCustomer", { order });
+          const customer = res.data;
+          commit("setCustomer", { customer });
         },
         err => {
           console.log(err);
@@ -60,36 +61,30 @@ const actions = {
   },
   getAllCustomers ({ commit }) {
     commit("setLoading", { loading: true });
-    api.getData("orders?_expand=customer").then(res => {
-      const orders = res.data;
+    api.getData("customers?_embed=orders").then(res => {
+      const customers = res.data;
 
-      orders.forEach(item => {
-        // p.categoryName = p.category.categoryName;
-        let amount = 0;
-        item.products.forEach(e => {
-          amount += e.unitPrice;
-        });
-        item.amount = amount;
-        item.quantity = item.products.length;
-        item.customer = item.customer ? item.customer.firstName + " " + item.customer.lastName : "";
+      customers.forEach(item => {
+        item.orderAmount = item.orders.length;
+
       });
-      commitPagination(commit, orders);
+      commitPagination(commit, customers);
       commit("setLoading", { loading: false });
     });
   },
   searchCustomers ({ commit }, searchQuery, pagination) {
-    api.getData("orders?_expand=customer&" + searchQuery).then(res => {
-      const orders = res.data;
-      orders.forEach(p => {
-        p.categoryName = p.category.categoryName;
+    api.getData("customers?_embed=orders&" + searchQuery).then(res => {
+      const customers = res.data;
+      customers.forEach(p => {
+        p.orderAmount = p.orders.length;
       });
-      commitPagination(commit, orders);
+      commitPagination(commit, customers);
     });
   },
   quickSearch ({ commit }, { headers, qsFilter, pagination }) {
     // TODO: Following solution should be replaced by DB full-text search for production
-    api.getData("orders?_expand=customer").then(res => {
-      const orders = res.data.filter(r =>
+    api.getData("customers?_embed=orders").then(res => {
+      const customers = res.data.filter(r =>
         headers.some(header => {
           const val = get(r, [header.value]);
           return (
@@ -102,21 +97,15 @@ const actions = {
           );
         })
       );
-      orders.forEach(item => {
-        let amount = 0;
-        item.products.forEach(e => {
-          amount += e.unitPrice;
-        });
-        item.amount = amount;
-        item.quantity = item.products.length;
-        item.customer = item.customer ? item.customer.firstName + " " + item.customer.lastName : "";
+      customers.forEach(item => {
+        item.orderAmount = item.orders.length;
       });
-      commitPagination(commit, orders);
+      commitPagination(commit, customers);
     });
   },
   deleteCustomer ({ commit, dispatch }, id, query, pagination) {
     api
-      .deleteData("orders/" + id.toString())
+      .deleteData("customers/" + id.toString())
       .then(res => {
         return new Promise((resolve, reject) => {
           sendSuccessNotice(commit, "Operation is done.");
@@ -133,7 +122,7 @@ const actions = {
     delete order.category;
     if (!order.id) {
       api
-        .postData("orders", order)
+        .postData("customers", order)
         .then(res => {
           const order = res.data;
           commit("setCustomer", { order });
@@ -146,7 +135,7 @@ const actions = {
         });
     } else {
       api
-        .putData("orders/" + order.id.toString(), order)
+        .putData("customers/" + order.id.toString(), order)
         .then(res => {
           const order = res.data;
           commit("setCustomer", { order });
@@ -159,14 +148,17 @@ const actions = {
         });
     }
   },
+  closeSnackBar ({ commit }, timeout ) {
+    closeNotice(commit, timeout);
+  }
 };
 
 const mutations = {
-  setCustomerList (state, categories) {
-    state.categories = categories;
+  setOrderList (state, orders) {
+    state.orders = orders;
   },
-  setItems (state, orders) {
-    state.items = orders;
+  setItems (state, customers) {
+    state.items = customers;
   },
   setPagination (state, pagination) {
     state.pagination = pagination;

@@ -133,11 +133,7 @@ export default {
     },
     onConfirm () {
       Store.dispatch(
-        "orders/deleteOrder",
-        this.orderId,
-        // this.query,
-        // this.pagination
-      ).then(() => {
+        "orders/deleteOrder", this.orderId).then(() => {
         Store.dispatch("orders/searchOrders", this.query, this.pagination);
         Store.dispatch("orders/closeSnackBar", 2000);
       });
@@ -146,21 +142,6 @@ export default {
     onCancel () {
       this.orderId = "";
       this.dialog = false;
-    },
-    getOrders () {
-      this.api.getData('orders?_expand=customer').then((res) => {
-        this.items = res.data
-        this.items.forEach(item => {
-          let amount = 0
-          item.products.forEach((e) => { amount += e.unitPrice })
-          item.amount = amount
-          item.quantity = item.products.length
-          item.customer = item.customer ? item.customer.firstName + ' ' + item.customer.lastName : ''
-        })
-        this.pagination.totalItems = this.items.length
-      }, (err) => {
-        console.log(err)
-      })
     },
     searchOrders () {
       this.rightDrawer = !this.rightDrawer;

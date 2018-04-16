@@ -37,7 +37,7 @@ const getters = {
 const actions = {
   getCustomers ({ commit }) {
     api.getData("customers").then(res => {
-       if (res.data && res.data.length > 0){
+       if (res.data){
         const customers = res.data.map(c => {
           c.text = c.firstName + " " + c.lastName;
           c.value = c.id;
@@ -81,8 +81,13 @@ const actions = {
   getProductsByCategory ({ commit }, categoryId) {
     if (categoryId) {
       api.getData("products?_expand=category&categoryId=" + categoryId).then(res => {
-          const products = res.data;
-          commit("setProducts", { products });
+          const products = res.data.map(p => {
+            p.text = p.productName
+            p.value = p.id
+            return p
+          })
+          console.log(products)
+          commit("setProducts",  products);
         }, err => {
           console.log(err);
         });
@@ -135,7 +140,7 @@ const actions = {
       commitPagination(commit, orders);
     });
   },
-  deleteOrder ({ commit, dispatch }, id) {
+  deleteOrder ({ state, commit, dispatch }, id) {
     api
       .deleteData("orders/" + id.toString())
       .then(res => {
@@ -151,8 +156,22 @@ const actions = {
           closeNotice(commit, 1500);
       });
   },
+  addProductToOrder ({ commit, state }, productId) {
+    if (productId){
+      const  products = state.order.products || [];
+      products.push(state.products.find(p => p.id === productId))
+      commit("setOrderProducts", products)
+    }
+  },
+  deleteProduct ({ commit }, product) {
+    if (product){
+      const { products } = state.order;
+      products.splice(products.findIndex(p => p.id === product.id), 1)
+      commit("setOrderProducts", products);
+    }
+  },
   saveOrder ({ commit, dispatch }, order) {
-    delete order.category;
+    // delete order;
     if (!order.id) {
       api
         .postData("orders", order)
@@ -194,7 +213,12 @@ const mutations = {
     state.categories = categories;
   },
   setProducts (state, products) {
+    console.log(products)
     state.products = products
+  },
+  setOrderProducts (state, products) {
+
+    state.order.products = products;
   },
   setItems (state, orders) {
     state.items = orders;

@@ -64,10 +64,10 @@ export default {
   },
   methods: {
     save () {
-      const product = this.product
+      const product = Object.assign({}, this.product)
       delete product.category
 
-      Store.dispatch('products/saveProduct', this.product)
+      Store.dispatch('products/saveProduct', product)
         .then(() => {
           Store.dispatch("products/closeSnackBar", 2000)
         })
@@ -106,7 +106,9 @@ export default {
     this.getProduct()
   },
   mounted () {
-
+      if (this.$route.params.id) {
+        this.title = 'Edit Product'
+      } else this.title = 'New Product'
   }
 }
 </script>

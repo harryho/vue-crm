@@ -82,19 +82,15 @@
                         <v-list-tile-sub-title class="grey--text text--darken-4">AUD ${{ item.unitPrice }}</v-list-tile-sub-title>
                         <!--<v-list-tile-sub-title>{{ item.unitInStock }}
                           </v-list-tile-sub-title>-->
-
                       </v-list-tile-content>
                       <v-list-tile-action>
-                        <v-btn fab small class="navy" @click.native="remove(index)">
+                        <v-btn fab small class="navy" @click.native="remove(item)">
                           <v-icon v-bind:class="[item.active ? 'teal--text': 'grey--text']">delete</v-icon>
                         </v-btn>
                       </v-list-tile-action>
-                  </v-list-tile>
-              
+                  </v-list-tile>              
                 </v-list>
-
               </v-flex>
-
             </v-layout>
           </v-container>
         </v-card-text>
@@ -102,15 +98,15 @@
     </v-flex>
 
     <v-layout row justify-center>
-      <v-dialog v-model="addProductDialog" width="700" persistent>
+      <v-dialog v-model="addProductModal" width="700" persistent>
         <v-card>
-          <v-card-title>{{dialogTitle}}</v-card-title>
-          <v-card-text>{{dialogText}}</v-card-text>
+          <v-card-title>{{modalTitle}}</v-card-title>
+          <v-card-text>{{modalText}}</v-card-text>
           <v-card-text>
             <v-container fluid grid-list-md>
               <v-layout row wrap>
                 <v-flex md6 xs12>
-                  <v-select required v-bind:items="categories" label="Category" v-model="categoryId"></v-select>
+                  <v-select required v-bind:items="categories" label="Category" v-model="categoryId"  v-on:change="getProductsByCategory"></v-select>
                 </v-flex>
                 <v-flex md6 xs12>
                   <v-select required v-bind:items="products" label="Product" v-model="productId"></v-select>
@@ -125,160 +121,119 @@
         </v-card>
       </v-dialog>
     </v-layout>
-
+      <confirm-dialog :dialog="dialog" :dialogTitle="dialogTitle" :dialogText="dialogText" @onConfirm="onConfirm" @onCancel="onCancel" ></confirm-dialog>
+    <v-snackbar v-if="loading===false" :right="true" :timeout="timeout" :color="mode" v-model="snackbar" >
+      {{ notice }}
+      <v-btn dark flat @click.native="closeSnackbar">Close</v-btn>
+    </v-snackbar>
   </v-container>
 </template>
 <script>
 /* global Store */
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
 import {Product} from '../models'
 import { mapState, dispatch } from 'vuex'
   export default {
+    components: {
+      ConfirmDialog
+    },
     data () {
       return {
         categoryId: null,
-        dialogTitle: 'Add Product',
-        dialogText: 'Select the category and product from the list',
-        addProductDialog: false,
+        modalTitle: 'Add Product',
+        modalText: 'Select the category and product from the list',
+        addProductModal: false,
+        dialog: false,
+        dialogTitle: "Product Delete Dialog",
+        dialogText: "Do you want to delete this product?",
         orderDateMenu: false,
         shippedDateMenu: false,
         errors: [],
         title: '',
         productId: null,
-        // customers: [],
-        // customerList: [],
-        // categoryList: [],
-        products: []
+        snackbarStatus: false,
+        timeout: 3000,
+        color: '',
+        selectedProduct: null
+
       }
     },
     computed: {
-      newOrder () {
-        return 'New Order'
-      },
       ...mapState('orders',
         {
           order: 'order',
-          customers: 'customsers',
+          customers: 'customers',
           categories: 'categories',
+          products: 'products',
           loading: 'loading',
           mode: 'mode',
           snackbar: 'snackbar',
           notice: 'notice'
         }),
     },
-    watch: {
-      categoryId () {
-        if (this.categoryId > 0) {
-          this.products = []
-          this.api.getData('products?categoryId=' + this.categoryId).then((res) => {
-            res.data.forEach((c) => {
-              let product = c
-              product.text = c.productName
-              product.value = c.id
-              this.products.push(product)
-            })
-            return this.products
-          }, (err) => {
-            console.log(err)
-          })
-        }
-      }
-    },
     methods: {
       save () {
-        let order = this.order
-        delete this.order.customer
-
-        if (!order.id) {
-          this.api.postData('orders', order).then((res) => {
-            this.$router.push({ name: 'Orders' })
-          }, (err) => {
-            console.log(err)
-          })
-        } else {
-          this.api.putData('orders/' + order.id.toString(), order).then((res) => {
-            this.$router.push({ name: 'Orders' })
-          }, (err) => {
-            console.log(err)
-          })
-        }
+        const order = { ...this.order }
+        delete order.customer
+        console.log(order)
+        Store.dispatch('orders/saveOrder', order)
+        .then(() => {
+          Store.dispatch("orders/closeSnackBar", 2000)
+        })
       },
       selectCustomer (item) {
         this.order.customerId = item.value
       },
       getOrderById () {
-        // this.api.getData('orders/' + this.$route.params.id + '?_expand=customer').then((res) => {
-        //   this.order = res.data
-        //   this.order.customer.name = this.order.customer.firstName + ' ' + this.order.customer.lastName
-        // }, (err) => {
-        //   console.log(err)
-        // })
         Store.dispatch('orders/getOrderById', this.$route.params.id)
       },
       getCustomers () {
-        // this.api.getData('customers').then((res) => {
-        //   this.customers = [];
-        //   // this.customerList = []
-        //   res.data.forEach((c) => {
-        //     let customer = c
-        //     customer.text = c.firstName + ' ' + c.lastName
-        //     customer.value = c.id
-        //     this.customers.push(customer)
-        //   })
-        // }, (err) => {
-        //   console.log(err)
-        // })
         Store.dispatch('orders/getCustomers')
       },
       cancel () {
         this.$router.push({ name: 'Orders' })
       },
-      remove (index) {
-        const rootComponent = this.appUtil.getRootComponent(this)
-        if (rootComponent) {
-          rootComponent.openDialog('Do you want to delete this item?', '', () => {
-            this.order.products.splice(index, 1)
-          })
-        }
+      remove (item) {
+        this.selectedProduct = item;
+        this.dialog = true;
+      },
+      onConfirm () {
+        Store.dispatch(
+          "orders/deleteProduct", Object.assign({}, this.selectedProduct)
+        );
+        this.selectedProduct = null;
+        this.dialog = false;
+      },
+      onCancel () {
+        this.selectedProduct = null;
+        this.dialog = false;
       },
       addProduct () {
-        this.addProductDialog = true
+        this.addProductModal = true
       },
       saveProduct () {
-        let product = this.products.find((e) => { if (e.id === this.productId) return e })
-        this.order.products.push(Object.assign({}, product))
-        this.product = null
-        this.addProductDialog = false
+        Store.dispatch('orders/addProductToOrder', this.productId)
+        this.productId = null;
+        this.addProductModal = false
       },
       cancelAddProduct () {
-        this.addProductDialog = false
+        this.addProductModal = false
       },
       getCategories () {
-        // this.api.getData('categories').then((res) => {
-        //   this.categorys = res.data
-        //   this.categoryList = []
-        //   this.categorys.forEach((c) => {
-        //     let category = c
-        //     category.text = c.categoryName
-        //     category.value = c.id
-        //     this.categoryList.push(category)
-        //   })
-        // }, (err) => {
-        //   console.log(err)
-        // })
         Store.dispatch('orders/getCategories')
       },
-      getProducts (categoryId) {
-        this.api.getData('products?_expand=category&categoryId=' + categoryId).then((res) => {
-          this.products = res.data
-        }, (err) => {
-          console.log(err)
-        })
-      }
+      getProductsByCategory (){
+        this.categoryId && Store.dispatch('orders/getProductsByCategory', this.categoryId)
+      },
+      closeSnackbar () {
+        Store.commit("orders/setSnackbar", { snackbar: false });
+        Store.commit("orders/setNotice", { notice: "" });
+      },
     },
     created () {
+      this.getCustomers()
       this.getCategories()
       this.getOrderById()
-      this.getCustomers()
     },
     mounted () {
       if (this.$route.params.id) {
