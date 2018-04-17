@@ -155,7 +155,6 @@ import { mapState, dispatch } from 'vuex'
         timeout: 3000,
         color: '',
         selectedProduct: null
-
       }
     },
     computed: {

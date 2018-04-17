@@ -19,12 +19,11 @@ const state = {
   pagination: {},
   // page: 0,
   // pages: 0,
-  loading: false,
+  loading: true,
   mode: "",
   snackbar: false,
   notice: "",
-  order: "",
-  customer: "",
+  customer: new Customer(),
   orders: [],
   orderList: [],
 };
@@ -45,18 +44,21 @@ const actions = {
     });
   },
   getCustomerById ({ commit }, id) {
+    commit("setLoading", { loading: true });
     if (id) {
       api.getData("customers/" + id).then(
         res => {
           const customer = res.data;
           commit("setCustomer", { customer });
+          commit("setLoading", { loading: false });
         },
         err => {
           console.log(err);
         }
       );
     } else {
-      commit("setCustomer", { order: new Customer() });
+      commit("setCustomer", { customer: new Customer() });
+      commit("setLoading", { loading: false });
     }
   },
   getAllCustomers ({ commit }) {
@@ -118,15 +120,15 @@ const actions = {
         closeNotice(commit, 1500);
       });
   },
-  saveCustomer ({ commit, dispatch }, order) {
-    delete order.category;
-    if (!order.id) {
+  saveCustomer ({ commit, dispatch }, customer) {
+    // delete customer.category;
+    if (!customer.id) {
       api
-        .postData("customers", order)
+        .postData("customers", customer)
         .then(res => {
-          const order = res.data;
-          commit("setCustomer", { order });
-          sendSuccessNotice(commit, "New order has been added.");
+          const customer = res.data;
+          commit("setCustomer", { customer });
+          sendSuccessNotice(commit, "New customer has been added.");
         })
         .catch(err => {
           console.log(err);
@@ -135,10 +137,10 @@ const actions = {
         });
     } else {
       api
-        .putData("customers/" + order.id.toString(), order)
+        .putData("customers/" + customer.id.toString(), customer)
         .then(res => {
-          const order = res.data;
-          commit("setCustomer", { order });
+          const customer = res.data;
+          commit("setCustomer", { customer });
           sendSuccessNotice(commit, "Customer has been updated.");
         })
         .catch(err => {
@@ -176,8 +178,8 @@ const mutations = {
   setMode (state, { mode }) {
     state.mode = mode;
   },
-  setCustomer (state, { order }) {
-    state.order = order;
+  setCustomer (state, { customer }) {
+    state.customer = customer;
   },
 };
 

@@ -14,7 +14,8 @@
     </template>
 
     <template class="body-2" slot="items" slot-scope="props">
-      <td  v-for="(header, index) in headers" :key="index" :class="[ index === 0? 'text-xs-left': 'text-xs-center', 'body-2']" v-if="header.value!==''">
+      <td  v-for="(header, index) in headers" :key="index" 
+          :class="[ index === 0? 'text-xs-left': 'text-xs-center', 'body-2']" v-if="header.value!==''">
         {{renderData(props.item, header)}}
       </td>
         <td class="text-xs-right">
@@ -51,12 +52,17 @@ export default {
   },
   methods: {
     renderData: (item, header) => {
+      let val = "";
       if (header.value.includes('.')) {
         const vals = header.value.split('.')
-        return vals.reduce((acc, val) => acc[val], item)
+        val = vals.reduce((acc, val) => acc[val], item)
       } else {
-        return item[header.value]
+        val = item[header.value]
       }
+      if (typeof val === "boolean") {
+        val = val ? "Yes" : "No";
+      }
+      return val;
     }
   },
   computed: {
