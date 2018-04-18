@@ -10,8 +10,8 @@
   },
   "customers": [
     {
-      "isActive": false,
-      "age": 21,
+      "membership": false,
+      "rewards": 21,
       "id": 2,
       "firstName": "Larsen",
       "lastName": "Shaw",
@@ -19,8 +19,8 @@
       "avatar": "/assets/img/avatar3.png"
     },
     {
-      "isActive": false,
-      "age": 89,
+      "membership": false,
+      "rewards": 89,
       "id": 4,
       "firstName": "Rosseta",
       "lastName": "Wilson",
@@ -28,8 +28,8 @@
       "avatar": "/assets/img/avatar4.png"
     },
     {
-      "isActive": false,
-      "age": 38,
+      "membership": false,
+      "rewards": 38,
       "id": 5,
       "firstName": "William",
       "lastName": "Carney",
@@ -37,8 +37,8 @@
       "avatar": "/assets/img/avatar2.png"
     },
     {
-      "isActive": false,
-      "age": 23,
+      "membership": false,
+      "rewards": 23,
       "id": 6,
       "firstName": "Sarah",
       "lastName": "Dunne",
@@ -46,8 +46,8 @@
       "avatar": "/assets/img/avatar1.png"
     },
     {
-      "isActive": true,
-      "age": 23,
+      "membership": true,
+      "rewards": 23,
       "id": 8,
       "firstName": "Merriana",
       "lastName": "Sean",
@@ -55,8 +55,8 @@
       "avatar": "/assets/img/avatar5.png"
     },
     {
-      "isActive": true,
-      "age": 26,
+      "membership": true,
+      "rewards": 26,
       "id": 9,
       "firstName": "Jubino",
       "lastName": "Gerret",
@@ -64,8 +64,8 @@
       "avatar": "/assets/img/avatar1.png"
     },
     {
-      "isActive": false,
-      "age": 22,
+      "membership": false,
+      "rewards": 22,
       "id": 10,
       "firstName": "Geneva",
       "lastName": "Wilson",
@@ -73,8 +73,8 @@
       "avatar": "/assets/img/avatar2.png"
     },
     {
-      "isActive": true,
-      "age": 38,
+      "membership": true,
+      "rewards": 38,
       "id": 11,
       "firstName": "Mark",
       "lastName": "Carney",
@@ -82,8 +82,8 @@
       "avatar": "/assets/img/avatar5.png"
     },
     {
-      "isActive": false,
-      "age": 27,
+      "membership": false,
+      "rewards": 27,
       "id": 12,
       "firstName": "Yann",
       "lastName": "Larrel",
@@ -91,10 +91,10 @@
       "avatar": "/assets/img/avatar1.png"
     },
     {
-      "isActive": true,
+      "membership": true,
       "firstName": "John",
       "lastName": "Doe",
-      "age": 88,
+      "rewards": 88,
       "email": "john.doe@test.com",
       "id": 13
     },
@@ -102,9 +102,9 @@
       "avatar": null,
       "firstName": "sdfsdf",
       "lastName": "sdfsdf",
-      "age": 22,
+      "rewards": 22,
       "email": "sdfsdfsdfs",
-      "isActive": false,
+      "membership": false,
       "id": 14
     }
   ],
