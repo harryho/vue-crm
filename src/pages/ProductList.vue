@@ -127,8 +127,6 @@ export default {
       Store.dispatch(
         "products/deleteProduct",
         this.productId,
-        // this.query,
-        // this.pagination
       ).then(() => {
         Store.dispatch("products/searchProducts", this.query, this.pagination);
         Store.dispatch("products/closeSnackBar", 2000);

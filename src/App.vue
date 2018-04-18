@@ -78,23 +78,12 @@
         <span >&copy; Vue-CRM 2018</span>
       </v-footer>
     </template>
-    <!-- <v-dialog v-model="dialog" persistent max-width="290">
-      <v-card>
-        <v-card-title>{{dialogTitle}}</v-card-title>
-        <v-card-text>{{dialogText}}</v-card-text>
-        <v-card-actions>
-          <v-btn class="green--text darken-1" flat="flat" @click.native="onConfirm">Confirm</v-btn>
-          <v-btn class="orange--text darken-1" flat="flat" @click.native="onCancel">Cancel</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog> -->
   </v-app>
 
 </template>
 <script>
 import auth from "./utils/auth";
 import { mapState } from "vuex";
-// import Products from './pages/Products.vue'
 export default {
   data () {
     return {
@@ -204,35 +193,6 @@ export default {
         name: item.title
       });
     },
-    // openDialog (
-    //   dialogText,
-    //   dialogTitle,
-    //   confirmCallback,
-    //   canelCallbak
-    // ) {
-    //   this.dialog = true;
-    //   this.dialogText = dialogText;
-    //   this.dialogTitle = dialogTitle;
-    //   if (confirmCallback) this.confirmCallback = confirmCallback;
-    //   if (canelCallbak) this.cancelCallback = canelCallbak;
-    // },
-    // confirmCallback () {},
-    // cancelCallback () {},
-    // onConfirm () {
-    //   this.dialog = false;
-    //   this.dialogText = "";
-    //   this.dialogTitle = "";
-    //   this.confirmCallback();
-    //   this.confirmCallback = () => {};
-    // },
-    // onCancel () {
-    //   this.dialog = false;
-    //   this.dialogText = "";
-    //   this.dialogTitle = "";
-    //   this.cancelCallback();
-    //   this.cancelCallback = () => {};
-    //   console.log("Cancelled");
-    // }
   },
   mounted () {
     this.$Progress.finish();

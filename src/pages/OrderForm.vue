@@ -25,7 +25,6 @@
                 <v-text-field name="reference" label="Reference" hint="Reference is required" value="Input text" v-model="order.reference"
                   class="input-group--focused" required></v-text-field>
               </v-flex>
-
               <v-flex md4 xs12>
                 <v-text-field name="Amount" prefix="AUD $" label="Price" hint="Price is required" value="Input text" v-model="order.amount"
                   class="input-group--focused" required></v-text-field>
@@ -37,7 +36,6 @@
               <v-flex md4 xs12>
                 <v-select required v-bind:items="customers" label="Customer" v-model="order.customerId"></v-select>
               </v-flex>
-
               <v-flex md4 xs12>
                 <v-menu lazy :close-on-content-click="false" v-model="orderDateMenu" transition="v-scale-transition" offset-y full-width
                   :nudge-left="40" max-width="290px">

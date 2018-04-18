@@ -1,7 +1,6 @@
 <template>
   <div>
   <v-data-table class="elevation-1" v-bind:headers="headers" v-bind:items="items" v-bind:search="search" v-bind:pagination="pagination" hide-actions>
-
       <template slot="headers" slot-scope="props">
           <tr>
             <th v-for="(header, index) in props.headers" :key="header.text"
@@ -12,7 +11,6 @@
             </th>
           </tr>
     </template>
-
     <template class="body-2" slot="items" slot-scope="props">
       <td  v-for="(header, index) in headers" :key="index" 
           :class="[ index === 0? 'text-xs-left': 'text-xs-center', 'body-2']" v-if="header.value!==''">

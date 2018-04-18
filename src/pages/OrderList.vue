@@ -9,16 +9,13 @@
             <v-spacer></v-spacer>
             <v-btn class="blue-grey" fab small dark @click.native.stop="rightDrawer = !rightDrawer">
               <v-icon>search</v-icon>
-            </v-btn>
-            <!-- &nbsp; -->
+            </v-btn>            
             <v-btn class="brown lighten-1" fab small dark @click.native="reloadData()">
               <v-icon>refresh</v-icon>
-            </v-btn>
-            <!-- &nbsp; -->
+            </v-btn>            
             <v-btn class="teal darken-2" fab small dark @click.native="print()">
               <v-icon>print</v-icon>
-            </v-btn>
-            <!-- &nbsp; -->
+            </v-btn>            
             <v-btn class="deep-orange darken-3" fab small dark @click.native="add">
               <v-icon>add</v-icon>
             </v-btn>

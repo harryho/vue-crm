@@ -18,8 +18,8 @@ export class Customer extends User {
 
   constructor () {
     super();
-    this.isActive = true;
-    this.age = 0;
+    this.membership = true;
+    this.rewards = 0;
     this.orders = [];
   }
 }

@@ -17,8 +17,6 @@ import { get } from "lodash";
 const state = {
   items: [],
   pagination: {},
-  // page: 0,
-  // pages: 0,
   loading: true,
   mode: "",
   snackbar: false,
@@ -121,7 +119,6 @@ const actions = {
       });
   },
   saveCustomer ({ commit, dispatch }, customer) {
-    // delete customer.category;
     if (!customer.id) {
       api
         .postData("customers", customer)
