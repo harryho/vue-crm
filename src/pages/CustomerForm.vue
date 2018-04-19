@@ -32,6 +32,14 @@
                   <v-text-field name="email" type="email" label="Email" value="Input text" v-model="customer.email"
                   v-bind:rules="rules.email" class="input-group--focused" required></v-text-field>
                 </v-flex>
+                 <v-flex md3 sm6  xs12  class="mx-1 px-0">
+                  <v-text-field name="mobile" type="text" label="Mobile"                
+                  v-model="customer.mobile" class="input-group--focused" required></v-text-field>
+                </v-flex>
+                  <v-flex md3 sm6  xs12  class="mx-1 px-0">
+                  <v-text-field name="workphone" type="text" label="Work Phone"               
+                  v-model="customer.workphone" class="input-group--focused" required></v-text-field>
+                </v-flex>
                 <v-flex md3 sm6  xs12  class="mx-1 px-0">
                   <v-text-field name="rewards" type="number" label="Rewards" hint="Number between 0 and 9999" 
                   v-bind:rules="rules.rewards"

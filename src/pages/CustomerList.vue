@@ -95,6 +95,7 @@ export default {
         },
         { text: 'Last Name', value: 'lastName' },
         { text: 'Email', value: 'email' },
+        { text: 'Mobile', value: 'mobile' },
         { text: 'Reward', value: 'rewards' },
         { text: 'Previous Order(s)', value: 'orderAmount' },
         { text: 'Membership', value: 'membership' },

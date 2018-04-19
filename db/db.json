@@ -11,6 +11,7 @@
   "customers": [
     {
       "membership": false,
+      "mobile": "555-555-555",
       "rewards": 21,
       "id": 2,
       "firstName": "Larsen",
@@ -20,6 +21,7 @@
     },
     {
       "membership": false,
+      "mobile": "555-555-555",
       "rewards": 89,
       "id": 4,
       "firstName": "Rosseta",
@@ -29,6 +31,7 @@
     },
     {
       "membership": false,
+      "mobile": "555-555-555",
       "rewards": 38,
       "id": 5,
       "firstName": "William",
@@ -38,6 +41,7 @@
     },
     {
       "membership": false,
+      "mobile": "555-555-555",
       "rewards": 23,
       "id": 6,
       "firstName": "Sarah",
@@ -47,6 +51,7 @@
     },
     {
       "membership": true,
+      "mobile": "555-555-555",
       "rewards": 23,
       "id": 8,
       "firstName": "Merriana",
@@ -56,6 +61,7 @@
     },
     {
       "membership": true,
+      "mobile": "555-555-555",
       "rewards": 26,
       "id": 9,
       "firstName": "Jubino",
@@ -65,6 +71,7 @@
     },
     {
       "membership": false,
+      "mobile": "555-555-555",
       "rewards": 22,
       "id": 10,
       "firstName": "Geneva",
@@ -74,6 +81,7 @@
     },
     {
       "membership": true,
+      "mobile": "555-555-555",
       "rewards": 38,
       "id": 11,
       "firstName": "Mark",
@@ -83,6 +91,7 @@
     },
     {
       "membership": false,
+      "mobile": "555-555-555",
       "rewards": 27,
       "id": 12,
       "firstName": "Yann",
@@ -94,6 +103,7 @@
       "membership": true,
       "firstName": "John",
       "lastName": "Doe",
+      "mobile": "555-555-555",
       "rewards": 88,
       "email": "john.doe@test.com",
       "id": 13
@@ -102,6 +112,7 @@
       "avatar": null,
       "firstName": "sdfsdf",
       "lastName": "sdfsdf",
+      "mobile": "555-555-555",
       "rewards": 22,
       "email": "sdfsdfsdfs",
       "membership": false,
