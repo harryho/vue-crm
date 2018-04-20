@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-flex xs12>
       <v-card class="grey lighten-4 elevation-0">
-        <v-card-title>
+        <v-card-title class="title">
           {{title}}
           <v-spacer></v-spacer>
           <v-btn fab small class="grey" @click.native="cancel()">
@@ -17,7 +17,7 @@
           <v-container fluid grid-list-sm>
               <v-layout row wrap >
                     <v-flex sm2 xs12>
-                      <img v-if="customer.avatar" class="profile" v-bind:src="customer.avatar"/>                    
+                      <img v-if="customer.avatar" class="profile" v-bind:src="customer.avatar"/>
                   </v-flex>
                 <v-flex sm10 xs12>
                 <v-container fluid grid-list-sm>
@@ -27,21 +27,21 @@
                 </v-flex>
                 <v-flex md3 sm6  xs12  class="mx-1 px-0">
                   <v-text-field name="lastName" label="Last Name" maxlength="10" hint="Last name is required" value="Input text" v-model="customer.lastName" class="input-group--focused" required></v-text-field>
-                </v-flex>            
+                </v-flex>
                 <v-flex md3 sm6  xs12  class="mx-1 px-0">
                   <v-text-field name="email" type="email" label="Email" value="Input text" v-model="customer.email"
                   v-bind:rules="rules.email" class="input-group--focused" required></v-text-field>
                 </v-flex>
                  <v-flex md3 sm6  xs12  class="mx-1 px-0">
-                  <v-text-field name="mobile" type="text" label="Mobile"                
+                  <v-text-field name="mobile" type="text" label="Mobile"
                   v-model="customer.mobile" class="input-group--focused" required></v-text-field>
                 </v-flex>
                   <v-flex md3 sm6  xs12  class="mx-1 px-0">
-                  <v-text-field name="workphone" type="text" label="Work Phone"               
+                  <v-text-field name="workphone" type="text" label="Work Phone"
                   v-model="customer.workphone" class="input-group--focused" required></v-text-field>
                 </v-flex>
                 <v-flex md3 sm6  xs12  class="mx-1 px-0">
-                  <v-text-field name="rewards" type="number" label="Rewards" hint="Number between 0 and 9999" 
+                  <v-text-field name="rewards" type="number" label="Rewards" hint="Number between 0 and 9999"
                   v-bind:rules="rules.rewards"
                   v-model="customer.rewards" class="input-group--focused" required></v-text-field>
                 </v-flex>

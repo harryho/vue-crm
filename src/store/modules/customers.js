@@ -1,8 +1,9 @@
 /* globals Store */
-import Vue from "vue";
-import Vuex from "vuex";
+// import Vue from "vue";
+// import Vuex from "vuex";
 
-import api from "@/utils/backend-api";
+// import api from "@/utils/backend-api";
+import api from "@/utils/demo-api";
 import { Customer } from "@/models";
 import {
   sendSuccessNotice,
@@ -30,7 +31,7 @@ const getters = {};
 
 const actions = {
   getOrders ({ commit }) {
-    api.getData("orders").then(res => {
+    api.getData("orders/").then(res => {
       if (res.data && res.data.length > 0) {
         const orderList = res.data.map(c => {
           c.text = c.firstName + " " + c.lastName;
@@ -65,7 +66,7 @@ const actions = {
       const customers = res.data;
 
       customers.forEach(item => {
-        item.orderAmount = item.orders.length;
+        item.orderAmount = item.orders ? item.orders.length : 0;
 
       });
       commitPagination(commit, customers);
@@ -121,7 +122,7 @@ const actions = {
   saveCustomer ({ commit, dispatch }, customer) {
     if (!customer.id) {
       api
-        .postData("customers", customer)
+        .postData("customers/", customer)
         .then(res => {
           const customer = res.data;
           commit("setCustomer", { customer });

@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-flex xs12>
       <v-card class="grey lighten-4 elevation-0">
-        <v-card-title>
+        <v-card-title class="title">
           {{title}}
           <v-spacer></v-spacer>
           <!--<v-text-field append-icon="search" label="Search" single-line hide-details v-model="search"></v-text-field>-->
@@ -71,8 +71,8 @@
               <v-flex xs12 v-if="order.products && order.products.length>0">
 
                 <v-list class="transparent elevation-0" two-line >
-                  <v-list-tile avatar ripple v-for="(item, index) in order.products"  
-                  v-if="item !== null && item !== undefined" v-bind:key="index" class="grey lighten-2 mt-2 mb-2 " >                    
+                  <v-list-tile avatar ripple v-for="(item, index) in order.products"
+                  v-if="item !== null && item !== undefined" v-bind:key="index" class="grey lighten-2 mt-2 mb-2 " >
                       <v-list-tile-content dark >
                         <v-list-tile-title class="heading blue--text">{{ item.productName }}
 
@@ -86,7 +86,7 @@
                           <v-icon v-bind:class="[item.active ? 'teal--text': 'grey--text']">delete</v-icon>
                         </v-btn>
                       </v-list-tile-action>
-                  </v-list-tile>              
+                  </v-list-tile>
                 </v-list>
               </v-flex>
             </v-layout>
@@ -114,7 +114,7 @@
           </v-card-text>
           <v-card-actions>
             <v-btn class="green--text darken-1" flat="flat" @click.native="saveProduct">Confirm</v-btn>
-            <v-btn class="green--text darken-1" flat="flat" @click.native="cancelAddProduct">Cancel</v-btn>
+            <v-btn class="orange--text darken-1" flat="flat" @click.native="cancelAddProduct">Cancel</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
