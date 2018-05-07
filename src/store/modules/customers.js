@@ -1,8 +1,3 @@
-/* globals Store */
-// import Vue from "vue";
-// import Vuex from "vuex";
-
-// import api from "@/utils/backend-api";
 import api from "@/utils/demo-api";
 import { Customer } from "@/models";
 import {

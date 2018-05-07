@@ -1,8 +1,8 @@
 import db from "./demo-db"
 
-const ds = ds || Object.assign({}, db)
+let ds = ds || Object.assign({}, db)
 
-function getModel (action) {
+function getModel(action) {
   if (action.includes('?') && action.includes('/')) {
     return action.indexOf('?') > action.indexOf('/') ? action.substring(0, action.indexOf('/')) : action.substring(0, action.indexOf('?'))
   } else {
@@ -10,12 +10,12 @@ function getModel (action) {
   }
 }
 
-function getId (action, model) {
+function getId(action, model) {
   action = action.substr(model.length + 1)
   return action.length > 0 && (action.includes('?') ? action.substring(0, action.indexOf('?')) : action)
 }
 
-function getExpand (action, model) {
+function getExpand(action, model) {
   action = action.substr(action.indexOf('?'))
   return action.includes('_expand') ? (
     action.includes('&') ?
@@ -23,13 +23,13 @@ function getExpand (action, model) {
       action.substring('_expand='.length + 1)) : undefined
 }
 
-function getEmbed (action, model) {
+function getEmbed(action, model) {
   return action.includes('?') ? action.substring(action.indexOf('/'), action.indexOf('?')) : action.substring(action.indexOf('/'))
 }
 
 
 export default {
-  getData (action) {
+  getData(action) {
 
     return new Promise(function (resolve, reject) {
       const model = getModel(action)
@@ -65,7 +65,7 @@ export default {
       setTimeout(resolve, 200, { data: result })
     });
   },
-  postData (action, data) {
+  postData(action, data) {
     return new Promise(function (resolve, reject) {
       const model = getModel(action)
       data.id = ds[model] + 1
@@ -73,7 +73,7 @@ export default {
       setTimeout(resolve, 200, { data: data })
     })
   },
-  putData (action, data) {
+  putData(action, data) {
     return new Promise(function (resolve, reject) {
       const model = getModel(action)
       const idx = ds[model].findIndex(d => d.id === data.id)
@@ -81,7 +81,7 @@ export default {
       setTimeout(resolve, 200, { data: data })
     })
   },
-  deleteData (action) {
+  deleteData(action) {
     return new Promise(function (resolve, reject) {
       const model = getModel(action)
       const id = getId()
@@ -89,9 +89,10 @@ export default {
       setTimeout(resolve, 200, { status: 200 })
     })
   },
-  login (action, data) {
+  login(action, data) {
+    ds = ds || Object.assign({}, db)
     return new Promise(function (resolve, reject) {
-      const { access_token , user } =  ds.token
+      const { access_token, user } = ds.token
       setTimeout(resolve, 200, {
         data: {
           access_token,

@@ -14,8 +14,6 @@ import {get} from "lodash"
 const state = {
   items: [],
   pagination: getDefaultPagination(),
-  // page: 0,
-  // pages: 0,
   loading: false,
   mode: "",
   snackbar: false,
