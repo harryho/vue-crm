@@ -16,6 +16,9 @@ The goal of this project is to create a reusable starter project for real-world 
 * To simulate real-world business, this starter project chooses Json-Server as fake Restful API. (You can simple replace it with your own API).
 * CRUD functions for Customer, Order and Product
 
+### Live Demo
+
+[Demo App](https://vue-app-demo.harryho.org):  The demo is just a proof of concept. It doesn't have back-end API and all features of master branch.
 
 #### Screenshots ( The actual UI will be slightly different because I am lazy to keep up to date :p )
 
