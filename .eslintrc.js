@@ -34,7 +34,7 @@ module.exports = {
     "block-spacing": "off",
     "object-property-newline": "off",
     "operator-linebreak":"off",
-    // "space-before-function-paren": "off",
+    "space-before-function-paren": "off",
     "eol-last":"off",
     // allow paren-less arrow functions
     'arrow-parens': 0,
