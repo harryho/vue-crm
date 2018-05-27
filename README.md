@@ -23,6 +23,8 @@ The goal of this project is to create a reusable starter project for real-world 
 
 ![Screenshot1](screenshots/screenshot-1.jpg)
 
+![Screenshot6](screenshots/screenshot-6.jpg)
+
 ![Screenshot2](screenshots/screenshot-2.jpg)
 
 ![Screenshot3](screenshots/screenshot-3.jpg)
