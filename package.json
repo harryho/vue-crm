@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "concurrently --kill-others \"npm run start:server\" \"npm run start\" ",
     "start": "node build/dev-server.js",
-    "start:server": "json-server -p 5354 db/db.json",
+    "start:server": "json-server -p  5354 --watch db/db.json",
     "server": "server.cmd",
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
