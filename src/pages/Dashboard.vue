@@ -24,7 +24,7 @@
         </v-card>
       </v-flex>
     </v-layout>
-    <v-layout class="pt-1 px-1" row wrap>
+    <v-layout class="" row wrap>
       <v-flex md4 xs12>
         <v-card light>
           <doughnut></doughnut>
@@ -36,7 +36,7 @@
         </v-card>
       </v-flex>
       <v-flex md4 xs12>
-        <v-card light class="Chart">
+        <v-card light >
           <line-chart></line-chart>
         </v-card>
       </v-flex>

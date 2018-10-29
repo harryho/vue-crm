@@ -49,7 +49,7 @@
           </v-list-tile>
         </v-list>
       </v-navigation-drawer>
-      <v-toolbar app="">
+      <v-toolbar app>
         <v-toolbar-side-icon @click.native.stop="drawer = !drawer" light></v-toolbar-side-icon>
         <v-spacer></v-spacer>
         <div class="text-xs-center pr-3">
@@ -71,12 +71,12 @@
           </v-btn>
       </v-toolbar>
       <v-content>
-        <v-container fluid fill-height>
-          <v-layout>
-            <v-flex row="">
+        <v-container fluid >
+          <!-- <v-layout>
+            <v-flex row=""> -->
               <router-view></router-view>
-            </v-flex>
-          </v-layout>
+            <!-- </v-flex>
+          </v-layout> -->
         </v-container>
       </v-content>
       <!-- <canvas id="canvas"></canvas> -->
@@ -98,9 +98,9 @@ export default {
       dialogText: "",
       dialogTitle: "",
       loggedIn: auth.loggedIn(),
-      isRootComponent: true,
+      // isRootComponent: true,
       // clipped: false,
-      drawer: true,
+      drawer: false,
       fixed: false,
       items: [
         {
