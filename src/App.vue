@@ -100,7 +100,7 @@
         loggedIn: auth.loggedIn(),
         isRootComponent: true,
         // clipped: false,
-        drawer: false,
+        drawer: window.innerWidth > 960,
         fixed: false,
         items: [
           {
