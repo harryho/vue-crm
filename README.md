@@ -1,4 +1,4 @@
-# Vue 2 CRM
+# Vue 2 CRM [Archived Branch]
 
 > A reusable Vue.js CRM starter project for real-world business based on Vue 2 PWA template with Vuetify.
 
@@ -111,3 +111,8 @@ There are two similar projects respectively built on the Angular and React. If y
 * [Ng-MD-App](https://github.com/harryho/ng-md-app.git).
 * [React-Crm](https://github.com/harryho/react-crm.git).
 * [Ng4Crm](https://github.com/harryho/ng4crm.git). (This is no longer maintained with latest Angular)
+
+
+#### Change log
+
+This branch was the master which used Json-Server as fake API. Considering the hiccup of setting Json-Server up and maintenance, it will be replaced by fake service ( Readonly fake API). You still can find clone this branch by branch name __json-sv__, but it will be no longer updated. It is an archived branch.
