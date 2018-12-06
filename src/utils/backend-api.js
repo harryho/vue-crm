@@ -20,7 +20,6 @@ instance.interceptors.request.use(function (config) {
     // Use application/x-www-form-urlencoded for login
     config.headers.common['Content-Type'] = 'application/x-www-form-urlencoded'
   }
-
   return config
 }, function (error) {
   // Do something with request error

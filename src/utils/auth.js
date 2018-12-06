@@ -1,5 +1,6 @@
 /* globals Store */
-import api from './backend-api'
+// import api from './backend-api'
+import api from "@/utils/demo-api"
 
 export default {
   login (email, pass, cb) {

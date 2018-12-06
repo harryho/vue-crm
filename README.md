@@ -13,11 +13,14 @@ The goal of this project is to create a reusable starter project for real-world 
 * The token and user profile is managed by Vue-Persisteddstate.
 * The dashboard uses vue-chartjs to create charts on dashboard.
 * The starter project has integrated progress bar.
-* To simulate real-world business, this starter project chooses Json-Server as fake Restful API. (You can simple replace it with your own API).
+* ~~~To simulate real-world business, this starter project chooses Json-Server as fake Restful API. (You can simple replace it with your own API).~~~
+* Fake API is just readonly fake service.
 * CRUD functions for Customer, Order and Product
 
-#### Live Demo
-[Demo App](https://vue-app-demo.harryho.org)  The demo is just a proof of concept. It doesn't have back-end API and all features of master branch.
+
+### Live Demo
+
+[Demo App](https://vue-app-demo.harryho.org):  The demo is just a proof of concept. It doesn't have back-end API and all features of master branch.
 
 #### Screenshots ( The actual UI will be slightly different because I am lazy to keep up to date :p )
 
@@ -50,34 +53,13 @@ npm install -g yarn
 yarn
 
 # serve with hot reload at localhost:8080
-npm run dev
+npm run start
 
 
 ## You will see the following output. You can test API with the URLs via browser.
-##
-##[0] > json-server -p 5354 db/db.json
-##[0]
 ##[1]
 ##[1] > vue2crm@1.2.0 start <your_path>\vue2crm
 ##[1] > node build/dev-server.js
-##[1]
-##[0]
-##[0]   \{^_^}/ hi!
-##[0]
-##[0]   Loading db/db.json
-##[0]   Done
-##[0]
-##[0]   Resources
-##[0]   http://localhost:5354/token
-##[0]   http://localhost:5354/customers
-##[0]   http://localhost:5354/orders
-##[0]   http://localhost:5354/products
-##[0]   http://localhost:5354/categories
-##[0]
-##[0]   Home
-##[0]   http://localhost:5354
-##[0]
-##[0]   Type s + enter at any time to create a snapshot of the database
 ##[1] > Starting dev server...
 ##[1]  DONE  Compiled successfully in xx:xx:xx
 ##[1]
@@ -111,3 +93,14 @@ There are two similar projects respectively built on the Angular and React. If y
 * [Ng-MD-App](https://github.com/harryho/ng-md-app.git).
 * [React-Crm](https://github.com/harryho/react-crm.git).
 * [Ng4Crm](https://github.com/harryho/ng4crm.git). (This is no longer maintained with latest Angular)
+
+
+#### Change log
+
+* Rebase demo branch to master
+
+  New master doesn't rely on Json-Server as fake API. It will only have Readonly fake API. It means any new or updated data will be stored to any physical file. All test data will be rolled back after system restart.
+
+* Create an archived branch json-server
+
+  This branch was the master which used Json-Server as fake API. Considering the hiccup of setting Json-Server up and maintenance, it will be replaced by fake service ( Readonly fake API). You still can find clone this branch by branch name __json-server__, but it will be no longer updated. It is an archived branch.

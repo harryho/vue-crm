@@ -34,7 +34,7 @@ export function sendErrorNotice (commit, notice) {
 }
 
 /**
- * Set pagination to the products store
+ * Set pagination to the store
  * @param {*} commit -- commit funciton pass from caller
  * @param {*} page -- current page number
  * @param {*} totalItems  -- total amount of items
@@ -67,7 +67,7 @@ export function closeNotice (commit, timeout) {
 
 
 /**
- * Set pagination to the products store
+ * Set pagination to the store
  * @param {*} commit -- commit funciton pass from caller
  * @param {*} items -- search result
  */

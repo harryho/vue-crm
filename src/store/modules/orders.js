@@ -1,8 +1,4 @@
-/* globals Store */
-import Vue from "vue";
-import Vuex from "vuex";
-
-import api from "@/utils/backend-api";
+import api from "@/utils/demo-api";
 import {Order} from "@/models";
 import {
   sendSuccessNotice,
@@ -36,7 +32,7 @@ const getters = {
 
 const actions = {
   getCustomers ({ commit }) {
-    api.getData("customers").then(res => {
+    api.getData("customers/").then(res => {
        if (res.data){
         const customers = res.data.map(c => {
           c.text = c.firstName + " " + c.lastName;
@@ -48,7 +44,7 @@ const actions = {
     });
   },
   getCategories ({ commit }) {
-    api.getData("categories").then(res => {
+    api.getData("categories/").then(res => {
        if (res.data && res.data.length > 0){
         const categories = res.data.map(c => {
           // c.text = c.firstName + " " + c.lastName;
@@ -174,7 +170,7 @@ const actions = {
     // delete order;
     if (!order.id) {
       api
-        .postData("orders", order)
+        .postData("orders/", order)
         .then(res => {
           const order = res.data;
           commit("setOrder", { order });

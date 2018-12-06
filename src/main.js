@@ -10,6 +10,8 @@ import appUtil from './utils/app-util'
 
 import VueProgressBar from 'vue-progressbar'
 
+const ENV = "DEMO"
+
 const options = {
   color: '#2196f3',
   failedColor: '#874b4b',

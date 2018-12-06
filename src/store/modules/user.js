@@ -1,14 +1,9 @@
-import Vue from "vue"
-import Vuex from "vuex"
-
-Vue.use(Vuex)
-
 const state = {
-
   callingAPI: false,
   searching: "",
   user: null,
   token: null,
+  mode: "",
   userInfo: {
     messages: [],
     notifications: [],

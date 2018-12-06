@@ -1,5 +1,6 @@
 /* globals Store */
-import api from "@/utils/backend-api";
+
+import api from "@/utils/demo-api";
 import {Product} from "@/models";
 import {
   sendSuccessNotice,
@@ -13,8 +14,6 @@ import {get} from "lodash"
 const state = {
   items: [],
   pagination: getDefaultPagination(),
-  // page: 0,
-  // pages: 0,
   loading: false,
   mode: "",
   snackbar: false,
@@ -28,7 +27,7 @@ const getters = {
 
 const actions = {
   getCategories ({ commit }) {
-    api.getData("categories").then(res => {
+    api.getData("categories/").then(res => {
       const categories = [];
       res.data.forEach(c => {
         const category = { ...c };
@@ -41,6 +40,7 @@ const actions = {
   },
   getProductById ({ commit }, id) {
     if (id) {
+      commit("setLoading", { loading: true });
       api.getData("products/" + id + "?_expand=category").then(
         res => {
           const product = res.data;
@@ -50,6 +50,7 @@ const actions = {
           console.log(err);
         }
       );
+      commit("setLoading", { loading: false });
     } else {
       commit("setProduct", { product: new Product() });
     }
@@ -129,7 +130,7 @@ const actions = {
         });
     } else {
       api
-        .putData("products/ss" + product.id.toString(), product)
+        .putData("products/" + product.id.toString(), product)
         .then(res => {
           const product = res.data;
           commit("setProduct", { product });

@@ -1,8 +1,8 @@
 <template>
   <v-container fluid>
-    <v-flex xs12>
+    <v-flex xs12 v-if="!loading">
       <v-card class="grey lighten-4 elevation-0">
-        <v-card-title>
+        <v-card-title class="title">
           {{title}}
           <v-spacer></v-spacer>
           <!--<v-text-field append-icon="search" label="Search" single-line hide-details v-model="search"></v-text-field>-->
@@ -97,7 +97,7 @@ export default {
         }),
         isValid () {
           return (
-            this.product.categoryId  && this.product.productName
+            this.product && this.product.categoryId  && this.product.productName
           )
         }
     },
