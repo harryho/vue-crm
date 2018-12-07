@@ -1,4 +1,4 @@
-import db from "./demo-db"
+import db from "./demo-data"
 
 let ds = ds || Object.assign({}, db)
 
