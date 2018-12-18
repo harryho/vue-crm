@@ -13,7 +13,7 @@ The goal of this project is to create a reusable starter project for real-world 
 * The token and user profile is managed by Vue-Persisteddstate.
 * The dashboard uses vue-chartjs to create charts on dashboard.
 * The starter project has integrated progress bar.
-* ~~~To simulate real-world business, this starter project chooses Json-Server as fake Restful API. (You can simple replace it with your own API).~~~
+* ~~To simulate real-world business, this starter project chooses Json-Server as fake Restful API. (You can simple replace it with your own API).~~
 * Fake API is just readonly fake service.
 * CRUD functions for Customer, Order and Product
 
