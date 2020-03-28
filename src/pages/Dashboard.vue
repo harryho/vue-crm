@@ -105,8 +105,4 @@
     mounted() { }
   };
 </script>
-<style scoped>
-  #dashboard .flex {
-    margin-bottom: 2px;
-  }
-</style>
+

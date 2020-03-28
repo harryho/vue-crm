@@ -1,4 +1,4 @@
-# Vue 2 CRM
+# Vue CRM
 
 > A reusable Vue.js CRM starter project for real-world business based on Vue 2 PWA template with Vuetify.
 
@@ -69,6 +69,29 @@ npm run start
 
 ```
 
+## Docker 
+
+
+```bash
+# Build development image
+docker build . -t  vc-dev
+
+# Launch the development image in the backgroud
+docker run --publish 8080:8080  --detach --name vc-dev vc-dev:latest
+
+# Check the log
+docker logs vc-dev -f 
+
+## Run / Test release without building new image
+npm run build
+
+# Launch nginx image to test latest release
+docker pull nginx:alpine
+docker run -p 8080:80 -v \
+$(pwd)/dist:/usr/share/nginx/html nginx:alpine
+
+
+```
 
 
 

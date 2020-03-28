@@ -81,7 +81,7 @@
       </v-content>
       <!-- <canvas id="canvas"></canvas> -->
       <v-footer :inset="true" style="justify-content:center; text-align: center" app>
-        <span>&copy; Vue-CRM 2018</span>
+        <span>&copy; Vue-CRM 2020</span>
       </v-footer>
     </template>
   </v-app>
@@ -166,50 +166,6 @@
           let meta = to.meta.progress;
           // parse meta tags
           this.$Progress.parseMeta(meta);
-// import auth from "./utils/auth";
-// import { mapState } from "vuex";
-// export default {
-//   data () {
-//     return {
-//       dialog: false,
-//       mini: false,
-//       dialogText: "",
-//       dialogTitle: "",
-//       loggedIn: auth.loggedIn(),
-//       // isRootComponent: true,
-//       // clipped: false,
-//       drawer: false,
-//       fixed: false,
-//       items: [
-//         {
-//           icon: "dashboard",
-//           title: "Dashboard",
-//           vertical: "Dashboard",
-//           link: "dashboard"
-//         },
-//         {
-//           icon: "shopping_cart",
-//           title: "Orders",
-//           vertical: "Order",
-//           link: "orders"
-//         },
-//         {
-//           icon: "perm_identity",
-//           title: "Customers",
-//           vertical: "Customer",
-//           link: "customers"
-//         },
-//         {
-//           icon: "bubble_chart",
-//           title: "Products",
-//           vertical: "Product",
-//           link: "products"
-//         },
-//         {
-//           icon: "thumbs_up_down",
-//           title: "About",
-//           vertical: "About",
-//           link: "about"
         }
         //  start the progress bar
         this.$Progress.start();
@@ -250,5 +206,6 @@
   };
 </script>
 <style lang="stylus">
-  @import './stylus/main';
+ @import './stylus/main';
+
 </style>

@@ -4,7 +4,7 @@
     <v-flex xs12 sm5 md4 lg3>
       <v-card class="mt-0 pt-0">
           <v-card-title class="blue darken-1">
-            <h4 style="color:white">Vue-CRM</h4>
+            <h4 style="color:white">Vue-CRM 2.0</h4>
           </v-card-title>
           <v-card-text>
               <form @submit.prevent="login">
@@ -68,6 +68,4 @@ export default {
   }
 }
 </script>
-<style lang="stylus">
-  @import '../stylus/main'
-</style>
+

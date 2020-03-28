@@ -118,8 +118,4 @@
     }
   }
 </script>
-<style>
-  .profile {
-    max-width: 160px;
-  }
-</style>
+

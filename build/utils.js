@@ -14,10 +14,10 @@ exports.cssLoaders = function (options) {
 
   var cssLoader = {
     loader: 'css-loader',
-    options: {
-      minimize: process.env.NODE_ENV === 'production',
-      sourceMap: options.sourceMap
-    }
+    // options: {
+    //   minimize: process.env.NODE_ENV === 'production',
+    //   sourceMap: options.sourceMap
+    // }
   }
 
   // generate loader string to be used with extract text plugin
@@ -46,11 +46,11 @@ exports.cssLoaders = function (options) {
 
   // https://vue-loader.vuejs.org/en/configurations/extract-css.html
   return {
-    css: generateLoaders(),
-    postcss: generateLoaders(),
-    less: generateLoaders('less'),
-    sass: generateLoaders('sass', { indentedSyntax: true }),
-    scss: generateLoaders('sass'),
+    // css: generateLoaders(),
+    // postcss: generateLoaders(),
+    // less: generateLoaders('less'),
+    // sass: generateLoaders('sass', { indentedSyntax: true }),
+    // scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
   }
