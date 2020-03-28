@@ -1,18 +1,22 @@
-# Use the official image as a parent image
-FROM node:alpine
-
-# Set the working directory
-WORKDIR /app
-
-# Copy the file from your host to your current location
+###### Build #####
+FROM node:10.19 AS node
+LABEL author="Harry Ho"
+WORKDIR /
+RUN npm install
 COPY . .
+RUN npm run build -- --prod
 
-# Inform Docker that the container is listening on the specified port at runtime.
-EXPOSE 8080
 
-# Run the specified command within the container.
-CMD [ "npm",  "start" ]
+###### Run #####
+FROM nginx:alpine
+LABEL author="Harry Ho"
+WORKDIR /var/cache/nginx
+COPY --from=node /dist /usr/share/nginx/html
+COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
 
-########################3# 
-# docker build . -t  vc-dev
-# docker run --publish 8080:8080  --name vc-dev vc-dev:latest
+
+# ########################3# 
+# # docker build . -t  vc-prd:2.0
+# # docker run --publish 8080:80  --name vc2 vc-prd:2.0
+
+

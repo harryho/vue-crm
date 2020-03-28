@@ -73,15 +73,6 @@ npm run start
 
 
 ```bash
-# Build development image
-docker build . -t  vc-dev
-
-# Launch the development image in the backgroud
-docker run --publish 8080:8080  --detach --name vc-dev vc-dev:latest
-
-# Check the log
-docker logs vc-dev -f 
-
 ## Run / Test release without building new image
 npm run build
 
@@ -90,6 +81,15 @@ docker pull nginx:alpine
 docker run -p 8080:80 -v \
 $(pwd)/dist:/usr/share/nginx/html nginx:alpine
 
+
+# Build release image
+docker build . -t  vc-prd
+
+# Launch the development image in the backgroud
+docker run --publish 8080:80  --name vc2 vc-prd:2.0
+
+# Check the log
+docker logs vc2   -f
 
 ```
 
