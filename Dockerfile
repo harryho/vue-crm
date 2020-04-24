@@ -2,9 +2,9 @@
 FROM node:10.19 AS node
 LABEL author="Harry Ho"
 WORKDIR /
-RUN npm install
 COPY . .
-RUN npm run build -- --prod
+RUN npm install
+RUN npm run build --prod
 
 
 ###### Run #####
