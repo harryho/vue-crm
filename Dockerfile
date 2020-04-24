@@ -13,7 +13,6 @@ LABEL author="Harry Ho"
 WORKDIR /var/cache/nginx
 COPY --from=node /dist /usr/share/nginx/html
 COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 8080
 
 
 # ########################3# 
