@@ -1,13 +1,9 @@
 <template>
-<div>
-Change Password 
-
-</div>
-  
+  <div>
+    Change Password
+  </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>

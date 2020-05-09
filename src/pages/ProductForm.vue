@@ -3,112 +3,143 @@
     <v-flex xs12 v-if="!loading">
       <v-card class="grey lighten-4 elevation-0">
         <v-card-title class="title">
-          {{title}}
+          {{ title }}
           <v-spacer></v-spacer>
-          <!--<v-text-field append-icon="search" label="Search" single-line hide-details v-model="search"></v-text-field>-->
-          <v-btn fab small class="grey" @click.native="cancel()">
-            <v-icon>cancel</v-icon>
+          <v-btn fab small dark class="grey mr-2" @click.native="cancel()">
+            <v-icon dark="">mdi-close-circle-outline</v-icon>
           </v-btn>
           &nbsp;
-          <v-btn fab small class="purple" @click.native="save()" :disabled="!isValid">
-            <v-icon>save</v-icon>
+          <v-btn fab small dark class="purple" @click.native="save()" :disabled="!isValid">
+            <v-icon>mdi-content-save-all</v-icon>
           </v-btn>
         </v-card-title>
         <v-card-text>
           <v-container fluid grid-list-md>
             <v-layout row wrap class="px-10">
               <v-flex md4 xs12>
-                <v-text-field name="productName" label="Product" hint="Product name is required" value="Input text" v-model="product.productName"
-                  class="input-group--focused" required :rules="rules.name"></v-text-field>
+                <v-text-field
+                  name="productName"
+                  label="Product"
+                  hint="Product name is required"
+                  value="Input text"
+                  v-model="product.productName"
+                  class="input-group--focused"
+                  required
+                  :rules="rules.name"
+                ></v-text-field>
               </v-flex>
               <v-flex md4 xs12>
-                <v-text-field name="unitPrice" prefix="AUD $" label="Price" hint="Price is required" value="Input text" v-model="product.unitPrice"
-                  class="input-group--focused" required></v-text-field>
+                <v-text-field
+                  name="unitPrice"
+                  prefix="AUD $"
+                  label="Price"
+                  hint="Price is required"
+                  value="Input text"
+                  v-model="product.unitPrice"
+                  class="input-group--focused"
+                  required
+                ></v-text-field>
               </v-flex>
               <v-flex md4 xs12>
-                <v-text-field name="unitInStock" label="Quantity" hint="Number between 1 to 100" v-model="product.unitInStock" class="input-group--focused"
-                  required></v-text-field>
+                <v-text-field
+                  name="unitInStock"
+                  label="Quantity"
+                  hint="number between 1 to 100"
+                  v-model="product.unitInStock"
+                  class="input-group--focused"
+                  required
+                ></v-text-field>
               </v-flex>
               <v-flex md4 xs12>
-                <v-select required v-bind:items="categories" label="Category" v-model="product.categoryId" :rules="rules.category"></v-select>
+                <v-select
+                  required
+                  v-bind:items="categories"
+                  label="Category"
+                  v-model="product.categoryId"
+                  :rules="rules.category"
+                ></v-select>
               </v-flex>
             </v-layout>
           </v-container>
         </v-card-text>
       </v-card>
     </v-flex>
-    <v-snackbar v-if="loading===false" :right="true" :timeout="timeout" :color="mode" v-model="snackbar" >
+    <v-snackbar v-if="loading === false" :right="true" :timeout="timeout" :color="mode" v-model="snackbar">
       {{ notice }}
-      <v-btn dark flat @click.native="closeSnackbar">Close</v-btn>
+      <v-btn dark text @click.native="closeSnackbar">Close</v-btn>
     </v-snackbar>
   </v-container>
 </template>
-<script>
-import {Product} from '../models'
-import { mapState, dispatch } from 'vuex'
-/* global Store */
-export default {
-  data () {
-    return {
-      errors: [],
-      title: '',
-      snackbarStatus: false,
-      timeout: 3000,
-      color: '',
-      rules: {
-        name: [val => (val || '').length > 0 || 'This field is required'],
-        category: [val => typeof val === "number" || 'This field is required']
-      }
+<script lang="ts">
+import { Component } from 'vue-property-decorator';
+import Vue from 'vue';
+import { productModule } from '@/store/modules/products';
+import { appModule } from '@/store/modules/app';
 
-    }
-  },
-  methods: {
-    save () {
-      const product = Object.assign({}, this.product)
-      delete product.category
+@Component
+export default class ProductForm extends Vue {
+  errors = [];
+  title = '';
+  color = '';
+  rules = {
+    name: [val => (val || '').length > 0 || 'This field is required'],
+    category: [val => typeof val === 'number' || 'This field is required']
+  };
 
-      Store.dispatch('products/saveProduct', product)
-        .then(() => {
-          Store.dispatch("products/closeSnackBar", 2000)
-        })
-    },
-    selectCategory (item) {
-      this.product.categoryId = item.value
-    },
-    getProduct () {
-      Store.dispatch('products/getProductById', this.$route.params.id)
-    },
-    getCategories () {
-      Store.dispatch('products/getCategories')
-    },
-    cancel () {
-      this.$router.push({ name: 'Products' })
-    }
-  },
-  computed: {
-        ...mapState('products',
-        {
-          product: 'product',
-          categories: 'categories',
-          loading: 'loading',
-          mode: 'mode',
-          snackbar: 'snackbar',
-          notice: 'notice'
-        }),
-        isValid () {
-          return (
-            this.product && this.product.categoryId  && this.product.productName
-          )
-        }
-    },
-  created () {
-    this.getCategories()
-    this.getProduct()
-  },
-  mounted () {
-      if (this.$route.params.id) {
-        this.title = 'Edit Product'
-      } else this.title = 'New Product'
+  save() {
+    const product = Object.assign({}, this.product);
+    delete product.category;
+    productModule.saveProduct(this.product);
+  }
+
+  selectCategory(item) {
+    this.product.categoryId = item.value;
+  }
+
+  getProduct() {
+    productModule.getProductById(this.$route.params.id);
+  }
+
+  cancel() {
+    this.$router.push({ name: 'Products' });
+  }
+
+  get product() {
+    return productModule.product;
+  }
+
+  get pagination() {
+    return productModule.pagination;
+  }
+  get loading() {
+    return productModule.loading;
+  }
+  get mode() {
+    return appModule.mode;
+  }
+  get snackbar() {
+    return appModule.snackbar;
+  }
+  get notice() {
+    return appModule.notice;
+  }
+  get categories() {
+    return productModule.categories;
+  }
+
+  isValid() {
+    return this.product && this.product.categoryId && this.product.productName;
+  }
+
+  created() {
+    productModule.getCategories();
+    this.getProduct();
+  }
+  
+  mounted() {
+    if (this.$route.params.id) {
+      this.title = 'Edit Product';
+    } else this.title = 'New Product';
   }
 }
 </script>

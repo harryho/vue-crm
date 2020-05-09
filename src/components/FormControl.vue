@@ -1,34 +1,30 @@
 <script>
-  import Vue from 'vue'
-  const templateRenderFns = [];
+import Vue from "vue";
+const templateRenderFns = [];
 
 export default {
-  name: 'form-control',
+  name: "form-control",
   props: {
-     fieldLabel: '',
+    fieldLabel: ""
   },
-  data () {
+  data() {
     return {
       templateRender: null,
-      vm: ''
-    }
+      vm: ""
+    };
   },
-  render (h) {
-    return h('div', [
-      (this.templateRender ?
-        this.templateRender() :
-        '')
-    ]);
+  render(h) {
+    return h("div", [this.templateRender ? this.templateRender() : ""]);
   },
   staticRenderFns: templateRenderFns,
-  mounted () {
-    var compiledTemplate = Vue.compile(`
-    <v-text-field :label="fieldLabel" light :value="searchVm.contains.brand"></v-text-field>`);
+  mounted() {
+    const compiledTemplate = Vue.compile(`
+    <v-text-field :label="fieldLabel" light :value="searchFilter.contains.brand"></v-text-field>`);
     this.templateRender = compiledTemplate.render;
     templateRenderFns.length = 0;
-    for (var i in compiledTemplate.staticRenderFns) {
+    for (const i in compiledTemplate.staticRenderFns) {
       templateRenderFns.push(compiledTemplate.staticRenderFns[i]);
     }
   }
-}
+};
 </script>
