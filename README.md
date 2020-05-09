@@ -12,8 +12,9 @@ The goal of this project is to create a reusable starter project for real-world 
 * It inlcudes Vuex and Axios to manage authentication. (Dummy token)
 * The dashboard uses vue-chartjs to create charts on dashboard.
 * The starter project has integrated progress bar.
-* Backend API is readonly dump service.
-* The project is built on TypeScript. 
+* Backend API is readonly dummy service.
+* The project is built on TypeScript.
+* Includde Docker file.
 * ~~The token and user profile is managed by Vue-Persisteddstate.~~
 * ~~To simulate real-world business, this starter project chooses Json-Server as fake Restful API. (You can simple replace it with your own API).~~
 
@@ -123,12 +124,13 @@ There are two similar projects respectively built on the Angular and React. If y
 
 * 2 May 2020 - Merge the branch vuetify-ts to master
 
-    After the merge, the project moved to new techncial direction - TypeScript. Also, the VuetifyJs is upgraded to 2.x version. 
+    After the merge, the whole project moved to new techncial stack - TypeScript. Also, the VuetifyJs is upgraded to 2.x version. 
 
 
 *  6 Dec 2018 - Create an archived branch json-server
 
     This branch was the master which used Json-Server as fake API. Considering the hiccup of setting Json-Server up and maintenance, it will be replaced by fake service ( Readonly fake API). You still can find clone this branch by branch name __json-server__, but it will be no longer updated. It is an archived branch.
+
 
 *  27 May 2018 - Rebase demo branch to master
 
