@@ -15,7 +15,7 @@ COPY --from=node /dist /usr/share/nginx/html
 COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
 
 
-# ########################3# 
+# ########################
 # # docker build . -t  vc-prd:2.0
 # # docker run --publish 8080:80  --name vc2 vc-prd:2.0
 

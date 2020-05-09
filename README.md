@@ -13,9 +13,10 @@ The goal of this project is to create a reusable starter project for real-world 
 * The token and user profile is managed by Vue-Persisteddstate.
 * The dashboard uses vue-chartjs to create charts on dashboard.
 * The starter project has integrated progress bar.
-* ~~To simulate real-world business, this starter project chooses Json-Server as fake Restful API. (You can simple replace it with your own API).~~
 * Fake API is just readonly fake service.
 * CRUD functions for Customer, Order and Product
+* The project is built on TypeScript 
+* ~~To simulate real-world business, this starter project chooses Json-Server as fake Restful API. (You can simple replace it with your own API).~~
 
 
 ### Live Demo
@@ -94,7 +95,6 @@ docker logs vc2   -f
 ```
 
 
-
 For detailed explanation on how things work, checkout following links
 
 * [vuex](https://vuex.vuejs.org/en/)
@@ -107,7 +107,9 @@ For detailed explanation on how things work, checkout following links
 * [vue-loader](http://vuejs.github.io/vue-loader).
 
 
+#### Archived
 
+The master branch has been rewriten with TypeScript.The old version built on ES6 has been moved the branch "vuetify-es6". Anyone needs the ES6 version please check it out.
 
 #### Alternatives
 
@@ -120,10 +122,17 @@ There are two similar projects respectively built on the Angular and React. If y
 
 #### Change log
 
-* Rebase demo branch to master
+* 11 May 2020 - Merge the branch vuetify-ts to master
 
-  New master doesn't rely on Json-Server as fake API. It will only have Readonly fake API. It means any new or updated data will be stored to any physical file. All test data will be rolled back after system restart.
+    After the merge, the project moved to new techncial direction - TypeScript. Also, the VuetifyJs is upgraded to 2.x version. 
 
-* Create an archived branch json-server
 
-  This branch was the master which used Json-Server as fake API. Considering the hiccup of setting Json-Server up and maintenance, it will be replaced by fake service ( Readonly fake API). You still can find clone this branch by branch name __json-server__, but it will be no longer updated. It is an archived branch.
+*  6 Dec 2018 - Create an archived branch json-server
+
+    This branch was the master which used Json-Server as fake API. Considering the hiccup of setting Json-Server up and maintenance, it will be replaced by fake service ( Readonly fake API). You still can find clone this branch by branch name __json-server__, but it will be no longer updated. It is an archived branch.
+
+*  27 May 2018 - Rebase demo branch to master
+
+    New master doesn't rely on Json-Server as fake API. It will only have Readonly fake API. It means any new or updated data will be stored to any physical file. All test data will be rolled back after system restart.
+
+
