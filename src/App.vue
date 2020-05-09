@@ -54,7 +54,7 @@
       <v-app-bar app elevation=1>
         <v-app-bar-nav-icon @click.native.stop="drawer = !drawer" light></v-app-bar-nav-icon>
         <v-spacer></v-spacer>
-        <div class="text-xs-center pr-3">
+        <div class="text-xs-center pr-3 mt-2">
           <v-badge left="">
             <span slot="badge">6</span>
             <v-icon large color="grey lighten-1">mdi-bell-outline</v-icon>

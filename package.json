@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "chart.js": "^2.9.3",
+    "chart.js": "2.9.3",
     "core-js": "^3.6.4",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
@@ -52,14 +52,12 @@
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
     "typescript": "~3.8.3",
-    "vue-chartjs-typescript": "^3.3.2",
     "vue-cli-plugin-vuetify": "~2.0.5",
     "vue-cli-plugin-vuetify-preset-fortnightly": "^1.0.3",
     "vue-loader": "^15.9.2",
     "vue-template-compiler": "^2.6.11",
     "vuetify-loader": "^1.3.0",
     "vuex-class": "^0.3.2",
-    "vuex-module-decorators": "^0.17.0",
-    "vuex-persistedstate": "^3.0.1"
+    "vuex-module-decorators": "^0.17.0"
   }
 }

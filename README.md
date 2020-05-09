@@ -10,12 +10,11 @@ The goal of this project is to create a reusable starter project for real-world 
 * This project is built from Vue 2 PWA template by default.
 * The UI part is built on the top of Vuetify.
 * It inlcudes Vuex and Axios to manage authentication. (Dummy token)
-* The token and user profile is managed by Vue-Persisteddstate.
 * The dashboard uses vue-chartjs to create charts on dashboard.
 * The starter project has integrated progress bar.
-* Fake API is just readonly fake service.
-* CRUD functions for Customer, Order and Product
-* The project is built on TypeScript 
+* Backend API is readonly dump service.
+* The project is built on TypeScript. 
+* ~~The token and user profile is managed by Vue-Persisteddstate.~~
 * ~~To simulate real-world business, this starter project chooses Json-Server as fake Restful API. (You can simple replace it with your own API).~~
 
 
@@ -80,7 +79,7 @@ npm run build
 # Launch nginx image to test latest release
 docker pull nginx:alpine
 docker run -p 8080:80 -v \
-$(pwd)/dist:/usr/share/nginx/html nginx:alpine
+    <your_aboslute_path>/dist:/usr/share/nginx/html nginx:alpine
 
 
 # Build release image
@@ -102,14 +101,14 @@ For detailed explanation on how things work, checkout following links
 * [axios](https://github.com/mzabriskie/axios/)
 * [vue-chartjs](https://github.com/apertureless/vue-chartjs)
 * [vue-progressbar](https://github.com/hilongjw/vue-progressbar)
-* [vuex-persistedstate](https://github.com/robinvdvleuten/vuex-persistedstate)
+* ~~[vuex-persistedstate](https://github.com/robinvdvleuten/vuex-persistedstate)~~
 * [webpack guide](http://vuejs-templates.github.io/webpack/)
 * [vue-loader](http://vuejs.github.io/vue-loader).
 
 
 #### Archived
 
-The master branch has been rewriten with TypeScript.The old version built on ES6 has been moved the branch "vuetify-es6". Anyone needs the ES6 version please check it out.
+The master branch has been rewriten with TypeScript.The old version built on ES6 has been moved the branch [vuetify-es6](https://github.com/harryho/vue-crm/tree/vuetify-es6). Anyone needs the ES6 version please check it out.
 
 #### Alternatives
 
@@ -122,7 +121,7 @@ There are two similar projects respectively built on the Angular and React. If y
 
 #### Change log
 
-* 11 May 2020 - Merge the branch vuetify-ts to master
+* 2 May 2020 - Merge the branch vuetify-ts to master
 
     After the merge, the project moved to new techncial direction - TypeScript. Also, the VuetifyJs is upgraded to 2.x version. 
 

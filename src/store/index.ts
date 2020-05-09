@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import createPersistedState from "vuex-persistedstate";
+// import createPersistedState from "vuex-persistedstate";
 
 import { UserState } from "./modules/user";
 import { OrderState } from "./modules/orders";
@@ -19,5 +19,5 @@ interface RootState {
 }
 
 export default new Vuex.Store<RootState>({
-  plugins: [createPersistedState({ storage: window.sessionStorage })] // !debug ? [createPersistedState({ storage: window.sessionStorage })] : [],
+  // plugins: [createPersistedState({ storage: window.sessionStorage })] // !debug ? [createPersistedState({ storage: window.sessionStorage })] : [],
 });
