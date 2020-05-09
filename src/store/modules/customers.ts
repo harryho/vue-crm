@@ -49,7 +49,7 @@ class CustomerModule extends VuexModule implements CustomerState {
       getData('customers/' + id).then(
         res => {
           const customer = Object.assign({}, res.data);
-          customer.avatar = `@${customer.avatar}`;
+          customer.avatar = `..${customer.avatar}`;
           this.setCustomer(customer);
           this.setLoading(false);
         },

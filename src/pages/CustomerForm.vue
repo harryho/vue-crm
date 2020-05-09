@@ -17,7 +17,7 @@
           <v-container fluid grid-list-sm>
             <v-layout row wrap>
               <v-flex md3 sm12>
-                <img :src="this.customer.avatar" />
+                <v-img small max-width="20em" :src="avatar" class="avatar "  :srcset="avatar" />
               </v-flex>
               <v-flex md9 sm12>
                 <v-container fluid grid-list-sm>
@@ -132,8 +132,11 @@ export default class CustomerForm extends Vue {
     email: [() => isValidEmail(this.customer.email)]
   };
 
+  avatar = '';
+
   customerAvatar() {
     console.log(`${this.customer.avatar}`);
+this.avatar = customerModule.customer.avatar;
     return this.customer.avatar;
   }
 
@@ -184,3 +187,8 @@ export default class CustomerForm extends Vue {
   }
 }
 </script>
+<style scoped>
+.avatar {
+  border-radius: 50%;
+}
+</style>
