@@ -110,10 +110,8 @@ class ProductModule extends VuexModule implements ProductState {
   @Action deleteProduct(id: number) {
     deleteData(`products/${id.toString()}`)
       .then(res  => {
-        return new Promise((resolve, reject) => {
-          appModule.sendSuccessNotice("Operation is done.");
-          resolve();
-        });
+        this.getAllProducts();
+        appModule.sendSuccessNotice("Operation is done.");
       })
       .catch((err: TODO) => {
         console.log(err);

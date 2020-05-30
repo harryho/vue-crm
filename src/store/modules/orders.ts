@@ -161,11 +161,8 @@ class OrderModule extends VuexModule implements OrderState {
   deleteOrder(id: number) {
     deleteData(`orders/${id.toString()}`)
       .then(res => {
-        return new Promise((resolve, reject) => {
-          appModule.sendSuccessNotice("Operation is done.");
-
-          resolve();
-        });
+        this.getAllOrders();
+        appModule.sendSuccessNotice("Operation is done.");
       })
       .catch((err: TODO) => {
         console.log(err);

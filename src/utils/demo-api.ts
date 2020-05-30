@@ -111,7 +111,7 @@ export function deleteData(action: string): Promise<TODO> {
   const {model, id } = parseRequest(action)
   return new Promise(function (resolve, _reject) {
     if (id > 0) {
-      ds[model].splice(ds[model].findIndex((d: Entity) => d.id === id));
+      ds[model].splice(ds[model].findIndex((d: Entity) => d.id === id),1);
     }
     setTimeout(resolve, 200, { status: 200 });
   });

@@ -130,7 +130,7 @@ export default class ProductList extends Vue {
     this.$router.push('NewProduct');
   }
   remove(item) {
-    this.productId = item.id;
+    this.itemId = item.id;
     this.dialog = true;
   }
 
@@ -139,7 +139,7 @@ export default class ProductList extends Vue {
     this.dialog = false;
   }
   onCancel() {
-    this.productId = '';
+    this.itemId = -1;
     this.dialog = false;
   }
   searchProducts() {

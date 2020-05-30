@@ -241,9 +241,7 @@ export default class OrderForm extends Vue {
   private categoryId = 0;
   private color = '';
   private selectedProduct: null;
-  // private products : Product[];
-  // private shippedDate: string;
-  // private orderDate: string;
+
 @Watch('categoryId')
 categoryChanged(newId: number, oldId: number){
   if(newId !== oldId){

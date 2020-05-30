@@ -129,7 +129,7 @@ There are two similar projects respectively built on the Angular and React. If y
 
 *  6 Dec 2018 - Create an archived branch json-server
 
-    This branch was the master which used Json-Server as fake API. Considering the hiccup of setting Json-Server up and maintenance, it will be replaced by fake service ( Readonly fake API). You still can find clone this branch by branch name __json-server__, but it will be no longer updated. It is an archived branch.
+    This branch was the master which used Json-Server as fake API. Considering the hiccup of setting Json-Server up and maintenance, it will be replaced by fake service ( Readonly fake API). You still can find and clone this branch with the name __json-server__, but it is no longer updated. It is an archived branch.
 
 
 *  27 May 2018 - Rebase demo branch to master

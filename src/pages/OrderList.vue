@@ -109,7 +109,7 @@ export default class OrderList extends Vue {
       amount: { former: 0, latter: 0 }
     }
   };
-  private orderId = '';
+  // private orderId = '';
   private query = '';
   private color = '';
   private quickSearchFilter = '';
@@ -122,7 +122,7 @@ export default class OrderList extends Vue {
     this.$router.push('NewOrder');
   }
   remove(item) {
-    this.orderId = item.id;
+    this.itemId = item.id;
     this.dialog = true;
   }
   onConfirm() {
@@ -130,7 +130,7 @@ export default class OrderList extends Vue {
     this.dialog = false;
   }
   onCancel() {
-    this.orderId = '';
+    this.itemId = -1;
     this.dialog = false;
   }
   searchOrders() {

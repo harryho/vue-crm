@@ -17,7 +17,7 @@
           <v-container fluid grid-list-sm>
             <v-layout row wrap>
               <v-flex md3 sm12>
-                <v-img small max-width="20em" :src="avatar" class="avatar "  :srcset="avatar" />
+                <v-img small max-width="10em" :src="avatar" class="avatar "  :srcset="avatar" />
               </v-flex>
               <v-flex md9 sm12>
                 <v-container fluid grid-list-sm>
