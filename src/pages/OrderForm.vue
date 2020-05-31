@@ -303,7 +303,7 @@ categoryChanged(newId: number, oldId: number){
   }
 
   cancel() {
-    this.$router.push({ name: 'Orders' });
+    this.$router.push({ name: 'orders' });
   }
 
   remove(item) {

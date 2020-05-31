@@ -32,14 +32,14 @@ const routes: Array<RouteConfig> = [
   {
     path: "/dashboard",
     component: Dashboard,
-    name: "Dashboard",
+    name: "dashboard",
     beforeEnter: requireAuth
   },
-  { path: "/about", component: About, name: "About", beforeEnter: requireAuth },
+  { path: "/about", component: About, name: "about", beforeEnter: requireAuth },
   {
     path: "/orders",
     component: OrderList,
-    name: "Orders",
+    name: "orders",
     beforeEnter: requireAuth
   },
   {
@@ -55,9 +55,9 @@ const routes: Array<RouteConfig> = [
     beforeEnter: requireAuth
   },
   {
-    path: "/customers",
+    path: "/customer",
     component: CustomerList,
-    name: "Customers",
+    name: "customers",
     beforeEnter: requireAuth
   },
   {
@@ -81,7 +81,7 @@ const routes: Array<RouteConfig> = [
   {
     path: "/products",
     component: Products,
-    name: "Products",
+    name: "products",
     beforeEnter: requireAuth
   },
   {

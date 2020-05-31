@@ -170,7 +170,7 @@ this.avatar = customerModule.customer.avatar;
   }
 
   cancel() {
-    this.$router.push({ name: "Customers" });
+    this.$router.push({ name: "customers" });
   }
 
   closeSnackbar() {

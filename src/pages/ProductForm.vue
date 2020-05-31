@@ -101,7 +101,7 @@ export default class ProductForm extends Vue {
   }
 
   cancel() {
-    this.$router.push({ name: 'Products' });
+    this.$router.push({ name: 'products' });
   }
 
   get product() {

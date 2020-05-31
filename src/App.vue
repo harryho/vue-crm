@@ -195,7 +195,7 @@ export default class App extends Vue {
   handleNavigtiion(item: TODO) {
     this.menuItem = item.title;
     this.$router.push({
-      name: item.title
+      name: item.link
     });
   }
 
