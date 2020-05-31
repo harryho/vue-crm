@@ -10,7 +10,7 @@ import CustomerList from "@/pages/CustomerList.vue";
 import CustomerForm from "@/pages/CustomerForm.vue";
 import Products from "@/pages/ProductList.vue";
 import ProductForm from "@/pages/ProductForm.vue";
-import Login from "@/components/Login.vue";
+import Login from "@/pages/Login.vue";
 import ChangePassword from "@/components/ChangePassword.vue";
 
 function requireAuth(to: TODO, from: TODO, next: TODO) {

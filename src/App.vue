@@ -119,19 +119,19 @@ export default class App extends Vue {
     },
     {
       icon: 'mdi-point-of-sale',
-      title: 'Orders',
+      title: 'Order',
       vertical: 'Order',
       link: 'orders'
     },
     {
       icon: 'mdi-account-group',
-      title: 'Customers',
+      title: 'Customer',
       vertical: 'Customer',
       link: 'customers'
     },
     {
       icon: 'mdi-book-multiple',
-      title: 'Products',
+      title: 'Product',
       vertical: 'Product',
       link: 'products'
     },
