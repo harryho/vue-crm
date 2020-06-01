@@ -1,12 +1,24 @@
-import { Component } from "vue-property-decorator";
+import { Component, Prop } from "vue-property-decorator";
 import { mixins } from "vue-class-component";
 
 import { Line } from "vue-chartjs";
 
 @Component({
-  name: "LineChart"
+  name: "OrderForecast"
 })
-export default class LineChart extends mixins(Line) {
+export default class OrderForecast extends mixins(Line) {
+
+  @Prop({ default: 150 }) height: number;
+
+  // @ts-ignore
+  @Prop({
+    default: () => {
+      return { "margin-left": '0px', "background": '#a5b8a7' }
+    }
+  })
+  styles;
+
+
   public gradient: TODO;
   public gradient2: TODO;
 
@@ -44,7 +56,23 @@ export default class LineChart extends mixins(Line) {
           }
         ]
       },
-      { responsive: true, maintainAspectRatio: false }
+      { title: {
+        display: true,
+        text: 'Order Forecast',
+        // position: 'left'
+      },
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          display: false,
+          // offset: true,
+        }],
+        yAxes: [{
+          display: false,
+        }],
+      },responsive: true, maintainAspectRatio: false }
     );
   }
 }
