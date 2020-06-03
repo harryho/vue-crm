@@ -19,7 +19,12 @@ export default class DoughnutChart extends mixins(Doughnut) {
       },
       { 
         legend:{
-          position: 'right'
+          position: 'right',
+          fullWidth: true,
+          labels: {
+            fontSize: 16,
+            fontStyle: 'bold'
+          }
         },
         
         responsive: true, maintainAspectRatio: false }

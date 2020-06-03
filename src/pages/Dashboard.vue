@@ -16,12 +16,12 @@
     <v-layout class="" row wrap>
       <v-flex md6 xs12>
         <v-card light>
-          <doughnut-chart></doughnut-chart>
+          <horizontal-bar-chart />
         </v-card>
       </v-flex>
       <v-flex md6 xs12>
         <v-card light>
-          <horizontal-bar-chart />
+          <doughnut-chart></doughnut-chart>
         </v-card>
       </v-flex>
     </v-layout>

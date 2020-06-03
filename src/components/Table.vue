@@ -29,6 +29,7 @@
       </template>
       <template v-slot:item.actions="{ item }">
         <v-btn
+         elevation="4"
           fab
           class="teal mr-2"
           small
@@ -39,7 +40,7 @@
             mdi-pencil
           </v-icon>
         </v-btn>
-        <v-btn fab class="cyan" small @click.native="$emit('remove', item)">
+        <v-btn elevation="4" fab class="cyan" small @click.native="$emit('remove', item)">
           <v-icon>
             mdi-trash-can-outline
           </v-icon>

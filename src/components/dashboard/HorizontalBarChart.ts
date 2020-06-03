@@ -8,7 +8,6 @@ import { HorizontalBar} from "vue-chartjs";
 export default class HorizontalBarChart extends mixins(HorizontalBar){
 
   mounted() {
-
     this.renderChart(
       {
         labels: [
@@ -21,40 +20,48 @@ export default class HorizontalBarChart extends mixins(HorizontalBar){
         ],
         datasets: [
           {
-            label: "Product 4",
-            backgroundColor: "#f87979",
+            label: "Product HX",
+            backgroundColor: "#eb9fc1",
             data: [10, -2, 22, 9, -28, 15, ], 
             showLine: false,
             hideInLegendAndTooltip:true,
-            borderColor: 'red',
+            borderColor: '#e55b83',
             borderWidth: 1,
+            categoryPercentage: 0.95,
+            barPercentage: 0.95
           },
           {
-            label: "Product 1",
-            backgroundColor: "#ffa50082",
+            label: "Product BM",
+            backgroundColor: "#fde4a9",
             data: [20, -2, 30, 19, -21, -5],
             showLine: false,
             hideInLegendAndTooltip:true,
-            borderColor: 'yellow',
+            borderColor: '#facd55',
             borderWidth: 1,
+            categoryPercentage: 0.95,
+            barPercentage: 0.95
           },
           {
-            label: "Product 2",
-            backgroundColor: "#00aaff82",
+            label: "Product WR",
+            backgroundColor: "#9bdddf",
             data: [-6, -21, 21, -9, 2, 10],
             showLine: false,
             hideInLegendAndTooltip:true,
-            borderColor: 'lightblue',
+            borderColor: '#62c1c0',
             borderWidth: 1,
+            categoryPercentage: 0.95,
+            barPercentage: 0.95
           },
           {
-            label: "Product 3",
-            backgroundColor: "#00800078",
-            borderColor: 'lightgreen',
+            label: "Product PK",
+            backgroundColor: "#90cdf4",
+            borderColor: '#3ba2eb',
             borderWidth: 1,
             data: [16, 10, 12, -20, 18, 2], 
             showLine: false,
             hideInLegendAndTooltip:true,
+            categoryPercentage: 0.95,
+            barPercentage: 0.95
           }
         ],
       },
@@ -63,7 +70,12 @@ export default class HorizontalBarChart extends mixins(HorizontalBar){
           display: false,
         },
         legend:{
-          position: 'right'
+          position: 'right',
+          fullWidth: true,
+          labels: {
+            fontSize: 16,
+            fontStyle: 'bold'
+          }
         },
         scales: {
           xAxes:[{

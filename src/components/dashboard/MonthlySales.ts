@@ -51,7 +51,7 @@ export default class MonthlySales extends mixins(Bar) {
         title: {
           display: true,
           text: 'Monthly Sales',
-          position: 'left'
+          // position: 'left'
         },
         legend: {
           display: false

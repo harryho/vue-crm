@@ -5,11 +5,11 @@
         <v-card-title class="title">
           {{ title }}
           <v-spacer></v-spacer>
-          <v-btn fab small dark class="grey mr-2" @click.native="cancel()">
+          <v-btn   elevation="4" fab small dark class="grey mr-2" @click.native="cancel()">
             <v-icon dark="">mdi-close-circle-outline</v-icon>
           </v-btn>
           &nbsp;
-          <v-btn fab small dark class="purple" @click.native="save()" :disabled="!isValid">
+          <v-btn   elevation="4" fab small dark class="purple" @click.native="save()" :disabled="!isValid">
             <v-icon>mdi-content-save-all</v-icon>
           </v-btn>
         </v-card-title>

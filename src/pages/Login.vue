@@ -1,6 +1,6 @@
 <template>
   <v-container fill-height justify-center align-center>
-    <v-flex xs12 sm6 md5 lg4>
+    <v-flex xs12 sm6 md4 lg3>
       <v-card class="mt-0 pt-0" elevation="2">
         <v-card-title class="blue darken-1">
           <h4 style="color:white">Vue-CRM 2.0</h4>
@@ -37,7 +37,7 @@
               </v-flex>
             </v-layout>
             <v-card-actions>
-              <v-btn type="submit">login</v-btn>
+              <v-btn   elevation="4" type="submit">login</v-btn>
             </v-card-actions>
             <v-snackbar
               v-if="error"

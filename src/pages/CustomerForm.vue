@@ -5,11 +5,11 @@
         <v-card-title class="title">
           {{ title }}
           <v-spacer></v-spacer>
-          <v-btn fab small dark class="grey mr-2" @click.native="cancel()">
+          <v-btn   elevation="4" fab small dark class="grey mr-2" @click.native="cancel()">
             <v-icon dark="">mdi-close-circle-outline</v-icon>
           </v-btn>
           &nbsp;
-          <v-btn fab small dark class="blue" @click.native="save()">
+          <v-btn   elevation="4" fab small dark class="blue" @click.native="save()">
             <v-icon>mdi-content-save-all</v-icon>
           </v-btn>
         </v-card-title>
@@ -17,7 +17,7 @@
           <v-container fluid grid-list-sm>
             <v-layout row wrap>
               <v-flex md3 sm12>
-                <v-img small max-width="10em" :src="avatar" class="avatar "  :srcset="avatar" />
+                <v-img v-if="customer!==null" small max-width="10em" :src="customer.avatar" class="avatar "  :srcset="customer.avatar" />
               </v-flex>
               <v-flex md9 sm12>
                 <v-container fluid grid-list-sm>
@@ -132,16 +132,7 @@ export default class CustomerForm extends Vue {
     email: [() => isValidEmail(this.customer.email)]
   };
 
-  avatar = '';
-
-  customerAvatar() {
-    console.log(`${this.customer.avatar}`);
-this.avatar = customerModule.customer.avatar;
-    return this.customer.avatar;
-  }
-
   get customer() {
-    console.log(customerModule.customer);
     return customerModule.customer;
   }
 
@@ -182,7 +173,7 @@ this.avatar = customerModule.customer.avatar;
   mounted() {
     if (this.$route.params.id) {
       this.title = "Edit Customer";
-      this.customerAvatar();
+      // this.customerAvatar();
     } else this.title = "New Customer";
   }
 }

@@ -5,13 +5,13 @@
         <v-card-title class="title">
           {{ title }}
           <v-spacer></v-spacer>
-          <v-btn fab small dark class="grey mr-2" @click.native="cancel()">
+          <v-btn   elevation="4" fab small dark class="grey mr-2" @click.native="cancel()">
             <v-icon dark="">mdi-close-circle-outline</v-icon>
           </v-btn>
-          <v-btn  fab small dark class="purple mr-2" @click.native="save()">
+          <v-btn   elevation="4"  fab small dark class="purple mr-2" @click.native="save()">
             <v-icon>mdi-content-save-all</v-icon>
           </v-btn>
-          <v-btn fab small dark class="blue" @click.native="addProduct()">
+          <v-btn   elevation="4" fab small dark class="blue" @click.native="addProduct()">
             <v-icon>mdi-plus</v-icon>
           </v-btn>
         </v-card-title>
@@ -154,7 +154,7 @@
                           </v-list-item-subtitle>-->
                     </v-list-item-content>
                     <v-list-item-action>
-                      <v-btn fab small  class="navy" @click.native="remove(item)">
+                      <v-btn   elevation="4" fab small  class="navy" @click.native="remove(item)">
                         <v-icon v-bind:class="[item.active ? 'teal--text' : 'grey--text']">mdi-delete</v-icon>
                       </v-btn>
                     </v-list-item-action>
