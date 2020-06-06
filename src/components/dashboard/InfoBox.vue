@@ -7,7 +7,7 @@
       v-for="(stat, index) in monthlyStats"
       v-bind:key="index"
     >
-      <v-card :class="stat.bgColor" dark>
+      <v-card :class="stat.bgColor" dark elevation="4">
         <v-list-item>
           <!--        v-for="item in items2"
         :key="item.title"-->

@@ -3,24 +3,24 @@
     <info-box />
     <v-layout class="" row wrap>
       <v-flex md6 xs12>
-        <v-card light>
+        <v-card light elevation="4">
           <monthly-sales />
         </v-card>
       </v-flex>
       <v-flex md6 xs12>
-        <v-card light>
+        <v-card light elevation="4">
           <order-forecast />
         </v-card>
       </v-flex>
     </v-layout>
     <v-layout class="" row wrap>
-      <v-flex md6 xs12>
-        <v-card light>
+      <v-flex md6 xs12 >
+        <v-card light elevation="4">
           <horizontal-bar-chart />
         </v-card>
       </v-flex>
-      <v-flex md6 xs12>
-        <v-card light>
+      <v-flex md6 xs12 >
+        <v-card light elevation="4">
           <doughnut-chart></doughnut-chart>
         </v-card>
       </v-flex>
