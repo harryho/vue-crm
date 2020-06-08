@@ -212,9 +212,9 @@
   </v-container>
 </template>
 <script lang="ts">
+import Vue from 'vue';
 import ConfirmDialog from '@/components/ConfirmDialog.vue';
 import { Component, Watch } from 'vue-property-decorator';
-import Vue from 'vue';
 import { customerModule } from '@/store/modules/customers';
 import { productModule } from '@/store/modules/products';
 import { orderModule } from '@/store/modules/orders';
@@ -265,10 +265,6 @@ categoryChanged(newId: number, oldId: number){
 
   get products() {
     return orderModule.products;
-  }
-
-  get pagination() {
-    return orderModule.pagination;
   }
 
   get loading() {

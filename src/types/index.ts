@@ -16,8 +16,8 @@ export interface UserInfo extends Entity {
 }
 
 export interface User extends Entity {
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   email: string;
   avatar: string;
   mobile: string;
@@ -75,15 +75,15 @@ export interface State {
 
 
 export type SearchFilter = {
-  equals?: TODO,
-  contains?: TODO,
+  equal?: TODO,
+  contain?: TODO,
   startsWith?: TODO,
   endsWith?: TODO,
   lessThan?: TODO,
   greaterThan?: TODO,
   lessThanOrEqual?: TODO,
   greaterThanOrEqual?: TODO,
-  between?: TODO,
+  // between?: TODO,
   filters?: TODO
 
 }

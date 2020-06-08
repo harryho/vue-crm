@@ -19,7 +19,8 @@
       hide-default-footer
     >
       <template v-slot:item.avatar="{ item }">
-        <v-img
+        <v-img 
+          v-if="item.avatar !== null"
           small
           max-width="2em"
           :src="item.avatar"
@@ -27,9 +28,17 @@
           :srcset="item.avatar"
         />
       </template>
+      <template v-slot:item.membership="{ item }">
+        <v-icon v-if="item.membership === true">
+          mdi-checkbox-marked-circle-outline
+        </v-icon>
+        <v-icon v-if="item.membership === false">
+          mdi-close-circle-outline
+        </v-icon>
+      </template>
       <template v-slot:item.actions="{ item }">
         <v-btn
-         elevation="4"
+          elevation="4"
           fab
           class="teal mr-2"
           small
@@ -40,7 +49,13 @@
             mdi-pencil
           </v-icon>
         </v-btn>
-        <v-btn elevation="4" fab class="cyan" small @click.native="$emit('remove', item)">
+        <v-btn
+          elevation="4"
+          fab
+          class="cyan"
+          small
+          @click.native="$emit('remove', item)"
+        >
           <v-icon>
             mdi-trash-can-outline
           </v-icon>
@@ -77,24 +92,6 @@ export default class Table extends Vue {
   @Prop() readonly pagination: Pagination;
 
   search = "";
-
-  editItem() {}
-
-  deleteItem() {}
-
-  renderData = (item: TODO, header: TODO) => {
-    let val = "";
-    if (header.value.includes(".")) {
-      const vals = header.value.split(".");
-      val = vals.reduce((acc: TODO, val: TODO) => acc[val], item);
-    } else {
-      val = item[header.value];
-    }
-    if (typeof val === "boolean") {
-      val = val ? "Yes" : "No";
-    }
-    return val;
-  };
 
   isNotEmpty() {
     return this.items && this.items.length > 0;

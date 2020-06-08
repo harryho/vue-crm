@@ -3,13 +3,13 @@ import { mixins } from "vue-class-component";
 import { Doughnut } from "vue-chartjs";
 
 @Component({
-  name: "DoughnutChart"
+  name: "BrowserUsage"
 })
-export default class DoughnutChart extends mixins(Doughnut) {
+export default class BrowserUsage extends mixins(Doughnut) {
   mounted() {
     this.renderChart(
       {
-        labels: ["VueJs", "EmberJs", "ReactJs", "AngularJs"],
+        labels: ["Firefox", "Safari", "Chrome", "IE"],
         datasets: [
           {
             backgroundColor: ["#41B883", "amber", "#00D8FF", "#DD1B16"],
@@ -17,8 +17,8 @@ export default class DoughnutChart extends mixins(Doughnut) {
           }
         ]
       },
-      { 
-        legend:{
+      {
+        legend: {
           position: 'right',
           fullWidth: true,
           labels: {
@@ -26,8 +26,16 @@ export default class DoughnutChart extends mixins(Doughnut) {
             fontStyle: 'bold'
           }
         },
-        
-        responsive: true, maintainAspectRatio: false }
+
+        title: {
+          display: true,
+          text: 'Browser Usage',
+          position: 'bottom',
+          fontSize: 20,
+          fontStyle: 'bold'
+        },
+        responsive: true, maintainAspectRatio: false
+      }
     );
   }
 }

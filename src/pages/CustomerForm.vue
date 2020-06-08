@@ -5,11 +5,11 @@
         <v-card-title class="title">
           {{ title }}
           <v-spacer></v-spacer>
-          <v-btn   elevation="4" fab small dark class="grey mr-2" @click.native="cancel()">
+          <v-btn elevation="4" fab small dark class="grey mr-2" @click.native="cancel()">
             <v-icon dark="">mdi-close-circle-outline</v-icon>
           </v-btn>
           &nbsp;
-          <v-btn   elevation="4" fab small dark class="blue" @click.native="save()">
+          <v-btn elevation="4" fab small dark class="blue" @click.native="save()">
             <v-icon>mdi-content-save-all</v-icon>
           </v-btn>
         </v-card-title>
@@ -24,23 +24,23 @@
                   <v-layout row wrap>
                     <v-flex md4 sm12 xs12 class="mx-1 px-0">
                       <v-text-field
-                        name="firstName"
+                        name="firstname"
                         label="First Name"
                         hint="Last name is required"
                         value="Input text"
-                        v-model="customer.firstName"
+                        v-model="customer.firstname"
                         class="input-group--focused"
                         required
                       ></v-text-field>
                     </v-flex>
                     <v-flex md4 sm12 class="mx-1 px-0">
                       <v-text-field
-                        name="lastName"
+                        name="lastname"
                         label="Last Name"
                         maxlength="10"
                         hint="Last name is required"
                         value="Input text"
-                        v-model="customer.lastName"
+                        v-model="customer.lastname"
                         class="input-group--focused"
                         required
                       ></v-text-field>
@@ -117,8 +117,8 @@
   </v-container>
 </template>
 <script lang="ts">
-import { Component } from "vue-property-decorator";
 import Vue from "vue";
+import { Component } from "vue-property-decorator";
 import { Customer, Entity } from "@/types";
 import { customerModule } from "@/store/modules/customers";
 import { appModule } from "@/store/modules/app";
@@ -140,18 +140,18 @@ export default class CustomerForm extends Vue {
     return customerModule.getOrders();
   }
 
-  get pagination() {
-    return customerModule.pagination;
-  }
   get loading() {
     return appModule.loading;
   }
+
   get mode() {
     return appModule.mode;
   }
+
   get snackbar() {
     return appModule.snackbar;
   }
+
   get notice() {
     return appModule.notice;
   }
@@ -167,9 +167,11 @@ export default class CustomerForm extends Vue {
   closeSnackbar() {
     appModule.closeNotice();
   }
+
   created() {
     customerModule.getCustomerById(this.$route.params.id);
   }
+  
   mounted() {
     if (this.$route.params.id) {
       this.title = "Edit Customer";

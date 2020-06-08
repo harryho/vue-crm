@@ -13,10 +13,20 @@
     <search-panel :rightDrawer="rightDrawer" @cancelSearch="cancelSearch" @searchData="searchProducts">
       <v-layout row>
         <v-flex xs11 offset-xs1>
-          <v-text-field name="productName" label="Product" light v-model="searchFilter.contains.productName"></v-text-field>
+          <v-text-field name="productName" label="Product" light v-model="searchFilter.contain.productName"></v-text-field>
         </v-flex>
       </v-layout>
       <v-layout row>
+        <v-flex xs11 offset-xs1>
+          <v-text-field name="minUnitPrice"  type="number"  label="Min Price" light v-model="searchFilter.greaterThanOrEqual.unitPrice"></v-text-field>
+        </v-flex>
+      </v-layout>
+      <v-layout row>
+        <v-flex xs11 offset-xs1>
+          <v-text-field name="maxUnitPrice"  type="number"  label="Max Price" light v-model="searchFilter.lessThanOrEqual.unitPrice"></v-text-field>
+        </v-flex>
+      </v-layout> 
+      <!-- <v-layout row>
         <v-flex xs11 offset-xs1>
           <label class="heading text-sm-central" light>Price Range</label>
         </v-flex>
@@ -48,7 +58,8 @@
         <v-flex xs3>
           <v-text-field type="number" light v-model="searchFilter.between.unitPrice.latter"></v-text-field>
         </v-flex>
-      </v-layout>
+        
+      </v-layout> -->
     </search-panel>
     <confirm-dialog
       :dialog="dialog"
@@ -98,17 +109,22 @@ export default class ProductList extends Vue {
     { text: '', value: 'actions', sortable: false }
   ];
   searchFilter = {
-    contains: {
-      props:["productName", "category"],
+    contain: {
       productName: '',
       category: ''
     },
-    between: {
-      unitPrice: {
-        former: 0,
-        latter: 0
-      }
-    }
+    greaterThanOrEqual:{
+      unitPrice: 0
+    },
+    lessThanOrEqual:{
+      unitPrice: 0
+    },
+    // between: {
+    //   unitPrice: {
+    //     former: 0,
+    //     latter: 0
+    //   }
+    // }
   };
   private productId = '';
   private query = '';
@@ -117,6 +133,7 @@ export default class ProductList extends Vue {
   private color = '';
   private quickSearchFilter = '';
   private itemId = -1;
+
   print() {
     window.print();
   }

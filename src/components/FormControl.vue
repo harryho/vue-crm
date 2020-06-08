@@ -19,7 +19,7 @@ export default {
   staticRenderFns: templateRenderFns,
   mounted() {
     const compiledTemplate = Vue.compile(`
-    <v-text-field :label="fieldLabel" light :value="searchFilter.contains.brand"></v-text-field>`);
+    <v-text-field :label="fieldLabel" light :value="searchFilter.contain.brand"></v-text-field>`);
     this.templateRender = compiledTemplate.render;
     templateRenderFns.length = 0;
     for (const i in compiledTemplate.staticRenderFns) {

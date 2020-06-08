@@ -1,16 +1,17 @@
 import { User, SearchFilter } from "@/types";
 
 const SearchFilterOps = {
-  equals: "",
+  equal: "_eq",
   greaterThan: "_gt",
   lessThan: "_lt",
   greaterThanOrEqual: "_gte",
   lessThanOrEqual: "_lte",
-  contains: "_like",
+  contain: "_like",
   startsWith: "_startsWith",
   endsWith: "_endsWith",
-  between: "_between",
+  // between: "_between",
 };
+
 
 const SESSION_TOKEN_KEY = "vue-crm-token";
 const SESSION_USER_KEY = "vue-crm-user";
@@ -62,64 +63,71 @@ export function clearSearchFilters(searchFilter: SearchFilter) {
 
     Object.keys(searchFilter).forEach(filter => {
       if (searchFilter[filter]) {
-        if (filter !== "between") {
-          Object.keys(searchFilter[filter]).forEach(prop => {
-            searchFilter[filter][prop] = null;
-          });
-        } else {
-          Object.keys(searchFilter[filter]).forEach(prop => {
-            searchFilter[filter][prop]["former"] = 0;
-            searchFilter[filter][prop]["latter"] = 0;
-          });
-        }
+        // if (filter !== "between") {
+        Object.keys(searchFilter[filter]).forEach(prop => {
+          searchFilter[filter][prop] = null;
+        });
+        // } 
+        // else {
+        //   Object.keys(searchFilter[filter]).forEach(prop => {
+        //     searchFilter[filter][prop]["former"] = 0;
+        //     searchFilter[filter][prop]["latter"] = 0;
+        //   });
+        // }
       }
     });
   }
 }
 
+
 export function buildSearchFilters(searchFilter: SearchFilter) {
   if (searchFilter) {
     searchFilter.filters = [];
 
-    Object.keys(searchFilter).forEach(filter=> {
-      if (filter === "between") {
+    Object.keys(searchFilter).forEach(filter => {
+      // if (filter === "between") {
+      //   Object.keys(searchFilter[filter]).forEach(propName => {
+      //     if (
+      //       searchFilter.between[propName]["former"] > 0 ||
+      //       searchFilter.between[propName]["latter"] > 0
+      //     ) {
+      //       if (searchFilter.between[propName]["former"] < searchFilter.between[propName]["latter"]) {
+      //         searchFilter.filters.push({
+      //           property: propName,
+      //           op: SearchFilterOps.greaterThanOrEqual,
+      //           val: searchFilter.between[propName]["former"],
+      //         });
+      //         searchFilter.filters.push({
+      //           property: propName,
+      //           op: SearchFilterOps.lessThanOrEqual,
+      //           val: searchFilter.between[propName]["latter"],
+      //         });
+      //       } else {
+      //         searchFilter.filters.push({
+      //           property: propName,
+      //           op: SearchFilterOps.lessThanOrEqual,
+      //           val: searchFilter.between[propName]["former"],
+      //         });
+      //         searchFilter.filters.push({
+      //           property: propName,
+      //           op: SearchFilterOps.greaterThanOrEqual,
+      //           val: searchFilter.between[propName]["latter"],
+      //         });
+      //       }
+      //     }
+      //   });
+      // } else {
+      if (filter !== "filters") {
         Object.keys(searchFilter[filter]).forEach(propName => {
-          if (
-            searchFilter.between[propName]["former"] > 0 ||
-            searchFilter.between[propName]["latter"] > 0
-          ) {
-            if (searchFilter.between[propName]["former"] < searchFilter.between[propName]["latter"]) {
-              searchFilter.filters.push({
-                property: propName,
-                op: SearchFilterOps.greaterThanOrEqual,
-                val: searchFilter.between[propName]["former"],
-              });
-              searchFilter.filters.push({
-                property: propName,
-                op: SearchFilterOps.lessThanOrEqual,
-                val: searchFilter.between[propName]["latter"],
-              });
-            } else {
-              searchFilter.filters.push({
-                property: propName,
-                op: SearchFilterOps.lessThanOrEqual,
-                val: searchFilter.between[propName]["former"],
-              });
-              searchFilter.filters.push({
-                property: propName,
-                op: SearchFilterOps.greaterThanOrEqual,
-                val: searchFilter.between[propName]["latter"],
-              });
-            }
+          console.log(`propName ${propName} `)
+          if (propName && searchFilter[filter]
+            && searchFilter[filter][propName]) {
+            searchFilter.filters.push({
+              property: propName,
+              op: SearchFilterOps[filter],
+              val: searchFilter[filter][propName],
+            });
           }
-        });
-      } else {
-        Object.keys(searchFilter[filter]).forEach(propName => {
-          searchFilter.filters.push({
-            property: propName,
-            op: SearchFilterOps[filter],
-            val: searchFilter[filter][propName],
-          });
         });
       }
     });
@@ -129,15 +137,68 @@ export function buildSearchFilters(searchFilter: SearchFilter) {
 export function buildJsonServerQuery(searchVm: TODO) {
   let filterQuery = "";
   if (searchVm && searchVm.filters) {
-    searchVm.filters.forEach((f: TODO) => {
-      filterQuery += f.property;
-      filterQuery += f.op;
-      filterQuery += "=";
-      filterQuery += f.val;
-      filterQuery += "&";
-    });
+    filterQuery = searchVm.filters.reduce((prev: '', f: TODO) => {
+      if (f.val && f.val !== "", f.val !== null && f.val !== undefined) {
+        let qString = ''
+        qString += f.property;
+        qString += f.op;
+        qString += "=";
+        qString += f.val;
+        prev += prev !== '' ? `&${qString}` : `${qString}`
+      }
+      return prev
+    }, '');
   }
+  debugger
   return filterQuery;
+}
+
+
+const filterFn = (op: string, value: TODO) => (prop: string,  data:TODO) => {
+  let propName =  ""
+  switch (op) {
+    case SearchFilterOps.equal:
+      propName = prop.slice(0, prop.indexOf(SearchFilterOps.equal))
+      return data[propName] === value
+    case SearchFilterOps.contain:
+      propName = prop.slice(0, prop.indexOf(SearchFilterOps.contain))
+      return data[propName].toLowerCase().includes(value.toLowerCase())
+    case SearchFilterOps.startsWith:
+      propName = prop.slice(0, prop.indexOf(SearchFilterOps.startsWith))
+      return data[propName].toLowerCase().startsWith(value.toLowerCase())
+    case SearchFilterOps.endsWith:
+      propName = prop.slice(0, prop.indexOf(SearchFilterOps.endsWith))
+      return data[propName].toLowerCase().endsWith(value.toLowerCase())
+    case SearchFilterOps.greaterThan:
+      propName = prop.slice(0, prop.indexOf(SearchFilterOps.greaterThan))
+      return  parseFloat(data[propName]) > parseFloat( value)
+    case SearchFilterOps.lessThan:
+      propName = prop.slice(0, prop.indexOf(SearchFilterOps.lessThan))
+      return parseFloat(data[propName] ) < parseFloat(value)
+    case SearchFilterOps.greaterThanOrEqual:
+      propName = prop.slice(0, prop.indexOf(SearchFilterOps.greaterThanOrEqual))
+      return  parseFloat(data[propName]) >=parseFloat( value)
+    case SearchFilterOps.lessThanOrEqual:
+      propName = prop.slice(0, prop.indexOf(SearchFilterOps.lessThanOrEqual))
+      return parseFloat(data[propName] )<= parseFloat(value)
+  }
+}
+
+
+export function getSeachFilters(parsedQs: { [key: string]: TODO }) {
+  // Search Query will look like follows
+  // firstname_like=abc&email_like=abc&price_ge=10
+  const filters = Object.keys(parsedQs).reduce(
+    (prev: TODO, k: string) => {
+      const prop = k.slice(0, k.indexOf('_'))
+      const op = k.slice(k.indexOf('_'))
+      const compVal = parsedQs[k]
+      if (prop !== '') {
+        prev[k] = filterFn(op, compVal)
+      }
+      return prev
+    }, {})
+  return filters;
 }
 
 export function isValidRewards(rewards: number) {

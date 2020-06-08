@@ -16,12 +16,12 @@
     <v-layout class="" row wrap>
       <v-flex md6 xs12 >
         <v-card light elevation="4">
-          <horizontal-bar-chart />
+          <product-analysis />
         </v-card>
       </v-flex>
       <v-flex md6 xs12 >
         <v-card light elevation="4">
-          <doughnut-chart></doughnut-chart>
+          <browser-usage></browser-usage>
         </v-card>
       </v-flex>
     </v-layout>
@@ -32,8 +32,8 @@ import InfoBox from "@/components/dashboard/InfoBox.vue";
 import MonthlySales from "@/components/dashboard/MonthlySales";
 import OrderForecast from "@/components/dashboard/OrderForecast";
 import BarChart from "@/components/dashboard/Bar";
-import DoughnutChart from "@/components/dashboard/Doughnut";
-import HorizontalBarChart from "@/components/dashboard/HorizontalBarChart";
+import BrowserUsage from "@/components/dashboard/BrowserUsage";
+import ProductAnalysis from "@/components/dashboard/ProductAnalysis";
 import { Component, Prop } from "vue-property-decorator";
 import Vue from "vue";
 
@@ -44,8 +44,8 @@ import Vue from "vue";
     MonthlySales,
     OrderForecast,
     BarChart,
-    DoughnutChart,
-    HorizontalBarChart
+    BrowserUsage,
+    ProductAnalysis
   }
 })
 export default class Dashboard extends Vue {}

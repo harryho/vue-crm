@@ -2,10 +2,12 @@ import { DB } from './demo-data';
 import { Entity } from '@/types';
 import url from 'url';
 import querystring from 'querystring';
+import { getSeachFilters } from './app-util';
 
 const ds: TODO = DB;
 
 const EXPAND = "_expand"
+const EMBED = "_exbed"
 
 function getModel(action: string) {
   if (action.includes("/")) {
@@ -32,17 +34,34 @@ function getExpand(qs: TODO) {
   else return ''
 }
 
-function parseRequest( req: string ){
+function extractFilterQs(parsedQs: TODO) {
+  return Object.keys(parsedQs).reduce(
+    (prev: TODO, k) => {
+      if (k !== EXPAND && k !== EMBED && k.includes('_')) {
+        prev[k] = parsedQs[k]
+      }
+      return prev
+    }, {})
+}
+
+function parseRequest(req: string) {
   const parsedUrl = url.parse(req);
   const parsedQs = querystring.parse(parsedUrl.query);
   const model = getModel(parsedUrl.pathname);
   const id = getId(parsedUrl.pathname);
   const exp = getExpand(parsedQs)
-  return { model, id , exp }
+  // const filterQs = extractFilterQs(parsedQs) as TODO
+  // if (filterQs && Object.keys(filterQs).length > 0) {
+  const filters = getSeachFilters(parsedQs)
+  // }
+  return { model, id, exp, filters }
 }
 
+
+// function filterSearchResult( data: TODO[], )
+
 export function getData(action: string): Promise<TODO> {
-  const {model, id, exp} = parseRequest(action)
+  const { model, id, exp, filters } = parseRequest(action)
   return new Promise(function (resolve, _reject) {
     const expandModel = exp
       ? exp === "category"
@@ -51,8 +70,8 @@ export function getData(action: string): Promise<TODO> {
       : exp;
 
     console.log(model);
-    let result;
-    let expand :string, expandId: number;
+    let result: TODO;
+    let expand: string, expandId: number;
     console.log(expandModel);
     if (model in ds) {
       if (id && id > 0) {
@@ -85,13 +104,22 @@ export function getData(action: string): Promise<TODO> {
           return m;
         });
       }
+
+      if (filters !== null && filters !== undefined
+        && Object.keys(filters).length > 0) {
+        result = result.filter(
+          row => Object.keys(filters).every(
+            prop => filters[prop](prop,row)
+          )
+        )
+      }
     }
     setTimeout(resolve, 500, { data: result });
   });
 }
 
 export function postData(action: string, data: Entity): Promise<TODO> {
-  const {model } = parseRequest(action)
+  const { model } = parseRequest(action)
   return new Promise(function (resolve, _reject) {
     ds[model].push(data);
     setTimeout(resolve, 200, { data: data });
@@ -99,7 +127,7 @@ export function postData(action: string, data: Entity): Promise<TODO> {
 }
 
 export function putData(action: string, data: Entity): Promise<TODO> {
-  const {model, id } = parseRequest(action)
+  const { model, id } = parseRequest(action)
   return new Promise(function (resolve, _reject) {
     const idx = ds[model].findIndex((d: { id: number }) => d.id === id);
     ds[model][idx] = Object.assign({}, data);
@@ -108,16 +136,16 @@ export function putData(action: string, data: Entity): Promise<TODO> {
 }
 
 export function deleteData(action: string): Promise<TODO> {
-  const {model, id } = parseRequest(action)
+  const { model, id } = parseRequest(action)
   return new Promise(function (resolve, _reject) {
     if (id > 0) {
-      ds[model].splice(ds[model].findIndex((d: Entity) => d.id === id),1);
+      ds[model].splice(ds[model].findIndex((d: Entity) => d.id === id), 1);
     }
     setTimeout(resolve, 200, { status: 200 });
   });
 }
 
-export function login(action: string, data: TODO): Promise<TODO> {
+export function login(_action: string, data: TODO): Promise<TODO> {
   return new Promise(function (resolve, _reject) {
     if (data.username === "admin@test.com" && data.password === "password") {
       const { accessToken: accessToken, user } = ds.token;

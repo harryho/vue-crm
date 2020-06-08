@@ -12,7 +12,7 @@
               <v-img max-width="2.5em" class="avatar" src="@/assets/avatar0.png" />
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title>{{ user.firstName }}{{ user.lastName }}</v-list-item-title>
+              <v-list-item-title>{{ user.firstname }}{{ user.lastname }}</v-list-item-title>
             </v-list-item-content>
             <!-- <v-spacer></v-spacer> -->
             <v-list-item-action style="max-width:1em">

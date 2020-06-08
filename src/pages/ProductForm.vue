@@ -71,8 +71,8 @@
   </v-container>
 </template>
 <script lang="ts">
-import { Component } from 'vue-property-decorator';
 import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
 import { productModule } from '@/store/modules/products';
 import { appModule } from '@/store/modules/app';
 
@@ -108,21 +108,22 @@ export default class ProductForm extends Vue {
     return productModule.product;
   }
 
-  get pagination() {
-    return productModule.pagination;
-  }
   get loading() {
     return productModule.loading;
   }
+
   get mode() {
     return appModule.mode;
   }
+
   get snackbar() {
     return appModule.snackbar;
   }
+
   get notice() {
     return appModule.notice;
   }
+  
   get categories() {
     return productModule.categories;
   }

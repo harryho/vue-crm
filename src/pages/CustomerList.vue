@@ -34,7 +34,7 @@
             name="input-1-3"
             label="Frist Name"
             light
-            v-model="searchFilter.contains.firstName"
+            v-model="searchFilter.contain.firstname"
           ></v-text-field>
         </v-flex>
       </v-layout>
@@ -44,51 +44,31 @@
             name="input-1-3"
             label="Last Name"
             light
-            v-model="searchFilter.contains.lastName"
+            v-model="searchFilter.contain.lastname"
           ></v-text-field>
         </v-flex>
       </v-layout>
       <v-layout row>
         <v-flex xs11 offset-xs1>
-          <v-subheader class="text-sm-central" light
-            >Reward range between Reward 1 and Reward 2
-          </v-subheader>
-        </v-flex>
-      </v-layout>
-      <v-layout row>
-        <v-flex xs8 offset-xs1>
-          <v-slider
-            label="Reward 1"
-            light
-            v-bind:max="50"
-            v-model="searchFilter.between.rewards.former"
-          ></v-slider>
-        </v-flex>
-        <v-flex xs3>
           <v-text-field
-            type="number"
+            name="input-1-3"
+            label="Mobile"
             light
-            v-model="searchFilter.between.rewards.former"
+            v-model="searchFilter.contain.mobile"
           ></v-text-field>
         </v-flex>
       </v-layout>
-      <v-layout row>
-        <v-flex xs8 offset-xs1>
-          <v-slider
-            label="Reward 2"
-            light
-            v-bind:max="100"
-            v-model="searchFilter.between.rewards.latter"
-          ></v-slider>
-        </v-flex>
-        <v-flex xs3>
+            <v-layout row>
+        <v-flex xs11 offset-xs1>
           <v-text-field
-            type="number"
+            name="input-1-3"
+            label="Email"
             light
-            v-model="searchFilter.between.rewards.latter"
+            v-model="searchFilter.contain.email"
           ></v-text-field>
         </v-flex>
       </v-layout>
+     
     </search-panel>
 
     <confirm-dialog
@@ -97,7 +77,7 @@
       :dialogText="dialogText"
       @onConfirm="onConfirm"
       @onCancel="onCancel"
-    ></confirm-dialog>
+    />
     <v-snackbar
       v-if="loading === false"
       :right="true"
@@ -151,9 +131,9 @@ export default class CustomerList extends Vue {
     {
       text: "First Name",
       left: true,
-      value: "firstName"
+      value: "firstname"
     },
-    { text: "Last Name", value: "lastName" },
+    { text: "Last Name", value: "lastname" },
     { text: "Email", value: "email" },
     { text: "Mobile", value: "mobile" },
     { text: "Reward", value: "rewards" },
@@ -161,12 +141,11 @@ export default class CustomerList extends Vue {
     { text: "", value: "actions", sortable: false }
   ];
   private searchFilter = {
-    contains: {
-      firstName: "",
-      lastName: ""
-    },
-    between: {
-      rewards: { former: 0, latter: 0 }
+    contain: {
+      firstname: "",
+      lastname: "",
+      email: "",
+      mobile: ""
     }
   };
   // private customerId = "";
@@ -200,6 +179,7 @@ export default class CustomerList extends Vue {
   searchCustomers() {
     buildSearchFilters(this.searchFilter);
     this.query = buildJsonServerQuery(this.searchFilter);
+    console.log(this.query)
     this.quickSearch = "";
     customerModule.searchCustomers(this.query);
     this.showSearchPanel = false;

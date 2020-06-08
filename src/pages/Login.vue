@@ -59,8 +59,8 @@
   </v-container>
 </template>
 <script lang="ts">
-import { Component } from "vue-property-decorator";
 import Vue from "vue";
+import { Component } from "vue-property-decorator";
 import { userModule } from "@/store/modules/user";
 
 @Component

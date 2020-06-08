@@ -16,12 +16,12 @@
     <search-panel :rightDrawer="rightDrawer" @cancelSearch="cancelSearch" @searchData="searchOrders">
       <v-layout row>
         <v-flex xs11 offset-xs1>
-          <v-text-field name="reference" label="Reference" light v-model="searchFilter.contains.reference"></v-text-field>
+          <v-text-field name="reference" label="Reference" light v-model="searchFilter.contain.reference"></v-text-field>
         </v-flex>
       </v-layout>
       <v-layout row>
         <v-flex xs11 offset-xs1>
-          <v-text-field name="customer" label="Customer" light v-model="searchFilter.contains.customer"></v-text-field>
+          <v-text-field name="customer" label="Customer" light v-model="searchFilter.contain.customer"></v-text-field>
         </v-flex>
       </v-layout>
       <v-layout row>
@@ -101,13 +101,13 @@ export default class OrderList extends Vue {
     { text: '', value: 'actions', sortable: false }
   ];
   private searchFilter = {
-    contains: {
+    contain: {
       reference: '',
       customer: ''
     },
-    between: {
-      amount: { former: 0, latter: 0 }
-    }
+    // between: {
+    //   amount: { former: 0, latter: 0 }
+    // }
   };
   // private orderId = '';
   private query = '';

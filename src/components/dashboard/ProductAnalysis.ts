@@ -3,9 +3,9 @@ import { mixins } from "vue-class-component";
 import { HorizontalBar} from "vue-chartjs";
 
 @Component({
-  name: "HorizontalBarChart"
+  name: "ProductAnalysis"
 })
-export default class HorizontalBarChart extends mixins(HorizontalBar){
+export default class ProductAnalysis extends mixins(HorizontalBar){
 
   mounted() {
     this.renderChart(
@@ -67,7 +67,11 @@ export default class HorizontalBarChart extends mixins(HorizontalBar){
       },
       { 
         title: {
-          display: false,
+          display: true,
+          text: 'Product Analysis',
+          position: 'bottom',
+          fontSize: 20,
+          fontStyle: 'bold'
         },
         legend:{
           position: 'right',

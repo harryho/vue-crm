@@ -39,7 +39,7 @@ class OrderModule extends VuexModule implements OrderState {
     getData("customers/").then(res  => {
       if (res.data) {
         const customers = res.data.map((c: Customer) => {
-          c.text = c.firstName + " " + c.lastName;
+          c.text = c.firstname + " " + c.lastname;
           c.value = c.id;
           return c;
         });
@@ -104,7 +104,7 @@ class OrderModule extends VuexModule implements OrderState {
           0
         );
         item.quantity = item.products?.length;
-        item.customerName = item.customer? item.customer.firstName + " " + item.customer.lastName : "";
+        item.customerName = item.customer? item.customer.firstname + " " + item.customer.lastname : "";
       });
       this.setDataTable(orders);
       this.setLoading(false);
@@ -121,7 +121,7 @@ class OrderModule extends VuexModule implements OrderState {
           0
         );
         item.quantity = item.products?.length;
-        item.customerName = item.customer ? item.customer.firstName + " " + item.customer.lastName
+        item.customerName = item.customer ? item.customer.firstname + " " + item.customer.lastname
           : "";
       });
       this.setDataTable(orders);
@@ -151,7 +151,7 @@ class OrderModule extends VuexModule implements OrderState {
           0
         );
         item.quantity = item.products?.length;
-        item.customerName = item.customer ? item.customer.firstName + " " + item.customer.lastName : "";
+        item.customerName = item.customer ? item.customer.firstname + " " + item.customer.lastname : "";
       });
       this.setDataTable(orders);
       this.setLoading(false);

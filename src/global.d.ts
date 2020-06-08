@@ -44,13 +44,13 @@ type TableHeader = {
 };
 
 type SeachQuery = {
-  contains?: {[k:string]:string};
-  between?: {};
+  contain?: {[k:string]:string};
+  // between?: {};
   startsWith?: {[k:string]:string};
   endsWith?: {[k:string]:string};
-  equals?:{[k:string]:string};
+  equal?:{[k:string]:string};
   lessThan: {[k:string]:number};
   greaterThan: {[k:string]:number};
-  lessThanOrEquals: {[k:string]:number};
-  greaterThanOrEquals: {[k:string]:number};
+  lessThanOrEqual: {[k:string]:number};
+  greaterThanOrEqual: {[k:string]:number};
 };

@@ -34,7 +34,7 @@ class CustomerModule extends VuexModule implements CustomerState {
     getData('orders/').then(res => {
       if (res.data && res.data.length > 0) {
         const orderList = res.data.map((c: TODO) => {
-          c.text = c.firstName + ' ' + c.lastName;
+          c.text = c.firstname + ' ' + c.lastname;
           c.value = c.id;
           return c;
         });
