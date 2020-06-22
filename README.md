@@ -11,10 +11,8 @@ The goal of this project is to create a reusable starter project for real-world 
 * The UI part is built on the top of Vuetify.
 * It inlcudes Vuex and Axios to manage authentication. (Dummy token)
 * The dashboard uses vue-chartjs to create charts on dashboard.
-* The starter project has integrated progress bar.
-* Backend API is readonly dummy service.
 * The project is built on TypeScript.
-* Includde Docker file.
+* Backend API is readonly dummy service.
 * ~~The token and user profile is managed by Vue-Persisteddstate.~~
 * ~~To simulate real-world business, this starter project chooses Json-Server as fake Restful API. (You can simple replace it with your own API).~~
 
