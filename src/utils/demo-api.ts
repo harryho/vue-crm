@@ -34,31 +34,16 @@ function getExpand(qs: TODO) {
   else return ''
 }
 
-function extractFilterQs(parsedQs: TODO) {
-  return Object.keys(parsedQs).reduce(
-    (prev: TODO, k) => {
-      if (k !== EXPAND && k !== EMBED && k.includes('_')) {
-        prev[k] = parsedQs[k]
-      }
-      return prev
-    }, {})
-}
-
 function parseRequest(req: string) {
   const parsedUrl = url.parse(req);
   const parsedQs = querystring.parse(parsedUrl.query);
   const model = getModel(parsedUrl.pathname);
   const id = getId(parsedUrl.pathname);
   const exp = getExpand(parsedQs)
-  // const filterQs = extractFilterQs(parsedQs) as TODO
-  // if (filterQs && Object.keys(filterQs).length > 0) {
   const filters = getSeachFilters(parsedQs)
-  // }
   return { model, id, exp, filters }
 }
 
-
-// function filterSearchResult( data: TODO[], )
 
 export function getData(action: string): Promise<TODO> {
   const { model, id, exp, filters } = parseRequest(action)

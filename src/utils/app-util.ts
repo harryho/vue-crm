@@ -67,13 +67,6 @@ export function clearSearchFilters(searchFilter: SearchFilter) {
         Object.keys(searchFilter[filter]).forEach(prop => {
           searchFilter[filter][prop] = null;
         });
-        // } 
-        // else {
-        //   Object.keys(searchFilter[filter]).forEach(prop => {
-        //     searchFilter[filter][prop]["former"] = 0;
-        //     searchFilter[filter][prop]["latter"] = 0;
-        //   });
-        // }
       }
     });
   }
@@ -85,38 +78,6 @@ export function buildSearchFilters(searchFilter: SearchFilter) {
     searchFilter.filters = [];
 
     Object.keys(searchFilter).forEach(filter => {
-      // if (filter === "between") {
-      //   Object.keys(searchFilter[filter]).forEach(propName => {
-      //     if (
-      //       searchFilter.between[propName]["former"] > 0 ||
-      //       searchFilter.between[propName]["latter"] > 0
-      //     ) {
-      //       if (searchFilter.between[propName]["former"] < searchFilter.between[propName]["latter"]) {
-      //         searchFilter.filters.push({
-      //           property: propName,
-      //           op: SearchFilterOps.greaterThanOrEqual,
-      //           val: searchFilter.between[propName]["former"],
-      //         });
-      //         searchFilter.filters.push({
-      //           property: propName,
-      //           op: SearchFilterOps.lessThanOrEqual,
-      //           val: searchFilter.between[propName]["latter"],
-      //         });
-      //       } else {
-      //         searchFilter.filters.push({
-      //           property: propName,
-      //           op: SearchFilterOps.lessThanOrEqual,
-      //           val: searchFilter.between[propName]["former"],
-      //         });
-      //         searchFilter.filters.push({
-      //           property: propName,
-      //           op: SearchFilterOps.greaterThanOrEqual,
-      //           val: searchFilter.between[propName]["latter"],
-      //         });
-      //       }
-      //     }
-      //   });
-      // } else {
       if (filter !== "filters") {
         Object.keys(searchFilter[filter]).forEach(propName => {
           console.log(`propName ${propName} `)
