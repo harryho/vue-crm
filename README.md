@@ -54,7 +54,7 @@ npm install -g yarn
 yarn
 
 # serve with hot reload at localhost:8080
-npm run start
+npm run serve
 
 
 ## You will see the following output. You can test API with the URLs via browser.
