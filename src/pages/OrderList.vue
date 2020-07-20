@@ -105,9 +105,9 @@ export default class OrderList extends Vue {
       reference: '',
       customer: ''
     },
-    // between: {
-    //   amount: { former: 0, latter: 0 }
-    // }
+    between: {
+      amount: { former: 0, latter: 0 }
+    }
   };
   // private orderId = '';
   private query = '';

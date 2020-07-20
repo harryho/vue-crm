@@ -112,6 +112,12 @@ export default class App extends Vue {
   private fixed = false;
   private items: AppMenu[] = [
     {
+      icon: 'mdi-home-modern',
+      title: 'Home',
+      vertical: 'Home',
+      link: '#'
+    },
+    {
       icon: 'mdi-view-dashboard',
       title: 'Dashboard',
       vertical: 'Dashboard',
