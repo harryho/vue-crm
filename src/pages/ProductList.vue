@@ -26,40 +26,7 @@
           <v-text-field name="maxUnitPrice"  type="number"  label="Max Price" light v-model="searchFilter.lessThanOrEqual.unitPrice"></v-text-field>
         </v-flex>
       </v-layout> 
-      <!-- <v-layout row>
-        <v-flex xs11 offset-xs1>
-          <label class="heading text-sm-central" light>Price Range</label>
-        </v-flex>
-      </v-layout>
-      <v-layout row>
-        <v-flex xs8 offset-xs1>
-          <v-slider
-            class="text-xs-central"
-            label="Price 1"
-            light
-            v-bind:max="100"
-            v-model="searchFilter.between.unitPrice.former"
-          ></v-slider>
-        </v-flex>
-        <v-flex xs3>
-          <v-text-field type="number" light v-model="searchFilter.between.unitPrice.former"></v-text-field>
-        </v-flex>
-      </v-layout>
-      <v-layout row>
-        <v-flex xs8 offset-xs1>
-          <v-slider
-            class="text-xs-central"
-            label="Price 2"
-            light
-            v-bind:max="999"
-            v-model="searchFilter.between.unitPrice.latter"
-          ></v-slider>
-        </v-flex>
-        <v-flex xs3>
-          <v-text-field type="number" light v-model="searchFilter.between.unitPrice.latter"></v-text-field>
-        </v-flex>
-        
-      </v-layout> -->
+     
     </search-panel>
     <confirm-dialog
       :dialog="dialog"
@@ -119,12 +86,6 @@ export default class ProductList extends Vue {
     lessThanOrEqual:{
       unitPrice: 0
     },
-    // between: {
-    //   unitPrice: {
-    //     former: 0,
-    //     latter: 0
-    //   }
-    // }
   };
   private productId = '';
   private query = '';

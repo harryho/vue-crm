@@ -19,7 +19,7 @@ export default class BrowserUsage extends mixins(Doughnut) {
       },
       {
         legend: {
-          position: 'right',
+          position: 'top',
           fullWidth: true,
           labels: {
             fontSize: 16,

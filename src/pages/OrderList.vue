@@ -26,25 +26,14 @@
       </v-layout>
       <v-layout row>
         <v-flex xs11 offset-xs1>
-          <label class="heading text-sm-central" light>Amount Range</label>
+          <v-text-field name="minAmount"  type="number"  label="Min Amount" light v-model="searchFilter.greaterThanOrEqual.amount"></v-text-field>
         </v-flex>
       </v-layout>
       <v-layout row>
-        <v-flex xs8 offset-xs1>
-          <v-slider class="text-xs-central" label="Price 1" light v-bind:max="100" v-model="searchFilter.between.amount.former"></v-slider>
+        <v-flex xs11 offset-xs1>
+          <v-text-field name="maxAmount"  type="number"  label="Max Amount" light v-model="searchFilter.lessThanOrEqual.amount"></v-text-field>
         </v-flex>
-        <v-flex xs3>
-          <v-text-field type="number" light v-model="searchFilter.between.amount.former"></v-text-field>
-        </v-flex>
-      </v-layout>
-      <v-layout row>
-        <v-flex xs8 offset-xs1>
-          <v-slider class="text-xs-central" label="Price 2" light v-bind:max="9999" v-model="searchFilter.between.amount.latter"></v-slider>
-        </v-flex>
-        <v-flex xs3>
-          <v-text-field type="number" light v-model="searchFilter.between.amount.latter"></v-text-field>
-        </v-flex>
-      </v-layout>
+      </v-layout> 
     </search-panel>
     <confirm-dialog
       :dialog="dialog"
@@ -105,9 +94,12 @@ export default class OrderList extends Vue {
       reference: '',
       customer: ''
     },
-    // between: {
-    //   amount: { former: 0, latter: 0 }
-    // }
+    greaterThanOrEqual:{
+      amount: 0
+    },
+    lessThanOrEqual:{
+      amount: 0
+    },
   };
   // private orderId = '';
   private query = '';

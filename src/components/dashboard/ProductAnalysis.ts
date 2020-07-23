@@ -74,7 +74,7 @@ export default class ProductAnalysis extends mixins(HorizontalBar){
           fontStyle: 'bold'
         },
         legend:{
-          position: 'right',
+          position: 'top',
           fullWidth: true,
           labels: {
             fontSize: 16,
