@@ -108,7 +108,6 @@ class OrderModule extends VuexModule implements OrderState {
       });
       this.setDataTable(orders);
       this.setLoading(false);
-      console.log(orders)
     });
   }
 
