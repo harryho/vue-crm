@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  frontend-mtc:
+    build: .
+    container_name: frontend-mtc
+    privileged: true
+    command: /bin/bash
+    tty: true
+    stdin_open: true
+    ports:
+      - '8080:8080'
+      - '8000:8000'
+      - '5037:5037'
+      - '5901:5901'
+      - '5554:5554'
+      - '5555:5555'
+      # - '5900:5900'
+    volumes:
+      - /dev/bus/usb:/dev/bus/usb
+      - ~/Workspace:/workspace
