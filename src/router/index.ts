@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from "vue-router";
 import { userModule } from "@/store/modules/user";
 import ErrorPage from "@/components/404.vue";
 import Dashboard from "@/pages/Dashboard.vue";
+import Home from "@/pages/Home.vue";
 import OrderList from "@/pages/OrderList.vue";
 import OrderForm from "@/pages/OrderForm.vue";
 import About from "@/pages/About.vue";
@@ -28,14 +29,28 @@ function requireAuth(to: TODO, from: TODO, next: TODO) {
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
-  { path: "/404", component: ErrorPage, name: "ErrorPage" },
+  { 
+    path: "/404", 
+    component: ErrorPage, 
+    name: "ErrorPage" 
+  },
+  {
+    path: "/home",
+    component: Home,
+    name: "home"
+  },
   {
     path: "/dashboard",
     component: Dashboard,
     name: "dashboard",
     beforeEnter: requireAuth
   },
-  { path: "/about", component: About, name: "about", beforeEnter: requireAuth },
+  { 
+    path: "/about", 
+    component: About, 
+    name: "about", 
+    beforeEnter: requireAuth 
+  },
   {
     path: "/orders",
     component: OrderList,
@@ -90,14 +105,24 @@ const routes: Array<RouteConfig> = [
     name: "NewProduct",
     beforeEnter: requireAuth
   },
-  { path: "/login", component: Login, name: "Login" },
+  { 
+    path: "/login", 
+    component: Login, 
+    name: "Login" 
+  },
   {
     path: "/changePassword",
     component: ChangePassword,
     name: "ChangePassword"
   },
-  { path: "/", redirect: "/dashboard" },
-  { path: "*", redirect: "/404" }
+  { 
+    path: "/", 
+    redirect: "/home" 
+  },
+  { 
+    path: "*", 
+    redirect: "/404" 
+  }
 ];
 
 const router = new VueRouter({
