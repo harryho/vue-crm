@@ -76,11 +76,11 @@
           <span style="margin-left:0.4rem;">GitHub</span>
         </v-btn>
       </v-app-bar>
-      <v-content>
+      <v-main>
         <v-container fluid>
           <router-view></router-view>
         </v-container>
-      </v-content>
+      </v-main>
       <v-footer :inset="true" style="justify-content:center; text-align: center" app>
         <span>&copy; CRM-ANALYST 2020</span>
       </v-footer>
@@ -115,7 +115,7 @@ export default class App extends Vue {
       icon: 'mdi-home-modern',
       title: 'Home',
       vertical: 'Home',
-      link: '#'
+      link: 'home'
     },
     {
       icon: 'mdi-view-dashboard',

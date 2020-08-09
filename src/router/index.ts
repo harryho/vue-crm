@@ -117,11 +117,11 @@ const routes: Array<RouteConfig> = [
   },
   { 
     path: "/", 
-    redirect: "/home" 
+    redirect: "/home"
   },
   { 
     path: "*", 
-    redirect: "/404" 
+    redirect: "/404"
   }
 ];
 
