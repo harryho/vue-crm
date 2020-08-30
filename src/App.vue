@@ -1,6 +1,6 @@
 <template>
   <v-app id="vcrm">
-    <vue-progress-bar> </vue-progress-bar>
+    <vue-progress-bar v-if="signedIn"> </vue-progress-bar>
     <template v-if="!signedIn">
       <router-view></router-view>
     </template>
@@ -172,8 +172,10 @@ export default class App extends Vue {
         // parse meta tags
         this.$Progress.parseMeta(meta);
       }
+      
       //  start the progress bar
       this.$Progress.start();
+
       //  continue to next page
       next();
     });
