@@ -1,4 +1,4 @@
-###### Build #####
+###### Build the App #####
 FROM node:10.19 AS node
 LABEL author="Harry Ho"
 WORKDIR /
@@ -7,7 +7,7 @@ RUN npm install
 RUN npm run build -- --prod
 
 
-###### Run #####
+###### Build the Delivery #####
 FROM nginx:alpine
 LABEL author="Harry Ho"
 WORKDIR /var/cache/nginx
