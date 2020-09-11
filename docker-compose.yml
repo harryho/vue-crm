@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  frontend-mtc:
+  crm-analyst:
     build: .
-    container_name: frontend-mtc
+    container_name: crm-analyst
     privileged: true
     command: /bin/bash
     tty: true
@@ -15,7 +15,7 @@ services:
       - '5901:5901'
       - '5554:5554'
       - '5555:5555'
-      # - '5900:5900'
+      - '5900:5900'
     volumes:
       - /dev/bus/usb:/dev/bus/usb
       - ~/Workspace:/workspace
