@@ -52,8 +52,9 @@
 .div-menu {
     position: relative;
     height: 3vh;
-    left: 2vw;
     top: 2vh;
+    margin-left: calc(100% - 98vw);
+    width: 3vw;
 }
 
 .div-menu img {
@@ -63,8 +64,8 @@
 }
 
 .div-text {
+    margin-left: calc(100% - 95vw);
     position: relative;
-    width: 35vw;
     height: 3vh;
     top: 2vh;
     font-family: Roboto;
@@ -74,36 +75,33 @@
     text-align: left;
     color: #000000;
     padding-bottom: 0vh;
-    left: 5vw;
+    width: 40vw;
 }
 
 .div-find {
+    /* margin-left: calc(100% - 95vw); */
+    width: 30vw;
     position: relative;
-    width: 31vw;
     height: 4vh;
     top: 1vh;
     border-bottom-color: rgb(0, 0, 0);
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-radius: 15px;
-    left: 9vw;
 }
 
 .div-find img {
-    max-width: 3vw;
-    max-height: 4vh;
-    width: 33.3px;
-    height: 33.3px;
-    margin-left: 26vw;
+    width: 3vw;
+    height: 1.8rem;
+    margin-left: 0vw;
+    margin-left: calc(100% - 5vw);
 }
 
 .div-foto {
-    width: 10vw;
+    margin-left: calc(100% - 90vw);
     height: 6vh;
-    margin: 0;
-    padding: 0;
     flex-wrap: wrap;
-    margin-left: 14vw;
+    width: 5vw;
 }
 
 .div-foto img {
