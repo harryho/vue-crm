@@ -1,117 +1,69 @@
 <template>
-    <div class="cls-navigation">
-        <div class="div-menu">
-            <img src="@/assets/bars-solid.svg" alt="">
-        </div>
-        <div class="div-text">{{this.dataText}}</div>
-        <div class="div-find">
-             <img src="@/assets/search-solid.svg" alt="">
-        </div>
-        <div class="div-foto">
-            <img :src="this.dataFoto" alt="">
-        </div>
-    </div>
+  <div>
+    <v-app-bar
+      color="deep-purple accent-4"
+      dense
+      dark
+    >
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+      <v-toolbar-title>{{ dataText }}</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon>
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
+
+      <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+
+      <v-menu
+        left
+        bottom
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item
+            v-for="n in dataMenu"
+            :key="n"
+            @click="() => {}"
+          >
+            <v-list-item-title>{{ n.item }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </v-app-bar>
+  </div>
 </template>
 
 <script lang="ts">
     export default {
         name: "NavigationBar",
-        props: { propMenu: Array, propText: String, propFoto: String },
+        props: { propMenu: Array, propText: String },
         
         data() {
             return {
                 dataMenu: Array,
-                dataText: String,
-                dataFoto: String
+                dataText: String
             };
         },
 
         mounted() {
             this.dataTitulo = this.propTitulo;
             this.dataSubTitulo = this.propSubTitulo;
-
-            this.dataMenu = this.propMenu;
             this.dataText = this.propText;
-            this.dataFoto = this.propFoto;
+            this.dataMenu = this.propMenu;
         }
     }
 </script>
-
-<style scoped>
-.cls-navigation {
-    position: relative;
-    background: #FFFFFF;
-    border-bottom-color: rgb(0, 0, 0);
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    display: flex;
-    flex-direction: row;
-    height: 6vh;
-}
-
-.div-menu {
-    position: relative;
-    height: 3vh;
-    top: 2vh;
-    margin-left: calc(100% - 98vw);
-    width: 3vw;
-}
-
-.div-menu img {
-    max-width: 5vw;
-    max-height: 3vh;
-    width: 33.3px;
-}
-
-.div-text {
-    margin-left: calc(100% - 95vw);
-    position: relative;
-    height: 3vh;
-    top: 2vh;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    text-transform: uppercase;
-    text-align: left;
-    color: #000000;
-    padding-bottom: 0vh;
-    width: 40vw;
-}
-
-.div-find {
-    /* margin-left: calc(100% - 95vw); */
-    width: 30vw;
-    position: relative;
-    height: 4vh;
-    top: 1vh;
-    border-bottom-color: rgb(0, 0, 0);
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-radius: 15px;
-}
-
-.div-find img {
-    width: 3vw;
-    height: 1.8rem;
-    margin-left: 0vw;
-    margin-left: calc(100% - 5vw);
-}
-
-.div-foto {
-    margin-left: calc(100% - 90vw);
-    height: 6vh;
-    flex-wrap: wrap;
-    width: 5vw;
-}
-
-.div-foto img {
-    max-width: 10vw;
-    max-height: 10vh;
-    border: 1px solid #000000;
-    border-radius: 50%;
-    width: 33.3px;
-    height: 33.3px;
-    margin: 0.3rem;
-}
-
-</style>
