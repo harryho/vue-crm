@@ -32,10 +32,12 @@ export default {
 <style scoped>
 .cls-titulo {
   position: relative;
-  top: 6vh;
+  top: 3vh;
   flex-wrap: wrap;
   display: flex;
   align-items: center;
+  padding-bottom: 1vh;
+  margin-bottom: 2vh;
 }
 
 .div-titulo {

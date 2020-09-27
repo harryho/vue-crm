@@ -1,10 +1,9 @@
 <template>
     <div class="cls-listProducts">
-        <ul id="example-1">
-            <li :for="item in this.dataProducts">
-                {{ item }}
-            </li>
-        </ul>
+        <v-list-item v-for="(item, i) in dataProducts" :key="i">
+            <v-list-item-content  v-text="item.text">
+            </v-list-item-content>
+        </v-list-item>
     </div>
 </template>
 
@@ -13,11 +12,10 @@
         name: "SomeProducts",
         props: { propProducts: Array },
         
-        data() {
-            return {
-                dataProducts: Array
-            }
-        },
+         data: () => ({
+            item: 1,
+            dataProducts: []
+        }),
 
         mounted() {
             this.getProducts();
@@ -34,5 +32,9 @@
 <style scoped>
 .cls-listProducts {
     position: relative;
+}
+
+.myList {
+    text-align: center;
 }
 </style>
