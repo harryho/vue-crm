@@ -98,6 +98,35 @@
           </v-card>
         </v-col>
       </v-row>
+        <v-carousel
+        :continuous="false"
+        :cycle="cycle"
+        :show-arrows="false"
+        hide-delimiter-background
+        delimiter-icon="mdi-minus"
+        height="300"
+        >
+        <v-carousel-item
+            v-for="(slide, i) in slides"
+            :key="i"
+        >
+            <v-sheet
+            :color="colors[i]"
+            height="100%"
+            tile
+            >
+            <v-row
+                class="fill-height"
+                align="center"
+                justify="center"
+            >
+                <div class="display-3">
+                {{ slide }}
+                </div>
+            </v-row>
+            </v-sheet>
+        </v-carousel-item>
+        </v-carousel>
     </v-container>
   </v-card>
 </template>
@@ -134,7 +163,22 @@
       toolbarTitle: 'Analista de CRM',
       cardTitle: 'Gerar valor sobre seus dados',
       cardSubTitle: 'Produtos desenvolvidos com base em algoritmos de  aprendizado de maquina, altamente adaptaveis para atender o seu negocio.',
-      questions: 'Leia mais...'
+      questions: 'Leia mais...',
+      colors: [
+          'green',
+          'secondary',
+          'yellow darken-4',
+          'red lighten-2',
+          'orange darken-1',
+        ],
+        cycle: false,
+        slides: [
+          'Produtos',
+          'AI Platform',
+          'IA facilitam',
+          'AI Hub',
+          'Outros',
+        ],
     }),
   }
 </script>
