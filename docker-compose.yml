@@ -1,21 +1,40 @@
 version: '3'
 
 services:
-  crm-analyst:
+   crm-analyst:
     build: .
     container_name: crm-analyst
     privileged: true
     command: /bin/bash
     tty: true
     stdin_open: true
+    hostname: crm-analyst
+    restart: always
     ports:
       - '8080:8080'
+      - '8081:8081'
+      - '8082:8082'
       - '8000:8000'
       - '5037:5037'
       - '5901:5901'
       - '5554:5554'
       - '5555:5555'
-      - '5900:5900'
+      # - '5900:5900'
     volumes:
       - /dev/bus/usb:/dev/bus/usb
       - ~/Workspace:/workspace
+   mysql-workbench:
+    image: linuxserver/mysql-workbench
+    container_name: mysql-workbench
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - /path/to/config:/config
+      - /Workspace:/wokspace
+    ports:
+      - 3000:3000
+    cap_add:
+      - IPC_LOCK
+    restart: unless-stopped
