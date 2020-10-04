@@ -10,3 +10,6 @@ test/e2e/reports
 selenium-debug.log
 server/
 package-lock.json
+www/
+platforms/
+plugins/
