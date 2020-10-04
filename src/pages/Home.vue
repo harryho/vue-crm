@@ -1,6 +1,6 @@
 <template>
   <v-card
-    max-width="400"
+    max-width="450"
     class="mx-auto"
   >
 
@@ -128,6 +128,34 @@
         </v-carousel-item>
         </v-carousel>
     </v-container>
+    <v-footer
+      dark
+      padless
+    >
+      <v-card
+        class="flex"
+        flat
+        tile
+      >
+        <v-card-title class="teal">
+          <strong class="subheading">Conecte-se conosco</strong>
+
+          <v-spacer></v-spacer>
+
+          <v-btn
+            v-for="icon in icons"
+            :key="icon"
+            class="mx-1"
+            dark
+            icon
+          >
+            <v-icon size="24px">
+              {{ icon }}
+            </v-icon>
+          </v-btn>
+        </v-card-title>
+      </v-card>
+    </v-footer>
   </v-card>
 </template>
 
@@ -179,6 +207,12 @@
           'AI Hub',
           'Outros',
         ],
+        icons: [
+        'mdi-facebook',
+        'mdi-twitter',
+        'mdi-linkedin',
+        'mdi-instagram',
+      ],
     }),
   }
 </script>
