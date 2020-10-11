@@ -138,7 +138,7 @@
         tile
       >
         <v-card-title class="teal">
-          <strong class="subheading">Conecte-se conosco</strong>
+          <strong class="subheading">Fale Conosco</strong>
 
           <v-spacer></v-spacer>
 
@@ -208,7 +208,6 @@
           'Outros',
         ],
         icons: [
-        'mdi-facebook',
         'mdi-twitter',
         'mdi-linkedin',
         'mdi-instagram',
