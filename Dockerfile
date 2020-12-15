@@ -1,5 +1,5 @@
 ###### Build #####
-FROM node:10.19 AS node
+FROM node:12-slim AS node
 LABEL author="Harry Ho"
 WORKDIR /
 COPY . .

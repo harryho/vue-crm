@@ -87,7 +87,7 @@ docker run -p 8080:80 -v \
 docker build . -t  vc-prd:2.0
 
 # Launch the development image in the backgroud
-docker run -d --publish 8080:80  --name vc2 vc-prd:2.0
+docker run --rm -d --publish 8080:80  --name vc2 vc-prd:2.0
 
 # Check the log
 docker logs vc2   -f

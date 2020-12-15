@@ -110,7 +110,7 @@ export function buildJsonServerQuery(searchVm: TODO) {
       return prev
     }, '');
   }
-  debugger
+  // debugger
   return filterQuery;
 }
 
