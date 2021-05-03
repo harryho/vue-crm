@@ -18,7 +18,7 @@
       :items-per-page="pagination.rowsPerPage"
       hide-default-footer
     >
-      <template v-slot:item.avatar="{ item }">
+      <template v-slot:[`item.avatar`]="{ item }">
         <v-img 
           v-if="item.avatar !== null"
           small
@@ -28,7 +28,7 @@
           :srcset="item.avatar"
         />
       </template>
-      <template v-slot:item.membership="{ item }">
+      <template v-slot:[`item.membership`]="{ item }">
         <v-icon v-if="item.membership === true">
           mdi-checkbox-marked-circle-outline
         </v-icon>
@@ -36,7 +36,7 @@
           mdi-close-circle-outline
         </v-icon>
       </template>
-      <template v-slot:item.actions="{ item }">
+      <template v-slot:[`item.actions`]="{ item }">
         <v-btn
           elevation="4"
           fab
