@@ -76,11 +76,14 @@
           <span style="margin-left:0.4rem;">GitHub</span>
         </v-btn>
       </v-app-bar>
-      <v-content>
-        <v-container fluid>
-          <router-view></router-view>
-        </v-container>
-      </v-content>
+        <!-- Sizes your content based upon application components -->
+        <v-main>
+          <!-- Provides the application the proper gutter -->
+          <v-container fluid>
+            <!-- If using vue-router -->
+            <router-view></router-view>
+          </v-container>
+        </v-main>
       <v-footer :inset="true" style="justify-content:center; text-align: center" app>
         <span>&copy; Vue-CRM 2020</span>
       </v-footer>
