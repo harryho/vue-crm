@@ -19,15 +19,19 @@ The goal of this project is to create a reusable starter project for real-world 
 
 ### Live Demo
 
-[Demo App](https://vue-app-demo.harryho.org):  The demo is just a proof of concept. It doesn't have back-end API and all features of master branch.
+[Latest Demo App](https://vue-app-demo.harryho.org):  The demo is just a proof of concept. It doesn't have back-end API and all features of master branch.
 
-#### Screenshots ( The actual UI will be slightly different because I am lazy to keep up to date :p )
+[Previous version Demo App](https://vue-demo-v2.harryho.org):  The demo is just a proof of concept. It doesn't have back-end API and all features of master branch.
 
-![Screenshot1](screenshots/screenshot-1.jpg)
 
-![Screenshot6](screenshots/screenshot-6.jpg)
+### Screenshots ( The actual UI will be slightly different because I am lazy to keep up to date :p )
 
-![Screenshot6](screenshots/screenshot-4.png)
+
+
+
+
+#### Previous Version
+
 
 ![Screenshot2](screenshots/screenshot-2.png)
 
@@ -42,31 +46,17 @@ The goal of this project is to create a reusable starter project for real-world 
 ``` bash
 
 # Clone project
-git clone https://github.com/harryho/vue2crm.git
+git clone https://github.com/harryho/vue-crm.git
 
 
 # install dependences for Vue 2 CRM
-cd vue2crm
-npm install --from-lock-file
+cd vue-crm
+npm install 
 
-# or use yarn
-npm install -g yarn
-yarn
 
 # serve with hot reload at localhost:8080
-npm run start
+npm run dev
 
-
-## You will see the following output. You can test API with the URLs via browser.
-##[1]
-##[1] > vue2crm@1.2.0 start <your_path>\vue2crm
-##[1] > node build/dev-server.js
-##[1] > Starting dev server...
-##[1]  DONE  Compiled successfully in xx:xx:xx
-##[1]
-##[1] > Listening at http://localhost:8080
-
-# Visit the app at [http://localhost:8080](http://localhost:8080)
 
 ```
 
@@ -84,43 +74,27 @@ docker run -p 8080:80 -v \
 
 
 # Build release image
-docker build . -t  vc-prd:2.0
+docker build . -t  vue-demo:3.0
 
 # Launch the development image in the backgroud
-docker run --rm -d --publish 8080:80  --name vc2 vc-prd:2.0
+docker run --rm -d --publish 8080:80  --name vd3 vue-demo:3.0
 
 # Check the log
-docker logs vc2   -f
+docker logs vd3   -f
 
 ```
 
 
 For detailed explanation on how things work, checkout following links
 
-* [vuex](https://vuex.vuejs.org/en/)
-* [vuetify](https://vuetifyjs.com/)
-* [axios](https://github.com/mzabriskie/axios/)
-* [vue-chartjs](https://github.com/apertureless/vue-chartjs)
-* [vue-progressbar](https://github.com/hilongjw/vue-progressbar)
-* ~~[vuex-persistedstate](https://github.com/robinvdvleuten/vuex-persistedstate)~~
-* [webpack guide](http://vuejs-templates.github.io/webpack/)
-* [vue-loader](http://vuejs.github.io/vue-loader).
+* [vue](https://vuex.vuejs.org/en/)
+* [vuetifyjs.com](https://dev.vuetifyjs.com/)
 
-
-#### Archived
-
-The master branch has been rewriten with TypeScript.The old version built on ES6 has been moved the branch [vuetify-es6](https://github.com/harryho/vue-crm/tree/vuetify-es6). Anyone needs the ES6 version please check it out.
-
-#### Alternatives
-
-There are two similar projects respectively built on the Angular and React. If you have interests in those technical stacks. You can find and clone those repositories below.
-
-* [Ng-MD-App](https://github.com/harryho/ng-md-app.git).
-* [React-Crm](https://github.com/harryho/react-crm.git).
-* [Ng4Crm](https://github.com/harryho/ng4crm.git). (This is no longer maintained with latest Angular)
 
 
 #### Change log
+
+*  Dec 2024 - Uplift to Vue 3 + Vuetify 3
 
 * 2 May 2020 - Merge the branch vuetify-ts to master
 
