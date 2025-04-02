@@ -1,0 +1,39 @@
+.profileBtn {
+  height: 50px !important;
+  margin: 0 20px 0 10px !important;
+}
+
+.search-sheet {
+  position: absolute;
+  z-index: 9;
+}
+
+.circle {
+  position: relative;
+  overflow: hidden;
+  &.sm-circle {
+    &::before {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border: 3px solid rgb(var(--v-theme-warning));
+      border-radius: 50%;
+      top: 125px;
+      right: -70px;
+    }
+  }
+
+  &.lg-circle {
+    &::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border: 19px solid rgb(var(--v-theme-warning));
+      border-radius: 50%;
+      top: 65px;
+      right: -150px;
+    }
+  }
+}
