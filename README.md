@@ -1,32 +1,26 @@
-# Vue CRM
+# Vue Demo App V3
 
-> A reusable Vue.js CRM starter project for real-world business based on Vue 2 PWA template with Vuetify.
+> A reusable Vue.js starter project for real-world business based on Vue 3 with Vuetify 3 and Pinia.
 
-The goal of this project is to create a reusable starter project for real-world business. To achieve this target, we need a solution which includes simple authentication process, restful API with token support and simple but elegant UI design.
-
-
-#### Features
-
-* This project is built from Vue 2 PWA template by default.
-* The UI part is built on the top of Vuetify.
-* It inlcudes Vuex and Axios to manage authentication. (Dummy token)
-* The dashboard uses vue-chartjs to create charts on dashboard.
-* The project is built on TypeScript.
-* Backend API is readonly dummy service.
-* ~~The token and user profile is managed by Vue-Persisteddstate.~~
-* ~~To simulate real-world business, this starter project chooses Json-Server as fake Restful API. (You can simple replace it with your own API).~~
+The goal of this project is to build a reusable starter project for real-world business. To achieve this target, we need a solution which includes state management (Pinia), fake restful API and elegant UI design (Vuetify).
 
 
 ### Live Demo
 
 [Latest Demo App](https://vue-app-demo.harryho.org):  The demo is just a proof of concept. It doesn't have back-end API and all features of master branch.
 
-[Previous version Demo App](https://vue-demo-v2.harryho.org):  The demo is just a proof of concept. It doesn't have back-end API and all features of master branch.
+[Previous version Demo App](https://vue-demo-v2.harryho.org):  The demo is just a proof of concept. It doesn't have back-end API and all features of master branch. Source code is availabe on a different [branch](https://github.com/harryho/vue-crm/tree/v2-vtf2)
 
 
-### Screenshots ( The actual UI will be slightly different because I am lazy to keep up to date :p )
+### Screenshots
 
-
+#### Latest Version
+![Screenshot1](screenshots/v3/Screenshot-6.png)
+<!-- ![Screenshot1](screenshots/v3/Screenshot-1.png) -->
+<!-- ![Screenshot1](screenshots/v3/Screenshot-2.png) -->
+![Screenshot1](screenshots/v3/Screenshot-3.png)
+<!-- ![Screenshot1](screenshots/v3/Screenshot-4.png) -->
+![Screenshot1](screenshots/v3/Screenshot-5.png)
 
 
 
@@ -88,8 +82,8 @@ docker logs vd3   -f
 For detailed explanation on how things work, checkout following links
 
 * [vue](https://vuex.vuejs.org/en/)
-* [vuetifyjs.com](https://dev.vuetifyjs.com/)
-
+* [vuetifyjs](https://dev.vuetifyjs.com/)
+* [Pinia](https://pinia.vuejs.org/)
 
 
 #### Change log
