@@ -88,6 +88,8 @@ For detailed explanation on how things work, checkout following links
 
 #### Change log
 
+*  Mar 2025 - Uplift to Vue 3 + Vuetify 3 + Pinia is done.
+
 *  Dec 2024 - Uplift to Vue 3 + Vuetify 3
 
 * 2 May 2020 - Merge the branch vuetify-ts to master
