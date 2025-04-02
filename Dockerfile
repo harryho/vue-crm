@@ -16,7 +16,7 @@ COPY ./config/nginx.conf /etc/nginx/conf.d/default.conf
 
 
 # ########################
-# # docker build . -t  vc-prd:2.0
-# # docker run --publish 8080:80  --name vc2 vc-prd:2.0
+# # docker build . -t  vue-demo:3.0
+# # docker run --rm -d --publish 8080:80  --name vd3 vue-demo:3.0
 
 
