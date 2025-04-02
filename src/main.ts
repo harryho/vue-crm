@@ -1,33 +1,25 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 import App from './App.vue';
-import './registerServiceWorker';
-import router from './router';
-import store from './store';
+import { router } from './router';
 import vuetify from './plugins/vuetify';
+import { VDateInput } from 'vuetify/labs/components';
+import '@/scss/style.scss';
+import { PerfectScrollbarPlugin } from 'vue3-perfect-scrollbar';
+import VueApexCharts from 'vue3-apexcharts';
+import VueTablerIcons from 'vue-tabler-icons';
 
-import VueProgressBar from 'vue-progressbar';
+import { fakeBackend } from '@/utils/helpers/fake-backend';
 
-const options = {
-  color: 'blue', // '#bffaf3',
-  failedColor: '#874b4b',
-  thickness: '3px',
-  transition: {
-    speed: '0.1s',
-    opacity: '0.3s',
-    termination: 300
-  },
-  autoRevert: true,
-  location: 'top',
-  inverse: false
-};
+// print
+import print from 'vue3-print-nb';
 
-Vue.config.productionTip = false;
-
-Vue.use(VueProgressBar, options);
-
-new Vue({
-  router,
-  store,
-  vuetify,
-  render: h => h(App)
-}).$mount('#app');
+const app = createApp(App);
+fakeBackend();
+app.use(router);
+app.use(PerfectScrollbarPlugin);
+app.use(createPinia());
+app.use(VueTablerIcons);
+app.use(print);
+app.use(VueApexCharts);
+app.use(vuetify).mount('#app');

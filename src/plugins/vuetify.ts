@@ -1,19 +1,44 @@
-/* eslint-disable */
-// @ts-ignore
-import Vue from 'vue';
-import Vuetify from 'vuetify/lib';
-import '@mdi/font/css/materialdesignicons.css'
-import 'vuetify/dist/vuetify.min.css'
-// import '@mdi/font/css/materialdesignicons.css'
-import { preset } from 'vue-cli-plugin-vuetify-preset-fortnightly/preset';
+import { createVuetify } from 'vuetify';
+import { aliases, mdi } from 'vuetify/iconsets/mdi-svg';
+import { icons } from './mdi-icon'; // Import icons from separate file
+import * as components from 'vuetify/components';
+import * as directives from 'vuetify/directives';
+import { PurpleTheme } from '@/theme/LightTheme';
+import * as labsComponents from 'vuetify/labs/components'
 
-Vue.use(Vuetify);
-
-
-export default new Vuetify({
-    preset,
-    theme: {
-        dark: false,
-        default: 'light'
+export default createVuetify({
+  components:{
+    ...components,
+    ...labsComponents,
+  },
+  directives,
+  icons: {
+    defaultSet: 'mdi',
+    aliases: {
+      ...aliases,
+      ...icons
+    },
+    sets: {
+      mdi
     }
+  },
+  theme: {
+    defaultTheme: 'PurpleTheme',
+    themes: {
+      PurpleTheme
+    }
+  },
+  defaults: {
+    VBtn: {},
+    VCard: {
+      rounded: 'md'
+    },
+    VTextField: {
+      rounded: 'lg'
+    },
+    VTooltip: {
+      // set v-tooltip default location to top
+      location: 'top'
+    }
+  }
 });

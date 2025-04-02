@@ -1,109 +1,59 @@
-import Vue from "vue";
-import VueRouter, { RouteConfig } from "vue-router";
-import { userModule } from "@/store/modules/user";
-import ErrorPage from "@/components/404.vue";
-import Dashboard from "@/pages/Dashboard.vue";
-import OrderList from "@/pages/OrderList.vue";
-import OrderForm from "@/pages/OrderForm.vue";
-import About from "@/pages/About.vue";
-import CustomerList from "@/pages/CustomerList.vue";
-import CustomerForm from "@/pages/CustomerForm.vue";
-import Products from "@/pages/ProductList.vue";
-import ProductForm from "@/pages/ProductForm.vue";
-import Login from "@/pages/Login.vue";
-import ChangePassword from "@/components/ChangePassword.vue";
+import { createRouter, createWebHistory } from 'vue-router';
+import MainRoutes from './MainRoutes';
+import PublicRoutes from './PublicRoutes';
+import { useAuthStore } from '@/stores/auth';
 
-function requireAuth(to: TODO, from: TODO, next: TODO) {
-  console.log(`userModule.isSignedI ${userModule.isSignedIn}`);
-  if (!userModule.isSignedIn) {
-    next({
-      path: "/login",
-      query: { redirect: to.fullPath }
-    });
-  } else {
-    next();
-  }
-}
-
-Vue.use(VueRouter);
-
-const routes: Array<RouteConfig> = [
-  { path: "/404", component: ErrorPage, name: "ErrorPage" },
-  {
-    path: "/dashboard",
-    component: Dashboard,
-    name: "dashboard",
-    beforeEnter: requireAuth
-  },
-  { path: "/about", component: About, name: "about", beforeEnter: requireAuth },
-  {
-    path: "/orders",
-    component: OrderList,
-    name: "orders",
-    beforeEnter: requireAuth
-  },
-  {
-    path: "/neworder",
-    component: OrderForm,
-    name: "NewOrder",
-    beforeEnter: requireAuth
-  },
-  {
-    path: "/order/:id",
-    component: OrderForm,
-    name: "Order",
-    beforeEnter: requireAuth
-  },
-  {
-    path: "/customer",
-    component: CustomerList,
-    name: "customers",
-    beforeEnter: requireAuth
-  },
-  {
-    path: "/newcustomer",
-    component: CustomerForm,
-    name: "NewCustomer",
-    beforeEnter: requireAuth
-  },
-  {
-    path: "/customer/:id",
-    component: CustomerForm,
-    name: "Customer",
-    beforeEnter: requireAuth
-  },
-  {
-    path: "/product/:id",
-    component: ProductForm,
-    name: "Product",
-    beforeEnter: requireAuth
-  },
-  {
-    path: "/products",
-    component: Products,
-    name: "products",
-    beforeEnter: requireAuth
-  },
-  {
-    path: "/newproduct",
-    component: ProductForm,
-    name: "NewProduct",
-    beforeEnter: requireAuth
-  },
-  { path: "/login", component: Login, name: "Login" },
-  {
-    path: "/changePassword",
-    component: ChangePassword,
-    name: "ChangePassword"
-  },
-  { path: "/", redirect: "/dashboard" },
-  { path: "*", redirect: "/404" }
-];
-
-const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes
+export const router = createRouter({
+  // history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
+  routes: [
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/loading',
+      // component: () => import('@/views/pages/maintenance/error/Error404Page.vue')
+    },
+    MainRoutes,
+    PublicRoutes
+  ]
 });
 
-export default router;
+interface User {
+  // Define the properties and their types for the user data here
+  // For example:
+  id: number;
+  name: string;
+}
+
+// Assuming you have a type/interface for your authentication store
+interface AuthStore {
+  user: User | null;
+  returnUrl: string | null;
+  login(username: string, password: string): Promise<void>;
+  logout(): void;
+}
+
+router.beforeEach(async (to, from, next) => {
+  // redirect to login page if not logged in and trying to access a restricted page
+  const publicPages = ['/'];
+  const auth: AuthStore = useAuthStore();
+
+  const isPublicPage = publicPages.includes(to.path);
+  const authRequired = !isPublicPage && to.matched.some((record) => record.meta.requiresAuth);
+
+  // User not logged in and trying to access a restricted page
+  if (authRequired && !auth.user) {
+    auth.returnUrl = to.fullPath; // Save the intended page
+    next('/login');
+  } else if (auth.user && to.path === '/login') {
+    // User logged in and trying to access the login page
+    next({
+      query: {
+        ...to.query,
+        redirect: auth.returnUrl !== '/' ? to.fullPath : undefined
+      }
+    });
+  } else {
+    // All other scenarios, either public page or authorized access
+    next();
+  }
+});
