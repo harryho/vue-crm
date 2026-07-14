@@ -160,7 +160,7 @@ function getWidth (index:number){
 }
 
 .chip {
-  margin-left: calc(-0.75* var(8px));
+  margin-left: -6px;
   width: 20px;
   height: 20px;
   /* background-color: rgb(255, 192, 203); */
