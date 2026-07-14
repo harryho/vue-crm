@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { fileURLToPath, URL } from 'url';
 import { defineConfig,normalizePath  } from 'vite';
 import vue from '@vitejs/plugin-vue';
@@ -44,5 +45,9 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['vuetify'],
     entries: ['./src/**/*.vue']
+  },
+  test: {
+    environment: 'jsdom',
+    globals: true
   }
 });
