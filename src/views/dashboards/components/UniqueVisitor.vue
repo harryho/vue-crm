@@ -10,7 +10,7 @@ const chartOptions1 = computed(() => {
   return {
     chart: {
       type: 'area',
-      height: 450,
+      height: 400,
       fontFamily: `inherit`,
       foreColor: 'rgba(var(--v-theme-secondary), var(--v-high-opacity))',
       toolbar: false
@@ -55,7 +55,7 @@ const chartOptions2 = computed(() => {
   return {
     chart: {
       type: 'area',
-      height: 450,
+      height: 400,
       fontFamily: `inherit`,
       foreColor: '#a1aab2',
       toolbar: false
@@ -145,11 +145,11 @@ const tab = ref(1);
     <v-card-text class="rounded-md overflow-hidden">
       <v-window v-model="tab">
         <v-window-item value="one">
-          <apexchart type="area" height="450" :options="chartOptions2" :series="areaChart2.series"> </apexchart>
+          <apexchart type="area" height="400" :options="chartOptions2" :series="areaChart2.series"> </apexchart>
         </v-window-item>
 
         <v-window-item value="two">
-          <apexchart type="area" height="450" :options="chartOptions1" :series="areaChart1.series"> </apexchart>
+          <apexchart type="area" height="400" :options="chartOptions1" :series="areaChart1.series"> </apexchart>
         </v-window-item>
       </v-window>
     </v-card-text>

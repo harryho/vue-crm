@@ -73,7 +73,7 @@ function gotoCart() {
     <!-- Notification -->
     <!-- ---------------------------------------------- -->
 
-    <v-icon icon="$github" @click="gotoGitHub" />
+    
 
     <v-btn icon class="text-secondary mx-3" color="lightsecondary" rounded="sm" size="small" variant="flat"
       title="Cart" @click="gotoCart">
@@ -111,5 +111,7 @@ function gotoCart() {
         <ProfileDD />
       </v-sheet>
     </v-menu>
+
+    <v-icon icon="$github" @click="gotoGitHub" />
   </v-app-bar>
 </template>

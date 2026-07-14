@@ -1,4 +1,4 @@
-# Vue Ecom Demo (V3.5)
+# Vue Ecom Demo
 
 > A Vue 3 + Vuetify 4 ecommerce admin demo, built on Pinia for state and a plain in-memory data layer (no backend, no mock-service-worker/network layer required).
 
@@ -31,7 +31,7 @@ All of the above run against `src/data/repository.ts`, a plain async data layer 
 <!-- ![Screenshot1](screenshots/v3/Screenshot-2.png) -->
 ![Screenshot1](screenshots/v3.5/Screenshot-1.png)
 <!-- ![Screenshot1](screenshots/v3/Screenshot-4.png) -->
-![Screenshot1](screenshots/v3/Screenshot-5.png)
+![Screenshot1](screenshots/v3.5/Screenshot-3.png)
 
 
 

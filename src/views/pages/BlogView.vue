@@ -94,10 +94,11 @@ function getWidth (index:number){
 
         <v-divider class="mb-10" />
         <v-row>
-          <v-col cols="12" :lg="getColSpan(index)" md="4" sm="6" v-for="(blog, index) in filteredData" :key="index">
-            <v-card variant="elevated" class="mx-auto ma-5" :max-width="getWidth(index)">
-              <v-img :class="`${index==0?'':'blog-img'} align-end text-primary b-r-25`" height="250" :src="assetUrl(blog.coverUrl)" cover>
-
+          <v-col cols="12"  md="3" sm="12" v-for="(blog, index) in filteredData" :key="index">
+            <v-card variant="elevated" class="mx-auto ma-5" max-width="400">
+              <!-- :max-width="getWidth(index)"> -->
+              <!-- <v-img :class="`${index==0?'':'blog-img'} align-end text-primary b-r-25`" height="250" :src="assetUrl(blog.coverUrl)" cover> -->
+              <v-img class="blog-img align-end text-primary b-r-25" height="250" :src="assetUrl(blog.coverUrl)" cover>
               </v-img>
               <v-card-title class=" text-h3"> {{ blog.title }}
               </v-card-title>

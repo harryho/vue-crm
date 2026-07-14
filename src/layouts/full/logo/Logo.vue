@@ -5,7 +5,7 @@
     <div>
     <v-avatar size="x-large" class="mr-2">
     <img src="@/assets/images/logos/it-logo-mid.png" width="60" /></v-avatar>
-     <v-label class="secondary text-h2 cursor-pointer">Vue Demo V3</v-label>
+     <v-label class="secondary text-h2 cursor-pointer">Vue Ecom Demo</v-label>
     </div>
     </RouterLink>
   </div>

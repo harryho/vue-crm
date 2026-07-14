@@ -9,7 +9,7 @@ import WidgetFive from './components/WidgetFive.vue';
 import TransactionHistory from './components/TransactionHistory.vue';
 import UniqueVisitor from './components/UniqueVisitor.vue';
 import AnalyticsReport from './components/AnalyticsReport.vue';
-import UiMainContainer from "@/components/shared/UiMainContainer.vue";
+import UiMainContainer from '@/components/shared/UiMainContainer.vue';
 import UiParentCard from '@/components/shared/UiParentCard.vue';
 </script>
 
@@ -18,29 +18,29 @@ import UiParentCard from '@/components/shared/UiParentCard.vue';
     <UiParentCard title="Dashboard">
       <v-row>
         <!-- -------------------------------------------------------------------- -->
-        <!-- Total Earning -->
-        <!-- -------------------------------------------------------------------- -->
-        <v-col cols="12" md="4">
-          <TotalEarning />
-        </v-col>
-        <!-- -------------------------------------------------------------------- -->
-        <!-- Total Order -->
-        <!-- -------------------------------------------------------------------- -->
-        <v-col cols="12" md="4">
-          <TotalOrder />
-        </v-col>
-        <!-- -------------------------------------------------------------------- -->
         <!-- Total Income -->
         <!-- -------------------------------------------------------------------- -->
-        <v-col cols="12" md="4">
+        <!-- <v-col cols="12" md="4">
           <TotalIncome />
-        </v-col>
+        </v-col> -->
 
         <!-- -------------------------------------------------------------------- -->
         <!-- Total Growth -->
         <!-- -------------------------------------------------------------------- -->
         <v-col cols="12" lg="8">
           <TotalGrowth />
+          <UniqueVisitor />
+         
+            <!-- -------------------------------------------------------------------- -->
+            <!-- Total Order -->
+            <!-- -------------------------------------------------------------------- -->
+            <!-- <v-col cols="12" md="6"> 
+              <TotalOrder class="pt-2" /> 
+            </v-col>
+             <v-col cols="12" md="6"> 
+             <TotalEarning class="pt-2" /> 
+            </v-col> -->
+         
         </v-col>
 
         <!-- -------------------------------------------------------------------- -->
@@ -56,15 +56,14 @@ import UiParentCard from '@/components/shared/UiParentCard.vue';
 
         <v-col cols="12" lg="12">
           <WidgetFive />
-
         </v-col>
 
-        <v-col cols="12" lg="4">
+        <v-col cols="12" lg="6">
           <TransactionHistory class="pa-2" />
-          <AnalyticsReport class="pa-2" />
+
         </v-col>
-        <v-col cols="12" lg="8">
-          <UniqueVisitor />
+        <v-col cols="12" lg="6">
+                  <AnalyticsReport class="pa-2" />
         </v-col>
       </v-row>
     </UiParentCard>

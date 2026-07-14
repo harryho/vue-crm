@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <v-card elevation="0" class="bg-primary overflow-hidden bubble-shape-sm bubble-primary mb-6">
+  <!-- <v-card elevation="0" class="bg-primary overflow-hidden bubble-shape-sm bubble-primary mb-6">
     <v-card-text class="pa-5">
       <div class="d-flex align-center ga-4">
         <v-btn color="darkprimary" icon rounded="sm" variant="flat">
@@ -13,7 +13,7 @@
         </div>
       </div>
     </v-card-text>
-  </v-card>
+  </v-card> -->
 
   <v-card elevation="0" class="bubble-shape-sm overflow-hidden bubble-warning">
     <v-card-text class="pa-5">

@@ -11,7 +11,7 @@ const props= defineProps({
     <div>
     <v-avatar size="small" class="mr-2">
     <img src="@/assets/images/logos/it-logo-min.png"  /></v-avatar>
-     <v-label v-if="!props.miniSidebar" class="secondary text-h4 cursor-pointer">Vue Demo V3 </v-label>
+     <v-label v-if="!props.miniSidebar" class="secondary text-h4 cursor-pointer">Vue Ecom Demo </v-label>
     </div>
     </RouterLink>
   </div>
