@@ -1,0 +1,17 @@
+[
+  {
+    "carrierId": 1,
+    "name": "UPS",
+    "phone": "(800) 742-5877"
+  },
+  {
+    "carrierId": 2,
+    "name": "FedEx",
+    "phone": "(800) 463-3339"
+  },
+  {
+    "carrierId": 3,
+    "name": "DHL Express",
+    "phone": "(800) 225-5345"
+  }
+]

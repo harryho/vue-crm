@@ -1,0 +1,650 @@
+[
+  {
+    "productId": 1,
+    "categoryId": 4,
+    "categoryName": "Anta Sport Shoes",
+    "name": "Anta Space Hippie 04",
+    "slug": "anta-space-hippie-04",
+    "description": "Anta Space Hippie 04 - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-2.webp",
+        "altText": "Anta Space Hippie 04",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 1,
+        "sku": "SKU-0001",
+        "name": "Default",
+        "price": 56.07,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 2,
+    "categoryId": 6,
+    "categoryName": "XTEP Sport Shoes",
+    "name": "XTEP Air Zoom Pegasus 37",
+    "slug": "xtep-air-zoom-pegasus-37",
+    "description": "XTEP Air Zoom Pegasus 37 - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-3.webp",
+        "altText": "XTEP Air Zoom Pegasus 37",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 2,
+        "sku": "SKU-0002",
+        "name": "Default",
+        "price": 64.78,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 3,
+    "categoryId": 3,
+    "categoryName": "Lifestyle Sneakers",
+    "name": "Nike Blazer Low 77 Vintage",
+    "slug": "nike-blazer-low-77-vintage",
+    "description": "Nike Blazer Low 77 Vintage - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-4.webp",
+        "altText": "Nike Blazer Low 77 Vintage",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 3,
+        "sku": "SKU-0003",
+        "name": "Default",
+        "price": 50.28,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 4,
+    "categoryId": 6,
+    "categoryName": "XTEP Sport Shoes",
+    "name": "XTEP ZoomX SuperRep Surge",
+    "slug": "xtep-zoomx-superrep-surge",
+    "description": "XTEP ZoomX SuperRep Surge - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-5.webp",
+        "altText": "XTEP ZoomX SuperRep Surge",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 4,
+        "sku": "SKU-0004",
+        "name": "Default",
+        "price": 9.38,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 5,
+    "categoryId": 2,
+    "categoryName": "Basketball Shoes",
+    "name": "Zoom Freak 2",
+    "slug": "zoom-freak-2",
+    "description": "Zoom Freak 2 - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-6.webp",
+        "altText": "Zoom Freak 2",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 5,
+        "sku": "SKU-0005",
+        "name": "Default",
+        "price": 61.46,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 6,
+    "categoryId": 3,
+    "categoryName": "Lifestyle Sneakers",
+    "name": "Nike Air Max Zephyr",
+    "slug": "nike-air-max-zephyr",
+    "description": "Nike Air Max Zephyr - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-7.webp",
+        "altText": "Nike Air Max Zephyr",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 6,
+        "sku": "SKU-0006",
+        "name": "Default",
+        "price": 95.76,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 7,
+    "categoryId": 2,
+    "categoryName": "Basketball Shoes",
+    "name": "Jordan Delta",
+    "slug": "jordan-delta",
+    "description": "Jordan Delta - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-8.webp",
+        "altText": "Jordan Delta",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 7,
+        "sku": "SKU-0007",
+        "name": "Default",
+        "price": 61.77,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 8,
+    "categoryId": 2,
+    "categoryName": "Basketball Shoes",
+    "name": "Air Jordan XXXV PF",
+    "slug": "air-jordan-xxxv-pf",
+    "description": "Air Jordan XXXV PF - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-9.webp",
+        "altText": "Air Jordan XXXV PF",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 8,
+        "sku": "SKU-0008",
+        "name": "Default",
+        "price": 33.18,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 9,
+    "categoryId": 4,
+    "categoryName": "Anta Sport Shoes",
+    "name": "Anta Waffle Racer Crater",
+    "slug": "anta-waffle-racer-crater",
+    "description": "Anta Waffle Racer Crater - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-10.webp",
+        "altText": "Anta Waffle Racer Crater",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 9,
+        "sku": "SKU-0009",
+        "name": "Default",
+        "price": 35.94,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 10,
+    "categoryId": 5,
+    "categoryName": "Li-Ning Sport Shoes",
+    "name": "Li-Ning 7 EP Sisterhood",
+    "slug": "li-ning-7-ep-sisterhood",
+    "description": "Li-Ning 7 EP Sisterhood - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-11.webp",
+        "altText": "Li-Ning 7 EP Sisterhood",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 10,
+        "sku": "SKU-0010",
+        "name": "Default",
+        "price": 53.33,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 11,
+    "categoryId": 5,
+    "categoryName": "Li-Ning Sport Shoes",
+    "name": "Li-Ning Air Zoom Pegasus 37",
+    "slug": "li-ning-air-zoom-pegasus-37",
+    "description": "Li-Ning Air Zoom Pegasus 37 - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-12.webp",
+        "altText": "Li-Ning Air Zoom Pegasus 37",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 11,
+        "sku": "SKU-0011",
+        "name": "Default",
+        "price": 20.52,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 12,
+    "categoryId": 3,
+    "categoryName": "Lifestyle Sneakers",
+    "name": "Nike Blazer Low 77 Vintage",
+    "slug": "nike-blazer-low-77-vintage",
+    "description": "Nike Blazer Low 77 Vintage - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-13.webp",
+        "altText": "Nike Blazer Low 77 Vintage",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 12,
+        "sku": "SKU-0012",
+        "name": "Default",
+        "price": 62.19,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 13,
+    "categoryId": 5,
+    "categoryName": "Li-Ning Sport Shoes",
+    "name": "Li-Ning ZoomX SuperRep Surge",
+    "slug": "li-ning-zoomx-superrep-surge",
+    "description": "Li-Ning ZoomX SuperRep Surge - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-14.webp",
+        "altText": "Li-Ning ZoomX SuperRep Surge",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 13,
+        "sku": "SKU-0013",
+        "name": "Default",
+        "price": 19.56,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 14,
+    "categoryId": 4,
+    "categoryName": "Anta Sport Shoes",
+    "name": "Anta Air Zoom BB NXT",
+    "slug": "anta-air-zoom-bb-nxt",
+    "description": "Anta Air Zoom BB NXT - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-15.webp",
+        "altText": "Anta Air Zoom BB NXT",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 14,
+        "sku": "SKU-0014",
+        "name": "Default",
+        "price": 25.93,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 15,
+    "categoryId": 4,
+    "categoryName": "Anta Sport Shoes",
+    "name": "Anta Air Force 1 07 LX",
+    "slug": "anta-air-force-1-07-lx",
+    "description": "Anta Air Force 1 07 LX - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-16.webp",
+        "altText": "Anta Air Force 1 07 LX",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 15,
+        "sku": "SKU-0015",
+        "name": "Default",
+        "price": 69.68,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 16,
+    "categoryId": 4,
+    "categoryName": "Anta Sport Shoes",
+    "name": "Anta Air Force 1 Shadow SE",
+    "slug": "anta-air-force-1-shadow-se",
+    "description": "Anta Air Force 1 Shadow SE - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-17.webp",
+        "altText": "Anta Air Force 1 Shadow SE",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 16,
+        "sku": "SKU-0016",
+        "name": "Default",
+        "price": 22.68,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 17,
+    "categoryId": 4,
+    "categoryName": "Anta Sport Shoes",
+    "name": "Anta Zoom Tempo NEXT%",
+    "slug": "anta-zoom-tempo-next",
+    "description": "Anta Zoom Tempo NEXT% - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-18.webp",
+        "altText": "Anta Zoom Tempo NEXT%",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 17,
+        "sku": "SKU-0017",
+        "name": "Default",
+        "price": 67.23,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 18,
+    "categoryId": 5,
+    "categoryName": "Li-Ning Sport Shoes",
+    "name": "Li-Ning Air Force 1 07 LX",
+    "slug": "li-ning-air-force-1-07-lx",
+    "description": "Li-Ning Air Force 1 07 LX - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-19.webp",
+        "altText": "Li-Ning Air Force 1 07 LX",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 18,
+        "sku": "SKU-0018",
+        "name": "Default",
+        "price": 14.17,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 19,
+    "categoryId": 5,
+    "categoryName": "Li-Ning Sport Shoes",
+    "name": "Li-Ning Force 1 Shadow SE",
+    "slug": "li-ning-force-1-shadow-se",
+    "description": "Li-Ning Force 1 Shadow SE - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-20.webp",
+        "altText": "Li-Ning Force 1 Shadow SE",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 19,
+        "sku": "SKU-0019",
+        "name": "Default",
+        "price": 30.87,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 20,
+    "categoryId": 4,
+    "categoryName": "Anta Sport Shoes",
+    "name": "Anta Air Zoom Tempo NEXT%",
+    "slug": "anta-air-zoom-tempo-next",
+    "description": "Anta Air Zoom Tempo NEXT% - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-21.webp",
+        "altText": "Anta Air Zoom Tempo NEXT%",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 20,
+        "sku": "SKU-0020",
+        "name": "Default",
+        "price": 26.72,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 21,
+    "categoryId": 4,
+    "categoryName": "Anta Sport Shoes",
+    "name": "Anta DBreak-Type",
+    "slug": "anta-dbreak-type",
+    "description": "Anta DBreak-Type - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-22.webp",
+        "altText": "Anta DBreak-Type",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 21,
+        "sku": "SKU-0021",
+        "name": "Default",
+        "price": 44.35,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 22,
+    "categoryId": 3,
+    "categoryName": "Lifestyle Sneakers",
+    "name": "Adidas Air Max Up",
+    "slug": "adidas-air-max-up",
+    "description": "Adidas Air Max Up - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-23.webp",
+        "altText": "Adidas Air Max Up",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 22,
+        "sku": "SKU-0022",
+        "name": "Default",
+        "price": 37.11,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 23,
+    "categoryId": 5,
+    "categoryName": "Li-Ning Sport Shoes",
+    "name": "Li-Ning Air Max 270 React ENG",
+    "slug": "li-ning-air-max-270-react-eng",
+    "description": "Li-Ning Air Max 270 React ENG - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-24.webp",
+        "altText": "Li-Ning Air Max 270 React ENG",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 23,
+        "sku": "SKU-0023",
+        "name": "Default",
+        "price": 75.53,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  },
+  {
+    "productId": 24,
+    "categoryId": 4,
+    "categoryName": "Anta Sport Shoes",
+    "name": "Anta Air Force 1 NDESTRUKT",
+    "slug": "anta-air-force-1-ndestrukt",
+    "description": "Anta Air Force 1 NDESTRUKT - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-1.webp",
+        "altText": "Anta Air Force 1 NDESTRUKT",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 24,
+        "sku": "SKU-0024",
+        "name": "Default",
+        "price": 34.81,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 10
+      }
+    ]
+  }
+]

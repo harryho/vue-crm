@@ -1,0 +1,38 @@
+[
+  {
+    "categoryId": 1,
+    "name": "Running Shoes",
+    "slug": "running-shoes",
+    "description": "Performance running and training footwear"
+  },
+  {
+    "categoryId": 2,
+    "name": "Basketball Shoes",
+    "slug": "basketball-shoes",
+    "description": "Basketball and high-top performance footwear"
+  },
+  {
+    "categoryId": 3,
+    "name": "Lifestyle Sneakers",
+    "slug": "lifestyle-sneakers",
+    "description": "Everyday and casual sneakers"
+  },
+  {
+    "categoryId": 4,
+    "name": "Anta Sport Shoes",
+    "slug": "anta-sport-shoes",
+    "description": "Anta brand athletic and sport footwear"
+  },
+  {
+    "categoryId": 5,
+    "name": "Li-Ning Sport Shoes",
+    "slug": "li-ning-sport-shoes",
+    "description": "Li-Ning brand athletic and sport footwear"
+  },
+  {
+    "categoryId": 6,
+    "name": "XTEP Sport Shoes",
+    "slug": "xtep-sport-shoes",
+    "description": "XTEP brand athletic and sport footwear"
+  }
+]

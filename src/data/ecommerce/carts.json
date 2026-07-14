@@ -1,0 +1,91 @@
+[
+  {
+    "cartId": 1,
+    "userId": 1,
+    "sessionToken": "session-0001",
+    "status": "active",
+    "items": []
+  },
+  {
+    "cartId": 2,
+    "userId": 2,
+    "sessionToken": "session-0002",
+    "status": "active",
+    "items": [
+      {
+        "variantId": 4,
+        "qty": 1
+      }
+    ]
+  },
+  {
+    "cartId": 3,
+    "userId": 3,
+    "sessionToken": "session-0003",
+    "status": "active",
+    "items": [
+      {
+        "variantId": 7,
+        "qty": 1
+      },
+      {
+        "variantId": 8,
+        "qty": 2
+      }
+    ]
+  },
+  {
+    "cartId": 4,
+    "userId": 4,
+    "sessionToken": "session-0004",
+    "status": "active",
+    "items": []
+  },
+  {
+    "cartId": 5,
+    "userId": 5,
+    "sessionToken": "session-0005",
+    "status": "active",
+    "items": [
+      {
+        "variantId": 13,
+        "qty": 1
+      }
+    ]
+  },
+  {
+    "cartId": 6,
+    "userId": 6,
+    "sessionToken": "session-0006",
+    "status": "active",
+    "items": [
+      {
+        "variantId": 16,
+        "qty": 1
+      },
+      {
+        "variantId": 17,
+        "qty": 2
+      }
+    ]
+  },
+  {
+    "cartId": 7,
+    "userId": 7,
+    "sessionToken": "session-0007",
+    "status": "active",
+    "items": []
+  },
+  {
+    "cartId": 8,
+    "userId": 8,
+    "sessionToken": "session-0008",
+    "status": "active",
+    "items": [
+      {
+        "variantId": 22,
+        "qty": 1
+      }
+    ]
+  }
+]

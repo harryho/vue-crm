@@ -1,0 +1,254 @@
+[
+  {
+    "userId": 1,
+    "email": "billy.braun@example.com",
+    "passwordHash": "$2b$12$sampledatasampledatasuXW9dTIWkKO3RhcaCzD9NQBnmWkVse1u",
+    "firstName": "Billy",
+    "lastName": "Braun",
+    "avatarUrl": "/assets/images/customer/avatar-1.png",
+    "phone": "(499) 633-7585",
+    "isActive": true,
+    "addresses": [
+      {
+        "label": "Primary",
+        "line1": "11 Elm Grove",
+        "city": "Sydney",
+        "region": "NSW",
+        "countryCode": "AU",
+        "isDefaultShipping": true,
+        "isDefaultBilling": true
+      }
+    ]
+  },
+  {
+    "userId": 2,
+    "email": "cheryl.romaguera@example.com",
+    "passwordHash": "$2b$12$sampledatasampledatasuXW9dTIWkKO3RhcaCzD9NQBnmWkVse1u",
+    "firstName": "Cheryl",
+    "lastName": "Romaguera",
+    "avatarUrl": "/assets/images/customer/avatar-2.png",
+    "phone": "(922) 436-7361 x2235",
+    "isActive": true,
+    "addresses": [
+      {
+        "label": "Primary",
+        "line1": "12 King William Road",
+        "city": "North Canton",
+        "region": "Ohio",
+        "countryCode": "US",
+        "isDefaultShipping": true,
+        "isDefaultBilling": true
+      }
+    ]
+  },
+  {
+    "userId": 3,
+    "email": "lee.doyle-grant@example.com",
+    "passwordHash": "$2b$12$sampledatasampledatasuXW9dTIWkKO3RhcaCzD9NQBnmWkVse1u",
+    "firstName": "Lee",
+    "lastName": "Doyle-Grant",
+    "avatarUrl": "/assets/images/customer/avatar-3.png",
+    "phone": "528-376-5760 x97546",
+    "isActive": true,
+    "addresses": [
+      {
+        "label": "Primary",
+        "line1": "13 Harbor View Lane",
+        "city": "Ottawa",
+        "region": "Ontario",
+        "countryCode": "CA",
+        "isDefaultShipping": true,
+        "isDefaultBilling": true
+      }
+    ]
+  },
+  {
+    "userId": 4,
+    "email": "angel.rolfson-kulas@example.com",
+    "passwordHash": "$2b$12$sampledatasampledatasuXW9dTIWkKO3RhcaCzD9NQBnmWkVse1u",
+    "firstName": "Angel",
+    "lastName": "Rolfson-Kulas",
+    "avatarUrl": "/assets/images/customer/avatar-4.png",
+    "phone": "624.509.7392 x1286",
+    "isActive": true,
+    "addresses": [
+      {
+        "label": "Primary",
+        "line1": "14 Cedar Park Ave",
+        "city": "Queensland",
+        "region": "NSW",
+        "countryCode": "AU",
+        "isDefaultShipping": true,
+        "isDefaultBilling": true
+      }
+    ]
+  },
+  {
+    "userId": 5,
+    "email": "sherri.davis@example.com",
+    "passwordHash": "$2b$12$sampledatasampledatasuXW9dTIWkKO3RhcaCzD9NQBnmWkVse1u",
+    "firstName": "Sherri",
+    "lastName": "Davis",
+    "avatarUrl": "/assets/images/customer/avatar-5.png",
+    "phone": "848-314-0999 x195",
+    "isActive": true,
+    "addresses": [
+      {
+        "label": "Primary",
+        "line1": "15 Station Road",
+        "city": "Sydney",
+        "region": "NSW",
+        "countryCode": "AU",
+        "isDefaultShipping": true,
+        "isDefaultBilling": true
+      }
+    ]
+  },
+  {
+    "userId": 6,
+    "email": "tony.paucek@example.com",
+    "passwordHash": "$2b$12$sampledatasampledatasuXW9dTIWkKO3RhcaCzD9NQBnmWkVse1u",
+    "firstName": "Tony",
+    "lastName": "Paucek",
+    "avatarUrl": "/assets/images/customer/avatar-6.png",
+    "phone": "(424) 566-0764",
+    "isActive": true,
+    "addresses": [
+      {
+        "label": "Primary",
+        "line1": "16 Market Street",
+        "city": "Frankfurt",
+        "region": "Frankfurt",
+        "countryCode": "DE",
+        "isDefaultShipping": true,
+        "isDefaultBilling": true
+      }
+    ]
+  },
+  {
+    "userId": 7,
+    "email": "betty.hammes@example.com",
+    "passwordHash": "$2b$12$sampledatasampledatasuXW9dTIWkKO3RhcaCzD9NQBnmWkVse1u",
+    "firstName": "Betty",
+    "lastName": "Hammes",
+    "avatarUrl": "/assets/images/customer/avatar-7.png",
+    "phone": "939.834.8753 x03976",
+    "isActive": true,
+    "addresses": [
+      {
+        "label": "Primary",
+        "line1": "17 Elm Grove",
+        "city": "Milan",
+        "region": "Milan",
+        "countryCode": "IT",
+        "isDefaultShipping": true,
+        "isDefaultBilling": true
+      }
+    ]
+  },
+  {
+    "userId": 8,
+    "email": "kerry.kuhlman@example.com",
+    "passwordHash": "$2b$12$sampledatasampledatasuXW9dTIWkKO3RhcaCzD9NQBnmWkVse1u",
+    "firstName": "Kerry",
+    "lastName": "Kuhlman",
+    "avatarUrl": "/assets/images/customer/avatar-8.png",
+    "phone": "1-494-294-7001 x164",
+    "isActive": true,
+    "addresses": [
+      {
+        "label": "Primary",
+        "line1": "18 King William Road",
+        "city": "Paris",
+        "region": "Paris",
+        "countryCode": "FR",
+        "isDefaultShipping": true,
+        "isDefaultBilling": true
+      }
+    ]
+  },
+  {
+    "userId": 9,
+    "email": "charlene.krajcik@example.com",
+    "passwordHash": "$2b$12$sampledatasampledatasuXW9dTIWkKO3RhcaCzD9NQBnmWkVse1u",
+    "firstName": "Charlene",
+    "lastName": "Krajcik",
+    "avatarUrl": "/assets/images/customer/avatar-9.png",
+    "phone": "1-549-588-5177",
+    "isActive": true,
+    "addresses": [
+      {
+        "label": "Primary",
+        "line1": "19 Harbor View Lane",
+        "city": "Perth",
+        "region": "WA",
+        "countryCode": "AU",
+        "isDefaultShipping": true,
+        "isDefaultBilling": true
+      }
+    ]
+  },
+  {
+    "userId": 10,
+    "email": "mr..conrad@example.com",
+    "passwordHash": "$2b$12$sampledatasampledatasuXW9dTIWkKO3RhcaCzD9NQBnmWkVse1u",
+    "firstName": "Mr.",
+    "lastName": "Conrad",
+    "avatarUrl": "/assets/images/customer/avatar-10.png",
+    "phone": "1-226-573-7979 x21253",
+    "isActive": true,
+    "addresses": [
+      {
+        "label": "Primary",
+        "line1": "20 Cedar Park Ave",
+        "city": "Hong Kong",
+        "region": "HK",
+        "countryCode": "CN",
+        "isDefaultShipping": true,
+        "isDefaultBilling": true
+      }
+    ]
+  },
+  {
+    "userId": 11,
+    "email": "lillie.schultz@example.com",
+    "passwordHash": "$2b$12$sampledatasampledatasuXW9dTIWkKO3RhcaCzD9NQBnmWkVse1u",
+    "firstName": "Lillie",
+    "lastName": "Schultz",
+    "avatarUrl": "/assets/images/customer/avatar-11.png",
+    "phone": "406-912-2464 x0861",
+    "isActive": true,
+    "addresses": [
+      {
+        "label": "Primary",
+        "line1": "21 Station Road",
+        "city": "San Francisco",
+        "region": "California",
+        "countryCode": "US",
+        "isDefaultShipping": true,
+        "isDefaultBilling": true
+      }
+    ]
+  },
+  {
+    "userId": 12,
+    "email": "brian.jacobs@example.com",
+    "passwordHash": "$2b$12$sampledatasampledatasuXW9dTIWkKO3RhcaCzD9NQBnmWkVse1u",
+    "firstName": "Brian",
+    "lastName": "Jacobs",
+    "avatarUrl": "/assets/images/customer/avatar-12.png",
+    "phone": "1-950-769-6723 x2233",
+    "isActive": true,
+    "addresses": [
+      {
+        "label": "Primary",
+        "line1": "22 Market Street",
+        "city": "Toronto",
+        "region": "ON",
+        "countryCode": "CA",
+        "isDefaultShipping": true,
+        "isDefaultBilling": true
+      }
+    ]
+  }
+]
