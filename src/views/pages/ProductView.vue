@@ -87,7 +87,7 @@ function onCreate() {
 
         <v-divider class="mb-10" />
         <v-row>
-          <v-col cols="12" md="4" sm="6" v-for="(product, index) in filteredData" :key="index">
+          <v-col cols="12" lg="3" md="4" sm="6" v-for="(product, index) in filteredData" :key="index">
             <v-card variant="elevated" class="mx-auto ma-5" max-width="360">
               <v-img class="product-img align-end text-primary b-r-25" height="250" :src="product.images[0]?.url" cover>
 
@@ -103,14 +103,16 @@ function onCreate() {
 
               <v-card-actions class="d-flex justify-space-between">
                 <div>
-                  <v-chip v-if="product.variants[0].quantityOnHand === 0" color="error">out of stock</v-chip>
-                  <v-chip v-else color="success">in stock</v-chip>
+                  <v-btn color="secondary" variant="tonal" icon size="small" title="Add to Cart"
+                    :disabled="product.variants[0].quantityOnHand === 0"
+                    @click="addToCart(product.variants[0].variantId)">
+                    <v-icon icon="$cart"></v-icon>
+                  </v-btn>
                   <v-spacer />
                 </div>
                 <div>
-                  <v-btn color="secondary" variant="tonal" text="Add to Cart" size="small"
-                    :disabled="product.variants[0].quantityOnHand === 0"
-                    @click="addToCart(product.variants[0].variantId)"></v-btn>
+                  <v-chip v-if="product.variants[0].quantityOnHand === 0" color="error">out of stock</v-chip>
+                  <v-chip v-else color="success">in stock</v-chip>
                   <v-btn color="secondary mb-0" variant="outlined" text="Edit" title="Edit" size="small"
                     @click="editProduct(product.productId)"></v-btn>
                   <v-btn color="primary" variant="plain" text="Delete" size="large"
