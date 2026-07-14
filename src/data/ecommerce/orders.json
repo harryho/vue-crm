@@ -44,7 +44,7 @@
         "changedAt": "2025-08-04T00:00:00.000Z"
       },
       {
-        "status": "processing",
+        "status": "paid",
         "changedAt": "2025-08-06T00:00:00.000Z"
       },
       {
@@ -112,7 +112,7 @@
         "changedAt": "2024-12-26T00:00:00.000Z"
       },
       {
-        "status": "processing",
+        "status": "paid",
         "changedAt": "2024-12-28T00:00:00.000Z"
       },
       {
@@ -144,7 +144,7 @@
     "orderId": 90003,
     "orderNumber": "ORD-90003",
     "userId": 3,
-    "status": "processing",
+    "status": "paid",
     "currency": "USD",
     "subtotal": 183.71,
     "discountTotal": 1.83,
@@ -203,7 +203,7 @@
         "changedAt": "2024-12-30T00:00:00.000Z"
       },
       {
-        "status": "processing",
+        "status": "paid",
         "changedAt": "2025-01-01T00:00:00.000Z"
       }
     ],
@@ -270,7 +270,7 @@
         "changedAt": "2024-12-28T00:00:00.000Z"
       },
       {
-        "status": "processing",
+        "status": "paid",
         "changedAt": "2024-12-30T00:00:00.000Z"
       },
       {
@@ -338,7 +338,7 @@
         "changedAt": "2024-12-28T00:00:00.000Z"
       },
       {
-        "status": "processing",
+        "status": "paid",
         "changedAt": "2024-12-30T00:00:00.000Z"
       },
       {
@@ -365,7 +365,7 @@
     "orderId": 90006,
     "orderNumber": "ORD-90006",
     "userId": 6,
-    "status": "processing",
+    "status": "paid",
     "currency": "USD",
     "subtotal": 71.15,
     "discountTotal": 0.71,
@@ -406,7 +406,7 @@
         "changedAt": "2025-01-10T00:00:00.000Z"
       },
       {
-        "status": "processing",
+        "status": "paid",
         "changedAt": "2025-01-12T00:00:00.000Z"
       }
     ],
@@ -464,7 +464,7 @@
         "changedAt": "2024-12-28T00:00:00.000Z"
       },
       {
-        "status": "processing",
+        "status": "paid",
         "changedAt": "2024-12-30T00:00:00.000Z"
       },
       {
@@ -532,7 +532,7 @@
         "changedAt": "2024-12-28T00:00:00.000Z"
       },
       {
-        "status": "processing",
+        "status": "paid",
         "changedAt": "2024-12-30T00:00:00.000Z"
       },
       {
@@ -591,7 +591,7 @@
         "changedAt": "2024-12-28T00:00:00.000Z"
       },
       {
-        "status": "processing",
+        "status": "paid",
         "changedAt": "2024-12-30T00:00:00.000Z"
       },
       {
@@ -618,7 +618,7 @@
     "orderId": 90010,
     "orderNumber": "ORD-90010",
     "userId": 10,
-    "status": "processing",
+    "status": "paid",
     "currency": "USD",
     "subtotal": 33.18,
     "discountTotal": 0.33,
@@ -650,7 +650,7 @@
         "changedAt": "2025-01-07T00:00:00.000Z"
       },
       {
-        "status": "processing",
+        "status": "paid",
         "changedAt": "2025-01-09T00:00:00.000Z"
       }
     ],
@@ -708,7 +708,7 @@
         "changedAt": "2025-01-13T00:00:00.000Z"
       },
       {
-        "status": "processing",
+        "status": "paid",
         "changedAt": "2025-01-15T00:00:00.000Z"
       },
       {
