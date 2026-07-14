@@ -59,7 +59,7 @@ function getColor(status: string): string {
         <v-progress-linear  color="secondary" height="6" indeterminate rounded></v-progress-linear>
       </div>
       <div v-if="!orderStore.loading">
-        <v-data-table :headers="headers" :items="filteredData" :search="search" show-expand>
+        <v-data-table :headers="headers" :items="filteredData" :search="search" item-value="orderId" show-expand>
           <template v-slot:top>
             <v-text-field v-model="search" variant="solo-filled" class="pa-2" label="Filter"></v-text-field>
           </template>
