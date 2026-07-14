@@ -16,7 +16,7 @@ defineEmits(['onConfirm', 'onCancel'])
       >
   
         <v-card
-          prepend-icon="mdi-map-marker"
+          prepend-icon="$delete"
           text="Would you like to delete this record?"
           title="Confirm Dialog"
         >
