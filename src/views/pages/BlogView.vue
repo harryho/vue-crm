@@ -67,16 +67,16 @@ function getColSpan (index:number){
 
 function getWidth (index:number){
   if(index === 0){
-    return 1420
+    return 1680
   }
   else if(index===1){
-    return 960
+    return 1200
   }
   else if(index===2){
-    return 440
+    return 400
   }
   else {
-    return 360
+    return 380
   }
 }
 
@@ -110,15 +110,14 @@ function getWidth (index:number){
                 <div class="ml-0 text-h6 price"> <v-icon icon="$comments"></v-icon> {{ blog.totalComments }} </div>
               </v-card-text>
 
-              <v-card-actions class="d-flex justify-space-between">
-                <div>
+              <v-card-actions class="d-flex align-center justify-space-between">
+                <div class="d-flex align-center ga-2" style="min-width: 0; flex: 1 1 auto;">
                   <v-avatar size="36px">
                     <v-img alt="Avatar" :src="blog.author.avatar"></v-img>
-
                   </v-avatar>
-                  {{ blog.author.name }}
+                  <span class="text-truncate">{{ blog.author.name }}</span>
                 </div>
-                <v-btn color="primary" variant="plain" text="Delete" size="large" @click="deleteBlog(blog.id)"></v-btn>
+                <v-btn class="flex-shrink-0" color="primary" variant="plain" text="Delete" size="large" @click="deleteBlog(blog.id)"></v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
