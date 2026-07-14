@@ -10,12 +10,13 @@
 // permanently fake, skipping the network layer removes the whole bug
 // class rather than hardening around it.
 //
-import type { User, Product, Order } from '../types';
+import type { User, Product, Order, OrderItem, OrderShipTo } from '../types';
 import type { Category, Staff, Carrier } from '../types';
 import { users, categories, products, orders, carriers } from './ecommerce';
 import { staff } from './staff';
 
 const DELAY_MS = 300;
+const SHIPPING_FLAT_FEE = 9.99;
 
 let usersDb: User[] = [...users];
 let productsDb: Product[] = [...products];
@@ -146,6 +147,108 @@ export async function updateOrderStatus(id: number, status: string): Promise<Ord
     ...current,
     status,
     statusHistory: [...current.statusHistory, { status, changedAt: new Date().toISOString() }],
+  };
+  ordersDb = [...ordersDb.slice(0, index), updated, ...ordersDb.slice(index + 1)];
+  return updated;
+}
+
+export async function createOrder(data: {
+  userId: number;
+  items: { variantId: number; qty: number }[];
+  shipTo: OrderShipTo;
+}): Promise<Order> {
+  await wait(DELAY_MS);
+
+  const items: OrderItem[] = data.items.map(({ variantId, qty }) => {
+    const product = productsDb.find((p) => p.variants.some((v) => v.variantId === variantId))!;
+    const variant = product.variants.find((v) => v.variantId === variantId)!;
+    return {
+      variantId,
+      productName: product.name,
+      sku: variant.sku,
+      unitPrice: variant.price,
+      qty,
+      discount: 0,
+      lineTotal: variant.price * qty,
+    };
+  });
+
+  productsDb = productsDb.map((product) => ({
+    ...product,
+    variants: product.variants.map((variant) => {
+      const item = data.items.find((i) => i.variantId === variant.variantId);
+      return item ? { ...variant, quantityOnHand: Math.max(0, variant.quantityOnHand - item.qty) } : variant;
+    }),
+  }));
+
+  const subtotal = items.reduce((sum, item) => sum + item.lineTotal, 0);
+  const orderId = nextId(ordersDb, 'orderId');
+  const now = new Date().toISOString();
+  const order: Order = {
+    orderId,
+    orderNumber: `ORD-${orderId}`,
+    userId: data.userId,
+    status: 'pending',
+    currency: 'USD',
+    subtotal,
+    discountTotal: 0,
+    shippingTotal: SHIPPING_FLAT_FEE,
+    grandTotal: subtotal + SHIPPING_FLAT_FEE,
+    shipTo: data.shipTo,
+    orderedAt: now,
+    items,
+    statusHistory: [{ status: 'pending', changedAt: now }],
+  };
+  ordersDb = [...ordersDb, order];
+  return order;
+}
+
+export async function recordPayment(
+  orderId: number,
+  data: { provider: string; amount: number; providerRef?: string }
+): Promise<Order> {
+  await wait(DELAY_MS);
+  const index = ordersDb.findIndex((o) => o.orderId === orderId);
+  if (index === -1) notFound('Order', orderId);
+  const current = ordersDb[index];
+  const now = new Date().toISOString();
+  const updated: Order = {
+    ...current,
+    status: 'paid',
+    payment: {
+      amount: data.amount,
+      currency: current.currency,
+      provider: data.provider,
+      providerRef: data.providerRef,
+      status: 'captured',
+      createdAt: now,
+    },
+    statusHistory: [...current.statusHistory, { status: 'paid', changedAt: now }],
+  };
+  ordersDb = [...ordersDb.slice(0, index), updated, ...ordersDb.slice(index + 1)];
+  return updated;
+}
+
+export async function recordShipment(
+  orderId: number,
+  data: { carrierId: number; trackingNumber?: string }
+): Promise<Order> {
+  await wait(DELAY_MS);
+  const index = ordersDb.findIndex((o) => o.orderId === orderId);
+  if (index === -1) notFound('Order', orderId);
+  const carrier = carriers.find((c) => c.carrierId === data.carrierId);
+  const current = ordersDb[index];
+  const now = new Date().toISOString();
+  const updated: Order = {
+    ...current,
+    status: 'shipped',
+    shipment: {
+      carrierId: data.carrierId,
+      carrierName: carrier?.name ?? `Carrier ${data.carrierId}`,
+      trackingNumber: data.trackingNumber,
+      shippedAt: now,
+    },
+    statusHistory: [...current.statusHistory, { status: 'shipped', changedAt: now }],
   };
   ordersDb = [...ordersDb.slice(0, index), updated, ...ordersDb.slice(index + 1)];
   return updated;
