@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useCustomizerStore } from '../../../stores/customizer';
+import { useCartStore } from '../../../stores/cart';
+import { router } from '../../../router';
 // Icon Imports
 import { BellIcon, SettingsIcon, SearchIcon, Menu2Icon } from 'vue-tabler-icons';
 
@@ -10,6 +12,7 @@ import ProfileDD from './ProfileDD.vue';
 import Searchbar from './SearchBarPanel.vue';
 
 const customizer = useCustomizerStore();
+const cartStore = useCartStore();
 const showSearch = ref(false);
 function searchbox() {
   showSearch.value = !showSearch.value;
@@ -17,6 +20,10 @@ function searchbox() {
 
 function gotoGitHub() {
   window.open('https://github.com/harryho/vue-crm', '_blank')
+}
+
+function gotoCart() {
+  router.push({ path: '/cart' });
 }
 </script>
 
@@ -67,6 +74,13 @@ function gotoGitHub() {
     <!-- ---------------------------------------------- -->
 
     <v-icon icon="$github" @click="gotoGitHub" />
+
+    <v-btn icon class="text-secondary mx-3" color="lightsecondary" rounded="sm" size="small" variant="flat"
+      title="Cart" @click="gotoCart">
+      <v-badge :content="cartStore.totalItems" color="error" :model-value="cartStore.totalItems > 0">
+        <v-icon icon="$cart" />
+      </v-badge>
+    </v-btn>
 
     <v-menu :close-on-content-click="false">
       <template v-slot:activator="{ props }">

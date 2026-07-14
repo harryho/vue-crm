@@ -66,18 +66,6 @@ function onCreate() {
 <template>
   <UiMainContainer>
     <UiParentCard title="Products" :createFn="onCreate">
-      <template v-slot:action>
-        <div class="d-flex ga-2">
-          <v-btn variant="outlined" color="secondary" @click="router.replace({ path: '/cart' })">
-            <template v-slot:prepend><v-icon icon="$cart" size="x-large"></v-icon></template>
-            Cart ({{ cartStore.totalItems }})
-          </v-btn>
-          <v-btn @click="onCreate" color="primary" variant="outlined">
-            <template v-slot:prepend><v-icon icon="$new" size="x-large"></v-icon></template>
-            New
-          </v-btn>
-        </div>
-      </template>
       <div v-if="productStore.loading">
         <v-progress-linear color="secondary" height="6" indeterminate rounded></v-progress-linear>
       </div>
@@ -110,14 +98,13 @@ function onCreate() {
                   </v-btn>
                   <v-spacer />
                 </div>
-                <div>
+                <div class="d-flex align-center ga-2">
                   <v-chip v-if="product.variants[0].quantityOnHand === 0" color="error">out of stock</v-chip>
                   <v-chip v-else color="success">in stock</v-chip>
                   <v-btn color="secondary mb-0" variant="outlined" text="Edit" title="Edit" size="small"
                     @click="editProduct(product.productId)"></v-btn>
                   <v-btn color="primary" variant="plain" text="Delete" size="large"
                     @click="deleteProduct(product.productId)"></v-btn>
-
                 </div>
               </v-card-actions>
             </v-card>
