@@ -58,7 +58,8 @@ function onCheckout() {
               <td>{{ variant?.sku }}</td>
               <td class="text-right">AUD {{ variant ? formatToCurrencyString(variant.price) : '-' }}</td>
               <td class="text-right">
-                <v-text-field type="number" density="compact" hide-details style="width: 90px; display: inline-block"
+                <v-text-field type="number" density="compact" bg-color="white"
+                  style="width: 90px; display: inline-block"
                   :model-value="item.qty"
                   @update:model-value="(v) => cartStore.setQty(item.variantId, Number(v))"></v-text-field>
               </td>
