@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 
 import { fetchWrapper } from '@/utils/helpers/fetch-wrapper';
 import { ThreedCubeSphereIcon } from 'vue-tabler-icons';
-import type { Customer } from '@/types';
+import type { Customer } from '@/types-legacy';
 
 const baseUrl = `${import.meta.env.VITE_API_URL}/customers`;
 

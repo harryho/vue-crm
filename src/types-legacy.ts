@@ -72,32 +72,6 @@ export interface Product {
   status?: string
 }
 
-export interface State {
-  items: Entity[];
-  pagination: Pagination;
-  loading: boolean;
-  mode: string;
-  snackbar: boolean;
-  notice: string;
-  customer: Customer;
-  orders: Order[];
-  orderList: Order[];
-}
-
-
-export type SearchFilter = {
-  equal?: TODO,
-  contain?: TODO,
-  startsWith?: TODO,
-  endsWith?: TODO,
-  lessThan?: TODO,
-  greaterThan?: TODO,
-  lessThanOrEqual?: TODO,
-  greaterThanOrEqual?: TODO,
-  filters?: TODO
-
-}
-
 export interface Blog  {
   id: string;
   title: string;

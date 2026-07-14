@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 
 import { fetchWrapper } from '@/utils/helpers/fetch-wrapper';
-import type { Product } from '@/types';
+import type { Product } from '@/types-legacy';
 import { formatToCurrencyNumber } from '@/utils/locales/format';
 
 const baseUrl = `${import.meta.env.VITE_API_URL}/products`;

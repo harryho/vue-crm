@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 
 import { fetchWrapper } from '@/utils/helpers/fetch-wrapper';
-import type { Blog } from '@/types';
+import type { Blog } from '@/types-legacy';
 import {  formatToCurrencyNumber } from '@/utils/locales/format';
 
 const baseUrl = `${import.meta.env.VITE_API_URL}/blogs`;
