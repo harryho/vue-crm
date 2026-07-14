@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia';
 
 import * as repository from '@/data/repository';
-import type { Order } from '@/types';
+import type { Order, OrderShipTo } from '@/types';
 
-const STATUS_SEQUENCE = ['pending', 'processing', 'shipped', 'delivered'];
+const STATUS_SEQUENCE = ['pending', 'paid', 'shipped', 'delivered'];
 
 const emptyOrder = (): Order => ({
   orderId: 0,
@@ -32,6 +32,7 @@ export const useOrdersStore = defineStore('Orders', {
     filteredData(): Order[] {
       return this.orders;
     },
+    // -1 when the order is cancelled (not part of the linear sequence at all)
     getStepVal(): string {
       return (STATUS_SEQUENCE.indexOf(this.order.status) + 1).toString();
     },
@@ -47,14 +48,23 @@ export const useOrdersStore = defineStore('Orders', {
       this.order = await repository.getOrderById(id);
       this.loading = false;
     },
-    // Advances the order to its next status - this app has no order-creation
-    // or line-item-editing UI yet (that's real checkout, a net-new M4
-    // feature), so "saving" an order here only ever means moving it forward
-    // one step in STATUS_SEQUENCE.
-    async advanceStatus() {
-      const currentIdx = STATUS_SEQUENCE.indexOf(this.order.status);
-      const nextStatus = STATUS_SEQUENCE[currentIdx + 1];
-      this.order = await repository.updateOrderStatus(this.order.orderId, nextStatus);
+    async createOrder(data: { userId: number; items: { variantId: number; qty: number }[]; shipTo: OrderShipTo }) {
+      return repository.createOrder(data);
+    },
+    async recordPayment(data: { provider: string; amount: number; providerRef?: string }) {
+      this.order = await repository.recordPayment(this.order.orderId, data);
+      return this.order;
+    },
+    async recordShipment(data: { carrierId: number; trackingNumber?: string }) {
+      this.order = await repository.recordShipment(this.order.orderId, data);
+      return this.order;
+    },
+    async markDelivered() {
+      this.order = await repository.updateOrderStatus(this.order.orderId, 'delivered');
+      return this.order;
+    },
+    async cancelOrder() {
+      this.order = await repository.updateOrderStatus(this.order.orderId, 'cancelled');
       return this.order;
     },
   },

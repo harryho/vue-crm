@@ -39,11 +39,13 @@ function getColor(status: string): string {
     case 'delivered':
       return 'success'
     case 'pending':
-      return 'error'
-    case 'processing':
+      return 'warning'
+    case 'paid':
       return 'info'
     case 'shipped':
-      return 'warning'
+      return 'info'
+    case 'cancelled':
+      return 'error'
     default:
       return ''
   }
