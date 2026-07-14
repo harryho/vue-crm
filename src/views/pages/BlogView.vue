@@ -7,6 +7,7 @@ import ConfirmDialog from "@/components/shared/ConfirmDialog.vue";
 import NotificationBar from "@/components/shared/NotificeBar.vue";
 import { router } from "@/router";
 import { useBlogsStore } from "@/stores/blogs";
+import { assetUrl } from "@/utils/asset-url";
 
 const blogStore = useBlogsStore();
 blogStore.getAll()
@@ -14,7 +15,6 @@ const { filteredData, filter, totalPages, currentPage, totalCount } = storeToRef
 const dialog = ref(false)
 const notice = ref(false)
 const selectedId = ref('')
-const AVATAR_PLACEHOLDER = "/src/assets/images/blog/avatar-0.webp"
 
 function editBlog(id: string) {
   router.replace({ path: `/blog/${id}` });
@@ -70,10 +70,10 @@ function getWidth (index:number){
     return 1680
   }
   else if(index===1){
-    return 1200
+    return 1024
   }
   else if(index===2){
-    return 400
+    return 512
   }
   else {
     return 380
@@ -96,7 +96,7 @@ function getWidth (index:number){
         <v-row>
           <v-col cols="12" :lg="getColSpan(index)" md="4" sm="6" v-for="(blog, index) in filteredData" :key="index">
             <v-card variant="elevated" class="mx-auto ma-5" :max-width="getWidth(index)">
-              <v-img :class="`${index==0?'':'blog-img'} align-end text-primary b-r-25`" height="250" :src="blog.coverUrl" cover>
+              <v-img :class="`${index==0?'':'blog-img'} align-end text-primary b-r-25`" height="250" :src="assetUrl(blog.coverUrl)" cover>
 
               </v-img>
               <v-card-title class=" text-h3"> {{ blog.title }}
@@ -113,7 +113,7 @@ function getWidth (index:number){
               <v-card-actions class="d-flex align-center justify-space-between">
                 <div class="d-flex align-center ga-2" style="min-width: 0; flex: 1 1 auto;">
                   <v-avatar size="36px">
-                    <v-img alt="Avatar" :src="blog.author.avatar"></v-img>
+                    <v-img alt="Avatar" :src="assetUrl(blog.author.avatar)"></v-img>
                   </v-avatar>
                   <span class="text-truncate">{{ blog.author.name }}</span>
                 </div>

@@ -7,6 +7,7 @@ import { storeToRefs } from "pinia";
 import ConfirmDialog from "@/components/shared/ConfirmDialog.vue";
 import NotificationBar from "@/components/shared/NotificeBar.vue";
 import { router } from "@/router";
+import { assetUrl } from "@/utils/asset-url";
 
 const headers = [
   { title: "", key: "avatarUrl", algin: "start" },
@@ -25,7 +26,7 @@ const dialog = ref(false);
 const search = ref('');
 const notice = ref(false);
 const selectedId = ref(0);
-const AVATAR_PLACEHOLDER = "/src/assets/images/customer/avatar-0.webp";
+const AVATAR_PLACEHOLDER = "/assets/images/customer/avatar-0.webp";
 
 function defaultAddress(user: (typeof filteredData.value)[number]) {
   return user.addresses.find((a) => a.isDefaultShipping) ?? user.addresses[0];
@@ -81,8 +82,8 @@ function onCreate() {
           </template>
           <template v-slot:item.avatarUrl="{ value }">
             <v-avatar size="36px">
-              <v-img alt="Avatar" v-if="value" :src="value"></v-img>
-              <v-img alt="Avatar" v-if="!value" :src="AVATAR_PLACEHOLDER"></v-img>
+              <v-img alt="Avatar" v-if="value" :src="assetUrl(value)"></v-img>
+              <v-img alt="Avatar" v-if="!value" :src="assetUrl(AVATAR_PLACEHOLDER)"></v-img>
             </v-avatar>
           </template>
           <template v-slot:item.location="{ item }">

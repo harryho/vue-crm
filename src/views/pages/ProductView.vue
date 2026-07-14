@@ -9,6 +9,7 @@ import ConfirmDialog from "@/components/shared/ConfirmDialog.vue";
 import NotificationBar from "@/components/shared/NotificeBar.vue";
 import { router } from "@/router";
 import { formatToCurrencyString } from "@/utils/locales/format";
+import { assetUrl } from "@/utils/asset-url";
 import { ref } from "vue";
 
 
@@ -20,7 +21,7 @@ const dialog = ref(false)
 
 const notice = ref(false)
 const selectedId = ref(0)
-const AVATAR_PLACEHOLDER = "/src/assets/images/product/product-0.webp"
+const AVATAR_PLACEHOLDER = "/assets/images/product/product-0.webp"
 
 function addToCart(variantId: number) {
   cartStore.addItem(variantId, 1)
@@ -77,7 +78,7 @@ function onCreate() {
         <v-row>
           <v-col cols="12" lg="3" md="4" sm="6" v-for="(product, index) in filteredData" :key="index">
             <v-card variant="elevated" class="mx-auto ma-5" max-width="360">
-              <v-img class="product-img align-end text-primary b-r-25" height="250" :src="product.images[0]?.url" cover>
+              <v-img class="product-img align-end text-primary b-r-25" height="250" :src="assetUrl(product.images[0]?.url) ?? assetUrl(AVATAR_PLACEHOLDER)" cover>
 
               </v-img>
               <v-card-title class=" text-h3"> {{ product.name }}

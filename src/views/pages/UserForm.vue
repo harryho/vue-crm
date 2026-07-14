@@ -5,8 +5,9 @@ import { useUsersStore } from '@/stores/users';
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
+import { assetUrl } from '@/utils/asset-url';
 
-const AVATAR_PLACEHOLDER = "/src/assets/images/customer/avatar-0.webp"
+const AVATAR_PLACEHOLDER = "/assets/images/customer/avatar-0.webp"
 
 const route = useRoute();
 const router = useRouter();
@@ -72,8 +73,8 @@ async function submit(event: any) {
                         <v-row justify="start">
                             <v-col cols="12" md="4">
                                 <v-avatar size="120">
-                                    <v-img alt="Avatar" v-if="user.avatarUrl" :src="user.avatarUrl"></v-img>
-                                    <v-img alt="Avatar" v-if="!user.avatarUrl" :src="AVATAR_PLACEHOLDER"></v-img>
+                                    <v-img alt="Avatar" v-if="user.avatarUrl" :src="assetUrl(user.avatarUrl)"></v-img>
+                                    <v-img alt="Avatar" v-if="!user.avatarUrl" :src="assetUrl(AVATAR_PLACEHOLDER)"></v-img>
                                 </v-avatar>
                             </v-col>
 
