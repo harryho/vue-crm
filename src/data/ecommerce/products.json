@@ -646,5 +646,59 @@
         "quantityOnHand": 10
       }
     ]
+  },
+  {
+    "productId": 25,
+    "categoryId": 6,
+    "categoryName": "XTEP Sport Shoes",
+    "name": "XTEP Court Royale",
+    "slug": "xtep-court-royale",
+    "description": "XTEP Court Royale - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-25.webp",
+        "altText": "XTEP Court Royale",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 25,
+        "sku": "SKU-0025",
+        "name": "Default",
+        "price": 35.17,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 0
+      }
+    ]
+  },
+  {
+    "productId": 26,
+    "categoryId": 4,
+    "categoryName": "Anta Sport Shoes",
+    "name": "Anta Air Zoom Pegasus 37 Premium",
+    "slug": "anta-air-zoom-pegasus-37-premium",
+    "description": "Anta Air Zoom Pegasus 37 Premium - a demo product carried over from the original mock catalog.",
+    "isActive": true,
+    "images": [
+      {
+        "url": "/assets/images/product/product-26.webp",
+        "altText": "Anta Air Zoom Pegasus 37 Premium",
+        "sortOrder": 0
+      }
+    ],
+    "variants": [
+      {
+        "variantId": 26,
+        "sku": "SKU-0026",
+        "name": "Default",
+        "price": 57.22,
+        "currency": "USD",
+        "isActive": true,
+        "quantityOnHand": 54
+      }
+    ]
   }
 ]
