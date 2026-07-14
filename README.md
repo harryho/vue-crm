@@ -20,7 +20,6 @@ All of the above run against `src/data/repository.ts`, a plain async data layer 
 
 [Latest Demo App](https://vue-app-demo.harryho.org?timestamp=v3):  The demo is just a proof of concept. It doesn't have back-end API and all features of master branch.
 
-[Previous version Demo App](https://vue-demo-v2.harryho.org?timestamp=v2):  The demo is just a proof of concept. It doesn't have back-end API and all features of master branch. Source code is availabe on a different [branch](https://github.com/harryho/vue-crm/tree/v2-vtf2)
 
 
 ### Screenshots
@@ -36,6 +35,8 @@ All of the above run against `src/data/repository.ts`, a plain async data layer 
 
 
 #### Previous Version
+
+[Previous version Demo App](https://vue-demo-v2.harryho.org?timestamp=v2):  The demo is just a proof of concept. It doesn't have back-end API and all features of master branch. Source code is availabe on a different [branch](https://github.com/harryho/vue-crm/tree/v2-vtf2)
 
 
 ![Screenshot2](screenshots/screenshot-2.png)
