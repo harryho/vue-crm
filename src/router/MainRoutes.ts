@@ -17,20 +17,20 @@ const MainRoutes = {
       component: () => import('@/views/dashboards/Dashboard.vue')
     },
     {
-      name: 'Customer',
-      path: '/customer',
-      component: () => import('@/views/pages/CustomerView.vue')
+      name: 'User',
+      path: '/user',
+      component: () => import('@/views/pages/UsersView.vue')
     },
     {
-      name: 'Edit Customer',
-      path: '/customer/:id',
-      component: () => import('@/views/pages/CustomerForm.vue')
+      name: 'Edit User',
+      path: '/user/:id',
+      component: () => import('@/views/pages/UserForm.vue')
     },
-    
+
     {
-      name: 'New Customer',
-      path: '/customer/new',
-      component: () => import('@/views/pages/CustomerForm.vue')
+      name: 'New User',
+      path: '/user/new',
+      component: () => import('@/views/pages/UserForm.vue')
     },
     {
       name: 'Product',

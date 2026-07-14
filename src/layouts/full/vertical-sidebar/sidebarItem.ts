@@ -41,9 +41,9 @@ const sidebarItem: menu[] = [
     to: '/dashboard'
   },
   {
-    title: 'Customer',
+    title: 'Users',
     icon: UsersIcon,
-    to: '/customer'
+    to: '/user'
   },
   {
     title: 'Product',

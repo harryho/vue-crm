@@ -1,15 +1,12 @@
 <script setup lang="ts">
 import UiMainContainer from '@/components/shared/UiMainContainer.vue';
 import UiParentCard from '@/components/shared/UiParentCard.vue';
-import { useCustomersStore} from '@/stores/customers';
+import { useUsersStore } from '@/stores/users';
 import { ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
 
-
-
 const AVATAR_PLACEHOLDER = "/src/assets/images/customer/avatar-0.webp"
-
 
 const route = useRoute();
 const router = useRouter();
@@ -17,25 +14,25 @@ const title = ref('')
 const valid = ref(false)
 const loading = ref(false)
 const form = ref()
-const customerStore = useCustomersStore()
+const usersStore = useUsersStore()
 
 if (route.params['id']) {
-    title.value = 'Edit Customer'
-    customerStore.getCustomerById(route.params['id'] as any)
+    title.value = 'Edit User'
+    usersStore.getUserById(Number(route.params['id']))
 }
 else {
-    title.value = 'New Customer'
-    customerStore.newCustomer()
+    title.value = 'New User'
+    usersStore.newUser()
 }
 
-const { customer } = storeToRefs(customerStore)
+const { user } = storeToRefs(usersStore)
 
-const requiredRule =  (value: any) =>  value? true:'This field is required.'
+const requiredRule = (value: any) => value ? true : 'This field is required.'
 const nameRules = [
     requiredRule,
-    (value: any) => 
-         (value?.length <= 20) ? true:
-         'Name must be less than 10 characters.']
+    (value: any) =>
+        (value?.length <= 20) ? true :
+            'Name must be less than 20 characters.']
 const emailRules = [
     requiredRule,
     (value: any) => {
@@ -46,29 +43,21 @@ const emailRules = [
 ]
 
 function onCancel() {
-    if (customerStore.customer)
-        customerStore.customer = {} as any
-    router.replace({ path: `/customer` });
+    router.replace({ path: `/user` });
 }
 
-async function submit(event:any) {
+async function submit(event: any) {
     event.preventDefault();
 
     const { valid } = await form.value.validate()
 
     if (valid) {
         loading.value = true
-        const results: any = await customerStore.saveCustomer(customer.value)
-
-        if (results.status) {
-            router.replace({ path: '/customer' })
-        }
+        await usersStore.saveUser(user.value)
+        router.replace({ path: '/user' })
         loading.value = false
     }
 }
-
-
-
 </script>
 
 <template>
@@ -77,55 +66,66 @@ async function submit(event:any) {
 
         <UiParentCard :title="title">
 
-            <div v-if="!customerStore.loading">
+            <div v-if="!usersStore.loading">
                 <v-form ref="form" v-model="valid" @submit.prevent>
                     <v-container>
                         <v-row justify="start">
                             <v-col cols="12" md="4">
                                 <v-avatar size="120">
-                                    <v-img alt="Avatar" v-if="customer.avatar" :src="customer.avatar"></v-img>
-                                    <v-img alt="Avatar" v-if="!customer.avatar" :src="AVATAR_PLACEHOLDER"></v-img>
+                                    <v-img alt="Avatar" v-if="user.avatarUrl" :src="user.avatarUrl"></v-img>
+                                    <v-img alt="Avatar" v-if="!user.avatarUrl" :src="AVATAR_PLACEHOLDER"></v-img>
                                 </v-avatar>
                             </v-col>
 
                         </v-row>
                         <v-row>
                             <v-col cols="12" md="4">
-                     
-                                <v-text-field v-model="customer.firstname" :rules="nameRules" label="First name"
+
+                                <v-text-field v-model="user.firstName" :rules="nameRules" label="First name"
                                     variant="solo-filled" required></v-text-field>
                             </v-col>
 
                             <v-col cols="12" md="4">
-                                <v-text-field v-model="customer.lastname" :rules="nameRules" variant="solo-filled"
+                                <v-text-field v-model="user.lastName" :rules="nameRules" variant="solo-filled"
                                     label="Last name" required></v-text-field>
                             </v-col>
 
                             <v-col cols="12" md="4">
-                                <v-text-field v-model="customer.email" :rules="emailRules" label="E-mail"
-                                    variant="solo-filled" required></v-text-field>
-                            </v-col>
-
-
-                            <v-col cols="12" md="4">
-                     
-                                <v-text-field v-model="customer.phone" :rules="[requiredRule]"label="Phone"
+                                <v-text-field v-model="user.email" :rules="emailRules" label="E-mail"
                                     variant="solo-filled" required></v-text-field>
                             </v-col>
 
                             <v-col cols="12" md="4">
-                                <v-text-field v-model="customer.mobile" :rules="[requiredRule]" variant="solo-filled"
-                                    label="Mobile" required></v-text-field>
+                                <v-text-field v-model="user.phone" label="Phone" variant="solo-filled"></v-text-field>
                             </v-col>
 
                             <v-col cols="12" md="4">
-                                <v-text-field type="number" v-model="customer.rewards" :rules="[requiredRule]"
-                                    label="Rewards" variant="solo-filled" required></v-text-field>
+                                <v-text-field v-model="user.companyName" variant="solo-filled"
+                                    label="Company"></v-text-field>
                             </v-col>
+
                             <v-col cols="12" md="4">
-                                <v-select clearable label="Membership" v-model="customer.membership"
-                                    :rules="[requiredRule]" :items="['standard', 'vip']"
+                                <v-select clearable label="Status" v-model="user.isActive"
+                                    :items="[{ title: 'Active', value: true }, { title: 'Inactive', value: false }]"
                                     variant="solo-filled"></v-select>
+                            </v-col>
+                        </v-row>
+                    </v-container>
+                    <v-divider></v-divider>
+                    <v-card-subtitle class="f-w-800 pl-0">Primary Address</v-card-subtitle>
+                    <v-container v-if="user.addresses[0]">
+                        <v-row>
+                            <v-col cols="12" md="4">
+                                <v-text-field v-model="user.addresses[0].line1" :rules="[requiredRule]"
+                                    label="Address Line 1" variant="solo-filled" required></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="4">
+                                <v-text-field v-model="user.addresses[0].city" :rules="[requiredRule]" label="City"
+                                    variant="solo-filled" required></v-text-field>
+                            </v-col>
+                            <v-col cols="12" md="4">
+                                <v-text-field v-model="user.addresses[0].countryCode" :rules="[requiredRule]"
+                                    label="Country Code" variant="solo-filled" required></v-text-field>
                             </v-col>
                         </v-row>
                     </v-container>
@@ -134,7 +134,8 @@ async function submit(event:any) {
                         <v-col cols="12" lg="2" md="6" sm="12" justify="end" class="">
                             <v-spacer></v-spacer>
                             <div class="d-flex ga-6 mt-8 justify-end">
-                                <v-btn      :loading="loading" color="secondary" variant="flat" type="submit" @click="submit">
+                                <v-btn :loading="loading" color="secondary" variant="flat" type="submit"
+                                    @click="submit">
                                     Submit
                                 </v-btn>
 

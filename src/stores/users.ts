@@ -1,71 +1,60 @@
 import { defineStore } from 'pinia';
 
-import { fetchWrapper } from '@/utils/helpers/fetch-wrapper';
-import { ThreedCubeSphereIcon } from 'vue-tabler-icons';
-import type { Customer } from '@/types-legacy';
+import * as repository from '@/data/repository';
+import type { User } from '@/types';
 
-const baseUrl = `${import.meta.env.VITE_API_URL}/customers`;
+const emptyUser = (): User => ({
+  userId: 0,
+  email: '',
+  passwordHash: '',
+  firstName: '',
+  lastName: '',
+  isActive: true,
+  addresses: [
+    { label: 'Primary', line1: '', city: '', countryCode: '', isDefaultShipping: true, isDefaultBilling: true },
+  ],
+});
 
-
-export const useCustomersStore = defineStore("Customers", {
-
+export const useUsersStore = defineStore('Users', {
   state: () => ({
-    customers: [] as Array<Customer>,
+    users: [] as Array<User>,
     loading: false,
     filter: '',
-    customer: {} as Customer
+    user: emptyUser(),
   }),
   getters: {
-    filteredData(): Customer[] {
-      return this.customers;
+    filteredData(): User[] {
+      return this.users;
     },
   },
   actions: {
     async getAll() {
       this.loading = true;
-      this.customers = await fetchWrapper.get(baseUrl)
+      this.users = await repository.getUsers();
       this.loading = false;
     },
-    async delteCustomer(id: string) {
-      const res = await fetchWrapper.delete(`${baseUrl}/${id}`)
-      if (res.error) {
-        console.log(res.error)
+    async deleteUser(id: number) {
+      await repository.deleteUser(id);
+    },
+    async getUserById(id: number) {
+      this.loading = true;
+      this.user = await repository.getUserById(id);
+      this.loading = false;
+    },
+    async saveUser(user: User) {
+      if (user.userId) {
+        const { userId, ...data } = user;
+        return repository.updateUser(userId, data);
       }
-      return res
+      const { userId, ...data } = user;
+      return repository.createUser(data);
     },
-    async getCustomerById(id: string) {
-      this.loading = true
-      this.customer = await fetchWrapper.get(`${baseUrl}/${id}`)
-      this.loading = false
-    },
-    async saveCustomer(customer: Customer) {
-      let res
-      if (customer.id)
-        res = await fetchWrapper.put(`${baseUrl}/${customer.id}`, customer)
-      else
-        res = await fetchWrapper.post(`${baseUrl}`, customer)
-      return res
-    },
-    async newCustomer() {
-      this.loading = true
+    newUser() {
+      this.loading = true;
       setTimeout(() => {
-        this.customer = {
-          id: '',
-          firstname: '',
-          lastname: '',
-          fullname: '',
-          email: '',
-          avatar: '',
-          mobile: '',
-          phone: '',
-          membership: '',
-          rewards: 0,
-          hasItemInShoppingCart: false
-        }
-        this.loading = false
-      }
-        , 500)
-
-    }
-  }
+        this.user = emptyUser();
+        this.loading = false;
+      }, 500);
+    },
+  },
 });
