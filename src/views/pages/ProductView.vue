@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useProductsStore } from "@/stores/products";
+import { useCartStore } from "@/stores/cart";
 import UiParentCard from "@/components/shared/UiParentCard.vue";
 import UiMainContainer from "@/components/shared/UiMainContainer.vue";
 
@@ -12,6 +13,7 @@ import { ref } from "vue";
 
 
 const productStore = useProductsStore();
+const cartStore = useCartStore();
 productStore.getAll()
 const { filteredData, filter, totalPages, currentPage, totalCount } = storeToRefs(productStore)
 const dialog = ref(false)
@@ -19,6 +21,10 @@ const dialog = ref(false)
 const notice = ref(false)
 const selectedId = ref(0)
 const AVATAR_PLACEHOLDER = "/src/assets/images/product/product-0.webp"
+
+function addToCart(variantId: number) {
+  cartStore.addItem(variantId, 1)
+}
 
 function editProduct(id: number) {
   router.replace({ path: `/product/${id}` });
@@ -60,6 +66,18 @@ function onCreate() {
 <template>
   <UiMainContainer>
     <UiParentCard title="Products" :createFn="onCreate">
+      <template v-slot:action>
+        <div class="d-flex ga-2">
+          <v-btn variant="outlined" color="secondary" @click="router.replace({ path: '/cart' })">
+            <template v-slot:prepend><v-icon icon="$cart" size="x-large"></v-icon></template>
+            Cart ({{ cartStore.totalItems }})
+          </v-btn>
+          <v-btn @click="onCreate" color="primary" variant="outlined">
+            <template v-slot:prepend><v-icon icon="$new" size="x-large"></v-icon></template>
+            New
+          </v-btn>
+        </div>
+      </template>
       <div v-if="productStore.loading">
         <v-progress-linear color="secondary" height="6" indeterminate rounded></v-progress-linear>
       </div>
@@ -90,6 +108,9 @@ function onCreate() {
                   <v-spacer />
                 </div>
                 <div>
+                  <v-btn color="secondary" variant="tonal" text="Add to Cart" size="small"
+                    :disabled="product.variants[0].quantityOnHand === 0"
+                    @click="addToCart(product.variants[0].variantId)"></v-btn>
                   <v-btn color="secondary mb-0" variant="outlined" text="Edit" title="Edit" size="small"
                     @click="editProduct(product.productId)"></v-btn>
                   <v-btn color="primary" variant="plain" text="Delete" size="large"

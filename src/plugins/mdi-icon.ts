@@ -2,7 +2,8 @@ import {
   mdiClose, mdiHome, mdiEyeOff, mdiEye,
   mdiCrownCircleOutline, mdiCertificateOutline,
   mdiShoppingOutline, mdiPencilCircleOutline, mdiDeleteCircleOutline,
-  mdiPlusCircleOutline, mdiCommentMultiple, mdiShareVariant, mdiGithub
+  mdiPlusCircleOutline, mdiCommentMultiple, mdiShareVariant, mdiGithub,
+  mdiCartOutline
 } from '@mdi/js';
 
 export const icons = {
@@ -18,5 +19,6 @@ export const icons = {
   new: mdiPlusCircleOutline,
   share: mdiShareVariant,
   comments: mdiCommentMultiple,
-  github: mdiGithub
+  github: mdiGithub,
+  cart: mdiCartOutline
 };

@@ -58,11 +58,20 @@ const MainRoutes = {
       path: '/order/:id',
       component: () => import('@/views/pages/OrderForm.vue')
     },
-    
     {
-      name: 'New Order',
-      path: '/order/new',
-      component: () => import('@/views/pages/OrderForm.vue')
+      name: 'Cart',
+      path: '/cart',
+      component: () => import('@/views/pages/CartView.vue')
+    },
+    {
+      name: 'Checkout',
+      path: '/checkout',
+      component: () => import('@/views/pages/CheckoutView.vue')
+    },
+    {
+      name: 'Inventory',
+      path: '/inventory',
+      component: () => import('@/views/pages/InventoryView.vue')
     },
     {
       name: 'Blog',

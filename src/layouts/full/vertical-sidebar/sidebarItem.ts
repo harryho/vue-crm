@@ -14,7 +14,9 @@ Stack3Icon,
   TruckDeliveryIcon,
   ArticleIcon,
   TemplateIcon,
-  UserDollarIcon
+  UserDollarIcon,
+  ShoppingCartIcon,
+  PackageIcon
 } from 'vue-tabler-icons';
 
 export interface menu {
@@ -54,6 +56,16 @@ const sidebarItem: menu[] = [
     title: 'Order',
     icon: TruckDeliveryIcon,
     to: '/order'
+  },
+  {
+    title: 'Cart',
+    icon: ShoppingCartIcon,
+    to: '/cart'
+  },
+  {
+    title: 'Inventory',
+    icon: PackageIcon,
+    to: '/inventory'
   },
   { divider: true },
   { header: 'Marketing' }
