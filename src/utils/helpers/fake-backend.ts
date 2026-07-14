@@ -47,41 +47,6 @@ function fakeBackend() {
             return authenticate();
           case url.endsWith('/users') && opts.method === 'GET':
             return getUsers();
-          //------------------- Customer ----------------------
-          case url.endsWith('/customers') && opts.method === 'GET':
-            return getAllData('customers');
-          case url.endsWith('/customers') && opts.method === 'POST':
-            return saveData('customers','', body());
-          case url.lastIndexOf('/customers') > 0 && !url.endsWith('/customers')
-            && opts.method === 'GET':
-            return getDataById('customers', getId(url));
-          case url.lastIndexOf('/customers') > 0 && !url.endsWith('/customers') && opts.method === 'DELETE':
-            return deleteDataById('customers',getId(url));
-          case url.lastIndexOf('/customers') > 0 && !url.endsWith('/customers') && opts.method === 'PUT':
-          //------------------- Product ----------------------
-          case url.endsWith('/products') && opts.method === 'GET':
-            return getAllData('products');
-          case url.endsWith('/products') && opts.method === 'POST':
-            return saveData('products','', body());
-          case url.lastIndexOf('/products') > 0 && !url.endsWith('/products')
-            && opts.method === 'GET':
-            return getDataById('products', getId(url));
-          case url.lastIndexOf('/products') > 0 && !url.endsWith('/products') && opts.method === 'DELETE':
-            return deleteDataById('products',getId(url));
-          case url.lastIndexOf('/products') > 0 && !url.endsWith('/products') && opts.method === 'PUT':
-            return saveData('products',getId(url), body());
-          //------------------- Order ----------------------
-          case url.endsWith('/orders') && opts.method === 'GET':
-            return getAllData('orders');
-          case url.endsWith('/orders') && opts.method === 'POST':
-            return saveData('orders','', body());
-          case url.lastIndexOf('/orders') > 0 && !url.endsWith('/orders')
-            && opts.method === 'GET':
-            return getDataById('orders', getId(url));
-          case url.lastIndexOf('/orders') > 0 && !url.endsWith('/orders') && opts.method === 'DELETE':
-            return deleteDataById('orders',getId(url));
-          case url.lastIndexOf('/orders') > 0 && !url.endsWith('/orders') && opts.method === 'PUT':
-            return saveData('orders',getId(url), body());
           //------------------- Blog ----------------------
           case url.endsWith('/blogs') && opts.method === 'GET':
             return getAllData('blogs');
