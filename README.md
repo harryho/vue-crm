@@ -1,9 +1,20 @@
-11# Vue Demo App V3
+# Vue Ecom Demo (V3.5)
 
-> A reusable Vue.js starter project for real-world business based on Vue 3 with Vuetify 3 and Pinia.
+> A Vue 3 + Vuetify 4 ecommerce admin demo, built on Pinia for state and a plain in-memory data layer (no backend, no mock-service-worker/network layer required).
 
-The goal of this project is to build a reusable starter project for real-world business. To achieve this target, we need a solution which includes state management (Pinia), fake restful API and elegant UI design (Vuetify).
+The goal of this project is to be a realistic, self-contained ecommerce admin demo: real domain modelling (users with addresses, categorized products with variants, orders with line items/status history/payments/shipments), a full customer-facing cart and checkout flow, and CRUD screens for the core entities - all backed by data that lives entirely in memory, so the app runs with zero backend setup.
 
+
+### Features
+
+* **Users** - full CRUD (list, create, edit, delete) with addresses, matching a real `User` domain model.
+* **Products** - full CRUD with categories, variants, and stock levels; browse/filter/paginate, add to cart.
+* **Orders** - real line items, a status timeline (pending → paid → shipped → delivered, or cancelled), and dedicated actions to record a payment, record a shipment, or mark delivered.
+* **Cart & Checkout** - add products from the catalog, adjust quantities, pick the customer and shipping address, and place a real order against the in-memory data store.
+* **Inventory** - a stock overview across every product variant, with low/out-of-stock indicators.
+* **Dashboard** - the original template's widgets and charts (kept as-is; this is a demo, so the dashboard doesn't need to be backed by real analytics).
+
+All of the above run against `src/data/repository.ts`, a plain async data layer over seed data in `src/data/ecommerce/` - there is no real backend, no mock server, and no network layer at all, by design.
 
 ### Live Demo
 
@@ -15,10 +26,10 @@ The goal of this project is to build a reusable starter project for real-world b
 ### Screenshots
 
 #### Latest Version
-![Screenshot1](screenshots/v3/Screenshot-6.png)
+![Screenshot1](screenshots/v3.5/Screenshot-2.png)
 <!-- ![Screenshot1](screenshots/v3/Screenshot-1.png) -->
 <!-- ![Screenshot1](screenshots/v3/Screenshot-2.png) -->
-![Screenshot1](screenshots/v3/Screenshot-3.png)
+![Screenshot1](screenshots/v3.5/Screenshot-1.png)
 <!-- ![Screenshot1](screenshots/v3/Screenshot-4.png) -->
 ![Screenshot1](screenshots/v3/Screenshot-5.png)
 
@@ -37,20 +48,28 @@ The goal of this project is to build a reusable starter project for real-world b
 
 ## Build Setup
 
+Requires Node >= 22. Uses [bun](https://bun.sh) as the package manager (a `bun.lock` is committed); `npm`/`yarn` should also work if you prefer, but aren't the primary supported path.
+
 ``` bash
 
 # Clone project
 git clone https://github.com/harryho/vue-crm.git
-
-
-# install dependences for Vue 2 CRM
 cd vue-crm
-npm install 
 
+# install dependencies
+bun install
 
-# serve with hot reload at localhost:8080
-npm run dev
+# serve with hot reload at localhost:5173 (Vite's default)
+bun run dev
 
+# type-check
+bun run typecheck
+
+# run the test suite
+bun run test
+
+# production build
+bun run build
 
 ```
 
@@ -59,7 +78,7 @@ npm run dev
 
 ```bash
 ## Run / Test release without building new image
-npm run build
+bun run build
 
 # Launch nginx image to test latest release
 docker pull nginx:alpine
@@ -81,12 +100,16 @@ docker logs vd3   -f
 
 For detailed explanation on how things work, checkout following links
 
-* [vue](https://vuex.vuejs.org/en/)
-* [vuetifyjs](https://dev.vuetifyjs.com/)
+* [vue](https://vuejs.org/)
+* [vuetifyjs](https://vuetifyjs.com/)
 * [Pinia](https://pinia.vuejs.org/)
+* [Vite](https://vite.dev/)
+* [Vitest](https://vitest.dev/)
 
 
 #### Change log
+
+*  Jul 2026 - Uplift to Vue 3.5 + Vuetify 4 + Pinia 3 + Vite 8, and a full ecommerce domain-model rewrite: replaced the flat Customer/Order/Product demo with a real User/Category/Product/Order/Cart/Carrier/Staff model, added Cart/Checkout/Inventory, and gave Orders a real payment/shipment/status-history flow. Added a Vitest test setup (none existed before).
 
 *  Mar 2025 - Uplift to Vue 3 + Vuetify 3 + Pinia is done.
 
