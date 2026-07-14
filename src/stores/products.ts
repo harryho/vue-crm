@@ -1,87 +1,75 @@
 import { defineStore } from 'pinia';
 
-import { fetchWrapper } from '@/utils/helpers/fetch-wrapper';
-import type { Product } from '@/types-legacy';
-import { formatToCurrencyNumber } from '@/utils/locales/format';
+import * as repository from '@/data/repository';
+import type { Product } from '@/types';
 
-const baseUrl = `${import.meta.env.VITE_API_URL}/products`;
+function slugify(name: string): string {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
 
+const emptyProduct = (): Product => ({
+  productId: 0,
+  categoryId: 0,
+  categoryName: '',
+  name: '',
+  slug: '',
+  isActive: true,
+  images: [],
+  variants: [{ variantId: 0, sku: '', name: 'Default', price: 0, currency: 'USD', isActive: true, quantityOnHand: 0 }],
+});
 
-
-export const useProductsStore = defineStore("Products", {
+export const useProductsStore = defineStore('Products', {
   state: () => ({
     products: [] as Array<Product>,
     loading: false,
     filter: '',
     pageSize: 10,
     currentPage: 1,
-    product: {} as Product
+    product: emptyProduct(),
   }),
   getters: {
     filteredData(state): Product[] {
-      const filtered = this.products.filter(p =>
-        !this.filter ? true : p.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1);
-      const paginated = filtered.slice((state.currentPage - 1) * this.pageSize, state.currentPage * this.pageSize)
-      return paginated
-
+      const filtered = this.products.filter((p) =>
+        !this.filter ? true : p.name.toLowerCase().indexOf(this.filter.toLowerCase()) > -1
+      );
+      return filtered.slice((state.currentPage - 1) * this.pageSize, state.currentPage * this.pageSize);
     },
     totalPages(): number {
       return Math.ceil(this.products.length / this.pageSize);
     },
     totalCount(): number {
-      return this.products.length
-    }
+      return this.products.length;
+    },
   },
   actions: {
     async getAll() {
       this.loading = true;
-      const list = await fetchWrapper.get(baseUrl)
-      this.products = list
+      this.products = await repository.getProducts();
       this.loading = false;
     },
-    async delteProduct(id: string) {
-      const res = await fetchWrapper.delete(`${baseUrl}/${id}`)
-      if (res.error) {
-        console.log(res.error)
-      }
-      return res
+    async deleteProduct(id: number) {
+      await repository.deleteProduct(id);
     },
-    async getProductById(id: string) {
-      this.loading = true
-      const c = await fetchWrapper.get(`${baseUrl}/${id}`)
-      this.product = {
-        ...c,
-        price: formatToCurrencyNumber(c.price),
-        retailPrice: formatToCurrencyNumber(c.price * 1.1),
-      }
-      this.loading = false
+    async getProductById(id: number) {
+      this.loading = true;
+      this.product = await repository.getProductById(id);
+      this.loading = false;
     },
     async saveProduct(product: Product) {
-      let res
-      if (product.id)
-        res = await fetchWrapper.put(`${baseUrl}/${product.id}`, product)
-      else
-        res = await fetchWrapper.post(`${baseUrl}`, product)
-      return res
-    },
-    async newProduct() {
-      this.loading = true
-      setTimeout(() => {
-        this.product = {
-          id: '',
-          name: '',
-          category: '',
-          unitInStock: '',
-          price: 0,
-          retailPrice: 0,
-          // category: Category,
-          imageUri: '',
-          releaseDate: ''
-        }
-        this.loading = false
+      const slug = product.slug || slugify(product.name);
+      if (product.productId) {
+        const { productId, ...data } = product;
+        return repository.updateProduct(productId, { ...data, slug });
       }
-        , 500)
-
-    }
-  }
+      const { productId, ...data } = product;
+      return repository.createProduct({ ...data, slug });
+    },
+    newProduct() {
+      this.loading = true;
+      setTimeout(() => {
+        this.product = emptyProduct();
+        this.loading = false;
+      }, 500);
+    },
+  },
 });

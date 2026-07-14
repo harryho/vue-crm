@@ -17,32 +17,30 @@ const { filteredData, filter, totalPages, currentPage, totalCount } = storeToRef
 const dialog = ref(false)
 
 const notice = ref(false)
-const selectedId = ref('')
-const AVATAR_PLACEHOLDER = "/src/assets/images/product/avatar-0.webp"
+const selectedId = ref(0)
+const AVATAR_PLACEHOLDER = "/src/assets/images/product/product-0.webp"
 
-function editProduct(id: string) {
+function editProduct(id: number) {
   router.replace({ path: `/product/${id}` });
 }
 
-function deleteProduct(id: string) {
+function deleteProduct(id: number) {
   dialog.value = true
   selectedId.value = id
 }
 
 function onConfirm() {
   if (selectedId.value) {
-    productStore.delteProduct(selectedId.value)
-      .then((res) => {
+    productStore.deleteProduct(selectedId.value)
+      .then(() => {
         dialog.value = false
-        if (res.status) {
-          notice.value = true
-          setTimeout(() => {
-            notice.value = false;
-            productStore.getAll()
-          }, 1000)
-        }
+        notice.value = true
+        setTimeout(() => {
+          notice.value = false;
+          productStore.getAll()
+        }, 1000)
       })
-      .finally(() => selectedId.value = '');
+      .finally(() => selectedId.value = 0);
   }
 }
 
@@ -56,10 +54,6 @@ function onClose() {
 
 function onCreate() {
   router.replace({ path: '/product/new' })
-}
-
-function getStatusCol() {
-
 }
 </script>
 
@@ -77,7 +71,7 @@ function getStatusCol() {
         <v-row>
           <v-col cols="12" md="4" sm="6" v-for="(product, index) in filteredData" :key="index">
             <v-card variant="elevated" class="mx-auto ma-5" max-width="360">
-              <v-img class="product-img align-end text-primary b-r-25" height="250" :src="product.imageUri" cover>
+              <v-img class="product-img align-end text-primary b-r-25" height="250" :src="product.images[0]?.url" cover>
 
               </v-img>
               <v-card-title class=" text-h3"> {{ product.name }}
@@ -85,23 +79,21 @@ function getStatusCol() {
 
               <v-card-text class="d-flex justify-space-between">
                 <div class="ml-0 text-h4 price">
-                  AUD {{ formatToCurrencyString(product.price) }}</div>
-                <div class="chips">
-                  <div class="chip" v-for="(col, idx) in product.colors" :style="'background:' + col" :key="idx"></div>
-                </div>
+                  AUD {{ formatToCurrencyString(product.variants[0].price) }}</div>
+                <v-chip color="primary" size="small">{{ product.categoryName }}</v-chip>
               </v-card-text>
 
               <v-card-actions class="d-flex justify-space-between">
                 <div>
-                  <v-chip v-if="product.status === 'hot'" color="error">{{ product.status }}</v-chip>
-                  <v-chip v-if="product.status === 'new'" color="success">{{ product.status }}</v-chip>
+                  <v-chip v-if="product.variants[0].quantityOnHand === 0" color="error">out of stock</v-chip>
+                  <v-chip v-else color="success">in stock</v-chip>
                   <v-spacer />
                 </div>
                 <div>
                   <v-btn color="secondary mb-0" variant="outlined" text="Edit" title="Edit" size="small"
-                    @click="editProduct(product.id)"></v-btn>
+                    @click="editProduct(product.productId)"></v-btn>
                   <v-btn color="primary" variant="plain" text="Delete" size="large"
-                    @click="deleteProduct(product.id)"></v-btn>
+                    @click="deleteProduct(product.productId)"></v-btn>
 
                 </div>
               </v-card-actions>
@@ -132,25 +124,5 @@ function getStatusCol() {
 
 .price {
   color: rgb(226, 163, 45)
-}
-
-.chips {
-  display: flex;
-  flex-direction: row;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: end;
-  justify-content: flex-end;
-  margin-left: 1rem;
-}
-
-.chip {
-  margin-left: -6px;
-  width: 20px;
-  height: 20px;
-  /* background-color: rgb(255, 192, 203); */
-  border-radius: 50%;
-  border: 2px solid rgb(255, 255, 255);
-  box-shadow: rgba(0, 0, 0, 0.24) -1px 1px 2px inset
 }
 </style>
