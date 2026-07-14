@@ -1,74 +1,61 @@
 import { defineStore } from 'pinia';
 
-import { fetchWrapper } from '@/utils/helpers/fetch-wrapper';
-import { ThreedCubeSphereIcon } from 'vue-tabler-icons';
-import type { Address, Order } from '@/types-legacy';
+import * as repository from '@/data/repository';
+import type { Order } from '@/types';
 
-const baseUrl = `${import.meta.env.VITE_API_URL}/orders`;
+const STATUS_SEQUENCE = ['pending', 'processing', 'shipped', 'delivered'];
 
+const emptyOrder = (): Order => ({
+  orderId: 0,
+  orderNumber: '',
+  userId: 0,
+  status: 'pending',
+  currency: 'USD',
+  subtotal: 0,
+  discountTotal: 0,
+  shippingTotal: 0,
+  grandTotal: 0,
+  shipTo: {},
+  orderedAt: '',
+  items: [],
+  statusHistory: [],
+});
 
-export const useOrdersStore = defineStore("Orders", {
-
+export const useOrdersStore = defineStore('Orders', {
   state: () => ({
     orders: [] as Array<Order>,
     loading: false,
     filter: '',
-    order: {} as Order
+    order: emptyOrder(),
   }),
   getters: {
     filteredData(): Order[] {
       return this.orders;
     },
     getStepVal(): string {
-      return (['packing','shipping','customs-clearance','delivered']
-        .findIndex(s=> s===this.order.delivery)+1).toString()
-    }
+      return (STATUS_SEQUENCE.indexOf(this.order.status) + 1).toString();
+    },
   },
   actions: {
     async getAll() {
       this.loading = true;
-      this.orders = await fetchWrapper.get(baseUrl)
+      this.orders = await repository.getOrders();
       this.loading = false;
     },
-    async delteOrder(id: string) {
-      const res = await fetchWrapper.delete(`${baseUrl}/${id}`)
-      if (res.error) {
-        console.log(res.error)
-      }
-      return res
+    async getOrderById(id: number) {
+      this.loading = true;
+      this.order = await repository.getOrderById(id);
+      this.loading = false;
     },
-    async getOrderById(id: string) {
-      this.loading = true
-      const c = await fetchWrapper.get(`${baseUrl}/${id}`)
-      this.order = c
-      this.loading = false
+    // Advances the order to its next status - this app has no order-creation
+    // or line-item-editing UI yet (that's real checkout, a net-new M4
+    // feature), so "saving" an order here only ever means moving it forward
+    // one step in STATUS_SEQUENCE.
+    async advanceStatus() {
+      const currentIdx = STATUS_SEQUENCE.indexOf(this.order.status);
+      const nextStatus = STATUS_SEQUENCE[currentIdx + 1];
+      this.order = await repository.updateOrderStatus(this.order.orderId, nextStatus);
+      return this.order;
     },
-    async saveOrder(order: Order) {
-      let res
-      if (order.id)
-        res = await fetchWrapper.put(`${baseUrl}/${order.id}`, order)
-      else
-        res = await fetchWrapper.post(`${baseUrl}`, order)
-      return res
-    },
-    async newOrder() {
-      this.loading = true
-      setTimeout(() => {
-        this.order = {
-          id: '',
-          reference: '',
-          customer: '',
-          lineItems: [],
-          amount: 0,
-          billingDate: '',
-          shippingDate: '',
-          shippingAddress: {} as Address,
-          delivery: '',
-        }
-        this.loading = false
-      }
-        , 500)
-
-    }
-  }
+  },
 });

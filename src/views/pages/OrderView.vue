@@ -1,76 +1,48 @@
 <script setup lang="ts">
 import { useOrdersStore } from "@/stores/orders";
+import * as repository from "@/data/repository";
 import UiParentCard from "@/components/shared/UiParentCard.vue";
 import UiMainContainer from "@/components/shared/UiMainContainer.vue";
 import { ref } from "vue";
 import { storeToRefs } from "pinia";
-import ConfirmDialog from "@/components/shared/ConfirmDialog.vue";
-import NotificationBar from "@/components/shared/NotificeBar.vue";
 import { router } from "@/router";
-import { toTitleCase } from "@/utils/locales/format";
+import { toTitleCase, formatToCurrencyString } from "@/utils/locales/format";
+import type { User } from "@/types";
 
 const headers = [
-  { title: "Reference No.", key: "reference", algin: "start" },
-  { title: "Customer", key: "customer", algin: "start" },
-  { title: "Amount", key: "amount", algin: "end" },
-  { title: "Shipping Date", key: "shippingDate", algin: "end" },
-  { title: "Delivery", key: "delivery", algin: "start" },
-  { title: "", key: "id", algin: "end" },
+  { title: "Order No.", key: "orderNumber", algin: "start" },
+  { title: "Customer", key: "userId", algin: "start" },
+  { title: "Amount", key: "grandTotal", algin: "end" },
+  { title: "Shipped At", key: "shippedAt", algin: "end" },
+  { title: "Status", key: "status", algin: "start" },
+  { title: "", key: "orderId", algin: "end" },
 ];
 
 const orderStore = useOrdersStore();
 orderStore.getAll()
 const { filteredData } = storeToRefs(orderStore)
-const dialog = ref(false)
 const search = ref('')
-const notice = ref(false)
-const selectedId = ref('')
-const AVATAR_PLACEHOLDER = "/src/assets/images/order/avatar-0.webp"
+const users = ref<User[]>([])
+repository.getUsers().then((u) => (users.value = u))
 
-function editOrder(id: string) {
+function customerName(userId: number): string {
+  const user = users.value.find((u) => u.userId === userId)
+  return user ? `${user.firstName} ${user.lastName}` : `User ${userId}`
+}
+
+function editOrder(id: number) {
   router.replace({ path: `/order/${id}` });
 }
 
-function deleteOrder(id: string) {
-  dialog.value = true
-  selectedId.value = id
-}
-
-function onConfirm() {
-  if (selectedId.value) {
-    orderStore.delteOrder(selectedId.value)
-      .then((res) => {
-        dialog.value = false
-        if (res.status) {
-          notice.value = true
-          setTimeout(() => {
-            notice.value = false;
-            orderStore.getAll()
-          }, 1000)
-        }
-      })
-      .finally(() => selectedId.value = '');
-  }
-}
-
-function onCancel() {
-  dialog.value = false
-}
-
-function onClose() {
-  notice.value = false
-}
-
-
-function getColor(deliveryStatus: string): string {
-  switch (deliveryStatus) {
+function getColor(status: string): string {
+  switch (status) {
     case 'delivered':
       return 'success'
-    case 'packaging':
+    case 'pending':
       return 'error'
-    case 'customs-clearance':
+    case 'processing':
       return 'info'
-    case 'shipping':
+    case 'shipped':
       return 'warning'
     default:
       return ''
@@ -89,7 +61,16 @@ function getColor(deliveryStatus: string): string {
           <template v-slot:top>
             <v-text-field v-model="search" variant="solo-filled" class="pa-2" label="Filter"></v-text-field>
           </template>
-          <template v-slot:item.delivery="{ value }">
+          <template v-slot:item.userId="{ value }">
+            {{ customerName(value) }}
+          </template>
+          <template v-slot:item.grandTotal="{ value }">
+            AUD {{ formatToCurrencyString(value) }}
+          </template>
+          <template v-slot:item.shippedAt="{ item }">
+            {{ item.shipment?.shippedAt ? new Date(item.shipment.shippedAt).toLocaleDateString() : '-' }}
+          </template>
+          <template v-slot:item.status="{ value }">
             <v-chip :border="`${getColor(value)} thin opacity-10`"  :color="getColor(value)" :text="toTitleCase(value)"
               size="small"></v-chip>
           </template>
@@ -106,21 +87,21 @@ function getColor(deliveryStatus: string): string {
                   <v-table density="compact">
                     <tbody class="bg-surface-light">
                       <tr>
-                        <th>Street</th>
+                        <th>Address</th>
                         <th>City</th>
-                        <th>County</th>
-                        <th>Zip Code</th>
+                        <th>Country</th>
+                        <th>Postal Code</th>
                       </tr>
                     </tbody>
 
                     <tbody>
                       <tr>
                         <td>
-                          {{ item.shippingAddress.street }}
+                          {{ item.shipTo.line1 }}
                         </td>
-                        <td>{{ item.shippingAddress.city }}</td>
-                        <td>{{ item.shippingAddress.country }}</td>
-                        <td>{{ item.shippingAddress.zipcode }}</td>
+                        <td>{{ item.shipTo.city }}</td>
+                        <td>{{ item.shipTo.countryCode }}</td>
+                        <td>{{ item.shipTo.postalCode }}</td>
                       </tr>
                     </tbody>
                   </v-table>
@@ -128,16 +109,13 @@ function getColor(deliveryStatus: string): string {
               </td>
             </tr>
           </template>
-          <template v-slot:item.id="{ value }" v-slot:append>
+          <template v-slot:item.orderId="{ value }">
             <div class="d-flex ga-6 p-r-5 justify-end">
               <v-icon color="secondary" icon="$edit" size="x-large" @click="editOrder(value)"></v-icon>
-              <v-icon color="disabled" icon="$delete" size="x-large" @click="deleteOrder(value)"></v-icon>
             </div>
           </template>
         </v-data-table>
       </div>
     </UiParentCard>
-    <ConfirmDialog :dialog="dialog" @onConfirm="onConfirm" @onCancel="onCancel" />
-    <NotificationBar :notice="notice" @onClose="onClose" />
   </UiMainContainer>
 </template>
